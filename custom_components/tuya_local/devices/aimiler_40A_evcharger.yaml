@@ -1,0 +1,348 @@
+# Aimiler 40A Level 2 EV Charger - Tuya Local Device Configuration
+# https://www.amazon.com/dp/B0DWSB3HG8
+# Based on Tuya Query Device Details (product Id: 2wjeejfj90nlw5oj)
+# Config based on aimiler_11kW_evcharger (product Id: sdjwsgelux2upvuf)
+
+name: EV charger
+products:
+  - id: 2wjeejfj90nlw5oj
+    manufacturer: Aimiler
+    model: EV Charger 40A
+
+entities:
+  # Charging status
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3  # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23  # system_version
+        type: string
+        optional: true
+        name: system_version
+
+  # Charging current setting (8-40A for this model)
+  - entity: number
+    category: config
+    icon: "mdi:ev-plug-type2"
+    class: current
+    mode: box
+    dps:
+      - id: 4  # charge_cur_set
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 8
+          max: 40
+
+  # Fault/error indicator
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10  # fault
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: null
+            value: "No data"
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: ov2_cr_fault
+          - dps_val: 2
+            value: ov_vol
+          - dps_val: 4
+            value: undervoltage_alarm
+          - dps_val: 8
+            value: contactor_adhesion
+          - dps_val: 16
+            value: contactor_fault
+          - dps_val: 32
+            value: earth_fault
+          - dps_val: 64
+            value: meter_hardware_alarm
+          - dps_val: 128
+            value: scram_fault
+          - dps_val: 256
+            value: cp_fault
+          - dps_val: 512
+            value: meter_commu_fault
+          - dps_val: 1024
+            value: card_reader_fault
+          - dps_val: 2048
+            value: cir_short_fault
+          - dps_val: 4096
+            value: adhesion_fault
+          - dps_val: 8192
+            value: self_test_alarm
+          - dps_val: 16384
+            value: leakagecurr_alarm
+      - id: 120  # error_data
+        type: string
+        optional: true
+        name: error_data
+
+  # Connection state (CP pilot)
+  - entity: sensor
+    name: Connection
+    icon: "mdi:ev-plug-type2"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 13  # connection_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: Standby
+          - dps_val: controlpi_12v_pwm
+            value: Communication initialising
+          - dps_val: controlpi_9v
+            value: Vehicle detected
+          - dps_val: controlpi_9v_pwm
+            value: Vehicle connected
+          - dps_val: controlpi_6v
+            value: Ready to charge
+          - dps_val: controlpi_6v_pwm
+            value: Charging
+          - dps_val: controlpi_error
+            value: Error
+
+  # Charging mode
+  - entity: select
+    translation_key: charging_mode
+    category: config
+    dps:
+      - id: 14  # work_mode
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+          - dps_val: charge_pct
+            value: charge_to_percent
+          - dps_val: charge_energy
+            value: fixed_charge
+          - dps_val: charge_schedule
+            value: scheduled_charge
+          - dps_val: charge_delay
+            value: delayed_charge
+
+  # Main switch
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18  # switch
+        type: boolean
+        name: switch
+
+  # Current temperature
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24  # temp_current
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  # Plug temperature
+  - entity: sensor
+    name: Plug temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 122  # plug_temp
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  # Relay temperature
+  - entity: sensor
+    name: Relay temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 123  # relay_temp
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  # Delay power on (0-12 hours)
+  - entity: number
+    name: Delay power on
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 28  # timer_on
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12
+
+  # Voltage and current
+  # 8 bytes: 2B voltage 0.1V, 3B current 0.001A, 3B power 0.001kW
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 6  # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: current
+    dps:
+      - id: 6  # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  # Charging duration (current session)
+  - entity: sensor
+    name: Charging duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 104  # charger_time
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+
+  # Charge capacity (current session, scale 2 = /100)
+  - entity: sensor
+    name: Charge capacity
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 106  # charge_capacity
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  # Quick start (plug and charge)
+  - entity: switch
+    name: Quick start
+    category: config
+    icon: "mdi:flash"
+    dps:
+      - id: 105  # quick_start
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+
+  # Ground fault threshold
+  - entity: select
+    name: Ground fault threshold
+    category: config
+    icon: "mdi:earth"
+    dps:
+      - id: 113  # gndvalue_set
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Low"
+          - dps_val: "1"
+            value: "Medium"
+          - dps_val: "2"
+            value: "High"
+
+  # CP voltage (scale 3 = /1000)
+  - entity: sensor
+    name: CP voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 121  # cp_data
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  # Total power (scale 3 = /1000) - not supported by the device
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9  # power_total
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  # Smart light adjustment
+  - entity: switch
+    name: Smart brightness
+    category: config
+    icon: "mdi:brightness-auto"
+    dps:
+      - id: 114  # smartlight_adjust
+        type: boolean
+        optional: true
+        name: switch
