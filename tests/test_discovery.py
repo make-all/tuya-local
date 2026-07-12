@@ -168,27 +168,118 @@ async def test_sweep_scans_when_no_device_object(hass, mocker):
 
 @pytest.mark.asyncio
 async def test_start_is_idempotent_and_stop_cancels(hass, mocker):
-    """async_start_discovery schedules one interval; stop cancels it."""
-    unsub = mocker.MagicMock()
+    """async_start_discovery schedules the sweep + scan intervals; stop cancels both."""
+    unsub_sweep = mocker.MagicMock()
+    unsub_scan = mocker.MagicMock()
     track = mocker.patch(
         "custom_components.tuya_local.helpers.discovery.async_track_time_interval",
-        return_value=unsub,
+        side_effect=[unsub_sweep, unsub_scan],
     )
 
     await async_start_discovery(hass)
     rediscovery = hass.data[DOMAIN][DATA_DISCOVERY]
     assert isinstance(rediscovery, TuyaLANRediscovery)
-    assert track.call_count == 1
+    assert track.call_count == 2
 
-    # Second call must not schedule another interval (singleton).
+    # Second call must not schedule more intervals (singleton).
     await async_start_discovery(hass)
-    assert track.call_count == 1
+    assert track.call_count == 2
 
     async_stop_discovery(hass)
-    unsub.assert_called_once()
+    unsub_sweep.assert_called_once()
+    unsub_scan.assert_called_once()
     assert DATA_DISCOVERY not in hass.data[DOMAIN]
 
 
-def test_module_exposes_expected_interval():
-    """Guard the sweep cadence against accidental change."""
+def _fake_config(matches):
+    """Minimal stand-in for a device config with a matches_product() method."""
+    return type("Cfg", (), {"matches_product": lambda self, pid: matches})()
+
+
+@pytest.mark.asyncio
+async def test_product_scan_warns_once_on_unmatched_product(hass, caplog, mocker):
+    """An unmatched product id is logged at WARNING, once per device per run."""
+    _make_entry(hass, host="192.168.1.10")
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._find_device",
+        return_value={"ip": "192.168.1.10", "product_id": "keyabc123"},
+    )
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery.get_config",
+        return_value=_fake_config(False),
+    )
+    disc = TuyaLANRediscovery(hass)
+
+    with caplog.at_level(
+        logging.WARNING, logger="custom_components.tuya_local.helpers.discovery"
+    ):
+        await disc._async_product_scan()
+        await hass.async_block_till_done()
+        assert caplog.text.count("keyabc123") == 1
+        # A second scan must not warn again for the same device.
+        caplog.clear()
+        await disc._async_product_scan()
+        await hass.async_block_till_done()
+        assert "keyabc123" not in caplog.text
+
+
+@pytest.mark.asyncio
+async def test_product_scan_silent_when_product_matches(hass, caplog, mocker):
+    """No warning when the product id is listed in the config."""
+    _make_entry(hass, host="192.168.1.10")
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._find_device",
+        return_value={"ip": "192.168.1.10", "product_id": "keyabc123"},
+    )
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery.get_config",
+        return_value=_fake_config(True),
+    )
+    with caplog.at_level(
+        logging.WARNING, logger="custom_components.tuya_local.helpers.discovery"
+    ):
+        await TuyaLANRediscovery(hass)._async_product_scan()
+        await hass.async_block_till_done()
+    assert "is not listed" not in caplog.text
+
+
+@pytest.mark.asyncio
+async def test_product_scan_skips_when_no_product_id(hass, mocker):
+    """If the scan returns no product id, the config is not even looked up."""
+    _make_entry(hass, host="192.168.1.10")
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._find_device",
+        return_value={"ip": "192.168.1.10"},
+    )
+    get_config = mocker.patch(
+        "custom_components.tuya_local.helpers.discovery.get_config",
+    )
+    await TuyaLANRediscovery(hass)._async_product_scan()
+    await hass.async_block_till_done()
+    get_config.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_product_scan_handles_missing_config(hass, caplog, mocker):
+    """A missing config file must not warn or raise."""
+    _make_entry(hass, host="192.168.1.10")
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._find_device",
+        return_value={"ip": "192.168.1.10", "product_id": "keyabc123"},
+    )
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery.get_config",
+        return_value=None,
+    )
+    with caplog.at_level(
+        logging.WARNING, logger="custom_components.tuya_local.helpers.discovery"
+    ):
+        await TuyaLANRediscovery(hass)._async_product_scan()
+        await hass.async_block_till_done()
+    assert "keyabc123" not in caplog.text
+
+
+def test_module_exposes_expected_intervals():
+    """Guard the cadences against accidental change."""
     assert discovery.SWEEP_INTERVAL.total_seconds() == 60
+    assert discovery.SCAN_INTERVAL.total_seconds() == 600
