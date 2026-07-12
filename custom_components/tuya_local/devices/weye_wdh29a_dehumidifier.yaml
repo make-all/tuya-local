@@ -42,7 +42,7 @@ entities:
         name: speed
         mapping:
           - dps_val: low
-            value: 33
+            value: 50
           - dps_val: high
             value: 100
   - entity: light
@@ -63,6 +63,9 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     translation_key: tank_full
     dps:
