@@ -887,7 +887,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Rangzig93](https://github.com/Rangzig93) for contributing support for Airwoods fresh air heat pump.
 - [romainsc](https://github.com/romainsc) for contributing improvements to Teknopoint Idra Skiv.
 - [kcgthb](https://github.com/kcgthb) for contributing improvements to Petlibro PLAF203 pet feeder.
-- [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer.
+- [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer and Titan Kinetic 5 light driver.
 - [flo-m](https://github.com/flo-m) for contributing support for Pinar SmartLux door lights.
 - [algrym](https://github.com/algrym) for contributing improvements to Leo's Loo Too litter box.
 - [com6056](https://github.com/com6056) for contributing logging improvements.
