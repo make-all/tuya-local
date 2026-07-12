@@ -1,0 +1,254 @@
+# Tronic Balcony Power Starter Set 360Wp / 400W Full Black (Lidl)
+
+name: Solar inverter
+
+products:
+  - id: o22ucxbgfd109nbl
+    manufacturer: Tronic
+    model: Balcony Power Starter Set 360Wp 400W Full Black
+
+entities:
+
+  # DPS 8 — power_total, current AC output in kW
+  - entity: sensor
+    class: power
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  # DPS 2 — reverse_energy_total, cumulative energy in kWh
+  # Note: stores in non-volatile memory in ~100Wh increments,
+  # so small step-backs after power loss are expected behaviour.
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+
+  # DPS 16 — temp_current, inverter temperature
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # DPS 10 — work_mode, readable and writable
+  - entity: select
+    name: Power source
+    icon: "mdi:solar-power"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: power_off
+            value: "Off"
+            icon: "mdi:power-standby"
+          - dps_val: inverter_power
+            value: Inverter
+            icon: "mdi:solar-power"
+          - dps_val: grid_power
+            value: Grid
+            icon: "mdi:transmission-tower-import"
+          - dps_val: battery_power
+            value: Battery
+            icon: "mdi:car-battery"
+
+  # DPS 3 — pv1_dc_data (6 bytes big-endian)
+  # bytes 0-1: DC voltage  mask FFFF00000000  ÷10 = V
+  # bytes 2-3: DC current  mask 0000FFFF0000  ÷10 = A
+  # bytes 4-5: DC power    mask 00000000FFFF  ÷100 = kW
+  - entity: sensor
+    name: DC Voltage
+    class: voltage
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        optional: true
+        mask: "FFFF00000000"
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: DC Current
+    class: current
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000FFFF0000"
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: DC Power
+    class: power
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        optional: true
+        mask: "00000000FFFF"
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+
+  # DPS 5 — phase_a (10 bytes big-endian)
+  # bytes 0-1:  AC voltage  mask FFFF0000000000000000  ÷10 = V
+  # bytes 2-4:  AC current  mask 0000FFFFFF0000000000  ÷1000 = A (uint24)
+  # bytes 5-7:  AC power    mask 0000000000FFFFFF0000  ÷1000 = kW (uint24)
+  # bytes 8-9:  AC freq     mask 0000000000000000FFFF  ÷10 = Hz
+  - entity: sensor
+    name: AC Voltage
+    class: voltage
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "FFFF0000000000000000"
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: AC Current
+    class: current
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000FFFFFF0000000000"
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: AC Power
+    class: power
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000FFFFFF0000"
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    class: frequency
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000FFFF"
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # DPS 9 — fault bitmap
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "OK"
+          - dps_val: 1
+            value: "Overcurrent"
+          - dps_val: 2
+            value: "Overvoltage"
+          - dps_val: 4
+            value: "Grid Outage"
+          - dps_val: 8
+            value: "Frequency Abnormal"
+          - dps_val: 16
+            value: "DC Overvoltage"
+          - dps_val: 32
+            value: "DC Compensation"
+          - dps_val: 64
+            value: "Fan Fault"
+          - dps_val: 128
+            value: "Insulation Resistance"
+          - dps_val: 256
+            value: "Inverter Temperature"
+          - dps_val: 512
+            value: "Residual Current"
+          - dps_val: 1024
+            value: "Current Leak"
+          - dps_val: 2048
+            value: "Battery Overvoltage"
+          - dps_val: 4096
+            value: "Battery Undervoltage"
+          - dps_val: 8192
+            value: "Battery Temperature"
+          - dps_val: 16384
+            value: "Communication Fault"
+          - dps_val: 32768
+            value: "Inverter Body Fault"
+
+  # DPS 11, 12 — alarm sets, not observed locally
+  - entity: text
+    name: Alarm 1
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        name: value
+        optional: true
+
+  - entity: text
+    name: Alarm 2
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 12
+        type: base64
+        name: value
+        optional: true

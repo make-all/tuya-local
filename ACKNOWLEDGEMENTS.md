@@ -890,3 +890,9 @@ Further device support has been made with the assistance of users. Please consid
 - [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer.
 - [flo-m](https://github.com/flo-m) for contributing support for Pinar SmartLux door lights.
 - [algrym](https://github.com/algrym) for contributing improvements to Leo's Loo Too litter box.
+- [com6056](https://github.com/com6056) for contributing logging improvements.
+- [ralphxtrem](https://github.com/ralphxtrem) for contributing support for AtmosC A Series air purifier.
+- [pedrohcmeneses](https://github.com/pedrohcmeneses) for contributing support for Coibeu WKFS-004 ceiling fan with light.
+- [neneonline](https://github.com/neneonline) for contributing support for Tuya device discovery.
+- [macher91](https://github.com/macher91) for contributing support for Shrivee triple water timer.
+- [DevilRange](https://github.com/DevilRange) for contributing support for Lidl Tronic Balcony solar inverter.

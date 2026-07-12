@@ -30,6 +30,7 @@ from .const import (
 )
 from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
+from .helpers.discovery import async_start_discovery, async_stop_discovery
 from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
@@ -998,6 +999,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         "Setting up entry for device: %s",
         device_id,
     )
+    # Start background LAN rediscovery so a device that changes IP (e.g. after a
+    # DHCP lease change) is relocated and reconnected without manual
+    # reconfiguration. Safe to call repeatedly; only one sweeper is started.
+    await async_start_discovery(hass)
     config = {**entry.data, **entry.options, "name": entry.title}
     try:
         device = await hass.async_add_executor_job(setup_device, hass, config)
@@ -1059,6 +1064,15 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     await async_delete_device(hass, config)
     domain_data.pop(device_id, None)
+
+    # Stop the shared rediscovery sweeper once the last device is gone.
+    remaining = [
+        e
+        for e in hass.config_entries.async_entries(DOMAIN)
+        if e.entry_id != entry.entry_id
+    ]
+    if not remaining:
+        async_stop_discovery(hass)
 
     return True
 

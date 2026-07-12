@@ -26,6 +26,7 @@
 - Cronos GPH-D-DA heater
 - Devola Intelligent and Patio heaters
 - Dynasty BTX fireplace
+- Ecoso WiFi heating element
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiators
 - Ecostrad iQ heating elements
@@ -368,6 +369,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
+- Coibeu WKFS-004 ceiling fan with light
 - ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
@@ -477,6 +479,7 @@
 
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
+- AtmosC A Series air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
@@ -745,7 +748,7 @@
 - Ipengen GO-E31-16A and 32A EV chargers
 - Junsun 32A EV charger
 - Kolanky 3.6kW EV charger
-- Lidl Tronic solar power storage
+- Lidl Tronic solar power storage and Balcony solar inverter
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
@@ -1373,6 +1376,7 @@ port and password.
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
 - SD123 HPR01 human presence radar
+- Shrivee triple water timer
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sodial probe thermometer
