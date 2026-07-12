@@ -1,0 +1,109 @@
+name: Air purifier
+products:
+  - id: rufdceynizoy3e2p
+    manufacturer: Dayette
+    model: AP409
+entities:
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: auto
+            default: true
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: manual
+  - entity: select
+    translation_key: mode
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+            default: true
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: manual
+            value: Manual
+  - entity: select
+    name: Fan speed
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: Low
+            value: Low
+          - dps_val: Medium
+            value: Medium
+          - dps_val: High
+            value: High
+          - dps_val: Pet
+            value: Pet
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: Cancel
+          - dps_val: 2h
+            value: 2 Hours
+          - dps_val: 4h
+            value: 4 Hours
+          - dps_val: 6h
+            value: 6 Hours
+          - dps_val: 8h
+            value: 8 Hours
+  - entity: sensor
+    name: Countdown left
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Filter reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
