@@ -895,3 +895,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pedrohcmeneses](https://github.com/pedrohcmeneses) for contributing support for Coibeu WKFS-004 ceiling fan with light.
 - [neneonline](https://github.com/neneonline) for contributing support for Tuya device discovery.
 - [macher91](https://github.com/macher91) for contributing support for Shrivee triple water timer.
+- [DevilRange](https://github.com/DevilRange) for contributing support for Lidl Tronic Balcony solar inverter.
