@@ -1,0 +1,171 @@
+name: Curry Smarter 7-Gen roller shutter switch
+products:
+  - id: mxeyhho2cvjgqake
+    manufacturer: Curry Smarter
+    model: W7Pro
+entities:
+  # === Main entity: roller shutter ===
+  - entity: cover
+    class: shutter
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: stop
+            value: stop
+          - dps_val: close
+            value: close
+      - id: 2
+        type: integer
+        name: position
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+
+  # === Sensors (from optional paired light/rain sensor) ===
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        optional: true
+        unit: "%"
+
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        optional: true
+        unit: "lx"
+
+  - entity: binary_sensor
+    name: Rain detected
+    class: moisture
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor
+
+  # === Configuration switches ===
+  - entity: switch
+    name: Child lock
+    category: config
+    icon: "mdi:account-lock"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Light sensor automation
+    category: config
+    icon: "mdi:weather-sunny"
+    dps:
+      - id: 132
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Rain sensor automation
+    category: config
+    icon: "mdi:weather-rainy"
+    dps:
+      - id: 133
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Rain notification
+    category: config
+    icon: "mdi:bell-ring"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Light sensor LED
+    category: config
+    icon: "mdi:led-on"
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+
+  # === Configuration selects ===
+  - entity: select
+    name: Backlight
+    category: config
+    icon: "mdi:brightness-6"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: max_light
+            value: Bright
+          - dps_val: micro_light
+            value: Dim
+          - dps_val: close
+            value: "Off"
+
+  - entity: select
+    name: Calibration
+    category: config
+    icon: "mdi:tune"
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: end
+            value: Done
+          - dps_val: pause
+            value: Cancel
+
+  - entity: select
+    name: Light sensor pairing
+    category: config
+    icon: "mdi:link-variant"
+    dps:
+      - id: 127
+        type: string
+        name: option
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: end
+            value: Done
+          - dps_val: pause
+            value: Cancel
+
+  # === Buttons ===
+  - entity: button
+    name: Reset calibration
+    category: config
+    icon: "mdi:delete-sweep"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Sync calibration data
+    category: config
+    icon: "mdi:sync"
+    dps:
+      - id: 129
+        type: boolean
+        name: button
