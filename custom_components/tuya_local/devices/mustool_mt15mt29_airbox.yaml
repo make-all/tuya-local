@@ -10,6 +10,7 @@ entities:
     dps:
       - id: 1
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: level_1
@@ -17,7 +18,11 @@ entities:
           - dps_val: level_2
             value: good
           - dps_val: level_3
+            value: moderate
+          - dps_val: level_4
             value: poor
+          - dps_val: level_5
+            value: severe
   - entity: sensor
     class: temperature
     dps:
@@ -64,6 +69,7 @@ entities:
     dps:
       - id: 8
         type: integer
+        optional: true
         name: sensor
         unit: ugm3
         class: measurement
@@ -81,6 +87,7 @@ entities:
     dps:
       - id: 22
         type: integer
+        optional: true
         name: sensor
         unit: "%"
         class: measurement
@@ -161,6 +168,7 @@ entities:
           - step: 100
       - id: 106
         type: boolean
+        optional: true
         name: available
   - entity: number
     name: Sleep timer
@@ -182,6 +190,7 @@ entities:
     dps:
       - id: 106
         type: boolean
+        optional: true
         name: switch
   - entity: sensor
     name: PM 0.3
@@ -218,6 +227,7 @@ entities:
           max: 1440
       - id: 116
         type: boolean
+        optional: true
         name: available
   - entity: time
     name: Alarm 2
@@ -232,6 +242,7 @@ entities:
           max: 1440
       - id: 117
         type: boolean
+        optional: true
         name: available
   - entity: time
     name: Alarm 3
@@ -246,6 +257,7 @@ entities:
           max: 1440
       - id: 118
         type: boolean
+        optional: true
         name: available
   - entity: select
     translation_key: temperature_unit
@@ -277,6 +289,7 @@ entities:
           - step: 10
       - id: 106
         type: boolean
+        optional: true
         name: available
   - entity: number
     name: PM2.5 alarm threshold
@@ -285,6 +298,7 @@ entities:
     dps:
       - id: 114
         type: integer
+        optional: true
         name: value
         unit: ugm3
         range:
@@ -294,6 +308,7 @@ entities:
           - step: 10
       - id: 106
         type: boolean
+        optional: true
         name: available
   - entity: number
     name: Formaldehyde alarm threshold
@@ -302,6 +317,7 @@ entities:
     dps:
       - id: 115
         type: integer
+        optional: true
         name: value
         unit: ugm3
         range:
@@ -311,6 +327,7 @@ entities:
           - scale: 0.1
       - id: 106
         type: boolean
+        optional: true
         name: available
   - entity: switch
     name: Alarm 1

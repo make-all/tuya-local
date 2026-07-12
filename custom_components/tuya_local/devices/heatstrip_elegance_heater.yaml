@@ -1,0 +1,47 @@
+name: Outdoor heater
+products:
+  - id: hkni0drxyokiqyxd
+    manufacturer: Heatstrip
+    model: Elegance
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: mode
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: low
+          - dps_val: level_2
+            value: high
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min

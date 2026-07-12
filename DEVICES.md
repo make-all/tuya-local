@@ -44,6 +44,7 @@
 - Goldair GPPH, GCPV, GECO, GPOC and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
+- Heatstrip Elegance outdoor heater
 - Herschel Select XLS heated bathroom mirror with lights
 - Herschel infrared heater
 - HJZ oil column radiator
@@ -574,6 +575,7 @@
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - WetAir WAD-A10L dehumidifier
+- Weye WDH-29A dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
@@ -748,7 +750,7 @@
 - Ipengen GO-E31-16A and 32A EV chargers
 - Junsun 32A EV charger
 - Kolanky 3.6kW EV charger
-- Lidl Tronic solar power storage
+- Lidl Tronic solar power storage and Balcony solar inverter
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
@@ -974,7 +976,7 @@ of device.
 - PowerAsia RGB 6-inch recessed lighting
 - RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
-- Sensio 240V Kinetic Receiver dimmer
+- Sensio 240V Kinetic Receiver dimmer and Titan Kinetic 5 light driver
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - SunnyBot plant light
