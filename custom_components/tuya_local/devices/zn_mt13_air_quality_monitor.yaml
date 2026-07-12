@@ -1,0 +1,184 @@
+name: Air quality monitor
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: level_1
+            value: excellent
+          - dps_val: level_2
+            value: good
+          - dps_val: level_3
+            value: poor
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    name: Formaldehyde (HCHO)
+    class: volatile_organic_compounds
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: mg/m³
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: TVOC
+    class: volatile_organic_compounds
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: mg/m³
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: carbon_monoxide
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    name: PM 0.3
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 23
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Enable alarms
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: CO2 alarm threshold
+    class: carbon_dioxide
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 400
+          max: 5000
+        mapping:
+          - step: 100
+  - entity: number
+    name: CO alarm threshold
+    class: carbon_monoxide
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 10
+          max: 500
+  - entity: number
+    name: PM2.5 alarm threshold
+    class: pm25
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 10
+          max: 999
+  - entity: number
+    name: Formaldehyde alarm threshold
+    icon: "mdi:alert"
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 0
+          max: 999
+  - entity: number
+    name: Sleep timer
+    class: duration
+    icon: "mdi:bed-clock"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 100
