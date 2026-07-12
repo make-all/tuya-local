@@ -1,6 +1,6 @@
 # Tronic Balcony Power Starter Set 360Wp / 400W Full Black (Lidl)
 
-name: Balcony Solar Inverter
+name: Solar inverter
 
 products:
   - id: o22ucxbgfd109nbl
@@ -49,7 +49,7 @@ entities:
 
   # DPS 10 — work_mode, readable and writable
   - entity: select
-    name: Work Mode
+    name: Power source
     icon: "mdi:solar-power"
     category: config
     dps:
@@ -57,17 +57,17 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: "power_off"
-            value: "Power Off"
+          - dps_val: power_off
+            value: "Off"
             icon: "mdi:power-standby"
-          - dps_val: "inverter_power"
-            value: "Inverter Power"
+          - dps_val: inverter_power
+            value: Inverter
             icon: "mdi:solar-power"
-          - dps_val: "grid_power"
-            value: "Grid Power"
+          - dps_val: grid_power
+            value: Grid
             icon: "mdi:transmission-tower-import"
-          - dps_val: "battery_power"
-            value: "Battery Power"
+          - dps_val: battery_power
+            value: Battery
             icon: "mdi:car-battery"
 
   # DPS 3 — pv1_dc_data (6 bytes big-endian)
@@ -177,16 +177,23 @@ entities:
           - scale: 10
 
   # DPS 9 — fault bitmap
-  # Named enum sensor showing OK or specific fault name.
-  # dps_val is 2^bit for each fault bit position.
-  - entity: sensor
-    name: Fault
-    class: enum
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 9
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
             value: "OK"
