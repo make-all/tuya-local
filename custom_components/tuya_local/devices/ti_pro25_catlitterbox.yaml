@@ -1,0 +1,240 @@
+name: Cat litter box
+products:
+  - id: yn6wqmizg7abe5k8
+    manufacturer: Ti
+    model: Ti Pro25 Smart Cat Litter Box
+entities:
+  # Last recorded cat weight in kg
+  - entity: sensor
+    icon: "mdi:cat"
+    name: Cat weight
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 10
+  # Counts total number of cat visits
+  - entity: sensor
+    name: Total visits
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: visits
+  # Duration of cat's last visit in seconds
+  - entity: sensor
+    name: Visit duration
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  # Reports device malfunctions and errors
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 1
+            value: "Motor malfunction"
+          - dps_val: 2
+            value: "Program error"
+          - dps_val: 4
+            value: "Weight sensor malfunction"
+          - dps_val: 8
+            value: "Fan malfunction"
+          - dps_val: 16
+            value: "Ozone generator malfunction"
+          - dps_val: 32
+            value: "Ball bunker not installed"
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 24
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "standly"
+            value: "standby"
+          - dps_val: "empty"
+            value: "empty"
+          - dps_val: "clock"
+            value: "child lock"
+          - dps_val: "sleep"
+            value: "sleep"
+          - dps_val: "level"
+            value: "level"
+          - dps_val: "test"
+            value: "test"
+          - dps_val: "replace"
+            value: "replace"
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: button
+    name: Empty
+    icon: "mdi:delete-empty"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    name: Bin full
+    icon: "mdi:trash-can"
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "empty"
+          - value: "full"
+  - entity: binary_sensor
+    class: occupancy
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Auto clean
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Auto odor
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep mode
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+## 106, 107, 108 # autocleaning???
+
+## 112, 121, 122, 123, 124, 128, 129 
+
+## 134 - weight lb?
+
+   ## In the event of a malfunction where the silo is not in its home position, perform a power-cycle operation (powering the equipment off and then on); this operation bypasses any triggered sensors and is executed while the system is connected to the network.
+  - entity: button
+    name: Net notice (reset)
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: unit
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: "pound"
+            value: "kilogram"
+          - dps_val: "kilogram"
+            value: "pound"
+  - entity: number
+    name: Clean wait time
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Clean interval
+    category: config
+    icon: "mdi:update"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+  - entity: switch
+    name: Deep clean (clean twice)
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+  - entity: button
+    name: Level litter
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 126
+        type: boolean
+        name: button
+  - entity: button
+    name: Bag replace
+    icon: "mdi:sack"
+    dps:
+      - id: 127
+        type: boolean
+        name: button
+  - entity: select
+    name: Litter type
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 131
+        type: string
+        name: option
+        mapping:
+          - dps_val: "mineral_cat_litter"
+            value: "Mineral"
+          - dps_val: "mix_cat_litter"
+            value: "Mixed"
