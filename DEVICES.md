@@ -575,6 +575,7 @@
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - WetAir WAD-A10L dehumidifier
+- Weye WDH-29A dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
