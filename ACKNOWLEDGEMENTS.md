@@ -898,3 +898,4 @@ Further device support has been made with the assistance of users. Please consid
 - [DevilRange](https://github.com/DevilRange) for contributing support for Lidl Tronic Balcony solar inverter.
 - [wayni850528](https://github.com/wayni850528) for contributing support for Weye WDH-29A dehumidifier.
 - [LightningManGTS](https://github.com/LightningManGTS) for contributing support for Vivohome AirBoost Series register booster fan.
+- [rfinnie](https://github.com/rfinnie) for contributing support for Aimiler 40A EV charger.
