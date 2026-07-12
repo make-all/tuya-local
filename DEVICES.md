@@ -26,6 +26,7 @@
 - Cronos GPH-D-DA heater
 - Devola Intelligent and Patio heaters
 - Dynasty BTX fireplace
+- Ecoso WiFi heating element
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiators
 - Ecostrad iQ heating elements
@@ -368,6 +369,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
+- Coibeu WKFS-004 ceiling fan with light
 - ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
@@ -477,6 +479,7 @@
 
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
+- AtmosC A Series air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
@@ -520,6 +523,7 @@
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
+- Belair Baltic Irradio 20L dehumidifier
 - Cecotec BigDry 4000 dehumidifier
 - Clean Air Optima CA-702 dehumidifier
 - Cleverio AD100 dehumidifier
@@ -966,9 +970,11 @@ of device.
 - oLight Sphere ambient light
 - Outon Smart Lamp
 - Peteme recessed lighting
+- Pinar SmartLux door lights
 - PowerAsia RGB 6-inch recessed lighting
 - RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
+- Sensio 240V Kinetic Receiver dimmer
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - SunnyBot plant light
@@ -1370,6 +1376,7 @@ port and password.
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
 - SD123 HPR01 human presence radar
+- Shrivee triple water timer
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sodial probe thermometer
