@@ -1,27 +1,32 @@
-# Configurazione device custom per Tuya Local (make-all/tuya-local)
-# Device: Multi-function Air Quality Sensor (venduto anche come "AirSensor MT13W")
-# Product ID confermato: tf5vafuyq3hiibs4
+# Custom device config for Tuya Local (make-all/tuya-local)
+# Device: Multi-function Air Quality Sensor
+# (also sold as "AirSensor MT13W")
+# Confirmed product ID: tf5vafuyq3hiibs4
 #
-# Mappatura DPS confermata confrontando i valori raw con il display fisico del device:
-#   DPS 1   -> livello qualita' aria complessivo (stringa enum: level_1, level_2...)
-#   DPS 2   -> temperatura (C, valore diretto senza scala)
-#   DPS 3   -> umidita' (%, valore diretto senza scala)
-#   DPS 4   -> CO2 (ppm, valore diretto)
-#   DPS 5   -> HCHO/formaldeide (mg/m3, valore diviso 1000)
-#   DPS 7   -> PM2.5 (ug/m3, valore diretto)
-#   DPS 9   -> PM10 (ug/m3, valore diretto)
-#   DPS 23  -> stato schermo (booleano, acceso/spento)
-#   DPS 101 -> TVOC (mg/m3, valore diviso 1000)
+# DPS mapping confirmed by comparing raw values against the device's
+# physical LCD display, side by side, for each metric:
+#   DPS 1   -> overall air quality level
+#              (string enum: level_1, level_2...)
+#   DPS 2   -> temperature (C, direct value, no scale)
+#   DPS 3   -> humidity (%, direct value, no scale)
+#   DPS 4   -> CO2 (ppm, direct value)
+#   DPS 5   -> HCHO/formaldehyde (mg/m3, value divided by 1000)
+#   DPS 7   -> PM2.5 (ug/m3, direct value)
+#   DPS 9   -> PM10 (ug/m3, direct value)
+#   DPS 23  -> display on/off (boolean)
+#   DPS 101 -> TVOC (mg/m3, value divided by 1000)
 #
-# DPS ancora non identificati con certezza (visti nel dump ma non mappati qui):
+# DPS observed in the raw dump but not confidently identified yet:
 #   102, 104, 105, 106, 107, 112, 113, 114, 115
-#   (104 e' probabile tensione batteria in mV, ma il device sembra alimentato via USB
-#    quindi non confermato; 112="c" probabile flag unita' di misura Celsius/Fahrenheit)
+#   (104 is possibly battery voltage in mV, but the device appears to
+#   be USB powered so this is unconfirmed; 112="c" is possibly a
+#   Celsius/Fahrenheit unit flag)
 #
-# Per installare: copiare questo file in
-#   /config/custom_components/tuya_local/devices/multi_air_quality_mt13w.yaml
-# poi riavviare Home Assistant (o ricaricare l'integrazione Tuya Local) prima di
-# aggiungere il device.
+# To install: copy this file to
+#   /config/custom_components/tuya_local/devices/
+#   multi_air_quality_mt13w.yaml
+# then restart Home Assistant (or reload the Tuya Local integration)
+# before adding the device.
 
 name: Multi-function Air Quality Sensor
 products:
