@@ -32,7 +32,6 @@ entities:
   - entity: sensor
     name: Total visits
     icon: "mdi:counter"
-    category: diagnostic
     dps:
       - id: 7
         type: integer
@@ -209,12 +208,12 @@ entities:
   - entity: sensor
     icon: "mdi:delete-restore"
     name: Number of cleanings
-    class: measurement
     dps:
       - id: 124
         type: integer
         name: sensor
         unit: cleanings
+        class: measurement
   - entity: switch
     name: Deep clean (clean twice)
     category: config
