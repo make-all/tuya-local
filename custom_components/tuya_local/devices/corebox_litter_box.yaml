@@ -1,0 +1,189 @@
+name: CoreBox smart cat litter box
+products:
+  - id: xniit4zwcaqmzrl7
+    name: CoreBox Smart Cat Litter Box
+
+entities:
+  - entity: sensor
+    name: Status
+    class: enum
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: Standby
+          - dps_val: waiting
+            value: Waiting (Delay)
+          - dps_val: cleaning
+            value: Cleaning
+          - dps_val: cat_get_in
+            value: Cat Inside
+          - dps_val: pause
+            value: Paused
+          - dps_val: garbage_box_full
+            value: Waste Drawer Full
+          - dps_val: Error
+            value: Fault Error
+          - dps_val: empty_done
+            value: Emptying Done
+          - dps_val: emptying
+            value: Emptying Litter
+          - dps_val: pause_2
+            value: Emptying Paused
+          - dps_val: clean_done
+            value: Cleaning Done
+
+  - entity: switch
+    name: Auto clean
+    icon: mdi:robot
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Delay clean time
+    icon: mdi:clock-start
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 60
+        unit: min
+
+  - entity: sensor
+    name: Today usage
+    icon: mdi:cat
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: times
+
+  - entity: switch
+    name: Sleep mode
+    icon: mdi:sleep
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Sleep start time
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1435
+
+  - entity: number
+    name: Sleep end time
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1435
+
+  - entity: sensor
+    name: Fault alert
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Motor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: mA
+
+  - entity: switch
+    name: Child lock
+    icon: mdi:lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Empty litter command
+    icon: mdi:delete-variant
+    dps:
+      - id: 104
+        type: string
+        name: select
+        options:
+          - dps_val: standby1
+            value: Standby
+          - dps_val: empty
+            value: Empty Litter
+          - dps_val: pause1
+            value: Pause
+
+  - entity: switch
+    name: Buzzer
+    icon: mdi:volume-high
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Manual clean command
+    icon: mdi:broom
+    dps:
+      - id: 106
+        type: string
+        name: select
+        options:
+          - dps_val: standby
+            value: Standby
+          - dps_val: cleaning
+            value: Clean Now
+          - dps_val: pause
+            value: Pause
+
+  - entity: sensor
+    name: History record
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+
+  - entity: switch
+    name: Indicator light
+    icon: mdi:led-on
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Deodorizer reminder
+    icon: mdi:air-filter
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
