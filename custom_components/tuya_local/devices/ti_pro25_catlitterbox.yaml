@@ -1,3 +1,14 @@
+## Ti Pro25 Smart Cat Litter Box also fund as iHunt Smart Cat Litter V1
+## dps that are not mapped
+## 134 - weight in lb, the cat weight is displayed in kg or lb when changing the unit, this is not necessary
+## 109 - odor removal, seems to be internal
+## 110 - sleep mode, seems to be internal for schedule
+## 106, 107, 108 # autocleaning with schedule
+
+## 112, 119, 121, 122, 128, 129
+
+## 115 - calibration could not find a button in the app
+
 name: Cat litter box
 products:
   - id: yn6wqmizg7abe5k8
@@ -131,29 +142,9 @@ entities:
       - id: 105
         type: boolean
         name: switch
-  - entity: switch
-    name: Auto odor
-    category: config
-    dps:
-      - id: 109
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Sleep mode
-    category: config
-    dps:
-      - id: 110
-        type: boolean
-        name: switch
-## 106, 107, 108 # autocleaning???
-
-## 112, 121, 122, 123, 124, 128, 129 
-
-## 134 - weight lb?
-
    ## In the event of a malfunction where the silo is not in its home position, perform a power-cycle operation (powering the equipment off and then on); this operation bypasses any triggered sensors and is executed while the system is connected to the network.
   - entity: button
-    name: Net notice (reset)
+    name: Device restart
     dps:
       - id: 113
         type: boolean
@@ -203,6 +194,27 @@ entities:
         range:
           min: 0
           max: 120
+  - entity: number
+    name: Full Bin Calibration
+    category: config
+    icon: "mdi:delete-restore"
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 35
+  - entity: sensor
+    icon: "mdi:delete-restore"
+    name: Number of cleanings
+    class: measurement
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: cleanings
   - entity: switch
     name: Deep clean (clean twice)
     category: config
