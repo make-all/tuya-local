@@ -1,4 +1,16 @@
-name: Breville AirRounder
+# Loosly based on the Airrounder Plus config
+# Dealing with the overlapping DP modes, decided to retain one climate window and have that auto update
+# rather than seperate Fan and Climate UI's
+# Mode matrix for reference:
+#  Fan only mode:
+#   Low DP4=heat_low DP5=NatureWind_Low
+#   Med DP4=heat_low DP5=NatureWind_High
+#   High DP4=heat_low DP5=CoolWind_0
+#  Heat:
+#   Low - DP4=heat_high DP5=SleepWind
+#   High - DP4=heat_0 DP5=SleepWind   
+
+name: Purifier heater
 products:
   - id: 56ssixusjwkhp6yg
     manufacturer: Breville
@@ -14,7 +26,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
+            constraint: preset_mode
             conditions:
               - dps_val: heat_low
                 value: fan_only
@@ -36,27 +48,38 @@ entities:
         type: string
         name: preset_mode
         mapping:
-          - dps_val: heat_high
-            value: "Low Heat"
-          - dps_val: heat_0
-            value: "High Heat"
           - dps_val: heat_low
             value: "Fan Only"
             hidden: true
-      - id: 4
-        type: string
-        name: mode
-        hidden: true
+          - dps_val: heat_high
+            constraint: fan_mode
+            conditions:
+              - dps_val: SleepWind
+                value: "Low Heat"
+          - dps_val: heat_0
+            constraint: fan_mode
+            conditions:
+              - dps_val: SleepWind
+                value: "High Heat"
       - id: 5
         type: string
         name: fan_mode
         mapping:
           - dps_val: NatureWind_Low
-            value: low
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat_low
+                value: low
           - dps_val: NatureWind_High
-            value: medium
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat_low
+                value: medium
           - dps_val: CoolWind_0
-            value: high
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat_low
+                value: high
           - dps_val: SleepWind
             value: auto
             hidden: true
