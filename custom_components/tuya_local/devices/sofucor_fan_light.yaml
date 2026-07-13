@@ -1,0 +1,56 @@
+name: Sofucor KBS ceiling fan with light
+products:
+  - id: bfb1664e9e63287c7ac4b2
+    manufacturer: Sofucor
+    model: KBS-66K002SMTY-SN-DC-BK-60
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 100
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: number
+    name: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 540
