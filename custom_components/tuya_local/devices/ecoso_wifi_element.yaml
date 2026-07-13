@@ -1,0 +1,155 @@
+name: Heating element
+products:
+  - id: 7e1lbi2nugtkhued
+    manufacturer: Ecoso
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: thaw
+            value: anti_frost
+          - dps_val: eco
+            value: eco
+          - dps_val: comf
+            value: comfort
+          - dps_val: boost
+            value: boost
+          - dps_val: pragram
+            value: program
+          - dps_val: travel
+            value: away
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 7
+          max: 30
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 32
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: HEAT
+            value: heating
+          - value: idle
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -10
+          max: 10
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: min
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 53
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Holiday length
+    category: config
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 60
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: lock
+  - entity: number
+    name: Anti-frost threshold
+    category: config
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 5
+  - entity: sensor
+    name: Surface temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Timer mode
+    category: config
+    class: enum
+    hidden: true
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: "0"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+  - entity: select
+    name: Open window detection
+    translation_key: timer
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "cancel"
+          - dps_val: "60"
+            value: "1h"
+          - dps_val: "90"
+            value: "1h30m"
