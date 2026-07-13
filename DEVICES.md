@@ -1223,6 +1223,7 @@ port and password.
 - Nedis pet feeder
 - Newpet pet feeder
 - Ningbo BF314A camera pet feeder
+- Nityers Titan camera pet feeder
 - Oneisall PFD-002 Pro IR pet feeder
 - Papifeed pet feeder
 - Pawspik Microchip pet feeder
