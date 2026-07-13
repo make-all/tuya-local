@@ -28,7 +28,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
+            constraint: preset_mode
             conditions:
               - dps_val: heat_low
                 value: fan_only
@@ -48,16 +48,11 @@ entities:
         name: current_temperature
       - id: 4
         type: string
-        name: mode
-        hidden: true
-      - id: 4
-        type: string
         name: preset_mode
         mapping:
           - dps_val: heat_low
             value: "Fan Only"
             hidden: true
-          # When in heat mode, DP4 dictates the heat intensity preset
           - dps_val: heat_high
             constraint: fan_mode
             conditions:
@@ -72,23 +67,21 @@ entities:
         type: string
         name: fan_mode
         mapping:
-          # Fan speeds are only valid when DP4 is in fan-only mode (heat_low)
           - dps_val: NatureWind_Low
-            constraint: mode
+            constraint: preset_mode
             conditions:
               - dps_val: heat_low
                 value: low
           - dps_val: NatureWind_High
-            constraint: mode
+            constraint: preset_mode
             conditions:
               - dps_val: heat_low
                 value: medium
           - dps_val: CoolWind_0
-            constraint: mode
+            constraint: preset_mode
             conditions:
               - dps_val: heat_low
                 value: high
-          # When heating, DP5 locks to SleepWind. We map it to auto but hide it from the UI.
           - dps_val: SleepWind
             value: auto
             hidden: true
