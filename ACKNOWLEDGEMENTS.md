@@ -771,7 +771,7 @@ Further device support has been made with the assistance of users. Please consid
 - [pro-logic](https://github.com/pro-logic) for contributing support for Eglo ceiling fan with light, which was merged with the non-light variant.
 - [ludook](https://github.com/ludook) for contributing support for Beok BAC-009 smart knob zigbee thermostat.
 - [haywoodmarx](https://github.com/haywoodmarx) for contributing support for Kogan KASMWEKFITEA fitted electric blanket.
-- [nicholasng99](https://github.com/nicholasng99) for contributing support for City Energy L10WFE gas water heater and Trident AirDome-70 air purifier.
+- [nicholasng99](https://github.com/nicholasng99) for contributing support for City Energy L10WFE gas water heater and Trident AirDome 60 and 70 air purifiers.
 - [underscorejasiu](https://github.com/underscorejasiu) for contributing support for TOMZN SWC32v4 energy monitoring breaker.
 - [muccijacopo](https://github.com/muccijacopo) for contributing support for Ferroli EGEA heat pump water heater.
 - [Tombost](https://github.com/Tombost) for contributing support for Joyonway PB562 spa pool controller.
@@ -887,7 +887,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Rangzig93](https://github.com/Rangzig93) for contributing support for Airwoods fresh air heat pump.
 - [romainsc](https://github.com/romainsc) for contributing improvements to Teknopoint Idra Skiv.
 - [kcgthb](https://github.com/kcgthb) for contributing improvements to Petlibro PLAF203 pet feeder.
-- [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer.
+- [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer and Titan Kinetic 5 light driver.
 - [flo-m](https://github.com/flo-m) for contributing support for Pinar SmartLux door lights.
 - [algrym](https://github.com/algrym) for contributing improvements to Leo's Loo Too litter box.
 - [com6056](https://github.com/com6056) for contributing logging improvements.
@@ -896,3 +896,8 @@ Further device support has been made with the assistance of users. Please consid
 - [neneonline](https://github.com/neneonline) for contributing support for Tuya device discovery.
 - [macher91](https://github.com/macher91) for contributing support for Shrivee triple water timer.
 - [DevilRange](https://github.com/DevilRange) for contributing support for Lidl Tronic Balcony solar inverter.
+- [wayni850528](https://github.com/wayni850528) for contributing support for Weye WDH-29A dehumidifier.
+- [LightningManGTS](https://github.com/LightningManGTS) for contributing support for Vivohome AirBoost Series register booster fan.
+- [rfinnie](https://github.com/rfinnie) for contributing support for Aimiler 40A EV charger.
+- [ptparker](https://github.com/ptparker) for contributing support for Pioneer ECOasis 150 ERV.
+- [rippe77](https://github.com/rippe77) for contributing improvements to BHT002 GBLW thermostat.

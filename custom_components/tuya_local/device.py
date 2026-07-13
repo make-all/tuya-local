@@ -781,12 +781,18 @@ class TuyaLocalDevice(object):
             self.name,
             new_version,
         )
-        # Only enable tinytuya's auto-detect when using 3.22
+        # Only enable tinytuya's "device22" auto-detect when using 3.22, 3.4, or 3.5
+        # Enabling this on 3.1 or 3.3 devices can cause them to stop responding to commands.
+        # 3.2 always uses the "device22" protocol variant.
+        # 3.22 is a fake version that actually means 3.3 with auto-detect enabled
+        #
+        # Note: "device22" is a misnomer for historical reasons. Not all devices with
+        # 22 character device ids use this protocol variant.
         if new_version == 3.22:
             new_version = 3.3
             self._api.disabledetect = False
         else:
-            self._api.disabledetect = True
+            self._api.disabledetect = new_version < 3.4
 
         await self._hass.async_add_executor_job(
             self._api.set_version,
