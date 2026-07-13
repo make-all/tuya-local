@@ -1,0 +1,177 @@
+name: Eaves Lights
+products:
+  - id: ycahigfmcomnpayt
+    manufacturer: IlluminX
+    model: SCW-KA-CBHC05-18
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 58
+        type: integer
+        name: led_count
+        hidden: true
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: color
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+  - entity: number
+    name: Countdown
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        unit: s
+
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    dps:
+      - id: 56
+        type: base64
+        name: option
+        mapping:
+          - dps_val: ASsKMkUAAABkAHhkAAAAAGQAzS4AAAAAZAEKLgAAAAA=
+            value: Summer idyll
+          - dps_val: ASwKMksAAABkAPYzAAAAAGQBSDIAAAAAZADDMwAAAABkAJw1AAAAAA==
+            value: Dream of the Sea
+          - dps_val: AS4JMiMAAABkAPhRAAAAAGQBFVAAAAAAZAFBWwAAAABkABVRAAAAAGQAMkUAAAAA
+            value: Dreamland
+          - dps_val: AS8KMlQAAABkAUNWAAAAAGQBGlgAAAAA
+            value: Love and dream
+          - dps_val: ATAJMl0AAABkAJ5kAAAAAGQAYjIAAAAAZAACOwAAAAA=
+            value: Spring fishing
+          - dps_val: ATEUMg0AAABkADxkAAAAAGQAH2IAAAAAZAEJTQAAAABkAN1kAAAAAGQAtT4AAAAA
+            value: Neon world
+          - dps_val: ATIKMk8AAABkAIpkAAAAAGQAuUkAAAAA
+            value: Summer Wind
+          - dps_val: ATMJMlwAAABkALRkAAAAAGQBEmAAAAAAZADWYAAAAABkAM9TAAAAAA==
+            value: Planet Journey
+          - dps_val: ASMJMgkAAABkAABkAAAAAGQAPGQAAAAAZAC7VAAAAABkAOpXAAAAAGQBCGMAAAAA
+            value: Christmas
+          - dps_val: ASQMMjIAAABkARJkAAAAAGQA71cAAAAAZAFBUwAAAABkAVJkAAAAAA==
+            value: Valentine's Day
+          - dps_val: ASUKMjIAAABkAApfAAAAAGQBBmQAAAAAZADvXAAAAABkALAsAAAAAGQAfFQAAAAA
+            value: Halloween
+          - dps_val: ASYUMjIAAABkADxVAAAAAGQBD2QAAAAAZADNQwAAAABkABZgAAAAAA==
+            value: Thanksgiving Day
+          - dps_val: AScJMiQAAABkAJVbAAAAAGQAtGQAAAAAZACRYQAAAAA=
+            value: Forest day
+          - dps_val: ASgKMgcAAABkAU49AAAAAGQBF1UAAAAAZAEMOwAAAAA=
+            value: Mother's Day
+          - dps_val: ASkJMk8AAABkAN1LAAAAAGQAvVMAAAAAZADYXQAAAAA=
+            value: Father's day
+          - dps_val: ASoJMgoAAABkAAFkAAAAAGQAiGQAAAAAZAC7ZAAAAAA=
+            value: Football day
+          - dps_val: ARoFMioAAABkAQVfAAAAAGQA0mMAAAAAZACpOAAAAABkAJBkAAAAAA==
+            value: Game
+          - dps_val: ARsKMlkAAABkAMRkAAAAAGQBSDsAAAAAZAEEUgAAAABkARliAAAAAA==
+            value: holiday
+          - dps_val: ARwJMkgAAABkAMgrAAAAAGQA7BcAAAAA
+            value: work
+          - dps_val: AR0DMg8AAABkAOZgAAAAAGQAxFQAAAAAZAA8LwAAAABkADJeAAAAAGQAAVQAAAAA
+            value: Party
+          - dps_val: AR4FMhkAAABkARRkAAAAAGQAq0gAAAAAZADLZAAAAAA=
+            value: Trend
+          - dps_val: AR8UMl4AAABkALRkAAAAAGQA2lsAAAAAZAEGVwAAAABkAOhSAAAAAA==
+            value: Sports
+          - dps_val: ASAKMk0AAABkALRkAAAAAGQAkmAAAAAAZADSWAAAAAA=
+            value: Meditation
+          - dps_val: ASEMMlMAAABkAS9eAAAAAGQBPjoAAAAAZADYVAAAAABkABlRAAAAAA==
+            value: Dating
+          - dps_val: AQEDMjIAAABkAUVkAAAAAGQBIjkAAAAAZAEeZAAAAABkATpfAAAAAGQAAWQAAAAAZAAnWgAAAAA=
+            value: Flower harbor
+          - dps_val: AQIBMjIAAABkAH5LAAAAAGQAgk8AAAAAZAC4SAAAAABkAUxCAAAAAGQBEGQAAAAAZAEsZAAAAAA=
+            value: Lotus flowers
+          - dps_val: AQMFMjIAAABkANRkAAAAAGQAtF0AAAAAZAC4XAAAAABkAMdkAAAAAA==
+            value: Iceland Blue
+          - dps_val: AQQJMlgAAABkAGxXAAAAAGQAo2QAAAAAZACyXgAAAABkAJ1hAAAAAGQA0FYAAAAA
+            value: Willows
+          - dps_val: AQUIMjIAAABkAJpkAAAAAGQA1k8AAAAA
+            value: Glacier Express
+          - dps_val: AQYFMh4AAABkADIxAAAAAGQAJVgAAAAAZADUWgAAAABkAQxXAAAAAA==
+            value: Sea of clouds
+          - dps_val: AQcKMl0AAABkALRkAAAAAGQBBlsAAAAAZAEsZAAAAABkAAFkAAAAAA==
+            value: Fireworks at sea
+          - dps_val: AQgDMjAAAABkACdkAAAAAGQAHGAAAAAAZAAxYQAAAAA=
+            value: Maple leaf
+          - dps_val: AQkKMlUAAABkATU/AAAAAGQBSRcAAAAAZAE5MQAAAABkAUBhAAAAAA==
+            value: Cherry blossoms
+          - dps_val: AQoFMkkAAABkAMhhAAAAAGQAtzoAAAAA
+            value: Hut in the Snow
+          - dps_val: AQsKMlUAAABkAPZjAAAAAGQA3kAAAAAA
+            value: Firefly night
+          - dps_val: AQwJMlMAAABkALcmAAAAAGQAyVkAAAAAZAD6YQAAAAA=
+            value: Northland
+          - dps_val: AQ0JMloAAABkAJBcAAAAAGQAWFgAAAAA
+            value: Grassland
+          - dps_val: AQ4FMjIAAABkALhjAAAAAGQAolEAAAAAZADKUgAAAABkANVVAAAAAA==
+            value: Northern lights
+          - dps_val: AQ8DMjIAAABkABRkAAAAAGQAHmEAAAAAZAAWUAAAAABkAAtgAAAAAGQAAmQAAAAA
+            value: Late autumn
+          - dps_val: AUcNMk0AAABkAQNFAAAAAGQAwUMAAAAA
+            value: Dream meteor
+          - dps_val: AUgOMjIAAABkAU5BAAAAAGQAH0kAAAAA
+            value: Early spring
+          - dps_val: AUkAMg4AAABkANo3AAAAAGQBUkEAAAAAZABcNwAAAAA=
+            value: Spring outing
+          - dps_val: AUoPMjIAAABkAPdQAAAAAGQAKU8AAAAAZAENOAAAAABkAKMnAAAAAA==
+            value: Night service
+          - dps_val: AUsQMjIAAABkAQNFAAAAAGQAQToAAAAAZAAlSwAAAABkAF5CAAAAAA==
+            value: Wind chime
+          - dps_val: AUwRMjIAAABkANhNAAAAAGQAwUMAAAAAZAEDRQAAAABkAFw3AAAAAA==
+            value: City Lights
+          - dps_val: AU0HMjIAAABkAChkAAAAAGQAXkIAAAAAZADBZAAAAABkAP9QAAAAAA==
+            value: Color marbles
+          - dps_val: AU4VMjIAAABkAD5fAAAAAGQAvlwAAAAA
+            value: Summer train
+          - dps_val: AU8SMhkAAABkAOZHAAAAAGQAZDwAAAAAZAEZTQAAAABkALg5AAAAAA==
+            value: Dream Sea
+          - dps_val: AVATMhkAAABkALxkAAAAAGQALU4AAAAAZAAAZAAAAABkAGQ8AAAAAA==
+            value: Christmas Eve
