@@ -4,9 +4,7 @@
 ## 109 - odor removal, seems to be internal
 ## 110 - sleep mode, seems to be internal for schedule
 ## 106, 107, 108 # autocleaning with schedule
-
 ## 112, 119, 121, 122, 128, 129
-
 ## 115 - calibration could not find a button in the app
 
 name: Cat litter box
@@ -119,14 +117,15 @@ entities:
   - entity: binary_sensor
     name: Bin full
     icon: "mdi:trash-can"
+    translation_key: tank_full
     dps:
       - id: 103
-        type: bitfield
+        type: boolean
+        optional: true
         name: sensor
         mapping:
-          - dps_val: 0
-            value: "empty"
-          - value: "full"
+          - dps_val: null
+            value: false
   - entity: binary_sensor
     class: occupancy
     icon: "mdi:motion-sensor"
@@ -194,14 +193,14 @@ entities:
           min: 0
           max: 120
   - entity: number
-    name: Full Bin Calibration
+    name: Bin Full Calibration
     category: config
     icon: "mdi:delete-restore"
     dps:
       - id: 123
         type: integer
         name: value
-        unit: min
+        unit: cleanings
         range:
           min: 15
           max: 35
@@ -236,6 +235,14 @@ entities:
       - id: 127
         type: boolean
         name: button
+  - entity: switch
+    name: Odor removal after cleaning
+    category: config
+    icon: "mdi:scent-off"
+    dps:
+      - id: 129
+        type: boolean
+        name: switch
   - entity: select
     name: Litter type
     category: config
