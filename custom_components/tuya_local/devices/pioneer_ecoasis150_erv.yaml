@@ -4,7 +4,6 @@ products:
   - id: jqjrmutjj0zfhjzr
     manufacturer: Pioneer
     model: ECOasis 150
-    name: Pioneer ECOasis 150 ERV
 
 entities:
   #################################################################
@@ -37,29 +36,47 @@ entities:
           - dps_val: "6"
             value: high
 
-  - entity: number
-    name: Supply fan speed
-    mode: slider
-    icon: "mdi:fan-plus"
+  - entity: fan
+    name: Supply
+    category: config
     dps:
       - id: 101
         type: integer
-        name: value
+        name: speed
         range:
           min: 0
           max: 8
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: string
+        name: available
+        mapping:
+          - dps_val: manua
+            value_redirect: power
+          - value: false
 
-  - entity: number
-    name: Exhaust fan speed
-    mode: slider
-    icon: "mdi:fan-minus"
+  - entity: fan
+    name: Exhaust
+    category: config
     dps:
       - id: 102
         type: integer
-        name: value
+        name: speed
         range:
           min: 0
           max: 8
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: string
+        name: available
+        mapping:
+          - dps_val: manua
+            value_redirect: power
+          - value: false
 
   #################################################################
   # Sensors
@@ -116,12 +133,16 @@ entities:
 
   - entity: button
     translation_key: filter_reset
-    category: diagnostic
-    icon: "mdi:filter-remove"
+    category: config
     dps:
       - id: 13
         type: boolean
         name: button
+      # Filter status codes 0-3 are undocumented; exposed as a raw
+      # attribute rather than an entity until their meaning is known.
+      - id: 105
+        type: string
+        name: filter_status
 
   - entity: binary_sensor
     class: problem
@@ -138,8 +159,3 @@ entities:
       - id: 18
         type: bitfield
         name: fault_code
-      # Filter status codes 0-3 are undocumented; exposed as a raw
-      # attribute rather than an entity until their meaning is known.
-      - id: 105
-        type: string
-        name: filter_status
