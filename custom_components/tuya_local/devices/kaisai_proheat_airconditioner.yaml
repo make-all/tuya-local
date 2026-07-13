@@ -153,16 +153,26 @@ entities:
           - scale: 100
 
   - entity: sensor
-    class: energy
+    name: Add electricity
+    category: diagnostic
+    hidden: true
     dps:
       - id: 127
-        name: sensor
         type: integer
-        unit: kWh
-        class: total_increasing
         optional: true
+        persist: false
+        name: sensor
+        unit: kWh
         mapping:
           - scale: 100
+      - id: 128
+        type: integer
+        optional: true
+        name: starttime
+      - id: 129
+        type: integer
+        optional: true
+        name: endtime
 
   - entity: sensor
     name: External fan speed
