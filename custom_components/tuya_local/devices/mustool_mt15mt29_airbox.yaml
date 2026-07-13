@@ -3,6 +3,9 @@ products:
   - id: owmkja70doamcxkh
     manufacturer: Mustool
     model: MT15/MT29
+  - id: tf5vafuyq3hiibs4
+    manufacturer: Mustool
+    model: MT13W
 entities:
   - entity: sensor
     translation_key: air_quality
@@ -102,6 +105,7 @@ entities:
     name: Alarm volume
     icon: "mdi:alarm-multiple"
     category: config
+    hidden: unavailable
     dps:
       - id: 28
         type: string
@@ -116,6 +120,14 @@ entities:
             value: high
           - dps_val: mute
             value: mute
+      - id: 28
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     class: volatile_organic_compounds
     dps:
@@ -137,6 +149,7 @@ entities:
   - entity: light
     translation_key: backlight
     category: config
+    hidden: unavailable
     dps:
       - id: 103
         type: string
@@ -151,6 +164,14 @@ entities:
             value: 192
           - dps_val: level_4
             value: 255
+      - id: 103
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: CO2 alarm threshold
     category: config
@@ -217,6 +238,7 @@ entities:
   - entity: time
     name: Alarm 1
     category: config
+    hidden: unavailable
     dps:
       - id: 109
         type: integer
@@ -229,9 +251,14 @@ entities:
         type: boolean
         optional: true
         name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: time
     name: Alarm 2
     category: config
+    hidden: unavailable
     dps:
       - id: 110
         type: integer
@@ -244,9 +271,14 @@ entities:
         type: boolean
         optional: true
         name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: time
     name: Alarm 3
     category: config
+    hidden: unavailable
     dps:
       - id: 111
         type: integer
@@ -259,6 +291,10 @@ entities:
         type: boolean
         optional: true
         name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -333,26 +369,53 @@ entities:
     name: Alarm 1
     icon: "mdi:alarm"
     category: config
+    hidden: unavailable
     dps:
       - id: 116
         type: boolean
         optional: true
         name: switch
+      - id: 116
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Alarm 2
     icon: "mdi:alarm"
     category: config
+    hidden: unavailable
     dps:
       - id: 117
         type: boolean
         optional: true
         name: switch
+      - id: 117
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Alarm 3
     icon: "mdi:alarm"
     category: config
+    hidden: unavailable
     dps:
       - id: 118
         type: boolean
         optional: true
         name: switch
+      - id: 118
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
