@@ -1,0 +1,95 @@
+name: KBS Ceiling fan with light
+products:
+  - id: 8r39c874v4r9j5yc
+    manufacturer: Sofucor
+    name: "KBS DC FAN"
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 100
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: select
+    name: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "off"
+          - dps_val: 60
+            value: "1h"
+          - dps_val: 240
+            value: "4h"
+          - dps_val: 480
+            value: "8h"
+  - entity: switch
+    category: config
+    translation_key: sound
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Motor
+    dps:
+      - id: 67
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 67
+        type: bitfield
+        name: fault_code
