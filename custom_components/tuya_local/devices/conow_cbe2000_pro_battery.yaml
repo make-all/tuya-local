@@ -1,0 +1,640 @@
+name: Battery storage
+products:
+  - id: c4ilzd7aybycece9
+    manufacturer: Conow
+    model: CBE2000 Pro
+entities:
+  - entity: sensor
+    name: Serial Number
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: Battery Capacity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Error Code
+    category: diagnostic
+    dps:
+      - id: 10
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Fault
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: No Fault
+          - dps_val: 1
+            value: pack1_warning
+          - dps_val: 2
+            value: pack2_warning
+          - dps_val: 4
+            value: pack3_warning
+          - dps_val: 8
+            value: pack4_warning
+          - dps_val: 16
+            value: pack5_warning
+          - dps_val: 32
+            value: pack6_warning
+          - dps_val: 64
+            value: infrared_module_failure
+          - dps_val: 128
+            value: led_strip_comm_fault
+          - dps_val: 256
+            value: master_slave_comm_fault
+          - dps_val: 512
+            value: panel_comm_fault
+          - dps_val: 1024
+            value: inverter_comm_fault
+          - dps_val: 2048
+            value: inverter_failure
+          - dps_val: 4096
+            value: wifi_module_comm_fault
+          - dps_val: 8192
+            value: pv1_fault
+          - dps_val: 16384
+            value: pv2_fault
+          - dps_val: 32768
+            value: pv3_fault
+          - dps_val: 65536
+            value: pv4_fault
+          - dps_val: 131072
+            value: grid_failure
+          - dps_val: 262144
+            value: inverter_output_fault
+          - dps_val: 524288
+            value: inverter_other_fault
+          - dps_val: 1048576
+            value: meter_comm_failure
+          - dps_val: 2097152
+            value: system_temp_diff_protection
+  - entity: sensor
+    name: Connection State
+    category: diagnostic
+    class: enum
+    hidden: true
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: paired_connected
+            value: Paired and connected
+          - dps_val: unpaired_uncon
+            value: Unpaired and not connected
+          - dps_val: paired_uncon
+            value: Paired and not connected
+  - entity: sensor
+    name: Signal Strength
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: dBm
+  - entity: sensor
+    name: Hardware Version
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+  - entity: sensor
+    name: System Version
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 15
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Cell Heating
+    category: diagnostic
+    dps:
+      - id: 16
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Expansion Pack Count
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Human Presence
+    dps:
+      - id: 18
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: PV Power Total
+    class: power
+    dps:
+      - id: 20
+        type: float
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: PV Power Port 1
+    class: power
+    dps:
+      - id: 21
+        type: float
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: PV Power Port 2
+    class: power
+    dps:
+      - id: 22
+        type: float
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: PV Power Port 3
+    class: power
+    dps:
+      - id: 36
+        type: float
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: PV Power Port 4
+    class: power
+    dps:
+      - id: 37
+        type: float
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Unit SoC
+    class: battery
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Load State
+    class: enum
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charging
+            value: Charging
+          - dps_val: discharging
+            value: Discharging
+          - dps_val: idle
+            value: Idle
+  - entity: sensor
+    name: Battery Power
+    class: power
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Grid Power
+    class: power
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Inverter Output Power
+    class: power
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: W
+        range:
+          min: -20000
+          max: 20000
+  - entity: sensor
+    name: Battery Charging Power PV
+    class: power
+    dps:
+      - id: 28
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Battery Charging Power Grid
+    class: power
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: SoC Battery Array
+    class: battery
+    hidden: true
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Expansion Pack 1 SoC
+    class: battery
+    hidden: true
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Expansion Pack 2 SoC
+    class: battery
+    hidden: true
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Expansion Pack 3 SoC
+    class: battery
+    hidden: true
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Expansion Pack 4 SoC
+    class: battery
+    hidden: true
+    dps:
+      - id: 34
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Expansion Pack 5 SoC
+    class: battery
+    hidden: true
+    dps:
+      - id: 35
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Offgrid Export Power
+    class: power
+    dps:
+      - id: 38
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Cumulative Energy Generated PV
+    class: energy
+    dps:
+      - id: 40
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Output Inverter
+    class: energy
+    dps:
+      - id: 41
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Discharged
+    class: energy
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Charged
+    class: energy
+    dps:
+      - id: 43
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Charged PV
+    class: energy
+    dps:
+      - id: 44
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Charged Grid
+    class: energy
+    dps:
+      - id: 45
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Exported Offgrid
+    class: energy
+    dps:
+      - id: 46
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Cumulative Energy Imported Offgrid
+    class: energy
+    dps:
+      - id: 47
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Backup Reserve
+    mode: slider
+    category: config
+    dps:
+      - id: 50
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 1
+  - entity: select
+    name: Work Mode
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        mapping:
+          - dps_val: self_powered
+            value: Self Powered
+          - dps_val: time_of_use
+            value: Time of Use
+          - dps_val: manual
+            value: Manual
+          - dps_val: plug
+            value: Plug
+          - dps_val: diy
+            value: Do It Yourself
+  - entity: number
+    name: Output Power Limit
+    mode: box
+    category: config
+    dps:
+      - id: 53
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 100000
+        mapping:
+          - step: 1
+  - entity: switch
+    name: Feedin Power Limit Enable
+    category: config
+    dps:
+      - id: 54
+        type: boolean
+        name: switch
+  - entity: number
+    name: Feedin Power Limit
+    mode: box
+    category: config
+    dps:
+      - id: 55
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 100000
+        mapping:
+          - step: 1
+  - entity: sensor
+    name: Country Code
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 56
+        type: integer
+        name: sensor
+  - entity: select
+    name: Indicator Light Mode
+    category: config
+    dps:
+      - id: 57
+        type: string
+        name: option
+        mapping:
+          - dps_val: "eco"
+            value: Eco
+          - dps_val: "on"
+            value: "Always On"
+          - dps_val: "off"
+            value: "Manual"
+  - entity: sensor
+    name: Smart Meter Type
+    class: enum
+    dps:
+      - id: 58
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: None
+          - dps_val: ty_lan
+            value: Lan
+          - dps_val: ty_rs485
+            value: RS485
+  - entity: switch
+    name: Recalibrate Battery
+    category: config
+    dps:
+      - id: 59
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Offgrid Port Enable
+    category: config
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Peak Shaving Enable
+    category: config
+    dps:
+      - id: 63
+        type: boolean
+        name: switch
+  - entity: number
+    name: Peak Shaving Threshold
+    mode: box
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 30000
+        mapping:
+          - step: 1
+  - entity: select
+    name: Vibe Light Mode
+    category: config
+    dps:
+      - id: 65
+        type: string
+        name: option
+        mapping:
+          - dps_val: scene
+            value: Scene
+          - dps_val: "off"
+            value: "Off"
+  - entity: select
+    name: Offgrid Mode
+    category: config
+    dps:
+      - id: 68
+        type: string
+        name: option
+        mapping:
+          - dps_val: backup
+            value: Backup
+          - dps_val: plugin
+            value: Plugin
+  - entity: number
+    name: Inverter Input Power Limit
+    mode: box
+    category: config
+    dps:
+      - id: 69
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 2500
+        mapping:
+          - step: 1
+  - entity: switch
+    name: Reserve Priority
+    category: config
+    dps:
+      - id: 70
+        type: boolean
+        name: switch
+  - entity: select
+    name: LED Items
+    category: config
+    dps:
+      - id: 73
+        type: string
+        name: option
+        mapping:
+          - dps_val: led_all
+            value: Cycle All
+          - dps_val: led_pv
+            value: PV
+          - dps_val: led_bypass
+            value: Bypass
+  - entity: select
+    name: Baseline Strategy
+    category: config
+    dps:
+      - id: 78
+        type: string
+        name: option
+        mapping:
+          - dps_val: self_powered
+            value: Self Powered
+          - dps_val: pv_only
+            value: PV Only
+  - entity: sensor
+    name: Regulation Grid Export Power Limit
+    category: diagnostic
+    dps:
+      - id: 84
+        type: integer
+        name: sensor
+        unit: W
+  - entity: switch
+    name: LP Sleep
+    category: config
+    hidden: true
+    dps:
+      - id: 85
+        type: boolean
+        name: switch
+  - entity: number
+    name: Base Load
+    mode: box
+    category: config
+    dps:
+      - id: 91
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - step: 1
