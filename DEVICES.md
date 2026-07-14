@@ -517,7 +517,7 @@
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
-- Webber AP9750 air purifier
+- Webber AP9750 and APG7800 air purifiers
 
 ### Dehumidifiers
 
