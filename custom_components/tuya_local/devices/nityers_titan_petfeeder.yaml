@@ -1,0 +1,461 @@
+name: Pet feeder
+products:
+  - id: n9o9x8wvem9brscw
+    manufacturer: Nityers
+    model: Titan TT03
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: watermark
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: night_vision
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: "on"
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
+      - id: 109
+        type: string
+        name: memory_card_capacity
+  - entity: button
+    name: Format SD
+    category: config
+    hidden: true
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        optional: true
+        name: sd_format_status
+        mapping:
+          - dps_val: -2000
+            value: Formatting
+          - dps_val: -2001
+            value: Format error
+          - dps_val: -2002
+            value: "No SD card"
+          - dps_val: -2003
+            value: Card error
+  - entity: switch
+    name: Motion recording
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
+  - entity: text
+    name: Motion timer
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 114
+        type: string
+        name: value
+      - id: 135
+        type: boolean
+        name: available
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+        sensitive: true
+  - entity: button
+    name: PTZ up
+    icon: "mdi:pan-up"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-up
+    icon: "mdi:top-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right
+    icon: "mdi:pan-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-down
+    icon: "mdi:pan-bottom-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "3"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down
+    icon: "mdi:pan-down"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "4"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-down
+    icon: "mdi:pan-bottom-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "5"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left
+    icon: "mdi:pan-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "6"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-up
+    icon: "mdi:pan-top-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "7"
+            value: true
+          - value: false
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Motion timer
+    category: config
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: recording_mode
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: event
+          - dps_val: "2"
+            value: continuous
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 100
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Notification
+    dps:
+      - id: 212
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 212
+        type: utf16b64
+        name: message
+        optional: true
+  - entity: sensor
+    name: Food weight
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 232
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+  - entity: number
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 233
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 2147483646
+  - entity: sensor
+    name: Diagnostics
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 234
+        type: integer
+        optional: true
+        name: sensor
+      - id: 235
+        type: integer
+        optional: true
+        name: auto_dispensing
+      - id: 236
+        type: integer
+        optional: true
+        name: history_data
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 237
+        type: string
+        name: value
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 238
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: low
+            value: 20
+          - dps_val: "no"
+            value: null
+  - entity: sensor
+    name: Food level
+    class: enum
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 239
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: full
+            value: Full
+          - dps_val: less
+            value: Low
+          - dps_val: lack
+            value: Empty
+  - entity: binary_sensor
+    name: Food blocked
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 240
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Food stuck
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 241
+        type: boolean
+        name: sensor
+  - entity: event
+    name: Manual feed
+    dps:
+      - id: 243
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: unfed
+          - value: fed
+      - id: 243
+        type: integer
+        optional: true
+        name: feed_size
+        mapping:
+          - scale: 10
+  - entity: event
+    name: Auto feed
+    dps:
+      - id: 244
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: unfed
+          - value: fed
+      - id: 244
+        type: integer
+        optional: true
+        name: feed_size
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Publish feed report
+    category: config
+    hidden: true
+    dps:
+      - id: 245
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: -2000
+          max: 99
+  - entity: sensor
+    name: Last feed
+    category: diagnostic
+    dps:
+      - id: 246
+        type: integer
+        optional: true
+        name: sensor
+        unit: portions
+        class: measurement
+  - entity: text
+    name: Failover logging
+    category: config
+    icon: "mdi:invoice-text-outline"
+    hidden: true
+    dps:
+      - id: 247
+        type: base64
+        optional: true
+        name: value
