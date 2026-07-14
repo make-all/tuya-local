@@ -1,11 +1,12 @@
-name: KBS Ceiling fan with light
+name: Sofucor KBS Ceiling fan with light
 products:
   - id: 8r39c874v4r9j5yc
     manufacturer: Sofucor
-    name: "KBS DC FAN"
+    model: "KBS DC FAN"
 entities:
   - entity: fan
     translation_key: fan_with_presets
+    icon: "mdi:ceiling-fan"
     dps:
       - id: 60
         type: boolean
@@ -13,6 +14,7 @@ entities:
       - id: 61
         type: string
         name: preset_mode
+        optional: true
         mapping:
           - dps_val: fresh
             value: fresh
@@ -27,12 +29,14 @@ entities:
       - id: 63
         type: string
         name: direction
+        optional: true
         mapping:
           - dps_val: forward
             value: forward
           - dps_val: reverse
             value: reverse
   - entity: light
+    icon: "mdi:ceiling-fan-light"
     dps:
       - id: 20
         type: boolean
@@ -54,8 +58,9 @@ entities:
               min: 2700
               max: 6500
   - entity: select
-    name: timer
+    translation_key: timer
     category: config
+    icon: "mdi:fan-clock"
     dps:
       - id: 64
         type: integer
@@ -72,10 +77,17 @@ entities:
   - entity: switch
     category: config
     translation_key: sound
+    icon: "mdi:volume-high"
     dps:
       - id: 66
         type: boolean
         name: switch
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -84,12 +96,10 @@ entities:
       - id: 67
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
             value: false
           - dps_val: null
             value: false
           - value: true
-      - id: 67
-        type: bitfield
-        name: fault_code
