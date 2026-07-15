@@ -901,3 +901,5 @@ Further device support has been made with the assistance of users. Please consid
 - [rfinnie](https://github.com/rfinnie) for contributing support for Aimiler 40A EV charger.
 - [ptparker](https://github.com/ptparker) for contributing support for Pioneer ECOasis 150 ERV.
 - [rippe77](https://github.com/rippe77) for contributing improvements to BHT002 GBLW thermostat.
+- [anddon](https://github.com/anddon) for contributing support for Olimpia Splendid Unico Pro air conditioner.
+- [paradoxisme](https://github.com/paradoxisme) for contributing support for Sofucor KBS ceiling fan with light.
