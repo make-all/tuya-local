@@ -76,10 +76,9 @@ entities:
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
       - id: 24
         type: integer
         name: temp_set_f
@@ -93,6 +92,14 @@ entities:
         name: temp_current_f
         hidden: true
         optional: true
+      - id: 8
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
   - entity: light
     translation_key: display
     category: config
@@ -101,14 +108,6 @@ entities:
         type: boolean
         name: switch
         optional: true
-  - entity: switch
-    name: Eco
-    icon: "mdi:leaf"
-    category: config
-    dps:
-      - id: 8
-        type: boolean
-        name: switch
   - entity: switch
     translation_key: sleep
     category: config
