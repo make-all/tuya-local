@@ -1,0 +1,113 @@
+name: Range cooker
+products:
+  - id: nsyzaeaife8j7sx0
+    manufacturer: AGA
+    model: Electrickit Advanced
+entities:
+  - entity: climate
+    name: Roasting oven (top)
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 103
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 280
+      - id: 110
+        type: integer
+        name: current_temperature
+  - entity: climate
+    name: Simmering oven (bottom)
+    dps:
+      - id: 102
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 104
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 280
+      - id: 111
+        type: integer
+        name: current_temperature
+  - entity: switch
+    name: Roasting oven rest
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Simmering oven rest
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  # In the app this is the "24/7 timer" on/off; a single setting covering
+  # both ovens. The device rejects writes to this (self-reverts after ~2s)
+  # until a timer schedule has been configured in the app.
+  - entity: switch
+    translation_key: timer
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  # Live output of the 24/7 timer: on when the timer is currently running
+  # the ovens, off during an off window.
+  - entity: binary_sensor
+    name: Timer running
+    class: running
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+  # dps 156/157 are believed to relate to the optional vent fan, which was
+  # not fitted on the test device (disabled in the app), so they could not
+  # be confirmed. Both remained static through all other functions.
+  - entity: binary_sensor
+    name: Unknown 156
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 156
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Unknown 157
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 157
+        type: integer
+        name: sensor
+  # Food timer, counts down in seconds. Can only be cancelled at the cooker.
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 159
+        type: integer
+        name: sensor
+        unit: s
