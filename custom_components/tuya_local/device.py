@@ -311,6 +311,7 @@ class TuyaLocalDevice(object):
 
     def pause(self):
         self._temporary_poll = True
+        _LOGGER.debug("%s pausing connection temporarily", self.name, False)
         self._api.set_socketPersistent(False)
         if self._api.parent:
             self._api.parent.set_socketPersistent(False)
@@ -425,6 +426,7 @@ class TuyaLocalDevice(object):
                 self._running = False
                 # Close the persistent connection when exiting the loop
                 persist = False
+                _LOGGER.debug("%s receive loop interrupted", self.name)
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
