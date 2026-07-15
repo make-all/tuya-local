@@ -37,7 +37,7 @@ entities:
         name: current_temperature
         range:
           min: 0
-          max: 500
+          max: 1000
         mapping:
           - scale: 10
       - id: 16
@@ -54,8 +54,8 @@ entities:
         type: integer
         name: min_temperature
         range:
-          min: 50
-          max: 350
+          min: 0
+          max: 200
         mapping:
           - scale: 10
             step: 5
@@ -63,15 +63,11 @@ entities:
         type: integer
         name: max_temperature
         range:
-          min: 50
-          max: 350
+          min: 200
+          max: 800
         mapping:
           - scale: 10
             step: 5
-      - id: 101
-        type: integer
-        optional: true
-        name: dead_zone
 
   - entity: select
     name: Heating season
@@ -173,8 +169,8 @@ entities:
         type: integer
         unit: C
         range:
-          min: 50
-          max: 350
+          min: 0
+          max: 200
         mapping:
           - scale: 10
             step: 5
@@ -190,8 +186,8 @@ entities:
         name: value
         unit: C
         range:
-          min: 50
-          max: 350
+          min: 200
+          max: 800
         mapping:
           - scale: 10
             step: 5
@@ -213,7 +209,20 @@ entities:
             step: 5
 
   - entity: sensor
-    name: Central heating water temperature
+    name: Inlet water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Outlet water temperature
     class: temperature
     icon: "mdi:coolant-temperature"
     dps:
@@ -226,24 +235,11 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Boiler outlet water temperature
-    class: temperature
-    category: diagnostic
-    dps:
-      - id: 103
-        type: integer
-        name: sensor
-        unit: C
-        class: measurement
-        mapping:
-          - scale: 10
-
-  - entity: sensor
     name: Boiler water pressure
     class: pressure
     category: diagnostic
     dps:
-      - id: 104
+      - id: 103
         type: integer
         name: sensor
         unit: bar
@@ -255,13 +251,19 @@ entities:
     name: Fire power
     category: diagnostic
     dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: measurement
+
+  - entity: sensor
+    name: OEM fault code
+    category: diagnostic
+    icon: "mdi:alert-circle-outline"
+    dps:
       - id: 105
         type: integer
         name: sensor
-        unit: "%"
-        class: measurement
-        mapping:
-          - scale: 10
 
   - entity: sensor
     name: Domestic hot water flow rate
@@ -272,6 +274,19 @@ entities:
         type: integer
         name: sensor
         unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: C
         class: measurement
         mapping:
           - scale: 10
@@ -325,8 +340,8 @@ entities:
         name: value
         unit: C
         range:
-          min: 200
-          max: 900
+          min: 0
+          max: 1000
         mapping:
           - scale: 10
             step: 5
@@ -342,8 +357,8 @@ entities:
         name: value
         unit: C
         range:
-          min: 100
-          max: 800
+          min: 0
+          max: 1000
         mapping:
           - scale: 10
             step: 5
@@ -433,16 +448,20 @@ entities:
         type: boolean
         name: switch
 
-  - entity: sensor
-    name: OpenTherm debug status
-    category: diagnostic
+  - entity: number
+    name: OpenTherm read item
+    category: config
+    mode: box
     dps:
       - id: 119
         type: integer
-        name: sensor
+        name: value
+        range:
+          min: 0
+          max: 127
 
   - entity: sensor
-    name: OpenTherm debug return value
+    name: OpenTherm return value
     category: diagnostic
     dps:
       - id: 120
@@ -460,8 +479,8 @@ entities:
         name: value
         unit: C
         range:
-          min: 200
-          max: 700
+          min: 0
+          max: 800
         mapping:
           - scale: 10
             step: 5
@@ -509,7 +528,7 @@ entities:
         name: fault_code
 
   - entity: sensor
-    name: Fault code
+    name: Fault bitmap
     category: diagnostic
     icon: "mdi:alert-circle-outline"
     dps:
