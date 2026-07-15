@@ -129,6 +129,7 @@
 - ElectriQ 12WMINV
 - ElectriQ Airflex, EcoSilent models
 - ElectriQ SupremeCool SC16HPW
+- Eurom AC 5201 Caravan and Home air conditioner
 - Fersk Vind 2
 - Fisher Summer air conditioner
 - Fral Super Cool FSC08 WiFi portable air conditioner
