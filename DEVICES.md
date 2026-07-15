@@ -156,6 +156,7 @@
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Olimpia Splendid Unico Pro air conditioner
 - Qlima SC 7035S and MS-AC 5002 air conditioners
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
