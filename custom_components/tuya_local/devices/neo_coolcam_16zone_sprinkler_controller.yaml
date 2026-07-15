@@ -1,4 +1,4 @@
-name: 16-zone sprinkler controller
+name: Sprinkler controller
 products:
   - id: ajg67sq0tpjxgd40
     manufacturer: NEO Coolcam
@@ -166,6 +166,7 @@ entities:
 
   - entity: select
     name: Weather delay
+    translation_key: timer
     icon: "mdi:weather-pouring"
     category: config
     dps:
@@ -238,9 +239,9 @@ entities:
         optional: true
         mapping:
           - dps_val: Order1
-            value: Mode 1
+            value: Independent valves
           - dps_val: Order2
-            value: Mode 2
+            value: Master valve
 
   - entity: text
     name: Irrigation restriction schedule
@@ -298,18 +299,17 @@ entities:
         class: measurement
         optional: true
 
-  - entity: sensor
+  - entity: event
     name: Fault
-    class: enum
     category: diagnostic
     dps:
       - id: 107
         type: string
-        name: sensor
+        name: event
         optional: true
         mapping:
           - dps_val: normal
-            value: Clear
+            value: clear
           - dps_val: alram1
             value: Valve 1
           - dps_val: alram2
