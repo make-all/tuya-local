@@ -904,3 +904,4 @@ Further device support has been made with the assistance of users. Please consid
 - [anddon](https://github.com/anddon) for contributing support for Olimpia Splendid Unico Pro air conditioner.
 - [paradoxisme](https://github.com/paradoxisme) for contributing support for Sofucor KBS ceiling fan with light.
 - [msemenkin](https://github.com/msemenkin) for contributing support for Neo Coolcam 16 zone sprinkler controller.
+- [awadak3davra](https://github.com/awadak3davra) for contributing improvements to TOMPD-63LW/SW breaker.
