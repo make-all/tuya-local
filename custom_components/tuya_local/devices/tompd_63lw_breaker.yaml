@@ -5,7 +5,7 @@ products:
   - id: psjg8ldomxnelfp5
     model: TOMZN-63A
   - id: u0cxoxtfelys3ufx
-    model: TOMPD-63LW
+    model: TOMPD-63LW/63SW
 entities:
   - entity: switch
     icon: "mdi:fuse"
@@ -121,6 +121,7 @@ entities:
         optional: true
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - dps_val: null
             value_redirect: phase_a
@@ -141,6 +142,7 @@ entities:
         optional: true
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - dps_val: null
             value_redirect: phase_a
@@ -161,6 +163,7 @@ entities:
         optional: true
         name: sensor
         unit: kW
+        class: measurement
         mapping:
           - dps_val: null
             value_redirect: phase_a
