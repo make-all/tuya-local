@@ -907,3 +907,4 @@ Further device support has been made with the assistance of users. Please consid
 - [awadak3davra](https://github.com/awadak3davra) for contributing improvements to TOMPD-63LW/SW breaker.
 - [gurmeherchawla](https://github.com/gurmeherchawla) for contributing support for Imagine 3+1 triple switch with fan controller.
 - [christhementalist](https://github.com/christhementalist) for contributing support for Goldair GPCV405 convection heater.
+- [adfhogan](https://github.com/adfhogan) for contributing support for Aqua Plus APAIO270 water heater.
