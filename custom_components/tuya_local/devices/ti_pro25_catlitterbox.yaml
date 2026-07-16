@@ -23,8 +23,24 @@ entities:
       - id: 6
         type: integer
         name: sensor
-        unit: kg
         class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: kilogram
+                value_redirect: weight_lb
+      - id: 116
+        type: string
+        name: unit
+        mapping:
+          - dps_val: "pound"
+            value: "kg"
+          - dps_val: "kilogram"
+            value: "lb"
+      - id: 134
+        type: integer
+        name: weight_lb
         mapping:
           - scale: 10
   # Counts total number of cat visits
