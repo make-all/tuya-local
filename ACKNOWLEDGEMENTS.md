@@ -819,7 +819,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Zuz666](https://github.com/Zuz666) for contributing support for Imaxfire AWA2 water vapour fireplace and improvements to light entities.
 - [mmaarrkk02](https://github.com/mmaarrkk02) for contributing support for NWT WDH-10EM dehumidifier.
 - [toller892](https://github.com/toller892) for contributing a fix for water heaters.
-- [terryrankine](https://github.com/terryrankine) for contributing support for AOSDK garage door with light.
+- [terryrankine](https://github.com/terryrankine) for contributing support for AOSDK garage door with light and Zemismart SPM01-D2TW-ZM single phase energy meter.
 - [DawidSu](https://github.com/DawidSu) for contributing support for Varpoolfaye pool heat pump.
 - [rbswift](https://github.com/rbswift) for contributing improvements to Intaflo Intabloc combo heat pump.
 - [wantstoautomate](https://github.com/wantstoautomate) for contributing improvements to Lublueblu SL60D vacuum.
