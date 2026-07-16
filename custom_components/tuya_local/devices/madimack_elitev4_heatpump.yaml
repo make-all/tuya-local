@@ -248,7 +248,6 @@ entities:
         name: overclock_mode
   - entity: sensor
     class: power
-    hidden: unavailable
     category: diagnostic
     dps:
       - id: 125
@@ -261,7 +260,7 @@ entities:
           - scale: 1000
       - id: 122
         type: boolean
-        name: available
+        name: display
   - entity: lock
     translation_key: child_lock
     category: config
