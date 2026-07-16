@@ -11,6 +11,7 @@ entities:
         name: switch
       - id: 21
         type: string
+        optional: true
         name: work_mode
       - id: 22
         type: integer
@@ -71,3 +72,35 @@ entities:
         range:
           min: 0
           max: 540
+  - entity: switch
+    category: config
+    translation_key: sound
+    icon: "mdi:volume-high"
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 67
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 67
+        type: bitfield
+        name: fault_code
+        optional: true
