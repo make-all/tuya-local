@@ -87,20 +87,9 @@ entities:
           - dps_val: ERR
             value: Error
   - entity: sensor
-    name: Energy today
-    class: energy
-    category: diagnostic
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
-  - entity: sensor
     name: Fan speed
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 19
@@ -108,13 +97,13 @@ entities:
         name: sensor
         mapping:
           - dps_val: "OFF"
-            value: "Off"
+            value: "off"
           - dps_val: LOW
-            value: Low
+            value: low
           - dps_val: High
-            value: High
+            value: high
   - entity: sensor
-    name: Suction (return gas) temperature
+    name: Suction temperature
     class: temperature
     category: diagnostic
     dps:
@@ -191,9 +180,9 @@ entities:
             value: Fluorine
           - dps_val: false
             value: Water
-  - entity: sensor
+  - entity: binary_sensor
     name: Low pressure switch
-    class: enum
+    class: opening
     category: diagnostic
     dps:
       - id: 29
@@ -201,9 +190,9 @@ entities:
         name: sensor
         mapping:
           - dps_val: true
-            value: Close
+            value: false
           - dps_val: false
-            value: Open
+            value: true
   - entity: binary_sensor
     name: Water pump
     class: running
@@ -220,22 +209,17 @@ entities:
       - id: 32
         type: boolean
         name: sensor
-  - entity: sensor
+  - entity: binary_sensor
     name: High pressure switch
-    class: enum
+    class: opening
     category: diagnostic
     dps:
       - id: 33
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: false
-            value: Close
-          - dps_val: true
-            value: Open
-  - entity: sensor
+  - entity: binary_sensor
     name: Linked switch
-    class: enum
+    class: opening
     category: diagnostic
     dps:
       # true/false to Close/Open confirmed via app; significance of the
@@ -245,9 +229,9 @@ entities:
         name: sensor
         mapping:
           - dps_val: true
-            value: Close
+            value: false
           - dps_val: false
-            value: Open
+            value: true
   - entity: sensor
     name: Compressor runtime before defrost
     class: duration
@@ -302,9 +286,14 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-  - entity: sensor
+      - id: 18
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
     name: Water flow switch
-    class: enum
+    class: opening
     category: diagnostic
     dps:
       - id: 107
@@ -312,6 +301,6 @@ entities:
         name: sensor
         mapping:
           - dps_val: true
-            value: Close
+            value: false
           - dps_val: false
-            value: Open
+            value: true
