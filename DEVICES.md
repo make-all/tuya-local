@@ -410,6 +410,7 @@
 - Humhold 24" low profile ceiling fan with RGB+CW lights
 - Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
+- Imagine 3+1 triple switch with fan controller
 - Immax Neo Lite Vento ceiling fan with light
 - Inkbird IVC001W fan controller
 - InTec ceiling fan with light

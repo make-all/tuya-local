@@ -905,3 +905,4 @@ Further device support has been made with the assistance of users. Please consid
 - [paradoxisme](https://github.com/paradoxisme) for contributing support for Sofucor KBS ceiling fan with light.
 - [msemenkin](https://github.com/msemenkin) for contributing support for Neo Coolcam 16 zone sprinkler controller.
 - [awadak3davra](https://github.com/awadak3davra) for contributing improvements to TOMPD-63LW/SW breaker.
+- [gurmeherchawla](https://github.com/gurmeherchawla) for contributing support for Imagine 3+1 triple switch with fan controller.
