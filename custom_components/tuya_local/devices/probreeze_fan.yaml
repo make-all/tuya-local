@@ -1,0 +1,49 @@
+name: "ProBreeze Bladeless Tower Fan"
+products:
+  - id: yrzylxax1qspdgpp
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: rhythm
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: smart
+            value: auto
+      - id: 101
+        type: boolean
+        name: oscillate
+      - id: 102
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+  - entity: light
+    name: Display light
+    icon: "mdi:led-on"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+        mapping:
+          - invert: true
+  - entity: switch
+    name: Sound
+    icon: "mdi:volume-high"
+    dps:
+      - id: 28
+        type: boolean
+        name: switch
+        mapping:
+          - invert: true
