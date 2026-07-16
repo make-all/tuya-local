@@ -12,7 +12,7 @@ products:
     manufacturer: Ti
     model: Ti Pro25 Smart Cat Litter Box
 entities:
-  # Last recorded cat weight in kg
+  # Last recorded cat weight
   - entity: sensor
     icon: "mdi:cat"
     name: Cat weight
@@ -20,7 +20,7 @@ entities:
     dps:
       - id: 6
         type: integer
-        name: sensor
+        name: weight_kg
         class: measurement
         mapping:
           - scale: 10
@@ -31,11 +31,11 @@ entities:
       - id: 116
         type: string
         name: unit
-        mapping:
-          - dps_val: "pound"
-            value: "kg"
-          - dps_val: "kilogram"
-            value: "lb"
+#        mapping:
+#          - dps_val: "pound"
+#            value: "kg"
+#          - dps_val: "kilogram"
+#            value: "lb"
       - id: 134
         type: integer
         name: weight_lb
