@@ -53,6 +53,9 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         self._action_dp = dps_map.pop("action", None)
         self._init_end(dps_map)
 
+        if self._humidity_dp is not None:
+            self._attr_target_humidity_step = self._humidity_dp.step(device)
+
         self._support_flags = HumidifierEntityFeature(0)
         if self._mode_dp:
             self._support_flags |= HumidifierEntityFeature.MODES
