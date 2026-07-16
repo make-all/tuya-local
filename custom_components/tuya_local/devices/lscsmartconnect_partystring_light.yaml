@@ -3,6 +3,9 @@ products:
   - id: l3bpgg8ibsagon4x
     manufacturer: LSC Smart Connect
     model: Party string RGBIC+CCT
+  - id: ycahigfmcomnpayt
+    manufacturer: IlluminX
+    model: SCW-KA-CBHC05-18
 entities:
   - entity: light
     icon: "mdi:string-lights"
@@ -101,8 +104,33 @@ entities:
   - entity: switch
     name: Filter
     category: config
+    hidden: unavailable
     dps:
       - id: 101
         type: boolean
         optional: true
         name: switch
+      - id: 101
+        type: boolean
+        optional: true
+        name: available
+  - entity: time
+    translation_key: timer
+    category: config
+    hidden: unavailable  # not present on some lights
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+      - id: 26
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
