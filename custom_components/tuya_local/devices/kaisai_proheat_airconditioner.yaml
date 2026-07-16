@@ -159,10 +159,16 @@ entities:
         name: sensor
         type: integer
         unit: kWh
-        class: total_increasing
+        class: total
         optional: true
         mapping:
           - scale: 100
+      - id: 128
+        name: last_reset
+        type: unixtime
+      - id: 129
+        name: timestamp
+        type: unixtime
 
   - entity: sensor
     name: External fan speed
