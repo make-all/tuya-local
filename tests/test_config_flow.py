@@ -1619,3 +1619,37 @@ async def test_flow_choose_entities_uses_cloud_name_as_default(
     # Validate it accepts the cloud device name
     validated = schema({CONF_NAME: "My Cloud Device"})
     assert validated[CONF_NAME] == "My Cloud Device"
+
+
+@pytest.mark.asyncio
+async def test_flow_integration_discovery_shows_local_form(hass):
+    """A device found by background discovery advances to the local setup form."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": "integration_discovery"},
+        data={
+            CONF_DEVICE_ID: "bfdiscovered000000",
+            CONF_HOST: "192.168.1.77",
+            "product_id": "keyxyz",
+            "version": "3.5",
+        },
+    )
+    assert result["type"] == "form"
+    assert result["step_id"] == "local"
+
+
+@pytest.mark.asyncio
+async def test_flow_integration_discovery_aborts_if_configured(hass):
+    """A discovered device that is already configured (or ignored) aborts."""
+    entry = MockConfigEntry(domain=DOMAIN, unique_id="bfdiscovered000000")
+    entry.add_to_hass(hass)
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": "integration_discovery"},
+        data={
+            CONF_DEVICE_ID: "bfdiscovered000000",
+            CONF_HOST: "192.168.1.77",
+        },
+    )
+    assert result["type"] == "abort"
+    assert result["reason"] == "already_configured"
