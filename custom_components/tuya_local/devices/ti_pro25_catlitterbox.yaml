@@ -20,7 +20,7 @@ entities:
     dps:
       - id: 6
         type: integer
-        name: weight_kg
+        name: sensor
         class: measurement
         mapping:
           - scale: 10
@@ -31,11 +31,11 @@ entities:
       - id: 116
         type: string
         name: unit
-#        mapping:
-#          - dps_val: "pound"
-#            value: "kg"
-#          - dps_val: "kilogram"
-#            value: "lb"
+        mapping:
+          - dps_val: kilogram
+            value: lb
+          - dps_val: pound
+            value: kg
       - id: 134
         type: integer
         name: weight_lb
