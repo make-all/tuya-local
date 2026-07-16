@@ -174,6 +174,12 @@ class TuyaDeviceConfig:
 
         return product_match or len(missing_dps) == 0
 
+    def matches_product(self, product_id):
+        """Whether this config lists the given Tuya product id in `products`."""
+        if not product_id:
+            return False
+        return any(p.get("id") == product_id for p in self._config.get("products", []))
+
     def _get_all_dps(self):
         all_dps_list = []
         all_dps_list += [d for dev in self.all_entities() for d in dev.dps()]
