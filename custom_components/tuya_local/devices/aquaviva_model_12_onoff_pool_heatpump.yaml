@@ -1,0 +1,472 @@
+name: Pool heat pump
+products:
+  - id: cbnlx1l9nyal6vk4
+    manufacturer: Aquaviva
+    model: Model 12 ON/OFF (AVM-ON12RW)
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: Cool_mode
+                value: cool
+              - dps_val: Heat_mode
+                value: heat
+              - dps_val: Auto_mode
+                value: heat_cool
+      - id: 5
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 16
+        type: integer
+        optional: true
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 17
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: Running
+            value: heating
+            constraint: work_mode
+            conditions:
+              - dps_val: Cool_mode
+                value: cooling
+              - dps_val: Auto_mode
+                value: null
+          - dps_val: Defrosting
+            value: defrosting
+          - dps_val: Standby
+            value: idle
+          - value: null
+      - id: 35
+        type: integer
+        optional: true
+        name: temp_current_f
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 101
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 80
+          max: 400
+        mapping:
+          - scale: 10
+            step: 10
+            constraint: work_mode
+            conditions:
+              - dps_val: Heat_mode
+                value_redirect: set_heating_temp
+              - dps_val: Cool_mode
+                value_redirect: set_cold_temp
+              - dps_val: Auto_mode
+                value_redirect: set_auto_temp
+      - id: 101
+        type: integer
+        optional: true
+        name: set_heating_temp
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: set_heating_temp_f
+              - dps_val: c
+                scale: 10
+                step: 10
+      - id: 102
+        type: integer
+        optional: true
+        name: set_cold_temp
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: set_cold_temp_f
+              - dps_val: c
+                scale: 10
+                step: 10
+      - id: 104
+        type: integer
+        optional: true
+        name: set_auto_temp
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: set_auto_temp_f
+              - dps_val: c
+                scale: 10
+                step: 10
+      - id: 105
+        type: integer
+        optional: true
+        name: set_heating_temp_f
+      - id: 106
+        type: integer
+        optional: true
+        name: set_cold_temp_f
+      - id: 108
+        type: integer
+        optional: true
+        name: set_auto_temp_f
+      - id: 109
+        type: integer
+        name: unit_type
+      - id: 5
+        type: string
+        name: min_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                mapping:
+                  - dps_val: Heat_mode
+                    value: 15
+                  - dps_val: Cool_mode
+                    value: 8
+                  - dps_val: Auto_mode
+                    value: 8
+              - dps_val: f
+                mapping:
+                  - dps_val: Heat_mode
+                    value: 59
+                  - dps_val: Cool_mode
+                    value: 46
+                  - dps_val: Auto_mode
+                    value: 46
+      - id: 5
+        type: string
+        name: max_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                mapping:
+                  - dps_val: Heat_mode
+                    value: 40
+                  - dps_val: Cool_mode
+                    value: 28
+                  - dps_val: Auto_mode
+                    value: 40
+              - dps_val: f
+                mapping:
+                  - dps_val: Heat_mode
+                    value: 104
+                  - dps_val: Cool_mode
+                    value: 82
+                  - dps_val: Auto_mode
+                    value: 104
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+
+  - entity: sensor
+    name: Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 17
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Running
+            value: Running
+          - dps_val: Defrosting
+            value: Defrosting
+          - dps_val: Standby
+            value: Standby
+          - dps_val: Fault
+            value: Fault
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+      - id: 103
+        type: bitfield
+        name: new_fault_01
+      - id: 107
+        type: bitfield
+        name: new_fault_02
+      - id: 110
+        type: bitfield
+        name: new_driver_fault_01
+      - id: 111
+        type: bitfield
+        name: new_driver_fault_02
+      - id: 118
+        type: bitfield
+        name: fault_code_2
+      - id: 119
+        type: bitfield
+        name: fault_code_3
+      - id: 120
+        type: bitfield
+        name: driver_fault
+
+  - entity: sensor
+    name: Inlet water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 35
+        type: integer
+        optional: true
+        hidden: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Heating coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 41
+        type: integer
+        optional: true
+        hidden: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 39
+        type: integer
+        optional: true
+        hidden: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Outlet water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 40
+        type: integer
+        optional: true
+        hidden: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: ambient_temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 38
+        type: integer
+        optional: true
+        hidden: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 122
+        type: integer
+        optional: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Cooling coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: sensor_f
+      - id: 124
+        type: integer
+        optional: true
+        name: sensor_f
+        mapping:
+          - scale: 10
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Expansion valve opening
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
