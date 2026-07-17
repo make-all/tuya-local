@@ -1,0 +1,12 @@
+name: Power outage alarm
+products:
+  - id: q9f91lov6e6fphyp
+    manufacturer: Satisure
+entities:
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor

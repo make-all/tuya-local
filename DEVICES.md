@@ -1387,6 +1387,7 @@ port and password.
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
+- Satisure power outage alarm
 - SD123 HPR01 human presence radar
 - Shrivee triple water timer
 - SNT957W-TDE temperature sensor
