@@ -46,13 +46,13 @@ entities:
             conditions:
               - dps_val: true
                 value_redirect: temp_current_f
-      # Present as datapoint (maybe humidity), but reported as a fixed value on this model.
+      # Present as dp (hum), but not on this model.
       - id: 17
         type: integer
         name: unknown_17
         hidden: true
         optional: true
-        # Present as datapoint (maybe humidity), but reported as a fixed value on this model.
+        # Present as dp (hum), but not on this model.
       - id: 112
         type: integer
         name: unknown_112
@@ -78,7 +78,7 @@ entities:
             value: high
           - dps_val: "3"
             value: low
-      # Present as datapoint, but not functionally supported on this model.
+      # Present as dp, but not supported on this model.
       - id: 106
         type: boolean
         name: unknown_106
