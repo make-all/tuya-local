@@ -5,15 +5,8 @@ products:
     model: CBE2000 Pro
 entities:
   - entity: sensor
-    name: Serial Number
     category: diagnostic
-    dps:
-      - id: 1
-        type: string
-        name: sensor
-  - entity: sensor
-    category: diagnostic
-    name: Battery Capacity
+    name: Battery capacity
     dps:
       - id: 2
         type: integer
@@ -21,21 +14,27 @@ entities:
         unit: kWh
         mapping:
           - scale: 1000
-  - entity: sensor
-    name: Error Code
-    category: diagnostic
-    dps:
-      - id: 10
-        type: string
-        name: sensor
-  - entity: sensor
+  - entity: binary_sensor
     name: Fault
     category: diagnostic
-    class: enum
+    class: problem
     dps:
       - id: 11
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: string
+        name: error_code
+      - id: 11
+        type: bitfield
+        name: fault_code
+      - id: 11
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
             value: No Fault
@@ -83,8 +82,11 @@ entities:
             value: meter_comm_failure
           - dps_val: 2097152
             value: system_temp_diff_protection
+      - id: 1
+        type: string
+        name: serial_number
   - entity: sensor
-    name: Connection State
+    name: Connection state
     category: diagnostic
     class: enum
     hidden: true
@@ -100,7 +102,7 @@ entities:
           - dps_val: paired_uncon
             value: Paired and not connected
   - entity: sensor
-    name: Signal Strength
+    class: signal_strength
     category: diagnostic
     hidden: true
     dps:
@@ -109,7 +111,7 @@ entities:
         name: sensor
         unit: dBm
   - entity: sensor
-    name: Hardware Version
+    name: Hardware version
     category: diagnostic
     hidden: true
     dps:
@@ -117,35 +119,36 @@ entities:
         type: string
         name: sensor
   - entity: sensor
-    name: System Version
+    name: System version
     category: diagnostic
     hidden: true
     dps:
       - id: 15
         type: string
         name: sensor
-  - entity: sensor
-    name: Cell Heating
+  - entity: binary_sensor
+    name: Cell heating
     category: diagnostic
     dps:
       - id: 16
         type: boolean
         name: sensor
   - entity: sensor
-    name: Expansion Pack Count
+    name: Expansion pack count
     category: diagnostic
     dps:
       - id: 17
         type: integer
         name: sensor
-  - entity: sensor
-    name: Human Presence
+  - entity: binary_sensor
+    name: Human presence
+    class: occupancy
     dps:
       - id: 18
         type: boolean
         name: sensor
   - entity: sensor
-    name: PV Power Total
+    name: PV power total
     class: power
     dps:
       - id: 20
@@ -153,7 +156,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: PV Power Port 1
+    name: PV power port 1
     class: power
     dps:
       - id: 21
@@ -161,7 +164,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: PV Power Port 2
+    name: PV power port 2
     class: power
     dps:
       - id: 22
@@ -169,7 +172,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: PV Power Port 3
+    name: PV power port 3
     class: power
     dps:
       - id: 36
@@ -177,7 +180,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: PV Power Port 4
+    name: PV power port 4
     class: power
     dps:
       - id: 37
@@ -193,7 +196,8 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Load State
+    name: Load state
+    translation_key: status
     class: enum
     dps:
       - id: 24
@@ -201,13 +205,13 @@ entities:
         name: sensor
         mapping:
           - dps_val: charging
-            value: Charging
+            value: charging
           - dps_val: discharging
-            value: Discharging
+            value: discharging
           - dps_val: idle
-            value: Idle
+            value: idle
   - entity: sensor
-    name: Battery Power
+    name: Battery power
     class: power
     dps:
       - id: 25
@@ -215,7 +219,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Grid Power
+    name: Grid power
     class: power
     dps:
       - id: 26
@@ -223,7 +227,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Inverter Output Power
+    name: Inverter output power
     class: power
     dps:
       - id: 27
@@ -234,7 +238,7 @@ entities:
           min: -20000
           max: 20000
   - entity: sensor
-    name: Battery Charging Power PV
+    name: Battery charging power pv
     class: power
     dps:
       - id: 28
@@ -242,7 +246,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Battery Charging Power Grid
+    name: Battery charging power grid
     class: power
     dps:
       - id: 29
@@ -250,7 +254,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: SoC Battery Array
+    name: SoC battery array
     class: battery
     hidden: true
     dps:
@@ -259,7 +263,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion Pack 1 SoC
+    name: Expansion pack 1 soc
     class: battery
     hidden: true
     dps:
@@ -268,7 +272,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion Pack 2 SoC
+    name: Expansion pack 2 soc
     class: battery
     hidden: true
     dps:
@@ -277,7 +281,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion Pack 3 SoC
+    name: Expansion pack 3 soc
     class: battery
     hidden: true
     dps:
@@ -286,7 +290,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion Pack 4 SoC
+    name: Expansion pack 4 soc
     class: battery
     hidden: true
     dps:
@@ -295,7 +299,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion Pack 5 SoC
+    name: Expansion pack 5 soc
     class: battery
     hidden: true
     dps:
@@ -304,7 +308,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Offgrid Export Power
+    name: Offgrid export power
     class: power
     dps:
       - id: 38
@@ -312,7 +316,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Cumulative Energy Generated PV
+    name: Cumulative energy generated pv
     class: energy
     dps:
       - id: 40
@@ -323,7 +327,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Output Inverter
+    name: Cumulative energy output inverter
     class: energy
     dps:
       - id: 41
@@ -334,7 +338,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Discharged
+    name: Cumulative energy discharged
     class: energy
     dps:
       - id: 42
@@ -345,7 +349,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Charged
+    name: Cumulative energy charged
     class: energy
     dps:
       - id: 43
@@ -356,7 +360,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Charged PV
+    name: Cumulative energy charged pv
     class: energy
     dps:
       - id: 44
@@ -367,7 +371,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Charged Grid
+    name: Cumulative energy charged grid
     class: energy
     dps:
       - id: 45
@@ -378,7 +382,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Exported Offgrid
+    name: Cumulative energy exported offgrid
     class: energy
     dps:
       - id: 46
@@ -389,7 +393,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative Energy Imported Offgrid
+    name: Cumulative energy imported offgrid
     class: energy
     dps:
       - id: 47
@@ -400,7 +404,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: number
-    name: Backup Reserve
+    name: Backup reserve
     mode: slider
     category: config
     dps:
@@ -411,10 +415,8 @@ entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - step: 1
   - entity: select
-    name: Work Mode
+    translation_key: mode
     category: config
     dps:
       - id: 51
@@ -424,15 +426,15 @@ entities:
           - dps_val: self_powered
             value: Self Powered
           - dps_val: time_of_use
-            value: Time of Use
+            value: schedule
           - dps_val: manual
-            value: Manual
+            value: manual
           - dps_val: plug
             value: Plug
           - dps_val: diy
             value: Do It Yourself
   - entity: number
-    name: Output Power Limit
+    name: Output power limit
     mode: box
     category: config
     dps:
@@ -443,17 +445,15 @@ entities:
         range:
           min: 0
           max: 100000
-        mapping:
-          - step: 1
   - entity: switch
-    name: Feedin Power Limit Enable
+    name: Feedin power limit enable
     category: config
     dps:
       - id: 54
         type: boolean
         name: switch
   - entity: number
-    name: Feedin Power Limit
+    name: Feedin power limit
     mode: box
     category: config
     dps:
@@ -464,18 +464,8 @@ entities:
         range:
           min: 0
           max: 100000
-        mapping:
-          - step: 1
-  - entity: sensor
-    name: Country Code
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 56
-        type: integer
-        name: sensor
   - entity: select
-    name: Indicator Light Mode
+    translation_key: light_mode
     category: config
     dps:
       - id: 57
@@ -483,13 +473,13 @@ entities:
         name: option
         mapping:
           - dps_val: "eco"
-            value: Eco
+            value: "auto"
           - dps_val: "on"
-            value: "Always On"
+            value: "on"
           - dps_val: "off"
-            value: "Manual"
+            value: "off"
   - entity: sensor
-    name: Smart Meter Type
+    name: Smart meter type
     class: enum
     dps:
       - id: 58
@@ -502,29 +492,29 @@ entities:
             value: Lan
           - dps_val: ty_rs485
             value: RS485
-  - entity: switch
-    name: Recalibrate Battery
+  - entity: button
+    name: Recalibrate battery
     category: config
     dps:
       - id: 59
         type: boolean
-        name: switch
+        name: button
   - entity: switch
-    name: Offgrid Port Enable
+    name: Offgrid port enable
     category: config
     dps:
       - id: 60
         type: boolean
         name: switch
   - entity: switch
-    name: Peak Shaving Enable
+    name: Peak shaving enable
     category: config
     dps:
       - id: 63
         type: boolean
         name: switch
   - entity: number
-    name: Peak Shaving Threshold
+    name: Peak shaving threshold
     mode: box
     category: config
     dps:
@@ -535,10 +525,8 @@ entities:
         range:
           min: 0
           max: 30000
-        mapping:
-          - step: 1
   - entity: select
-    name: Vibe Light Mode
+    name: Vibe light mode
     category: config
     dps:
       - id: 65
@@ -550,7 +538,7 @@ entities:
           - dps_val: "off"
             value: "Off"
   - entity: select
-    name: Offgrid Mode
+    name: Offgrid mode
     category: config
     dps:
       - id: 68
@@ -562,7 +550,7 @@ entities:
           - dps_val: plugin
             value: Plugin
   - entity: number
-    name: Inverter Input Power Limit
+    name: Inverter input power limit
     mode: box
     category: config
     dps:
@@ -573,17 +561,15 @@ entities:
         range:
           min: 0
           max: 2500
-        mapping:
-          - step: 1
   - entity: switch
-    name: Reserve Priority
+    name: Reserve priority
     category: config
     dps:
       - id: 70
         type: boolean
         name: switch
   - entity: select
-    name: LED Items
+    name: LED items
     category: config
     dps:
       - id: 73
@@ -597,7 +583,7 @@ entities:
           - dps_val: led_bypass
             value: Bypass
   - entity: select
-    name: Baseline Strategy
+    name: Baseline strategy
     category: config
     dps:
       - id: 78
@@ -609,15 +595,18 @@ entities:
           - dps_val: pv_only
             value: PV Only
   - entity: sensor
-    name: Regulation Grid Export Power Limit
+    name: Regulation grid export power limit
     category: diagnostic
     dps:
       - id: 84
         type: integer
         name: sensor
         unit: W
+      - id: 56
+        type: integer
+        name: country_code
   - entity: switch
-    name: LP Sleep
+    name: LP sleep
     category: config
     hidden: true
     dps:
@@ -625,7 +614,7 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Base Load
+    name: Base load
     mode: box
     category: config
     dps:
@@ -636,5 +625,3 @@ entities:
         range:
           min: 0
           max: 99999
-        mapping:
-          - step: 1
