@@ -6,6 +6,9 @@ products:
   - id: 5ls2jw49hpczwqng
     manufacturer: Fairland
     model: Mr.Pure
+  - id: 5x5lnhkwee1l1fuu
+    manufacturer: Aquark
+    model: InverClear
 entities:
   - entity: sensor
     name: Salinity
@@ -490,3 +493,12 @@ entities:
       - id: 121
         type: boolean
         name: available
+  - entity: sensor
+    name: Chip lifespan
+    class: duration
+    dps:
+      - id: 145
+        type: integer
+        optional: true
+        name: sensor
+        unit: h
