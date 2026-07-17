@@ -21,7 +21,6 @@ entities:
                 value: heat
               - dps_val: "Auto"
                 value: auto
-
       - id: 2
         name: preset_mode
         type: string
@@ -56,6 +55,16 @@ entities:
             value: quiet
           - dps_val: "Boost"
             value: boost
+      - id: 2
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: "Heating"
+            value: heat
+          - dps_val: "Cooling"
+            value: cool
+          - dps_val: "Auto"
+            value: auto
 
   - entity: binary_sensor
     class: problem
