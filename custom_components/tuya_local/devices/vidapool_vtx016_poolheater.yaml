@@ -1,0 +1,152 @@
+name: Vidapool VTX016 Pool Heat Pump
+products:
+  - id: tujtt0l6dup0is9d
+    manufacturer: Vidapool
+    model: 16000 BTU Pool Heat Pump
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: HEAT
+                value: heat
+              - dps_val: COOL
+                value: cool
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 34
+        name: temperature
+        type: integer
+        range:
+          min: 46
+          max: 104
+      - id: 6
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 35
+        name: current_temperature
+        type: integer
+        unit: F
+      - id: 27
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: HEAT
+                value: heating
+              - dps_val: COOL
+                value: cooling
+          - dps_val: false
+            value: idle
+  - entity: select
+    name: HVAC Mode
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: HEAT
+            value: heat
+          - dps_val: COOL
+            value: cool
+  - entity: select
+    name: Fan Mode
+    category: diagnostic
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: High
+            value: high
+          - dps_val: Mid
+            value: mid
+          - dps_val: Low
+            value: low
+  - entity: sensor
+    name: Inlet Temperature
+    device_class: temperature
+    state_class: measurement
+    unit: F
+    dps:
+      - id: 35
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Ambient Temperature
+    device_class: temperature
+    state_class: measurement
+    unit: F
+    dps:
+      - id: 38
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Coiler Temperature
+    device_class: temperature
+    state_class: measurement
+    unit: F
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Defrost Timer
+    category: diagnostic
+    unit: min
+    dps:
+      - id: 41
+        type: integer
+        name: sensor
+  - entity: binary_sensor
+    name: Compressor State
+    icon: "mdi:engine"
+    category: diagnostic
+    dps:
+      - id: 27
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Four-way Valve
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 28
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Water Flow Switch
+    device_class: opening
+    icon: "mdi:water-pump"
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: High Pressure Switch
+    device_class: opening
+    icon: "mdi:gauge"
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
