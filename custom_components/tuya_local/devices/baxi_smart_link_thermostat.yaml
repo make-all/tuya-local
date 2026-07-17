@@ -71,7 +71,6 @@ entities:
 
   - entity: select
     name: Heating season
-    category: config
     icon: "mdi:sun-snowflake-variant"
     dps:
       - id: 28
@@ -91,28 +90,32 @@ entities:
         type: boolean
         name: switch
 
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 37
+        type: base64
+        name: value
+
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 39
+        type: boolean
+        name: button
+
   - entity: binary_sensor
     class: window
-    category: diagnostic
     dps:
       - id: 3
         type: string
         name: sensor
         mapping:
           - dps_val: window_opened
-            value: true
-          - value: false
-
-  - entity: binary_sensor
-    name: Central heating
-    class: running
-    icon: "mdi:radiator"
-    dps:
-      - id: 3
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: heating
             value: true
           - value: false
 
@@ -209,7 +212,7 @@ entities:
             step: 5
 
   - entity: sensor
-    name: Inlet water temperature
+    name: Return water temperature
     class: temperature
     category: diagnostic
     dps:
@@ -222,7 +225,7 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Outlet water temperature
+    name: Boiler water temperature
     class: temperature
     icon: "mdi:coolant-temperature"
     dps:
@@ -235,7 +238,7 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Boiler water pressure
+    name: Central heating pressure
     class: pressure
     category: diagnostic
     dps:
@@ -248,16 +251,16 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Fire power
+    name: Flame level
     category: diagnostic
+    hidden: true
     dps:
       - id: 104
         type: integer
         name: sensor
-        class: measurement
 
   - entity: sensor
-    name: OEM fault code
+    name: Boiler fault code
     category: diagnostic
     icon: "mdi:alert-circle-outline"
     dps:
@@ -292,7 +295,7 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Modulation level
+    name: Relative modulation level
     category: diagnostic
     dps:
       - id: 108
@@ -317,9 +320,8 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Boiler external temperature
+    name: Outside temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 112
         type: integer
@@ -449,9 +451,10 @@ entities:
         name: switch
 
   - entity: number
-    name: OpenTherm read item
+    name: OpenTherm diagnostic query
     category: config
     mode: box
+    hidden: true
     dps:
       - id: 119
         type: integer
@@ -461,8 +464,9 @@ entities:
           max: 127
 
   - entity: sensor
-    name: OpenTherm return value
+    name: OpenTherm diagnostic value
     category: diagnostic
+    hidden: true
     dps:
       - id: 120
         type: integer
@@ -513,6 +517,7 @@ entities:
           - value: true
 
   - entity: binary_sensor
+    name: Control panel problem
     category: diagnostic
     class: problem
     dps:
@@ -528,7 +533,7 @@ entities:
         name: fault_code
 
   - entity: sensor
-    name: Fault bitmap
+    name: Control panel fault bitmap
     category: diagnostic
     icon: "mdi:alert-circle-outline"
     dps:
