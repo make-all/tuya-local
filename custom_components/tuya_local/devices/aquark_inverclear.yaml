@@ -1,0 +1,301 @@
+name: InverClear Salt Chlorinator
+products:
+  - id: 5x5lnhkwee1l1fuu
+    name: InverClear
+entities:
+  - entity: switch
+    name: Chlorinator
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Water Temperature
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: ORP
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+
+  - entity: sensor
+    name: pH
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+
+  - entity: sensor
+    name: Electrolysis Output
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Electrolysis Power
+    class: power
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Electrolysis Current
+    class: current
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Electrolysis Voltage
+    class: voltage
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+
+  - entity: sensor
+    name: Cabinet Temperature
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Water Quality
+    dps:
+      - id: 119
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "WAIT"
+            value: Wait
+          - dps_val: "GOOD"
+            value: Good
+          - dps_val: "GREAT"
+            value: Great
+
+  - entity: sensor
+    name: Chip Lifespan
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+        unit: h
+
+  - entity: select
+    name: Work Mode
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: "inverter"
+            value: Inverter
+          - dps_val: "auto_ph"
+            value: Auto pH
+          - dps_val: "smart"
+            value: Smart
+          - dps_val: "manual"
+            value: Manual
+
+  - entity: select
+    name: Reverse Time
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: "2"
+            value: 2h
+          - dps_val: "4"
+            value: 4h
+          - dps_val: "6"
+            value: 6h
+
+  - entity: number
+    name: Target ORP
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 650
+          max: 800
+
+  - entity: number
+    name: Target pH
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 72
+          max: 76
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Pool Size
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 150
+
+  - entity: number
+    name: Target Yield
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+
+  - entity: number
+    name: Acid Addition
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 990
+
+  - entity: number
+    name: Chip Size
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+
+  - entity: switch
+    name: Turbo Mode
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Timer Switch
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Realtime Salinity Check
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Temperature Unit F
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    name: No Flow
+    class: problem
+    dps:
+      - id: 114
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Add Acid
+    class: problem
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Need Calibration
+    class: problem
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Add Salt
+    class: problem
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+
+  - entity: sensor
+    name: Error Code
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Board Config
+    dps:
+      - id: 127
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Machine Type
+    dps:
+      - id: 134
+        type: string
+        name: sensor
