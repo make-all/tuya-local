@@ -1,7 +1,7 @@
 name: Dual pump watering system
 products:
   - id: 7lanttzn7fuel3zb
-    manufacturer: JOEKOL
+    manufacturer: Joekol
     model: WD-01ADE
     model_id: e1n14ca8
 entities:
@@ -11,39 +11,38 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: switch
+        name: valve
   - entity: valve
     name: Pump B
     class: water
     dps:
       - id: 2
         type: boolean
-        name: switch
-  - entity: number
+        name: valve
+  - entity: time
     name: Pump A irrigation duration
-    class: time
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 103
         type: integer
-        name: value
-        unit: s
+        name: second
         optional: true
         range:
           min: 1
-          max: 86400
+          max: 86399
   - entity: time
     name: Pump B irrigation duration
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 104
         type: integer
-        name: value
-        unit: s
+        name: second
         optional: true
         range:
           min: 1
-          max: 86400
+          max: 86399
   - entity: text
     name: Pump A schedule
     category: config
