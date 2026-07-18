@@ -1,6 +1,7 @@
 """Tests for the active Tuya LAN rediscovery sweeper."""
 
 import logging
+from unittest.mock import AsyncMock
 
 import pytest
 from homeassistant.const import CONF_HOST
@@ -196,29 +197,45 @@ def _fake_config(matches):
     return type("Cfg", (), {"matches_product": lambda self, pid: matches})()
 
 
+def _scan_result(gwid=DEVID, product="keyabc123", ip="192.168.1.10"):
+    """A tinytuya.deviceScan-style result: keyed by IP, carrying gwId/productKey."""
+    info = {"gwId": gwid, "ip": ip, "version": "3.5"}
+    if product is not None:
+        info["productKey"] = product
+    return {ip: info}
+
+
+def _patch_flow_init(hass, mocker):
+    """Patch the config-entries flow init with an awaitable mock."""
+    return mocker.patch.object(
+        hass.config_entries.flow, "async_init", new_callable=AsyncMock
+    )
+
+
 @pytest.mark.asyncio
 async def test_product_scan_warns_once_on_unmatched_product(hass, caplog, mocker):
     """An unmatched product id is logged at WARNING, once per device per run."""
     _make_entry(hass, host="192.168.1.10")
     mocker.patch(
-        "custom_components.tuya_local.helpers.discovery._find_device",
-        return_value={"ip": "192.168.1.10", "product_id": "keyabc123"},
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(),
     )
     mocker.patch(
         "custom_components.tuya_local.helpers.discovery.get_config",
         return_value=_fake_config(False),
     )
+    _patch_flow_init(hass, mocker)
     disc = TuyaLANRediscovery(hass)
 
     with caplog.at_level(
         logging.WARNING, logger="custom_components.tuya_local.helpers.discovery"
     ):
-        await disc._async_product_scan()
+        await disc._async_discovery_scan()
         await hass.async_block_till_done()
         assert caplog.text.count("keyabc123") == 1
         # A second scan must not warn again for the same device.
         caplog.clear()
-        await disc._async_product_scan()
+        await disc._async_discovery_scan()
         await hass.async_block_till_done()
         assert "keyabc123" not in caplog.text
 
@@ -228,33 +245,35 @@ async def test_product_scan_silent_when_product_matches(hass, caplog, mocker):
     """No warning when the product id is listed in the config."""
     _make_entry(hass, host="192.168.1.10")
     mocker.patch(
-        "custom_components.tuya_local.helpers.discovery._find_device",
-        return_value={"ip": "192.168.1.10", "product_id": "keyabc123"},
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(),
     )
     mocker.patch(
         "custom_components.tuya_local.helpers.discovery.get_config",
         return_value=_fake_config(True),
     )
+    _patch_flow_init(hass, mocker)
     with caplog.at_level(
         logging.WARNING, logger="custom_components.tuya_local.helpers.discovery"
     ):
-        await TuyaLANRediscovery(hass)._async_product_scan()
+        await TuyaLANRediscovery(hass)._async_discovery_scan()
         await hass.async_block_till_done()
     assert "is not listed" not in caplog.text
 
 
 @pytest.mark.asyncio
 async def test_product_scan_skips_when_no_product_id(hass, mocker):
-    """If the scan returns no product id, the config is not even looked up."""
+    """If the scan reports no product id, the config is not even looked up."""
     _make_entry(hass, host="192.168.1.10")
     mocker.patch(
-        "custom_components.tuya_local.helpers.discovery._find_device",
-        return_value={"ip": "192.168.1.10"},
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(product=None),
     )
     get_config = mocker.patch(
         "custom_components.tuya_local.helpers.discovery.get_config",
     )
-    await TuyaLANRediscovery(hass)._async_product_scan()
+    _patch_flow_init(hass, mocker)
+    await TuyaLANRediscovery(hass)._async_discovery_scan()
     await hass.async_block_till_done()
     get_config.assert_not_called()
 
@@ -264,19 +283,92 @@ async def test_product_scan_handles_missing_config(hass, caplog, mocker):
     """A missing config file must not warn or raise."""
     _make_entry(hass, host="192.168.1.10")
     mocker.patch(
-        "custom_components.tuya_local.helpers.discovery._find_device",
-        return_value={"ip": "192.168.1.10", "product_id": "keyabc123"},
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(),
     )
     mocker.patch(
         "custom_components.tuya_local.helpers.discovery.get_config",
         return_value=None,
     )
+    _patch_flow_init(hass, mocker)
     with caplog.at_level(
         logging.WARNING, logger="custom_components.tuya_local.helpers.discovery"
     ):
-        await TuyaLANRediscovery(hass)._async_product_scan()
+        await TuyaLANRediscovery(hass)._async_discovery_scan()
         await hass.async_block_till_done()
     assert "keyabc123" not in caplog.text
+
+
+@pytest.mark.asyncio
+async def test_discovery_raises_flow_for_unknown_device(hass, mocker):
+    """An unconfigured device on the LAN starts an integration_discovery flow."""
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(gwid="bfunknown000000000", ip="192.168.1.99"),
+    )
+    init = _patch_flow_init(hass, mocker)
+
+    await TuyaLANRediscovery(hass)._async_discovery_scan()
+    await hass.async_block_till_done()
+
+    init.assert_awaited_once()
+    args, kwargs = init.call_args
+    assert args[0] == DOMAIN
+    assert kwargs["context"]["source"] == "integration_discovery"
+    assert kwargs["data"][CONF_DEVICE_ID] == "bfunknown000000000"
+    assert kwargs["data"][CONF_HOST] == "192.168.1.99"
+
+
+@pytest.mark.asyncio
+async def test_discovery_skips_configured_device(hass, mocker):
+    """A device already configured is not offered for discovery again."""
+    _make_entry(hass, host="192.168.1.10")  # DEVID is configured
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(gwid=DEVID),
+    )
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery.get_config",
+        return_value=_fake_config(True),
+    )
+    init = _patch_flow_init(hass, mocker)
+
+    await TuyaLANRediscovery(hass)._async_discovery_scan()
+    await hass.async_block_till_done()
+
+    init.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_discovery_raises_flow_only_once_per_device(hass, mocker):
+    """Repeated scans do not spawn duplicate flows for the same new device."""
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value=_scan_result(gwid="bfunknown000000000", ip="192.168.1.99"),
+    )
+    init = _patch_flow_init(hass, mocker)
+    disc = TuyaLANRediscovery(hass)
+
+    await disc._async_discovery_scan()
+    await hass.async_block_till_done()
+    await disc._async_discovery_scan()
+    await hass.async_block_till_done()
+
+    assert init.await_count == 1
+
+
+@pytest.mark.asyncio
+async def test_discovery_scan_handles_empty_result(hass, mocker):
+    """An empty scan (e.g. socket error) does nothing and does not raise."""
+    _make_entry(hass, host="192.168.1.10")
+    mocker.patch(
+        "custom_components.tuya_local.helpers.discovery._scan_all",
+        return_value={},
+    )
+    init = _patch_flow_init(hass, mocker)
+    await TuyaLANRediscovery(hass)._async_discovery_scan()
+    await hass.async_block_till_done()
+    init.assert_not_awaited()
 
 
 def test_module_exposes_expected_intervals():

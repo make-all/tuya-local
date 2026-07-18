@@ -1,5 +1,5 @@
 """
-Active Tuya LAN discovery for configured devices.
+Active Tuya LAN discovery.
 
 When a router hands out new DHCP leases (e.g. after a reboot) a Tuya device
 can change IP. The integration then keeps trying the stale ``host`` stored in
@@ -9,22 +9,24 @@ it by hand.
 Tuya devices do not all announce themselves unprompted -- in particular
 protocol 3.4/3.5 devices stay silent until they receive a discovery request
 broadcast to UDP port 7000, at which point they reply with their id (``gwId``),
-current IP and ``product_id``. ``tinytuya``'s scanner sends exactly that request,
-so ``tinytuya.find_device`` locates a device by its id regardless of how its IP
-changed. This is the same mechanism the config flow already uses via
+current IP and ``productKey``. ``tinytuya``'s scanner sends exactly that request,
+so ``tinytuya.find_device``/``tinytuya.deviceScan`` locate devices regardless of
+how their IP changed. This is the same mechanism the config flow already uses via
 ``scan_for_device`` and the one ``localtuya`` uses to find devices in seconds.
 
-This module runs two active-scan tasks for the configured devices:
+This module runs two active-scan tasks:
 
-- a fast sweep (every ``SWEEP_INTERVAL``) that relocates *unreachable* devices:
-  it looks up the current IP by device id and updates the config entry's host in
-  place. The existing update-listener reload then reconnects the device on the
-  new IP -- no manual reconfiguration, no cloud round-trip, history preserved.
+- a fast sweep (every ``SWEEP_INTERVAL``) that relocates *unreachable* configured
+  devices: it looks up the current IP by device id and updates the config entry's
+  host in place. The existing update-listener reload then reconnects the device on
+  the new IP -- no manual reconfiguration, no cloud round-trip, history preserved.
   Reachable devices are never scanned, so there is no traffic while healthy.
-- a slower scan (every ``SCAN_INTERVAL``) that logs, once per device per HA
-  start, when a configured device reports a ``product_id`` that its config file
-  does not list under ``products`` -- surfacing devices that may only be
-  partially supported so the config can be improved.
+- a slower full scan (every ``SCAN_INTERVAL``) that, from a single
+  ``deviceScan``: (a) warns, once per device per HA start, when a *configured*
+  device reports a ``productKey`` its config file does not list under
+  ``products`` (so the config can be improved); and (b) raises an
+  ``integration_discovery`` flow for each *unconfigured* device found, so it
+  surfaces in Home Assistant for one-click setup (with the built-in ignore).
 
 References:
 - tinytuya scanner discovery request (port 7000 for v3.5 devices):
@@ -36,6 +38,7 @@ import logging
 from datetime import timedelta
 
 import tinytuya
+from homeassistant.config_entries import SOURCE_INTEGRATION_DISCOVERY
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_track_time_interval
@@ -51,8 +54,8 @@ _LOGGER = logging.getLogger(__name__)
 # relocated on the first sweep after it drops.
 SWEEP_INTERVAL = timedelta(seconds=60)
 
-# How often to scan configured devices to check their product id against the
-# config file. Diagnostic only, so it runs infrequently.
+# How often to run the full network scan (product-id check + new-device
+# discovery). Infrequent, since neither action is time critical.
 SCAN_INTERVAL = timedelta(minutes=10)
 
 
@@ -69,8 +72,20 @@ def _find_device(device_id):
         return {"ip": None}
 
 
+def _scan_all():
+    """Scan the LAN for all Tuya devices (blocking; run in executor).
+
+    Returns tinytuya's dict keyed by IP, each value carrying ``gwId``,
+    ``productKey`` and ``version``; an empty dict on any socket error.
+    """
+    try:
+        return tinytuya.deviceScan(verbose=False, poll=False)
+    except OSError:
+        return {}
+
+
 class TuyaLANRediscovery:
-    """Active LAN discovery for configured Tuya devices."""
+    """Active LAN discovery for Tuya devices."""
 
     def __init__(self, hass: HomeAssistant) -> None:
         self._hass = hass
@@ -79,6 +94,8 @@ class TuyaLANRediscovery:
         self._scanning = False
         # device ids already warned about an unmatched product id this run.
         self._warned_products = set()
+        # gwIds an integration_discovery flow has already been raised for.
+        self._discovered = set()
 
     @callback
     def async_start(self) -> None:
@@ -89,7 +106,7 @@ class TuyaLANRediscovery:
             )
         if self._unsub_scan is None:
             self._unsub_scan = async_track_time_interval(
-                self._hass, self._async_product_scan, SCAN_INTERVAL
+                self._hass, self._async_discovery_scan, SCAN_INTERVAL
             )
 
     @callback
@@ -158,44 +175,75 @@ class TuyaLANRediscovery:
         finally:
             self._scanning = False
 
-    async def _async_product_scan(self, now=None) -> None:
-        """Warn (once per device per run) about product ids the config lacks."""
+    async def _async_discovery_scan(self, now=None) -> None:
+        """Full LAN scan: product-id check for known devices, discover new ones."""
         if self._scanning:
             return
-        entries = [
-            (entry, entry.data.get(CONF_DEVICE_ID), entry.data.get(CONF_TYPE))
-            for entry in self._hass.config_entries.async_entries(DOMAIN)
-            if entry.data.get(CONF_DEVICE_ID) and entry.data.get(CONF_TYPE)
-        ]
-        if not entries:
-            return
-
         self._scanning = True
         try:
-            for entry, device_id, config_type in entries:
-                if device_id in self._warned_products:
-                    continue
-                found = await self._hass.async_add_executor_job(_find_device, device_id)
-                product_id = found.get("product_id") if found else None
-                if not product_id:
-                    continue
-                config = await self._hass.async_add_executor_job(
-                    get_config, config_type
-                )
-                if config is None or config.matches_product(product_id):
-                    continue
-                # WARNING so it is visible under HA's default log level; once per
-                # device per run to avoid noise.
-                self._warned_products.add(device_id)
-                _LOGGER.warning(
-                    "%s: device product id %s is not listed in its config (%s); "
-                    "please report it so support can be improved",
-                    entry.title,
-                    product_id,
-                    config_type,
-                )
+            found = await self._hass.async_add_executor_job(_scan_all)
+            if not found:
+                return
+
+            by_gwid = {}
+            for info in found.values():
+                gwid = info.get("gwId")
+                if gwid:
+                    by_gwid[gwid] = info
+
+            configured = {}
+            for entry in self._hass.config_entries.async_entries(DOMAIN):
+                device_id = entry.data.get(CONF_DEVICE_ID)
+                if device_id:
+                    configured[device_id] = entry
+
+            for gwid, info in by_gwid.items():
+                entry = configured.get(gwid)
+                if entry is not None:
+                    await self._check_product(entry, info.get("productKey"))
+                else:
+                    self._discover_new(gwid, info)
         finally:
             self._scanning = False
+
+    async def _check_product(self, entry, product_id) -> None:
+        """Warn once per run when a configured device's product id is unlisted."""
+        device_id = entry.data.get(CONF_DEVICE_ID)
+        config_type = entry.data.get(CONF_TYPE)
+        if not product_id or not config_type or device_id in self._warned_products:
+            return
+        config = await self._hass.async_add_executor_job(get_config, config_type)
+        if config is None or config.matches_product(product_id):
+            return
+        # WARNING so it is visible under HA's default log level; once per device
+        # per run to avoid noise.
+        self._warned_products.add(device_id)
+        _LOGGER.warning(
+            "%s: device product id %s is not listed in its config (%s); "
+            "please report it so support can be improved",
+            entry.title,
+            product_id,
+            config_type,
+        )
+
+    @callback
+    def _discover_new(self, gwid, info) -> None:
+        """Raise an integration_discovery flow for a not-yet-configured device."""
+        if gwid in self._discovered:
+            return
+        self._discovered.add(gwid)
+        self._hass.async_create_task(
+            self._hass.config_entries.flow.async_init(
+                DOMAIN,
+                context={"source": SOURCE_INTEGRATION_DISCOVERY},
+                data={
+                    CONF_DEVICE_ID: gwid,
+                    CONF_HOST: info.get("ip"),
+                    "product_id": info.get("productKey"),
+                    "version": info.get("version"),
+                },
+            )
+        )
 
 
 async def async_start_discovery(hass: HomeAssistant) -> None:

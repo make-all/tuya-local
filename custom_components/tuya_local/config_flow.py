@@ -70,6 +70,30 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         if self.cloud is None:
             self.cloud = Cloud(self.hass)
 
+    async def async_step_integration_discovery(self, discovery_info):
+        """Handle a device found on the LAN by the background scanner.
+
+        Pre-fills the manual setup form with the discovered id/ip/version; the
+        user still supplies the local key. Aborts if the device is already
+        configured or has been ignored.
+        """
+        device_id = discovery_info.get(CONF_DEVICE_ID)
+        await self.async_set_unique_id(device_id)
+        self._abort_if_unique_id_configured()
+        # Reuse the cloud-device plumbing that async_step_local reads for its
+        # form defaults; the local key is not known from discovery.
+        self.__cloud_device = {
+            "id": device_id,
+            "ip": discovery_info.get(CONF_HOST),
+            "version": discovery_info.get("version"),
+            "local_product_id": discovery_info.get("product_id"),
+            CONF_LOCAL_KEY: "",
+        }
+        self.context["title_placeholders"] = {
+            "name": discovery_info.get(CONF_HOST) or device_id
+        }
+        return await self.async_step_local()
+
     async def async_step_user(self, user_input=None):
         errors = {}
 
