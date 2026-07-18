@@ -71,6 +71,7 @@ entities:
 
   - entity: select
     name: Heating season
+    category: config
     icon: "mdi:sun-snowflake-variant"
     dps:
       - id: 28
@@ -472,15 +473,12 @@ entities:
         type: integer
         name: sensor
 
-  - entity: number
-    name: Domestic hot water target temperature
-    class: temperature
-    category: config
-    mode: slider
+  - entity: water_heater
+    name: Domestic hot water
     dps:
       - id: 121
         type: integer
-        name: value
+        name: temperature
         unit: C
         range:
           min: 0
@@ -489,16 +487,10 @@ entities:
           - scale: 10
             step: 5
 
-  - entity: sensor
-    name: Domestic hot water temperature
-    class: temperature
-    icon: "mdi:thermometer-water"
-    dps:
       - id: 122
         type: integer
-        name: sensor
+        name: current_temperature
         unit: C
-        class: measurement
         mapping:
           - scale: 10
 
