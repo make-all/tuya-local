@@ -1,0 +1,321 @@
+name: Powerworld PW030 Pool Heatpump - pw58474
+products:
+  - id: pw58474
+    manufacturer: Powerworld
+    model: PW030
+    
+entities:
+  - entity: switch
+    name: power switch
+    icon: mdi:power
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: false # Schaltet die Wärmepumpe AUS
+          - dps_val: true
+            value: true  # Schaltet die Wärmepumpe AN
+
+  - entity: climate
+    dps:
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: strong
+            value: boost
+          - dps_val: smart
+            value: comfort
+          - dps_val: silent
+            value: eco
+      - id: 5
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: heat
+            value: heat
+          - dps_val: cool
+            value: cool
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 151
+        type: integer
+        name: temperature
+        range:
+          min: 10
+          max: 40
+        mapping:
+          - constraint: mode
+            condition: cool
+            value_redirect: cool_temp
+      - id: 152
+        type: integer
+        name: cool_temp
+        optional: true
+        hidden: true
+        range:
+          min: 10
+          max: 40
+
+
+          
+  - entity: sensor
+    name: inlet temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "FFFFFFFF0000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: outlet temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "00000000FFFFFFFF00000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: ambient temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "0000000000000000FFFFFFFF000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000FFFFFFFF0000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: return gas temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "00000000000000000000000000000000FFFFFFFF00000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: evaporator coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "0000000000000000000000000000000000000000FFFFFFFF\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: inner coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               FFFFFFFF0000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+  - entity: sensor
+    name: refrigerant gas concentration
+    category: diagnostic
+    unit_of_measurement: "%"
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000FFFFFFFF000000000000000000000000"
+        mask_signed: true
+        scale: 100
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "%"
+
+  - entity: sensor
+    name: low pressure gas temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               000000000000000000000000FFFFFFFF0000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: sensor
+    name: compressor current
+    class: current
+    category: diagnostic
+    unit_of_measurement: "A"
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               00000000000000000000000000000000FFFFFFFF00000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+
+  - entity: sensor
+    name: Heat sink temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               0000000000000000000000000000000000000000FFFFFFFF\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+
+  - entity: sensor
+    name: DC bus voltage
+    class: voltage
+    category: diagnostic
+    unit_of_measurement: "V"
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               FFFFFFFF0000000000000000000000000000000000000000\
+               0000000000000000"
+
+  - entity: sensor
+    name: compressor frequency
+    class: frequency
+    unit_of_measurement: "Hz"
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               00000000FFFFFFFF00000000000000000000000000000000\
+               0000000000000000"
+
+  - entity: sensor
+    name: fanspeed
+    unit_of_measurement: "rpm"
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000FFFFFFFF000000000000000000000000\
+               0000000000000000"
+
+  - entity: sensor
+    name: opening of main expansion valve
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               0000000000000000FFFFFFFF000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
+
+  - entity: binary_sensor
+    name: preheating state
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               00000000FFFFFFFF00000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+
