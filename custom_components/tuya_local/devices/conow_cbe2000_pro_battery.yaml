@@ -7,6 +7,7 @@ entities:
   - entity: sensor
     category: diagnostic
     name: Battery capacity
+    class: energy_storage
     dps:
       - id: 2
         type: integer
@@ -15,7 +16,6 @@ entities:
         mapping:
           - scale: 1000
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:
