@@ -20,6 +20,7 @@ entities:
     class: problem
     dps:
       - id: 11
+        optional: true
         type: bitfield
         name: sensor
         mapping:
@@ -30,9 +31,11 @@ entities:
         type: string
         name: error_code
       - id: 11
+        optional: true
         type: bitfield
         name: fault_code
       - id: 11
+        optional: true
         type: bitfield
         name: description
         mapping:
@@ -145,6 +148,7 @@ entities:
     class: occupancy
     dps:
       - id: 18
+        optional: true
         type: boolean
         name: sensor
   - entity: sensor
@@ -242,6 +246,7 @@ entities:
     class: power
     dps:
       - id: 28
+        optional: true
         type: integer
         name: sensor
         unit: W
@@ -250,6 +255,7 @@ entities:
     class: power
     dps:
       - id: 29
+        optional: true
         type: integer
         name: sensor
         unit: W
@@ -397,6 +403,7 @@ entities:
     class: energy
     dps:
       - id: 47
+        optional: true
         type: integer
         name: sensor
         unit: kWh
@@ -530,6 +537,7 @@ entities:
     category: config
     dps:
       - id: 65
+        optional: true
         type: string
         name: option
         mapping:
@@ -555,6 +563,7 @@ entities:
     category: config
     dps:
       - id: 69
+        optional: true
         type: integer
         name: value
         unit: W
@@ -566,6 +575,7 @@ entities:
     category: config
     dps:
       - id: 70
+        optional: true
         type: boolean
         name: switch
   - entity: select
@@ -573,6 +583,7 @@ entities:
     category: config
     dps:
       - id: 73
+        optional: true
         type: string
         name: option
         mapping:
@@ -587,6 +598,7 @@ entities:
     category: config
     dps:
       - id: 78
+        optional: true
         type: string
         name: option
         mapping:
@@ -599,6 +611,7 @@ entities:
     category: diagnostic
     dps:
       - id: 84
+        optional: true
         type: integer
         name: sensor
         unit: W
@@ -611,6 +624,7 @@ entities:
     hidden: true
     dps:
       - id: 85
+        optional: true
         type: boolean
         name: switch
   - entity: number
@@ -619,6 +633,7 @@ entities:
     category: config
     dps:
       - id: 91
+        optional: true
         type: integer
         name: value
         unit: W
