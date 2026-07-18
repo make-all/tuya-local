@@ -473,9 +473,19 @@ entities:
         type: integer
         name: sensor
 
-  - entity: water_heater
+  - entity: climate
     name: Domestic hot water
+    category: config
+    icon: "mdi:water-boiler"
     dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
       - id: 121
         type: integer
         name: temperature
