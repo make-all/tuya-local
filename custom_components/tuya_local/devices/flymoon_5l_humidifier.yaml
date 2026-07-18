@@ -23,22 +23,17 @@ entities:
       - id: 14
         type: integer
         name: current_humidity
-
-  # Mist level control
-  - entity: select
-    name: Mist Level
-    icon: mdi:water
-    dps:
+      # Mist level
       - id: 3
         type: string
-        name: option
+        name: mode
         mapping:
           - dps_val: small
-            value: Small
+            value: eco
           - dps_val: middle
-            value: Medium
+            value: normal
           - dps_val: large
-            value: Large
+            value: boost
 
   # Sleep mode
   - entity: switch
@@ -60,31 +55,31 @@ entities:
         name: option
         mapping:
           - dps_val: cancel
-            value: "Off"
+            value: "cancel"
           - dps_val: 1h
-            value: "1 hour"
+            value: "1h"
           - dps_val: 2h
-            value: "2 hours"
+            value: "2h"
           - dps_val: 3h
-            value: "3 hours"
+            value: "3h"
           - dps_val: 4h
-            value: "4 hours"
+            value: "4h"
           - dps_val: 5h
-            value: "5 hours"
+            value: "5h"
           - dps_val: 6h
-            value: "6 hours"
+            value: "6h"
           - dps_val: 7h
-            value: "7 hours"
+            value: "7h"
           - dps_val: 8h
-            value: "8 hours"
+            value: "8h"
           - dps_val: 9h
-            value: "9 hours"
+            value: "9h"
           - dps_val: 10h
-            value: "10 hours"
+            value: "10h"
           - dps_val: 11h
-            value: "11 hours"
+            value: "11h"
           - dps_val: 12h
-            value: "12 hours"
+            value: "12h"
 
   # Remaining countdown time
   - entity: sensor
@@ -99,8 +94,7 @@ entities:
 
   # Water shortage alarm
   - entity: binary_sensor
-    name: Water Shortage
-    class: problem
+    translation_key: tank_empty
     dps:
       - id: 22
         type: bitfield
@@ -108,5 +102,3 @@ entities:
         mapping:
           - dps_val: 1
             value: true
-          - dps_val: 0
-            value: false
