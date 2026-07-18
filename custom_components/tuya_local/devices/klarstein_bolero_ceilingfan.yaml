@@ -1,0 +1,30 @@
+name: "Klarstein - Bolero Ceiling Fan with Light"
+products:
+  - id: 89y2fdsm8alx6cjx
+    manufacturer: Klarstein
+    model: "Bolero (CL23001)"
+    name: "Bolero Ceiling Fan with Light"
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+      - id: 64
+        type: integer
+        name: fan_countdown_left
+        optional: true
