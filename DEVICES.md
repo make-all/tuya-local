@@ -600,6 +600,7 @@
 - Eanons QT-JS2014 purifying humidifier
 - Eberg HUMI H03G1 humidifier
 - Eta Noble humidifier
+- Flymoon Top Fill 5L Cool Mist Humidifier
 - Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea and Humea Grande humidifiers
