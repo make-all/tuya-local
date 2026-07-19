@@ -220,7 +220,7 @@ class TuyaLANRediscovery:
         self._warned_products.add(device_id)
         _LOGGER.warning(
             "%s: device product id %s is not listed in its config (%s); "
-            "please report it so support can be improved",
+            "if your device is an exact match for the config please report it so support can be improved",
             entry.title,
             product_id,
             config_type,
