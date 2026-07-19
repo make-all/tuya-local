@@ -1,0 +1,95 @@
+name: Yale Door Lock YMC 420W
+products:
+  - id: avdayhvk
+    name: Yale YMC 420W
+entities:
+  - entity: lock
+    dps:
+      - id: 101
+        type: boolean
+        name: lock
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    name: Fingerprint Unlock Record
+    icon: mdi:fingerprint
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Password Unlock Record
+    icon: mdi:numeric-keypad
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Card Unlock Record
+    icon: mdi:smart-card
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Physical Key Unlock Record
+    icon: mdi:key
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Remote App Unlock Record
+    icon: mdi:cellphone-wireless
+    category: diagnostic
+    dps:
+      - id: 41
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Lock Alarm
+    icon: mdi:alert
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: Deadbolt_Jammed
+            value: Deadbolt Jammed
+          - dps_val: Lock_Reset
+            value: Lock Reset
+          - dps_val: Reserved
+            value: Reserved
+          - dps_val: Module_Power_Err
+            value: Module Power Error
+          - dps_val: wrong_code
+            value: Wrong Code
+          - dps_val: Tamper
+            value: Tamper
+          - dps_val: Master_Code_Change
+            value: Master Code Change
