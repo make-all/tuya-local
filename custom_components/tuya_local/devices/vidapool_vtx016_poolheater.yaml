@@ -83,31 +83,31 @@ entities:
             value: low
   - entity: sensor
     name: Inlet Temperature
-    device_class: temperature
-    state_class: measurement
+    class: temperature
     unit: F
     dps:
       - id: 35
         type: integer
         name: sensor
+        class: measurement
   - entity: sensor
     name: Ambient Temperature
-    device_class: temperature
-    state_class: measurement
+    class: temperature
     unit: F
     dps:
       - id: 38
         type: integer
         name: sensor
+        class: measurement
   - entity: sensor
     name: Coiler Temperature
-    device_class: temperature
-    state_class: measurement
+    class: temperature
     unit: F
     dps:
       - id: 21
         type: integer
         name: sensor
+        class: measurement
   - entity: sensor
     name: Defrost Timer
     category: diagnostic
@@ -134,7 +134,7 @@ entities:
         name: sensor
   - entity: binary_sensor
     name: Water Flow Switch
-    device_class: opening
+    class: opening
     icon: "mdi:water-pump"
     category: diagnostic
     dps:
@@ -143,7 +143,7 @@ entities:
         name: sensor
   - entity: binary_sensor
     name: High Pressure Switch
-    device_class: opening
+    class: opening
     icon: "mdi:gauge"
     category: diagnostic
     dps:
