@@ -1,9 +1,9 @@
 name: Powerworld PW030 Pool Heatpump - pw58474
 products:
-  - id: pw58474
+  - id: powerworld_pw58474_waterheater
     manufacturer: Powerworld
     model: PW030
-    
+
 entities:
   - entity: switch
     name: power switch
@@ -53,7 +53,7 @@ entities:
           max: 40
         mapping:
           - constraint: mode
-            condition: cool
+            value: cool
             value_redirect: cool_temp
       - id: 152
         type: integer
@@ -136,7 +136,7 @@ entities:
         name: unit
         mapping:
           - value: "°C"
-          
+
   - entity: sensor
     name: return gas temperature
     category: diagnostic
@@ -193,7 +193,7 @@ entities:
         name: unit
         mapping:
           - value: "°C"
-          
+
   - entity: sensor
     name: refrigerant gas concentration
     category: diagnostic
