@@ -745,6 +745,7 @@
 - AFYEEV 16A 11kW, 32A 7kW and 22kW portable EV chargers
 - Aimiler 11kW 16A and 40A EV chargers
 - Ampbolt Level 1/2 portable EV charger
+- AmperePoint Q series EV chargers
 - dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger

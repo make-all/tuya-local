@@ -910,3 +910,4 @@ Further device support has been made with the assistance of users. Please consid
 - [adfhogan](https://github.com/adfhogan) for contributing support for Aqua Plus APAIO270 water heater.
 - [ffais](https://github.com/ffais) for contributing support for Joekol dual pump watering system.
 - [jmlankford](https://github.com/jmlankford) for contributing support for Lumary D1 downlight.
+- [amperepoint](https://github.com/amperepoint) for contributing support for AmperePoint Q Series EV chargers.
