@@ -14,9 +14,9 @@ entities:
         name: switch
         mapping:
           - dps_val: false
-            value: false # Schaltet die Wärmepumpe AUS
+            value: false
           - dps_val: true
-            value: true  # Schaltet die Wärmepumpe AN
+            value: true
 
   - entity: climate
     dps:
@@ -64,11 +64,8 @@ entities:
           min: 10
           max: 40
 
-
-          
   - entity: sensor
     name: inlet temperature
-    class: temperature
     dps:
       - id: 101
         type: base64
@@ -79,10 +76,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: outlet temperature
-    class: temperature
     dps:
       - id: 101
         type: base64
@@ -93,10 +94,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: ambient temperature
-    class: temperature
     dps:
       - id: 101
         type: base64
@@ -107,10 +112,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: exhaust temperature
-    class: temperature
     category: diagnostic
     dps:
       - id: 101
@@ -122,10 +131,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
-
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
+          
   - entity: sensor
     name: return gas temperature
-    class: temperature
     category: diagnostic
     dps:
       - id: 101
@@ -137,10 +150,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: evaporator coil temperature
-    class: temperature
     category: diagnostic
     dps:
       - id: 101
@@ -152,10 +169,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: inner coil temperature
-    class: temperature
     category: diagnostic
     dps:
       - id: 101
@@ -167,10 +188,15 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
+          
   - entity: sensor
     name: refrigerant gas concentration
     category: diagnostic
-    unit_of_measurement: "%"
     dps:
       - id: 101
         type: base64
@@ -180,7 +206,6 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000FFFFFFFF000000000000000000000000"
         mask_signed: true
-        scale: 100
       - id: 6
         type: string
         name: unit
@@ -189,7 +214,6 @@ entities:
 
   - entity: sensor
     name: low pressure gas temperature
-    class: temperature
     category: diagnostic
     dps:
       - id: 101
@@ -201,12 +225,15 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: compressor current
-    class: current
     category: diagnostic
-    unit_of_measurement: "A"
     dps:
       - id: 101
         type: base64
@@ -216,10 +243,14 @@ entities:
                00000000000000000000000000000000FFFFFFFF00000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "A"
 
   - entity: sensor
     name: Heat sink temperature
-    class: temperature
     category: diagnostic
     dps:
       - id: 101
@@ -230,12 +261,15 @@ entities:
                0000000000000000000000000000000000000000FFFFFFFF\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "°C"
 
   - entity: sensor
     name: DC bus voltage
-    class: voltage
     category: diagnostic
-    unit_of_measurement: "V"
     dps:
       - id: 101
         type: base64
@@ -245,11 +279,15 @@ entities:
                000000000000000000000000000000000000000000000000\
                FFFFFFFF0000000000000000000000000000000000000000\
                0000000000000000"
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "V"
 
   - entity: sensor
     name: compressor frequency
     class: frequency
-    unit_of_measurement: "Hz"
     dps:
       - id: 101
         type: base64
@@ -259,10 +297,14 @@ entities:
                000000000000000000000000000000000000000000000000\
                00000000FFFFFFFF00000000000000000000000000000000\
                0000000000000000"
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "Hz"
 
   - entity: sensor
     name: fanspeed
-    unit_of_measurement: "rpm"
     dps:
       - id: 101
         type: base64
@@ -272,6 +314,11 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000FFFFFFFF000000000000000000000000\
                0000000000000000"
+      - id: 6
+        type: string
+        name: unit
+        mapping:
+          - value: "rpm"
 
   - entity: sensor
     name: opening of main expansion valve
@@ -318,4 +365,3 @@ entities:
           - dps_val: null
             value: false
           - value: true
-
