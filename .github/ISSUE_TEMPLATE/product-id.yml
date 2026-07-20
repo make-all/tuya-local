@@ -1,0 +1,34 @@
+name: Product details
+description: Report a new product id that matches an existing config
+title: Report a match for <config file name>
+labels: ["device improvement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is for reporting a **Match for an Existing Device**.
+
+        Thank you for reporting a product id match for your existing device. This info helps future users to match the correct config to their device on first attempt.
+
+        This form should only be used if your device is an **exact** match for the configuration it is using. If it is a partial match, then consider reporting a New Device instead (this will require more information).
+  - type: input
+    id: productid
+    attributes:
+      label: Product ID
+      description: |
+        The product id reported by your device.
+        This should be from the HA log message that prompted you to make this report, though if the cloud product id is different than the local product id, it can also be from the message when adding a new device using the cloud assisted setup flow.
+    validations:
+      required: True
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer / Brand
+      description: |
+        The manufacturer or brand that this device is sold under. Please do not put "Tuya" here, as generally Tuya does not manufacture end devices, only the WiFi module and cloud services that they sell to other manufacturers. If you do not know, you can leave this blank.
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      description: |
+        Model name or code for this device. Some devices will have both a name and a code, so you can enter both here, seperated by a `,`
