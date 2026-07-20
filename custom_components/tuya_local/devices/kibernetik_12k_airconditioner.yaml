@@ -18,26 +18,18 @@ entities:
             conditions:
               - dps_val: COOL
                 value: cool
+              - dps_val: HEAT
+                value: heat
               - dps_val: FAN
                 value: fan_only
-              # dp4 also lists HEAT, but this is a cool-only model (see dp110).
-              # Left out until a heat-capable model can confirm it.
               - dps_val: DRY
                 value: dry
       - id: 2
         name: temperature
         type: integer
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: C
-                range:
-                  min: 16
-                  max: 32
-              - dps_val: F
-                range:
-                  min: 60
-                  max: 90
+        range:
+          min: 16
+          max: 30
       - id: 3
         name: current_temperature
         type: integer
