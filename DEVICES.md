@@ -1254,6 +1254,7 @@ port and password.
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
 - Tesla Smart pet feeder
+- Ti Pro25 cat litter box
 - Tonepie T1PRO cat litter box
 - Tonepie T1 Pro MAX cat litter box
 - V330L pet feeder
