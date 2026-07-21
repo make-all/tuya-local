@@ -1,21 +1,10 @@
-# Tuya Local device profile — Water chiller
-# Product: tmwafkxho3xaqhzt (model fre1l4), Tuya category "wk"
-# Protocol 3.4. DP behavior verified by live experiment 2026-07:
-#   - DP 125 acts as a DIRECT ozone/oxygenation on/off (despite its
-#     "timer enable" name). Firmware enforces: 1-hour auto-off,
-#     circulation-pump interlock, no persistence across power cycles.
-#   - DPs 126-129 (daily timer window) are declared in the data model
-#     but INERT in this MCU firmware — intentionally omitted.
-#
-# Ozone is modelled as a climate PRESET (Normal / Disinfect) rather than
-# a standalone switch, so it lives inside the chiller card. DP 124 remains
-# a read-only "Ozone running" binary_sensor for state feedback.
+# Water chiller (fre1l4). dp 125 ozone auto-offs after 1h and interlocks on
+# the circulation pump (dp 120). dps 126-129 are inert on this unit.
 name: Water chiller
 products:
   - id: tmwafkxho3xaqhzt
     manufacturer: Unbranded
-    model: fre1l4 water chiller
-
+    model: fre1l4
 entities:
   - entity: climate
     dps:
@@ -41,70 +30,67 @@ entities:
       - id: 3
         type: integer
         name: temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 32
+                  max: 105
         range:
           min: 0
           max: 41
-      - id: 24
-        type: integer
-        name: current_temperature
       - id: 23
         type: string
         name: temperature_unit
-        optional: true
         mapping:
           - dps_val: c
             value: C
           - dps_val: f
             value: F
-      # Ozone / oxygenation as a preset overlay (independent of hvac_mode).
-      # Requires the circulation pump running; firmware auto-offs after 1h.
+      - id: 24
+        type: integer
+        name: current_temperature
       - id: 125
         type: boolean
         name: preset_mode
         mapping:
           - dps_val: false
-            value: Ozone Off
+            value: normal
           - dps_val: true
-            value: Ozone On
-
-  # Read-only ozone running state (the actual pump, not the enable bit)
+            value: ozone
   - entity: binary_sensor
-    name: Ozone running
+    name: Ozone
+    class: running
     category: diagnostic
-    icon: "mdi:air-purifier"
     dps:
       - id: 124
         type: boolean
         name: sensor
-
-  # --- Running-state diagnostics ---
   - entity: binary_sensor
     name: Compressor
-    category: diagnostic
     class: running
+    category: diagnostic
     dps:
       - id: 118
         type: boolean
         name: sensor
-
   - entity: binary_sensor
     name: Fan
-    category: diagnostic
     class: running
+    category: diagnostic
     dps:
       - id: 119
         type: boolean
         name: sensor
-
   - entity: binary_sensor
     name: Circulation pump
-    category: diagnostic
     class: running
+    category: diagnostic
     dps:
       - id: 120
         type: boolean
         name: sensor
-
   - entity: binary_sensor
     name: Defrosting
     category: diagnostic
@@ -112,118 +98,148 @@ entities:
       - id: 121
         type: boolean
         name: sensor
-
   - entity: binary_sensor
     name: Anti-freeze protection
-    category: diagnostic
     class: cold
+    category: diagnostic
     dps:
       - id: 122
         type: boolean
         name: sensor
-
   - entity: binary_sensor
     name: Electric auxiliary heat
-    category: diagnostic
     class: heat
+    category: diagnostic
     dps:
       - id: 123
         type: boolean
         name: sensor
-
-  # --- Fault code ---
   - entity: sensor
     name: Fault code
     category: diagnostic
-    icon: "mdi:alert-circle-outline"
     dps:
       - id: 109
         type: integer
         name: sensor
-
-  # --- Temperature diagnostics ---
   - entity: sensor
     name: Ambient temperature
-    category: diagnostic
     class: temperature
+    category: diagnostic
     dps:
       - id: 110
         type: integer
         name: sensor
-        unit: C
-
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Return water temperature
-    category: diagnostic
     class: temperature
+    category: diagnostic
     dps:
       - id: 111
         type: integer
         name: sensor
-        unit: C
-
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Outlet water temperature
-    category: diagnostic
     class: temperature
+    category: diagnostic
     dps:
       - id: 112
         type: integer
         name: sensor
-        unit: C
-
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Suction temperature
-    category: diagnostic
     class: temperature
+    category: diagnostic
     dps:
       - id: 113
         type: integer
         name: sensor
-        unit: C
-
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Discharge temperature
-    category: diagnostic
     class: temperature
+    category: diagnostic
     dps:
       - id: 114
         type: integer
         name: sensor
-        unit: C
-
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Evaporator coil temperature
-    category: diagnostic
     class: temperature
+    category: diagnostic
     dps:
       - id: 115
         type: integer
         name: sensor
-        unit: C
-
-  # --- Refrigeration-circuit diagnostics ---
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Expansion valve opening
     category: diagnostic
-    icon: "mdi:valve"
     dps:
       - id: 116
         type: integer
         name: sensor
-
   - entity: sensor
     name: Compressor current
-    category: diagnostic
     class: current
+    category: diagnostic
     dps:
       - id: 117
         type: integer
         name: sensor
+        class: measurement
         unit: A
-
-  # --- Defrost / refrigeration tuning (installer settings; hidden by
-  #     default. Enable individually only if you know what you are doing) ---
   - entity: number
     name: Defrost interval
     category: config
@@ -235,7 +251,6 @@ entities:
         range:
           min: 9
           max: 180
-
   - entity: number
     name: Defrost duration
     category: config
@@ -247,7 +262,6 @@ entities:
         range:
           min: 1
           max: 30
-
   - entity: number
     name: Defrost exit temperature
     category: config
@@ -259,7 +273,6 @@ entities:
         range:
           min: 1
           max: 60
-
   - entity: number
     name: Defrost entry ambient temperature
     category: config
@@ -271,7 +284,6 @@ entities:
         range:
           min: 0
           max: 60
-
   - entity: number
     name: Defrost entry differential 1
     category: config
@@ -283,7 +295,6 @@ entities:
         range:
           min: 0
           max: 60
-
   - entity: number
     name: Defrost entry differential 2
     category: config
@@ -295,7 +306,6 @@ entities:
         range:
           min: 0
           max: 60
-
   - entity: number
     name: Superheat compensation
     category: config
@@ -307,7 +317,6 @@ entities:
         range:
           min: 0
           max: 150
-
   - entity: number
     name: Cooling discharge temperature setting
     category: config
@@ -319,3 +328,51 @@ entities:
         range:
           min: 0
           max: 150
+  - entity: number
+    name: Ozone timer on hour
+    category: config
+    hidden: true
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Ozone timer on minute
+    category: config
+    hidden: true
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Ozone timer off hour
+    category: config
+    hidden: true
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Ozone timer off minute
+    category: config
+    hidden: true
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 59
