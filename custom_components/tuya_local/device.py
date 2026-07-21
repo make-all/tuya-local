@@ -645,7 +645,17 @@ class TuyaLocalDevice(object):
     def _set_values(self, properties):
         try:
             self._lock.acquire()
-            self._api.set_multiple_values(properties, nowait=True)
+            # Prevent MCU reset bug on climate devices by injecting the current power state (DP 1)
+            payload = properties.copy()
+            if any(e.entity == "climate" for e in self._config.all_entities()):
+                if "1" not in payload and 1 not in payload:
+                    power = self.get_property("1")
+                    if power is None:
+                        power = self.get_property(1)
+                    if power is not None:
+                        payload["1"] = power
+
+            self._api.set_multiple_values(payload, nowait=True)
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
