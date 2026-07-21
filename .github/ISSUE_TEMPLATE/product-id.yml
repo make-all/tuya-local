@@ -1,6 +1,6 @@
 name: Product details
 description: Report a new product id that matches an existing config
-title: Report a match for <config file name>
+title: Report a match for existing <device name>
 labels: ["device variant"]
 body:
   - type: markdown
@@ -32,3 +32,8 @@ body:
       label: Model
       description: |
         Model name or code for this device. Some devices will have both a name and a code, so you can enter both here, seperated by a `,`
+  - type: upload
+    id: diagnostics
+    attributes:
+      label: Upload diagnostics
+      descripion: Please upload the diagnostics for the device. This will help confirm the config file in use, and the match data.
