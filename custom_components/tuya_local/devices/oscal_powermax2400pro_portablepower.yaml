@@ -64,10 +64,10 @@ entities:
         type: string
         name: unit
         mapping:
-          - dps_val: f
-            value: F
           - dps_val: c
             value: C
+          - dps_val: f
+            value: F
   - entity: switch
     translation_key: keytone
     category: config
@@ -94,23 +94,27 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: switch
-    name: Buzzer (Beep)
+    translation_key: sound
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 25
         type: boolean
         name: switch
   - entity: sensor
-    name: Time Remaining (Hours)
-    icon: "mdi:timer-sand"
+    translation_key: time_remaining
     category: diagnostic
+    class: duration
     dps:
+      - id: 108
+        type: integer
+        name: day
       - id: 37
         type: integer
         name: sensor
         unit: h
-        class: measurement
+      - id: 127
+        type: integer
+        name: minute
   - entity: switch
     name: Notifications
     category: config
@@ -172,15 +176,6 @@ entities:
         range:
           min: 0
           max: 30
-  - entity: sensor
-    name: Time Remaining (Days)
-    icon: "mdi:calendar-clock"
-    category: diagnostic
-    dps:
-      - id: 108
-        type: integer
-        name: sensor
-        unit: d
   - entity: select
     name: Display timeout
     icon: "mdi:television-ambient-light"
@@ -202,8 +197,8 @@ entities:
           - dps_val: "never_close"
             value: "cancel"
   - entity: sensor
-    name: Device Status
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 110
@@ -371,19 +366,11 @@ entities:
         name: sensor
         unit: W
         class: measurement
-  - entity: sensor
-    name: Time Remaining (Minutes)
-    icon: "mdi:timer-sand"
-    category: diagnostic
-    dps:
-      - id: 127
-        type: integer
-        name: sensor
-        unit: min
   - entity: number
     name: AC charging limit
     icon: "mdi:battery-charging-90"
     category: config
+    class: power
     dps:
       - id: 128
         type: integer
@@ -557,47 +544,37 @@ entities:
             value: "12h"
           - dps_val: "24hour"
             value: "24h"
-  - entity: number
-    name: Primary feed-in start hour
+  - entity: time
+    name: Primary feed-in time period start
     category: config
     icon: "mdi:clock-start"
     dps:
       - id: 143
         type: integer
-        name: value
+        name: hour
         range:
           min: 0
           max: 23
-  - entity: number
-    name: Primary feed-in start minute
-    category: config
-    icon: "mdi:clock-start"
-    dps:
       - id: 144
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 59
-  - entity: number
-    name: Primary feed-in end hour
+  - entity: time
+    name: Primary feed-in time period end
     category: config
     icon: "mdi:clock-end"
     dps:
       - id: 145
         type: integer
-        name: value
+        name: hour
         range:
           min: 0
           max: 23
-  - entity: number
-    name: Primary feed-in end minute
-    category: config
-    icon: "mdi:clock-end"
-    dps:
       - id: 146
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 59
@@ -614,47 +591,37 @@ entities:
           max: 800
         mapping:
           - step: 50
-  - entity: number
-    name: Secondary feed-in start hour
+  - entity: time
+    name: Secondary feed-in time period start
     category: config
     icon: "mdi:clock-start"
     dps:
       - id: 148
         type: integer
-        name: value
+        name: hour
         range:
           min: 0
           max: 23
-  - entity: number
-    name: Secondary feed-in start minute
-    category: config
-    icon: "mdi:clock-start"
-    dps:
       - id: 149
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 59
-  - entity: number
-    name: Secondary feed-in end hour
+  - entity: time
+    name: Secondary feed-in time period end
     category: config
     icon: "mdi:clock-end"
     dps:
       - id: 150
         type: integer
-        name: value
+        name: hour
         range:
           min: 0
           max: 23
-  - entity: number
-    name: Secondary feed-in end minute
-    category: config
-    icon: "mdi:clock-end"
-    dps:
       - id: 151
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 59
