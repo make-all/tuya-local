@@ -564,9 +564,6 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
-        await self._async_turn_off_locked()
-
-    async def _async_turn_off_locked(self):
         if self._switch_dps and not self._switch_dps.readonly:
             _LOGGER.info("%s turning light off", self._config.config_id)
             await self._switch_dps.async_set_value(self._device, False)
