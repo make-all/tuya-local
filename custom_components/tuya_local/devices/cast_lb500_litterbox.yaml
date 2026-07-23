@@ -1,0 +1,220 @@
+## Cast LB500 series self-cleaning cat litter box (LB500A, LB500C, etc.)
+## Also sold under the UPFAS brand.
+##
+## Notes:
+## - Weights are reported in pounds (raw value / 10). Device firmware has no
+##   kg/lb unit selector.
+## - DPS 101 "isnowmode" only reports idle/levelling/cleaning; there is no
+##   explicit "cat inside" state, so no occupancy binary_sensor is exposed.
+##   Cat visits are reported after the fact via DPS 110 (duration) and
+##   DPS 111 (weight during visit).
+## - DPS 105 "timerclean" is not exposed; the Cast app fires this DP when a
+##   scheduled cleaning time is reached, but it triggers the same cycle as
+##   DPS 102 "nowclean" (Clean now button). The schedule itself is stored
+##   in the Tuya cloud and is not accessible locally.
+name: Cat litter box
+products:
+  - id: frho2xmkraxldtwo
+    manufacturer: Cast
+    model: LB500
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: isidle
+            value: standby
+          - dps_val: idlevelling
+            value: smoothing
+          - dps_val: isclean
+            value: cleaning
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: lb
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Visits today
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: visits
+        class: measurement
+  - entity: sensor
+    name: Visits yesterday
+    icon: "mdi:paw-outline"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: visits
+  - entity: sensor
+    name: Last visit duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Last visit weight
+    icon: "mdi:cat"
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: lb
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 1
+            value: "Drum not installed"
+          - dps_val: 2
+            value: "Overweight"
+          - dps_val: 3
+            value: "Drum not installed, Overweight"
+  - entity: binary_sensor
+    name: No cat detected
+    class: problem
+    category: diagnostic
+    icon: "mdi:cat-off"
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: button
+    name: Clean now
+    icon: "mdi:broom"
+    dps:
+      - id: 102
+        type: string
+        name: button
+        mapping:
+          - dps_val: jikeclean
+            value: true
+  - entity: button
+    name: Cancel
+    icon: "mdi:cancel"
+    dps:
+      - id: 109
+        type: string
+        name: button
+        mapping:
+          - dps_val: nowtocancle
+            value: true
+  - entity: switch
+    translation_key: auto_clean
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: select
+    name: Clean delay
+    category: config
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: tensecond
+            value: "10 s"
+          - dps_val: twentysecond
+            value: "20 s"
+          - dps_val: thirdsencond
+            value: "30 s"
+          - dps_val: forthsecond
+            value: "40 s"
+          - dps_val: sixsecond
+            value: "60 s"
+          - dps_val: ninthsecond
+            value: "90 s"
+          - dps_val: onetwosecond
+            value: "120 s"
+  - entity: select
+    name: Minimum visit time
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: tensec
+            value: "10 s"
+          - dps_val: fifteensec
+            value: "15 s"
+          - dps_val: twtenysec
+            value: "20 s"
+          - dps_val: thirdsec
+            value: "30 s"
+  - entity: select
+    name: Cleaning cycles
+    category: config
+    icon: "mdi:repeat"
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: onetimes
+            value: "1"
+          - dps_val: twotimes
+            value: "2"
+  - entity: select
+    name: Minimum cat weight
+    category: config
+    icon: "mdi:scale"
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: twolb
+            value: "3.3 lb"
+          - dps_val: twop5lb
+            value: "3.5 lb"
+          - dps_val: threelb
+            value: "3.7 lb"
+          - dps_val: threep5lb
+            value: "3.9 lb"
