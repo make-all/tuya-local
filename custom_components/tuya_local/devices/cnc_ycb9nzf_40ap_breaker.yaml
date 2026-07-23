@@ -1,0 +1,135 @@
+name: Smart Circuit Breaker
+products:
+  - id: fku7giyi3t9denll
+    manufacturer: CNC
+    model: YCB9NZF-40AP
+entities:
+  # Interruptor principal
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  # Energía total
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  # Frecuencia
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+
+  # Corriente de fuga
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+
+  # Voltaje Fase A (bytes 2-3 del DP 6)
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        optional: true
+        mask: "0000FFFF0000000000000000000000000000"
+        mapping:
+          - scale: 10
+
+  # Corriente Fase A (bytes 4-6 del DP 6)
+  - entity: sensor
+    class: current
+    category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: A
+        class: measurement
+        optional: true
+        mask: "00000000FFFFFF0000000000000000000000"
+        mapping:
+          - scale: 1000
+
+  # Potencia Activa Fase A (bytes 7-9 del DP 6)
+  - entity: sensor
+    class: power
+    category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: W
+        class: measurement
+        optional: true
+        mask: "00000000000000FFFFFF0000000000000000"
+
+  # Potencia Reactiva Fase A (bytes 10-12 del DP 6)
+  - entity: sensor
+    name: Reactive power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: kVar
+        class: measurement
+        optional: true
+        mask: "00000000000000000000FFFFFF0000000000"
+        mapping:
+          - scale: 1000
+
+  # Potencia Aparente Fase A (bytes 13-15 del DP 6)
+  - entity: sensor
+    name: Apparent power
+    class: apparent_power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: kVA
+        class: measurement
+        optional: true
+        mask: "00000000000000000000000000FFFFFF0000"
+        mapping:
+          - scale: 1000
+
+ 
