@@ -138,6 +138,7 @@
 - Fujicool Yuzu heat pump
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
+- Hantech 9000 BTU portable air conditioner
 - Hokkaido HKEDM 263 ZL air conditioner
 - HTW IX75B air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
