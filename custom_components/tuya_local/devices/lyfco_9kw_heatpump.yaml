@@ -1,0 +1,165 @@
+name: Lyfco 9kW Pool Heatpump
+products:
+  - id: zwmuxensvaoxc8n5
+    name: Lyfco 9kW Pool Heatpump
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "Cooling"
+                value: cool
+              - dps_val: "Heating"
+                value: heat
+              - dps_val: "Auto"
+                value: auto
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "Cooling"
+            value: cool
+          - dps_val: "Heating"
+            value: heat
+          - dps_val: "Auto"
+            value: auto
+      - id: 4
+        name: temperature
+        type: integer
+        range:
+          min: 150
+          max: 400
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 16
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "Smart"
+            value: auto
+          - dps_val: "Silence"
+            value: quiet
+          - dps_val: "Boost"
+            value: boost
+      - id: 2
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: "Heating"
+            value: heat
+          - dps_val: "Cooling"
+            value: cool
+          - dps_val: "Auto"
+            value: auto
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        name: fault_code
+        type: bitfield
+      - id: 15
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "OK"
+          - dps_val: 1
+            value: "E01 IPM (Driver Module) Protection"
+          - dps_val: 2
+            value: "E02 AC Voltage Over/Under Protection"
+          - dps_val: 4
+            value: "E03 AC Current Overload Protection"
+          - dps_val: 8
+            value: "E04 Gas Exhaust Temperature High Protection"
+          - dps_val: 16
+            value: "E05 External Coil Temperature High Protection"
+          - dps_val: 32
+            value: "E06 Compressor Drive Protection"
+          - dps_val: 64
+            value: "E07 Air Temperature Sensor Error"
+          - dps_val: 128
+            value: "E08 External Coil Temperature Sensor Error"
+          - dps_val: 256
+            value: "E09 Gas Exhaust Temperature Sensor Error"
+          - dps_val: 512
+            value: "E10 Buss Spänning Över/Underspänningsskydd"
+          - dps_val: 1024
+            value: "E11 Current Sensor Error"
+          - dps_val: 2048
+            value: "E12 Compressor Driver Communication Error"
+          - dps_val: 4096
+            value: "E13 DC Fan Motor Error"
+          - dps_val: 8192
+            value: "E14 Gas Suction Temperature Sensor Error"
+          - dps_val: 16384
+            value: "E15 Driver EE Error"
+          - dps_val: 32768
+            value: "E16 Mainboard EE Error"
+          - dps_val: 65536
+            value: "E17 Low Pressure Protection"
+          - dps_val: 131072
+            value: "E18 High Pressure Protection"
+          - dps_val: 262144
+            value: "E19 IPM Temperature Above High Protection"
+          - dps_val: 524288
+            value: "E20 Sudden Loss of Mains"
+          - dps_val: 1048576
+            value: "E21 Evaporator Temperature (T2) Low Protection"
+          - dps_val: 2097152
+            value: "E22 Communication Error between Wireless Control and\
+            Mainboard"
+          - dps_val: 4194304
+            value: "E23 Phase Missing Protection"
+          - dps_val: 8388608
+            value: "E24 Inlet Temperature Sensor Error"
+          - dps_val: 16777216
+            value: "E25 Outlet Temperature Sensor Error"
+          - dps_val: 33554432
+            value: "E26 Water Flow Protection Error"
+          - dps_val: 67108864
+            value: "E27 Low Water Flow Protection"
+          - dps_val: 134217728
+            value: "E28 Outlet Temperature Exceed High Protection in\
+            Heating Mode"
+          - dps_val: 268435456
+            value: "E29 Outlet Temperature Exceed Low Protection\
+            in Cooling Mode"
+          - dps_val: 536870912
+            value: "E30 Evaporator Temperature Sensor (T2) Error"
+          - dps_val: 1073741824
+            value: "E31 Unknown"
+          - dps_val: 2147483648
+            value: "E32 Unknown"
+          - dps_val: 4294967296
+            value: "E33 PFC Hardware F0 Error"
+          - dps_val: 8589934592
+            value: "E34 PFC Software - Over Current Protection"
+          - dps_val: 17179869184
+            value: "E35 Compressor Step Loss"
+          - dps_val: 34359738368
+            value: "E36 Unknown"
+          - dps_val: 68719476736
+            value: "E37 Compressor Start Error"
