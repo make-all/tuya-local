@@ -1,0 +1,378 @@
+# Water chiller (fre1l4). dp 125 ozone auto-offs after 1h and interlocks on
+# the circulation pump (dp 120). dps 126-129 are inert on this unit.
+name: Water chiller
+products:
+  - id: tmwafkxho3xaqhzt
+    manufacturer: Unbranded
+    model: fre1l4
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 3
+        type: integer
+        name: temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 32
+                  max: 105
+        range:
+          min: 0
+          max: 41
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        type: integer
+        name: current_temperature
+      - id: 125
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: normal
+          - dps_val: true
+            value: ozone
+  - entity: binary_sensor
+    name: Ozone
+    class: running
+    category: diagnostic
+    dps:
+      - id: 124
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 118
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan
+    class: running
+    category: diagnostic
+    dps:
+      - id: 119
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Circulation pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 120
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Defrosting
+    category: diagnostic
+    dps:
+      - id: 121
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Anti-freeze protection
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 122
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Electric auxiliary heat
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 123
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Fault code
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+  - entity: sensor
+    translation_key: ambient_temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Return water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Outlet water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Discharge temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Evaporator coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Expansion valve opening
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Compressor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        class: measurement
+        unit: A
+  - entity: number
+    name: Defrost interval
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        range:
+          min: 9
+          max: 180
+  - entity: number
+    name: Defrost duration
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Defrost exit temperature
+    category: config
+    hidden: true
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Defrost entry ambient temperature
+    category: config
+    hidden: true
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Defrost entry differential 1
+    category: config
+    hidden: true
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Defrost entry differential 2
+    category: config
+    hidden: true
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Superheat compensation
+    category: config
+    hidden: true
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 150
+  - entity: number
+    name: Cooling discharge temperature setting
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 150
+  - entity: number
+    name: Ozone timer on hour
+    category: config
+    hidden: true
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Ozone timer on minute
+    category: config
+    hidden: true
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Ozone timer off hour
+    category: config
+    hidden: true
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Ozone timer off minute
+    category: config
+    hidden: true
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 59
