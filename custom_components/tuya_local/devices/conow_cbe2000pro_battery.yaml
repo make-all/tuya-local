@@ -15,6 +15,17 @@ entities:
         unit: kWh
         mapping:
           - scale: 1000
+      - id: 14
+        optional: true
+        type: string
+        name: hardware_version
+      - id: 15
+        optional: true
+        type: string
+        name: software_version
+      - id: 1
+        type: string
+        name: serial_number
   - entity: binary_sensor
     category: diagnostic
     class: problem
@@ -82,9 +93,6 @@ entities:
             value: meter_comm_failure
           - dps_val: 2097152
             value: system_temp_diff_protection
-      - id: 1
-        type: string
-        name: serial_number
   - entity: sensor
     name: Connection state
     category: diagnostic
@@ -111,24 +119,6 @@ entities:
         type: integer
         name: sensor
         unit: dBm
-  - entity: sensor
-    name: Hardware version
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 14
-        optional: true
-        type: string
-        name: sensor
-  - entity: sensor
-    name: System version
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 15
-        optional: true
-        type: string
-        name: sensor
   - entity: binary_sensor
     name: Cell heating
     category: diagnostic
@@ -241,7 +231,7 @@ entities:
           min: -20000
           max: 20000
   - entity: sensor
-    name: Battery charging power pv
+    name: PV charging power
     class: power
     dps:
       - id: 28
@@ -250,7 +240,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Battery charging power grid
+    name: Grid charging power
     class: power
     dps:
       - id: 29
@@ -268,7 +258,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion pack 1 soc
+    name: Expansion pack 1 SoC
     class: battery
     hidden: true
     dps:
@@ -277,7 +267,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion pack 2 soc
+    name: Expansion pack 2 SoC
     class: battery
     hidden: true
     dps:
@@ -286,7 +276,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion pack 3 soc
+    name: Expansion pack 3 SoC
     class: battery
     hidden: true
     dps:
@@ -295,7 +285,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion pack 4 soc
+    name: Expansion pack 4 SoC
     class: battery
     hidden: true
     dps:
@@ -304,7 +294,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Expansion pack 5 soc
+    name: Expansion pack 5 SoC
     class: battery
     hidden: true
     dps:
@@ -321,7 +311,7 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Cumulative energy generated pv
+    name: Cumulative PV energy generated
     class: energy
     dps:
       - id: 40
@@ -332,7 +322,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative energy output inverter
+    name: Cumulative inverter energy output
     class: energy
     dps:
       - id: 41
@@ -365,7 +355,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative energy charged pv
+    name: Cumulative PV energy charged
     class: energy
     dps:
       - id: 44
@@ -377,7 +367,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative energy charged grid
+    name: Cumulative grid energy charged
     class: energy
     dps:
       - id: 45
@@ -438,7 +428,7 @@ entities:
           - dps_val: plug
             value: Plug
           - dps_val: diy
-            value: Do It Yourself
+            value: Custom
   - entity: number
     name: Output power limit
     mode: box
