@@ -55,6 +55,9 @@ products:
     model: RGBCW smart bulb
   - id: keyj979nf3q3theh
     model: GU10 lightbulb
+  - id: keytg5kq8gvkv9dh
+    manufacturer: LSC Smart Connect
+    model: GU10 White and Color Ambiance
 entities:
   - entity: light
     dps:
@@ -80,9 +83,6 @@ entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - dps_val: null
-            value: 0
       - id: 23
         name: color_temp
         type: integer
@@ -134,14 +134,31 @@ entities:
         type: boolean
         optional: true
         name: switch
+        mapping:
+          - dps_val: null
+            value_redirect: remote_sw
       - id: 34
         type: boolean
         optional: true
         name: available
         mapping:
           - dps_val: null
-            value: false
+            value: true
+            constraint: remote_sw
+            conditions:
+              - dps_val: null
+                value: false
           - value: true
+      # Remote switch has same function but reversed logic
+      - id: 41
+        type: boolean
+        optional: true
+        name: remote_sw
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: text
     translation_key: scene
     category: config
