@@ -205,6 +205,7 @@ entities:
       - id: 101
         type: base64
         optional: true
+        class: measurement
         name: sensor
         mask: "FFFFFFFF0000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -227,6 +228,7 @@ entities:
         type: base64
         optional: true
         name: sensor
+        class: measurement
         mask: "00000000FFFFFFFF00000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -246,6 +248,7 @@ entities:
       - id: 101
         type: base64
         optional: true
+        class: measurement
         name: sensor
         mask: "0000000000000000FFFFFFFF000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -268,6 +271,7 @@ entities:
         type: base64
         optional: true
         name: sensor
+        class: measurement
         mask: "000000000000000000000000FFFFFFFF0000000000000000\
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -288,6 +292,7 @@ entities:
       - id: 101
         type: base64
         optional: true
+        class: measurement
         name: sensor
         mask: "00000000000000000000000000000000FFFFFFFF00000000\
                000000000000000000000000000000000000000000000000\
@@ -309,6 +314,7 @@ entities:
       - id: 101
         type: base64
         optional: true
+        class: measurement
         name: sensor
         mask: "0000000000000000000000000000000000000000FFFFFFFF\
                000000000000000000000000000000000000000000000000\
@@ -331,6 +337,7 @@ entities:
         type: base64
         optional: true
         name: sensor
+        class: measurement
         mask: "000000000000000000000000000000000000000000000000\
                FFFFFFFF0000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -376,6 +383,7 @@ entities:
         type: base64
         optional: true
         name: sensor
+        class: measurement
         unit: A
         mask: "000000000000000000000000000000000000000000000000\
                00000000000000000000000000000000FFFFFFFF00000000\
@@ -390,6 +398,7 @@ entities:
         type: base64
         optional: true
         name: sensor
+        class: measurement
         mask: "000000000000000000000000000000000000000000000000\
                0000000000000000000000000000000000000000FFFFFFFF\
                000000000000000000000000000000000000000000000000\
@@ -405,12 +414,12 @@ entities:
   - entity: sensor
     name: DC bus voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 101
         type: base64
         optional: true
         name: sensor
+        class: measurement
         unit: V
         mask: "000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -464,6 +473,7 @@ entities:
         type: base64
         optional: true
         name: sensor
+        class: measurement
         unit: bar
         mask: "000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -477,6 +487,7 @@ entities:
       - id: 101
         type: base64
         optional: true
+        class: measurement
         name: sensor
         mask: "000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -508,12 +519,12 @@ entities:
           - scale: 10
   - entity: sensor
     class: volume_flow_rate
-    category: diagnostic
     dps:
       - id: 140
         type: base64
         optional: true
         name: sensor
+        class: measurement
         unit: m³/h
         mask: "00000000FFFFFFFF00000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -523,11 +534,11 @@ entities:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 140
         type: base64
         optional: true
+        class: measurement
         name: sensor
         unit: A
         mask: "0000000000000000FFFFFFFF000000000000000000000000\
@@ -536,12 +547,12 @@ entities:
                0000000000000000"
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 140
         type: base64
         optional: true
         name: sensor
+        class: measurement
         unit: V
         mask: "000000000000000000000000FFFFFFFF0000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -549,13 +560,13 @@ entities:
                0000000000000000"
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 140
         type: base64
         optional: true
         name: sensor
         unit: W
+        class: measurement
         mask: "00000000000000000000000000000000FFFFFFFF00000000\
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\

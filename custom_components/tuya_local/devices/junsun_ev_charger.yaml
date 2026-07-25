@@ -220,6 +220,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -231,6 +232,7 @@ entities:
         optional: true
         unit: A
         mask: "000000FFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -242,5 +244,6 @@ entities:
         optional: true
         unit: kW
         mask: "000000000000FFFF"
+        class: measurement
         mapping:
           - scale: 1000

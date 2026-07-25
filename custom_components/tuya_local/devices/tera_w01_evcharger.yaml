@@ -59,11 +59,11 @@ entities:
   - entity: sensor
     name: L1 voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 6  # phase_1
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: V
         mask: "FFFF000000000000"
@@ -72,12 +72,12 @@ entities:
   - entity: sensor
     name: L1 current
     class: current
-    category: diagnostic
     dps:
       - id: 6  # phase_1
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: A
         mask: "0000FFFFFF000000"
         mapping:
@@ -85,25 +85,25 @@ entities:
   - entity: sensor
     name: L1 power
     class: power
-    category: diagnostic
     dps:
       - id: 6  # phase_1
         type: base64
         name: sensor
         optional: true
         unit: kW
+        class: measurement
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
   - entity: sensor
     name: L2 voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 7  # phase_2
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFF000000000000"
         mapping:
@@ -111,25 +111,25 @@ entities:
   - entity: sensor
     name: L2 current
     class: current
-    category: diagnostic
     dps:
       - id: 7  # phase_2
         type: base64
         name: sensor
         optional: true
         unit: A
+        class: measurement
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
   - entity: sensor
     name: L2 power
     class: power
-    category: diagnostic
     dps:
       - id: 7  # phase_2
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: kW
         mask: "0000000000FFFFFF"
         mapping:
@@ -137,38 +137,38 @@ entities:
   - entity: sensor
     name: L3 voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 8  # phase_3
         type: base64
         name: sensor
         optional: true
         unit: V
+        class: measurement
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
   - entity: sensor
     name: L3 current
     class: current
-    category: diagnostic
     dps:
       - id: 8  # phase_3
         type: base64
         name: sensor
         optional: true
         unit: A
+        class: measurement
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
   - entity: sensor
     name: L3 power
     class: power
-    category: diagnostic
     dps:
       - id: 8  # phase_3
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: kW
         mask: "0000000000FFFFFF"
         mapping:

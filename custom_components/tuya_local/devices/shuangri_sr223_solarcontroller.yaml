@@ -8,24 +8,24 @@ entities:
   - entity: sensor
     name: Solar collector temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 26
         type: integer
         name: sensor
         unit: C
+        class: measurement
         mapping:
           - scale: 10
   # Tank Temperature (T2)
   - entity: sensor
     name: Tank temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 22
         type: integer
         name: sensor
         unit: C
+        class: measurement
         mapping:
           - scale: 10
   # Pump Speed
@@ -45,3 +45,4 @@ entities:
         type: integer
         name: sensor
         unit: dBm
+        class: measurement

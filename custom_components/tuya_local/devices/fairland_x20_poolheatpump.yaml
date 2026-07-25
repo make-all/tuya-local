@@ -136,7 +136,6 @@ entities:
         optional: true
         name: fault_code_2
   - entity: sensor
-    category: diagnostic
     hidden: unavailable
     class: power
     dps:
@@ -144,6 +143,7 @@ entities:
         name: sensor
         type: integer
         unit: W
+        class: measurement
         optional: true
       - id: 113
         name: available

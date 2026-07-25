@@ -87,7 +87,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: A
@@ -98,11 +97,11 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -113,11 +112,11 @@ entities:
         optional: true
         unit: A
         mask: "000000FFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: A

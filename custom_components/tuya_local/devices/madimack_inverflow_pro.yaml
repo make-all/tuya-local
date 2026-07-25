@@ -165,21 +165,21 @@ entities:
         unit: s
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 5
         type: integer
         name: sensor
         unit: W
+        class: measurement
   - entity: sensor
     class: volume_flow_rate
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 112
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 110
         type: string
         optional: true

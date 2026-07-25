@@ -132,6 +132,7 @@ entities:
         type: integer
         name: sensor
         unit: ppm
+        class: measurement
         mapping:
           - dps_val: 0
             value: null
@@ -162,6 +163,7 @@ entities:
         type: integer
         name: sensor
         unit: "%"
+        class: measurement
         mapping:
           - dps_val: 0
             value: null
@@ -173,6 +175,7 @@ entities:
         type: integer
         name: sensor
         unit: µg/m³
+        class: measurement
         mapping:
           - dps_val: 0
             value: null
@@ -185,6 +188,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: sensor
     name: Supply air temperature
@@ -194,6 +198,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: sensor
     name: Exhaust air temperature
@@ -203,6 +208,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: binary_sensor
     class: problem
@@ -271,6 +277,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: sensor
     name: Compressor suction temperature
@@ -281,6 +288,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: sensor
     name: Evaporator temperature
@@ -291,6 +299,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: sensor
     name: Condenser temperature
@@ -301,6 +310,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: sensor
     name: Radiator temperature
@@ -311,6 +321,7 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
 
   - entity: binary_sensor
     translation_key: defrost

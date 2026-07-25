@@ -21,34 +21,34 @@ entities:
           max: 86400
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 21
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 1000
         optional: true
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 22
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 10
         optional: true
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 23
         type: integer
         name: sensor
         unit: W
         optional: true
+        class: measurement
         mapping:
           - scale: 10
