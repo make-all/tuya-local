@@ -1,6 +1,7 @@
 name: Powerworld PW030 Pool Heatpump - pw58474
 products:
-  - id: powerworld_pw58474_waterheater
+  - id: amnpmrzcbrisfq0r
+    name: PW030-KZXYC-E
     manufacturer: Powerworld
     model: PW030
 
@@ -28,7 +29,7 @@ entities:
             value: boost
           - dps_val: smart
             value: comfort
-          - dps_val: silent
+          - dps_val: mute
             value: eco
       - id: 5
         type: string
@@ -52,9 +53,10 @@ entities:
           min: 10
           max: 40
         mapping:
-          - constraint: mode
-            value: cool
-            value_redirect: cool_temp
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: cool
+                value_redirect: cool_temp
       - id: 152
         type: integer
         name: cool_temp
