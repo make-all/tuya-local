@@ -2,7 +2,7 @@ name: Air conditioner
 products:
   - id: deedvplnx2yvge08
     manufacturer: Kibernetik
-    model: 12K portable split
+    model: 12K portable split cool only
 entities:
   - entity: climate
     translation_only_key: aircon_extra
@@ -18,10 +18,10 @@ entities:
             conditions:
               - dps_val: COOL
                 value: cool
-              - dps_val: HEAT
-                value: heat
               - dps_val: FAN
                 value: fan_only
+              # dp4 also lists HEAT, but this is a cool-only model (see dp110).
+              # Left out until a heat-capable model can confirm it.
               - dps_val: DRY
                 value: dry
       - id: 2
@@ -33,7 +33,7 @@ entities:
               - dps_val: c
                 range:
                   min: 16
-                  max: 30
+                  max: 32
               - dps_val: f
                 range:
                   min: 60
@@ -92,9 +92,9 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: c
+          - dps_val: C
             value: celsius
-          - dps_val: f
+          - dps_val: F
             value: fahrenheit
   - entity: switch
     translation_key: auto_dry
