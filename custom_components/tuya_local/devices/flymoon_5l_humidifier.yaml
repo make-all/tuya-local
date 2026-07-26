@@ -1,8 +1,8 @@
 name: Humidifier
 products:
   - id: w1na5rczyvflglvn
-    manufacturer: FLYMOON
-    model: Top Fill 5L Cool Mist Humidifier
+    manufacturer: Flymoon
+    model: Top Fill 5L Cool Mist
 
 entities:
   # Main humidifier (power + target humidity)
@@ -39,7 +39,6 @@ entities:
   - entity: switch
     translation_key: sleep
     category: config
-    icon: mdi:bed
     dps:
       - id: 16
         type: boolean
@@ -102,3 +101,4 @@ entities:
         mapping:
           - dps_val: 1
             value: true
+          - value: false
