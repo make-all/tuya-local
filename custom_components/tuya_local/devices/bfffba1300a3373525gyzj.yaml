@@ -1,0 +1,381 @@
+name: Energy Saver
+entities:
+  # === COMMANDES DE BASE ===
+  - entity: switch
+    name: Pompe Piscine
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Mode Pompe
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "day"
+            value: "day"
+          - dps_val: "night"
+            value: "night"
+          - dps_val: "backwash"
+            value: "backwash"
+  - entity: sensor
+    name: Puissance
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: W
+        device_class: power
+        state_class: measurement
+  - entity: number
+    name: Temps de boost
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+
+  # === VITESSES PRINCIPALES ===
+  - entity: number
+    name: Vitesse Night
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 1650
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Day
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1700
+          max: 2400
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Backwash
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 2450
+          max: 2900
+        mapping:
+          - step: 50
+
+  # === VITESSES PROGRAMMEES & AUTRES ===
+  - entity: number
+    name: Vitesse Prog 1
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Prog 2
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Prog 3
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Prog 4
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Minimale
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Di2
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Di3
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Di4
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+  - entity: number
+    name: Vitesse Demarrage
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  # === CAPTEURS (Lecture Seule) ===
+  - entity: sensor
+    name: Code Erreur
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Code Erreur 2
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Mode Inconnu
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+  - entity: binary_sensor
+    name: Securite
+    class: safety
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+
+  # === PROGRAMMATION DES PLAGES HORAIRES ===
+  # Prog 1
+  - entity: switch
+    name: Activation Prog 1
+    dps:
+      - id: 133
+        type: boolean
+        name: switch
+  - entity: number
+    name: Heure On Prog 1
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute On Prog 1
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Heure Off Prog 1
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute Off Prog 1
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+
+  # Prog 2
+  - entity: switch
+    name: Activation Prog 2
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: number
+    name: Heure On Prog 2
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute On Prog 2
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Heure Off Prog 2
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute Off Prog 2
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+
+  # Prog 3
+  - entity: switch
+    name: Activation Prog 3
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: number
+    name: Heure On Prog 3
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute On Prog 3
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Heure Off Prog 3
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute Off Prog 3
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+
+  # Prog 4
+  - entity: switch
+    name: Activation Prog 4
+    dps:
+      - id: 136
+        type: boolean
+        name: switch
+  - entity: number
+    name: Heure On Prog 4
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute On Prog 4
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Heure Off Prog 4
+    dps:
+      - id: 131
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Minute Off Prog 4
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 59
