@@ -903,7 +903,7 @@ Further device support has been made with the assistance of users. Please consid
 - [rippe77](https://github.com/rippe77) for contributing improvements to BHT002 GBLW thermostat.
 - [anddon](https://github.com/anddon) for contributing support for Olimpia Splendid Unico Pro air conditioner.
 - [paradoxisme](https://github.com/paradoxisme) for contributing support for Sofucor KBS ceiling fan with light.
-- [msemenkin](https://github.com/msemenkin) for contributing support for Neo Coolcam 16 zone sprinkler controller.
+- [msemenkin](https://github.com/msemenkin) for contributing support for Neo Coolcam 16 zone sprinkler controller, Baxi Smart Link OpenTherm thermostat.
 - [awadak3davra](https://github.com/awadak3davra) for contributing improvements to TOMPD-63LW/SW breaker.
 - [gurmeherchawla](https://github.com/gurmeherchawla) for contributing support for Imagine 3+1 triple switch with fan controller.
 - [christhementalist](https://github.com/christhementalist) for contributing support for Goldair GPCV405 convection heater.
@@ -915,3 +915,5 @@ Further device support has been made with the assistance of users. Please consid
 - [erewego](https://github.com/erewego) for contributing improvements to QTFV3-3 air quality sensor.
 - [marc-schieferdecker](https://github.com/marc-schieferdecker) for contributing support for Conow CBE2000 Pro solar battery.
 - [tannermeade](https://github.com/tannermeade) for contributing support for Flymoon Cool Mist humidifier.
+- [mathieupotier](https://github.com/mathieupotier) for contributing support for Klarstein MetroBreeze New York and Pure Blizzard air conditioners and Klarstein Bolero ceiling fan with light.
+- [dext0r](https://github.com/dext0r) for contributing support for Stahlmann Smart water leak control system.

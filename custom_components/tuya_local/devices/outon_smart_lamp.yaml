@@ -118,23 +118,6 @@ entities:
         range:
           min: 0
           max: 86399
-  - entity: number
-    translation_key: timer
-    deprecated: time.timer  # 2026-01-20
-    category: config
-    dps:
-      - id: 26
-        name: value
-        type: integer
-        optional: true
-        range:
-          min: 0
-          max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null
   - entity: text
     translation_key: scene
     icon: "mdi:palette"
