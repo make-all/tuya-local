@@ -1,23 +1,16 @@
-name: Powerworld PW030 Pool Heatpump - pw58474
+name: Water heat pump
 products:
   - id: amnpmrzcbrisfq0r
-    name: PW030-KZXYC-E
     manufacturer: Powerworld
     model: PW030
 
 entities:
   - entity: switch
-    name: power switch
-    icon: mdi:power
+    icon: "mdi:power"
     dps:
       - id: 1
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: false
-          - dps_val: true
-            value: true
 
   - entity: climate
     translation_key: pool_heatpump
@@ -27,11 +20,11 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: strong
-            value: boost
+            value: quick
           - dps_val: smart
-            value: comfort
+            value: smart
           - dps_val: mute
-            value: eco
+            value: quiet
       - id: 5
         type: string
         name: hvac_mode
@@ -66,6 +59,15 @@ entities:
         range:
           min: 10
           max: 40
+      - id: 101
+        type: base64
+        optional: true
+        name: current_temperature
+        mask: "FFFFFFFF0000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+        mask_signed: true
 
   - entity: sensor
     name: inlet temperature
@@ -368,3 +370,7 @@ entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 15
+        type: bitfield
+        optional: true
+        name: fault_code
