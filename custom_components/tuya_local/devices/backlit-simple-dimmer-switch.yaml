@@ -2,7 +2,7 @@ name: Simple dimmer with backlight
 products:
   - id: g5tdfvf5g4osvagd
     manufacturer: Liwokit
-    model: "Liwokit Backlit Dimmer Switch"
+    model: "Backlit Dimmer Switch"
 entities:
   - entity: light
     dps:
@@ -15,20 +15,13 @@ entities:
         range:
           min: 10
           max: 1000
-  - entity: light
-    translation_key: backlight
-    category: config
-    dps:
-      - id: 16
-        type: boolean
-        name: switch
   - entity: select
-    translation_key: light_mode
     category: config
+    translation_key: light_mode
     dps:
-      - id: 15
-        type: string
+      - id: 21
         name: option
+        type: string
         mapping:
           - dps_val: relay
             value: state
