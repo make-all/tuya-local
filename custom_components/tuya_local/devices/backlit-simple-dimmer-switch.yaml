@@ -20,6 +20,20 @@ entities:
     translation_key: backlight
     category: config
     dps:
-      - id: 3
+      - id: 16
         type: boolean
         name: switch
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
