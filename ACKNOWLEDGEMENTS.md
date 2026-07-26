@@ -915,4 +915,4 @@ Further device support has been made with the assistance of users. Please consid
 - [erewego](https://github.com/erewego) for contributing improvements to QTFV3-3 air quality sensor.
 - [marc-schieferdecker](https://github.com/marc-schieferdecker) for contributing support for Conow CBE2000 Pro solar battery.
 - [tannermeade](https://github.com/tannermeade) for contributing support for Flymoon Cool Mist humidifier.
-- [mathieupotier](https://github.com/mathieupotier) for contributing support for Klarstein MetroBreeze New York and Pure Blizzard air conditioners.
+- [mathieupotier](https://github.com/mathieupotier) for contributing support for Klarstein MetroBreeze New York and Pure Blizzard air conditioners and Klarstein Bolero ceiling fan with light.

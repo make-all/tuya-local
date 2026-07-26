@@ -418,10 +418,8 @@
 - Kavunion C1 100 ventilation fan
 - KCvents VT501-W heat recovery ventilation
 - Kendal KVT-Touchtower pedestal fan
-- Klarstein Airfold Smart ceiling fan with light
-- Klarstein Icewind Plus Smart cooling fan
-- Klarstein Skyscaper Ice cooling fan
-- Klarstein Skytower Grand Smart cooling fan
+- Klarstein Airfold, Bolero ceiling fans with light
+- Klarstein Icewind Plus, Skyscraper Ice, Skytower Grand cooling fans
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
