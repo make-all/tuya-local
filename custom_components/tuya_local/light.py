@@ -200,7 +200,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     @property
     def _white_brightness(self):
         if self._brightness_dps:
-            r = self._effective_brightness_rang
+            r = self._effective_brightness_range
             val = self._brightness_dps.get_value(self._device)
             if r and val:
                 val = color_util.value_to_brightness(r, val)
