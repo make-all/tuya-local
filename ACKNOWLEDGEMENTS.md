@@ -914,3 +914,4 @@ Further device support has been made with the assistance of users. Please consid
 - [claudiu-persoiu](https://github.com/claudiu-persoiu) for contributing support for Ti Pro25 cat litter box.
 - [erewego](https://github.com/erewego) for contributing improvements to QTFV3-3 air quality sensor.
 - [marc-schieferdecker](https://github.com/marc-schieferdecker) for contributing support for Conow CBE2000 Pro solar battery.
+- [tannermeade](https://github.com/tannermeade) for contributing support for Flymoon Cool Mist humidifier.
