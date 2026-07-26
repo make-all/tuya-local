@@ -1,9 +1,9 @@
-name: "Klarstein - Pure Blizzard Smart"
+name: Air conditioner
 products:
   - id: yeojkkzveebndxdp
     manufacturer: Klarstein
-    model: "YPF1-07,YPO6-07/09"
-    name: "Pure Blizzard Smart"
+    model_id: "YPF1-07,YPO6-07/09"
+    model: "Pure Blizzard Smart"
 entities:
   - entity: climate
     dps:
@@ -25,13 +25,12 @@ entities:
       - id: 2
         type: integer
         name: temperature
+        range:
+          min: 16
+          max: 31
         mapping:
           - constraint: temperature_unit
             conditions:
-              - dps_val: C
-                range:
-                  min: 16
-                  max: 31
               - dps_val: F
                 range:
                   min: 61
@@ -54,18 +53,6 @@ entities:
       - id: 19
         type: string
         name: temperature_unit
-      - id: 103
-        type: integer
-        name: timer
-        optional: true
-      - id: 105
-        type: integer
-        name: countdown
-        optional: true
-      - id: 106
-        type: bitfield
-        name: alarm
-        optional: true
       - id: 107
         type: boolean
         name: preset_mode
@@ -74,6 +61,14 @@ entities:
             value: sleep
           - dps_val: false
             value: comfort
+      - id: 103
+        type: integer
+        name: timer
+        optional: true
+      - id: 105
+        type: integer
+        name: countdown
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -86,3 +81,21 @@ entities:
             value: celsius
           - dps_val: F
             value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code
+        optional: true
