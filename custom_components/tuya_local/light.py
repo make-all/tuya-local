@@ -194,7 +194,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 if self._switch_dps is None and r[0] == 0:
                     # If the light has no switch, and the brightness range starts
                     # at 0, the effective minimum brightness is 1
-                    r[0] = self._brightness_dps.step(self._device, False)
+                    return (self._brightness_dps.step(self._device, False), r[1])
                 return r
 
     @property
