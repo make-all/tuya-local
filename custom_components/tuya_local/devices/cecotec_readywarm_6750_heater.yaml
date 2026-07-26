@@ -1,0 +1,52 @@
+name: Glass panel heater
+products:
+  - id: n72zzd550zyw8qte
+    manufacturer: Cecotec
+    model: Ready Warm 6750 Crystal Connection
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 3
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 4
+        type: integer
+        name: current_temperature
+      - id: 7
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "Low"
+            value: eco
+          - dps_val: "High"
+            value: boost
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: lock
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
