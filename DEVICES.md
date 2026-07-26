@@ -506,6 +506,7 @@
 - Meaco Clean CA-HEPA air purifier
 - Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
+- Neotec XJ-3900A air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
 - Proscenic A8 and A9 air purifiers
