@@ -22,13 +22,13 @@ entities:
             value: "backwash"
   - entity: sensor
     name: Puissance
+    class: power
+    state_class: measurement
     dps:
       - id: 12
         type: integer
         name: sensor
         unit: W
-        device_class: power
-        state_class: measurement
   - entity: number
     name: Temps de boost
     dps:
