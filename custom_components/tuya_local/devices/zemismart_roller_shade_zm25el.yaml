@@ -56,20 +56,6 @@ entities:
             conditions:
               - dps_val: 100
                 value: closed
-  - entity: select
-    translation_key: curtain_mode
-    icon: "mdi:theme-light-dark"
-    category: config
-    dps:
-      - id: 4
-        name: option
-        type: string
-        optional: true
-        mapping:
-          - dps_val: morning
-            value: morning
-          - dps_val: night
-            value: night
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -88,28 +74,6 @@ entities:
         name: fault_code
         type: bitfield
         optional: true
-  - entity: select
-    name: Click control
-    icon: "mdi:theme-light-dark"
-    category: config
-    dps:
-      - id: 20
-        name: option
-        type: string
-        optional: true
-        mapping:
-          - dps_val: continuous
-            value: Continuous
-          - dps_val: Intermittently
-            value: Intermittent
-  - entity: button
-    name: Remote pairing
-    icon: "mdi:remote"
-    category: config
-    dps:
-      - id: 101
-        type: boolean
-        name: button
   - entity: sensor
     class: battery
     category: diagnostic
