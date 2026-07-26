@@ -88,16 +88,6 @@ entities:
         name: fault_code
         type: bitfield
         optional: true
-  - entity: sensor
-    name: Travel time
-    icon: "mdi:hourglass"
-    category: diagnostic
-    dps:
-      - id: 10
-        name: sensor
-        type: integer
-        optional: true
-        unit: ms
   - entity: select
     name: Click control
     icon: "mdi:theme-light-dark"
@@ -129,3 +119,14 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
+  - entity: binary_sensor
+    name: State
+    class: opening
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
