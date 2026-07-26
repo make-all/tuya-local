@@ -32,30 +32,6 @@ entities:
         range:
           min: 0
           max: 100
-      - id: 5
-        name: control_back
-        type: string
-        mapping:
-          - dps_val: forward
-            value: forward
-          - dps_val: back
-            value: back
-      - id: 7
-        name: unreliable_action
-        type: string
-        mapping:
-          - dps_val: opening
-            value: opening
-            constraint: current_position
-            conditions:
-              - dps_val: 0
-                value: opened
-          - dps_val: closing
-            value: closing
-            constraint: current_position
-            conditions:
-              - dps_val: 100
-                value: closed
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -74,6 +50,20 @@ entities:
         name: fault_code
         type: bitfield
         optional: true
+  - entity: select
+    name: Click control
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 20
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: continuous
+            value: Continuous
+          - dps_val: Intermittently
+            value: Intermittent
   - entity: sensor
     class: battery
     category: diagnostic
