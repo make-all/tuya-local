@@ -20,6 +20,7 @@ entities:
             value: true
 
   - entity: climate
+    translation_key: pool_heatpump
     dps:
       - id: 2
         type: string
@@ -103,7 +104,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: ambient temperature
+    translation_key: ambient_temperature
     dps:
       - id: 101
         type: base64
@@ -354,8 +355,8 @@ entities:
           - value: true
 
   - entity: binary_sensor
-    class: problem
-    category: diagnostic
+    translation_key: problem
+    categoy: diagnostic
     dps:
       - id: 15
         type: bitfield
