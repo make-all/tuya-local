@@ -146,7 +146,7 @@
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
 - Kibernetik 12K portable split air conditioner
-- Klarstein Iceblock Ecosmart air conditioner
+- Klarstein Iceblock Ecosmart and MetroBreeze New York air conditioners
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
