@@ -6,7 +6,7 @@ products:
     model_id: L-CFL19C2
 entities:
   - entity: light
-    icon: mdi:ceiling-fan-light
+    icon: "mdi:ceiling-fan-light"
     dps:
       - id: 20
         type: boolean
@@ -73,7 +73,7 @@ entities:
   - entity: text
     name: Music data
     category: config
-    icon: mdi:music
+    icon: "mdi:music"
     hidden: true
     dps:
       - id: 27
@@ -83,7 +83,7 @@ entities:
   - entity: text
     name: Control data
     category: config
-    icon: mdi:tune
+    icon: "mdi:tune"
     hidden: true
     dps:
       - id: 28
@@ -93,7 +93,7 @@ entities:
   - entity: text
     name: Power memory
     category: config
-    icon: mdi:content-save
+    icon: "mdi:content-save"
     hidden: true
     dps:
       - id: 33
@@ -110,7 +110,7 @@ entities:
   - entity: text
     name: Fading
     category: config
-    icon: mdi:gradient-horizontal
+    icon: "mdi:gradient-horizontal"
     hidden: true
     dps:
       - id: 35
@@ -120,7 +120,7 @@ entities:
   - entity: text
     name: Mix RGBCW
     category: config
-    icon: mdi:palette
+    icon: "mdi:palette"
     hidden: true
     dps:
       - id: 51
@@ -172,16 +172,9 @@ entities:
     translation_key: sound
     category: config
     dps:
-      - id: 66
-        type: boolean
-        optional: true
-        name: switch
-        mapping:
-          - dps_val: null
-            value_redirect: alt
       - id: 103
         type: boolean
-        name: alt
+        name: switch
   - entity: light
     translation_key: nightlight
     dps:
@@ -240,7 +233,7 @@ entities:
   - entity: text
     translation_key: scene
     category: config
-    icon: mdi:palette
+    icon: "mdi:palette"
     hidden: true
     dps:
       - id: 109
@@ -250,7 +243,7 @@ entities:
   - entity: number
     name: Light sequence adjust
     category: config
-    icon: mdi:rotate-left
+    icon: "mdi:rotate-left"
     dps:
       - id: 110
         type: integer
@@ -263,7 +256,7 @@ entities:
   - entity: number
     name: Pixels
     category: config
-    icon: mdi:led-strip
+    icon: "mdi:led-strip"
     dps:
       - id: 111
         type: integer
@@ -292,7 +285,7 @@ entities:
   - entity: text
     name: Music data1
     category: config
-    icon: mdi:music
+    icon: "mdi:music"
     hidden: true
     dps:
       - id: 121
