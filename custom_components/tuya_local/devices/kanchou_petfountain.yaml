@@ -2,6 +2,8 @@ name: Pet fountain
 products:
   - id: akln8rb04cav403q
     manufacturer: Kanchou
+  - id: kk8qdeaunqdyp8z5
+    manufacturer: Kanchou
   - id: cafirr70niv1hj2x
     manufacturer: Fontanna Smart
     model: FONT7-SMART-B
@@ -109,12 +111,13 @@ entities:
   - entity: sensor
     class: volume
     name: Water consumption
-    category: diagnostic
     dps:
       - id: 22
         type: integer
+        optional: true
         name: sensor
         unit: mL
+        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic

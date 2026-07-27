@@ -51,7 +51,6 @@ entities:
             value: "72h"
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 105
         type: string
@@ -67,13 +66,13 @@ entities:
   - entity: sensor
     name: Water flow
     class: water
-    category: diagnostic
     icon: "mdi:water"
     dps:
       - id: 103
         name: sensor
         type: integer
         unit: L
+        class: measurement
   - entity: number
     translation_key: timer
     class: duration

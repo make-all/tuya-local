@@ -6,6 +6,9 @@ products:
   - id: zma7jiuomnao0lk4
     manufacturer: Afyeev
     model: "16A 11kW EV charger"
+  - id: dkzx0axhp6zzcyp4
+    manufacturer: Daolar
+    model: F098
 entities:
   - entity: sensor
     translation_key: status
@@ -76,7 +79,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: A
@@ -87,11 +89,11 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -101,12 +103,12 @@ entities:
         name: sensor
         optional: true
         unit: A
-        mask: "000000FFFF000000"
+        mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: A
@@ -117,7 +119,7 @@ entities:
         optional: true
         unit: kW
         class: measurement
-        mask: "000000000000FFFF"
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
   - entity: binary_sensor
@@ -299,7 +301,6 @@ entities:
           max: 15
   - entity: sensor
     class: voltage
-    category: diagnostic
     hidden: unavailable
     translation_key: voltage_x
     translation_placeholders:
@@ -311,6 +312,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
       - id: 7
@@ -323,7 +325,6 @@ entities:
           - value: true
   - entity: sensor
     class: current
-    category: diagnostic
     hidden: unavailable
     translation_key: current_x
     translation_placeholders:
@@ -335,6 +336,7 @@ entities:
         optional: true
         unit: A
         mask: "000000FFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
       - id: 7
@@ -347,7 +349,6 @@ entities:
           - value: true
   - entity: sensor
     class: power
-    category: diagnostic
     hidden: unavailable
     translation_key: power_x
     translation_placeholders:
@@ -372,7 +373,6 @@ entities:
           - value: true
   - entity: sensor
     class: voltage
-    category: diagnostic
     hidden: unavailable
     translation_key: voltage_x
     translation_placeholders:
@@ -384,6 +384,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
       - id: 8
@@ -396,7 +397,6 @@ entities:
           - value: true
   - entity: sensor
     class: current
-    category: diagnostic
     hidden: unavailable
     translation_key: current_x
     translation_placeholders:
@@ -408,6 +408,7 @@ entities:
         optional: true
         unit: A
         mask: "000000FFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
       - id: 8
@@ -420,7 +421,6 @@ entities:
           - value: true
   - entity: sensor
     class: power
-    category: diagnostic
     hidden: unavailable
     translation_key: power_x
     translation_placeholders:

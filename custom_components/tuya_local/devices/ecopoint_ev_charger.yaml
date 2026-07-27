@@ -164,6 +164,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -178,6 +179,7 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -192,6 +194,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -206,6 +209,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -220,6 +224,7 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -234,6 +239,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -248,6 +254,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -262,11 +269,11 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 24
         type: integer
@@ -353,6 +360,7 @@ entities:
         name: sensor
         unit: A
         mask: "FFFF0000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -366,5 +374,6 @@ entities:
         name: sensor
         unit: A
         mask: "0000FFFF"
+        class: measurement
         mapping:
           - scale: 10

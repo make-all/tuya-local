@@ -7,6 +7,9 @@ products:
     manufacturer: Cree
     model: B11 Candleabra 40W
     name: Vintage glass filament bulb
+  - id: keytg5kq8gvkv9dh
+    manufacturer: LSC Smart Connect
+    model: GU10 CCT
 entities:
   - entity: light
     dps:
@@ -48,30 +51,6 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-      - id: 28
-        name: control_data
-        type: string
-        optional: true
-      - id: 30
-        name: rhythm_mode
-        type: base64
-        optional: true
-      - id: 31
-        name: sleep_mode
-        type: base64
-        optional: true
-      - id: 32
-        name: wakeup_mode
-        type: base64
-        optional: true
-      - id: 41
-        name: remote_switch
-        type: boolean
-        optional: true
-      - id: 210
-        name: random_timing
-        type: string
-        optional: true
   - entity: time
     translation_key: timer
     category: config
@@ -117,3 +96,70 @@ entities:
             value: relax
           - dps_val: "0532320000000000000003e8002f"
             value: movie
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        name: value
+        optional: true
+  - entity: text
+    name: Rhythm
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Sleep mode
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 31
+        name: value
+        type: base64
+        optional: true
+  - entity: text
+    name: Wake up mode
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        name: value
+        type: base64
+        optional: true
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 41
+        name: switch
+        type: boolean
+        optional: true
+      - id: 41
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: text
+    name: Random timing
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 210
+        type: string
+        optional: true
+        name: value

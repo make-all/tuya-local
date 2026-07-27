@@ -3,6 +3,9 @@ products:
   - id: zptxb3enehf8a1uz
     manufacturer: LSC Smart Connect
     model: Neon LED strip
+  - id: keyj3w8cmutjmwk5
+    manufacturer: LSC Smart Connect
+    model: Neon LED strip
 entities:
   - entity: light
     dps:
@@ -28,9 +31,6 @@ entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - dps_val: null
-            value: 0
       - id: 24
         name: rgbhsv
         type: hex
@@ -53,6 +53,7 @@ entities:
               max: 1000
       - id: 46
         name: length_cm
+        optional: true
         type: integer
       - id: 47
         name: pixels

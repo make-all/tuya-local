@@ -121,12 +121,12 @@ entities:
         name: sensor
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 121
         type: integer
         name: sensor
         unit: C
+        class: measurement
         mapping:
           - scale: 10
   - entity: button

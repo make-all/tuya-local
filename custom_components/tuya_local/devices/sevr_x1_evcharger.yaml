@@ -61,7 +61,6 @@ entities:
   - entity: sensor
     name: Phase A power
     class: power
-    category: diagnostic
     hidden: true
     dps:
       - id: 6
@@ -69,24 +68,24 @@ entities:
         name: sensor
         optional: true
         unit: kW
+        class: measurement
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -94,11 +93,11 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 9
         type: integer
