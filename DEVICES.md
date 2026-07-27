@@ -146,7 +146,7 @@
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
 - Kibernetik 12K portable split air conditioner
-- Klarstein Iceblock Ecosmart air conditioner
+- Klarstein Iceblock Ecosmart, MetroBreeze New York, Pure Blizzard air conditioners
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
@@ -270,6 +270,7 @@
 - Avatto ME81, WS20R and WT100 thermostats
 - Avonflow AFD14-H radiator thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
+- Baxi Smart Link OpenTherm thermostat
 - Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
@@ -418,10 +419,8 @@
 - Kavunion C1 100 ventilation fan
 - KCvents VT501-W heat recovery ventilation
 - Kendal KVT-Touchtower pedestal fan
-- Klarstein Airfold Smart ceiling fan with light
-- Klarstein Icewind Plus Smart cooling fan
-- Klarstein Skyscaper Ice cooling fan
-- Klarstein Skytower Grand Smart cooling fan
+- Klarstein Airfold, Bolero ceiling fans with light
+- Klarstein Icewind Plus, Skyscraper Ice, Skytower Grand cooling fans
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
@@ -507,6 +506,7 @@
 - Meaco Clean CA-HEPA air purifier
 - Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
+- Neotec XJ-3900A air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
 - Proscenic A8 and A9 air purifiers
@@ -600,6 +600,7 @@
 - Eanons QT-JS2014 purifying humidifier
 - Eberg HUMI H03G1 humidifier
 - Eta Noble humidifier
+- Flymoon Top Fill 5L Cool Mist humidifier
 - Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea and Humea Grande humidifiers
@@ -746,6 +747,7 @@
 - Aimiler 11kW 16A and 40A EV chargers
 - Ampbolt Level 1/2 portable EV charger
 - AmperePoint Q series EV chargers
+- Conow CBE2000 Pro solar battery
 - dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
@@ -1211,6 +1213,7 @@ port and password.
 - FurPipi PF05 pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Happy Paws CoreBox litter box
 - Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
@@ -1301,6 +1304,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
+- Stahlmann Smart water leak control system
 - Sunlary indoor plant watering system
 - Wasserstein AquaPal water monitor
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
