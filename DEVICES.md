@@ -1213,6 +1213,7 @@ port and password.
 - FurPipi PF05 pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Happy Paws CoreBox litter box
 - Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
