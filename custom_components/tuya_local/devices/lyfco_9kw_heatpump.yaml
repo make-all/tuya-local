@@ -1,70 +1,77 @@
-name: Lyfco 9kW Pool Heatpump
+name: Lyfco 9kW Pool Heat Pump
+
 products:
   - id: zwmuxensvaoxc8n5
-    name: Lyfco 9kW Pool Heatpump
+    manufacturer: Lyfco
+    model: 9kW
+    name: Lyfco 9kW Pool Heat Pump
+
 entities:
   - entity: climate
-    translation_key: pool_heatpump
+    translation_only_key: pool_heatpump
     dps:
       - id: 1
-        name: hvac_mode
         type: boolean
+        name: hvac_mode
         mapping:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: preset_mode
+            constraint: mode
             conditions:
-              - dps_val: "Cooling"
+              - dps_val: Cooling
                 value: cool
-              - dps_val: "Heating"
+              - dps_val: Heating
                 value: heat
-              - dps_val: "Auto"
+              - dps_val: Auto
                 value: auto
       - id: 2
-        name: preset_mode
         type: string
-        mapping:
-          - dps_val: "Cooling"
-            value: cool
-          - dps_val: "Heating"
-            value: heat
-          - dps_val: "Auto"
-            value: auto
+        name: mode
+        hidden: true
       - id: 4
-        name: temperature
         type: integer
+        name: temperature
         range:
-          min: 150
+          min: 70
           max: 400
         mapping:
           - scale: 10
             step: 10
       - id: 16
-        name: current_temperature
         type: integer
+        name: current_temperature
         mapping:
           - scale: 10
-      - id: 5
-        name: preset_mode
+      - id: 17
         type: string
-        mapping:
-          - dps_val: "Smart"
-            value: auto
-          - dps_val: "Silence"
-            value: quiet
-          - dps_val: "Boost"
-            value: boost
-      - id: 2
         name: hvac_action
-        type: string
         mapping:
-          - dps_val: "Heating"
-            value: heat
-          - dps_val: "Cooling"
-            value: cool
-          - dps_val: "Auto"
-            value: auto
+          - dps_val: standby
+            value: idle
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: idle
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Boost
+            value: quick
+          - dps_val: Silence
+            value: quiet
+          - dps_val: Smart
+            value: smart
+
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
 
   - entity: binary_sensor
     class: problem
@@ -78,8 +85,8 @@ entities:
             value: false
           - value: true
       - id: 15
-        name: fault_code
         type: bitfield
+        name: fault_code
       - id: 15
         type: bitfield
         name: description
@@ -105,7 +112,7 @@ entities:
           - dps_val: 256
             value: "E09 Gas Exhaust Temperature Sensor Error"
           - dps_val: 512
-            value: "E10 Buss Spänning Över/Underspänningsskydd"
+            value: "E10 Bus Voltage Over/Under voltage protection"
           - dps_val: 1024
             value: "E11 Current Sensor Error"
           - dps_val: 2048
@@ -129,7 +136,7 @@ entities:
           - dps_val: 1048576
             value: "E21 Evaporator Temperature (T2) Low Protection"
           - dps_val: 2097152
-            value: "E22 Communication Error between Wireless Control and\
+            value: "E22 Communication Error between Wireless Control and \
             Mainboard"
           - dps_val: 4194304
             value: "E23 Phase Missing Protection"
@@ -142,24 +149,10 @@ entities:
           - dps_val: 67108864
             value: "E27 Low Water Flow Protection"
           - dps_val: 134217728
-            value: "E28 Outlet Temperature Exceed High Protection in\
+            value: "E28 Outlet Temperature Exceed High Protection in \
             Heating Mode"
           - dps_val: 268435456
-            value: "E29 Outlet Temperature Exceed Low Protection\
+            value: "E29 Outlet Temperature Exceed Low Protection \
             in Cooling Mode"
           - dps_val: 536870912
             value: "E30 Evaporator Temperature Sensor (T2) Error"
-          - dps_val: 1073741824
-            value: "E31 Unknown"
-          - dps_val: 2147483648
-            value: "E32 Unknown"
-          - dps_val: 4294967296
-            value: "E33 PFC Hardware F0 Error"
-          - dps_val: 8589934592
-            value: "E34 PFC Software - Over Current Protection"
-          - dps_val: 17179869184
-            value: "E35 Compressor Step Loss"
-          - dps_val: 34359738368
-            value: "E36 Unknown"
-          - dps_val: 68719476736
-            value: "E37 Compressor Start Error"
