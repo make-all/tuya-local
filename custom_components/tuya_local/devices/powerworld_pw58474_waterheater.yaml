@@ -70,7 +70,7 @@ entities:
         mask_signed: true
 
   - entity: sensor
-    name: inlet temperature
+    name: Inlet temperature
     dps:
       - id: 101
         type: base64
@@ -88,7 +88,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: outlet temperature
+    name: Outlet temperature
     dps:
       - id: 101
         type: base64
@@ -124,7 +124,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: exhaust temperature
+    name: Exhaust temperature
     category: diagnostic
     dps:
       - id: 101
@@ -143,7 +143,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: return gas temperature
+    name: Return gas temperature
     category: diagnostic
     dps:
       - id: 101
@@ -162,7 +162,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: evaporator coil temperature
+    name: Evaporator coil temperature
     category: diagnostic
     dps:
       - id: 101
@@ -181,7 +181,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: inner coil temperature
+    name: Inner coil temperature
     category: diagnostic
     dps:
       - id: 101
@@ -200,7 +200,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: refrigerant gas concentration
+    name: Refrigerant gas concentration
     category: diagnostic
     dps:
       - id: 101
@@ -218,7 +218,7 @@ entities:
           - value: "%"
 
   - entity: sensor
-    name: low pressure gas temperature
+    name: Low pressure gas temperature
     category: diagnostic
     dps:
       - id: 101
@@ -237,7 +237,7 @@ entities:
           - value: "°C"
 
   - entity: sensor
-    name: compressor current
+    name: Compressor current
     category: diagnostic
     dps:
       - id: 101
@@ -291,7 +291,7 @@ entities:
           - value: "V"
 
   - entity: sensor
-    name: compressor frequency
+    name: Compressor frequency
     class: frequency
     dps:
       - id: 101
@@ -309,7 +309,7 @@ entities:
           - value: "Hz"
 
   - entity: sensor
-    name: fanspeed
+    name: Fanspeed
     dps:
       - id: 101
         type: base64
@@ -326,7 +326,7 @@ entities:
           - value: "rpm"
 
   - entity: sensor
-    name: opening of main expansion valve
+    name: Opening of main expansion valve
     category: diagnostic
     dps:
       - id: 101
@@ -340,7 +340,7 @@ entities:
         mask_signed: true
 
   - entity: binary_sensor
-    name: preheating state
+    name: Preheating state
     category: diagnostic
     dps:
       - id: 101
@@ -357,7 +357,7 @@ entities:
           - value: true
 
   - entity: binary_sensor
-    translation_key: problem
+    class: problem
     category: diagnostic
     dps:
       - id: 15
