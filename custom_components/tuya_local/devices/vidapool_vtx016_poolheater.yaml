@@ -1,4 +1,4 @@
-name: Vidapool VTX016 Pool Heat Pump
+name: Pool heat pump
 products:
   - id: tujtt0l6dup0is9d
     manufacturer: Vidapool
@@ -28,20 +28,28 @@ entities:
         name: temperature
         type: integer
         range:
-          min: 46
-          max: 104
+          min: 18
+          max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 104
       - id: 6
         name: temperature_unit
         type: string
         mapping:
-          - dps_val: c
+          - dps_val: f
+            value: F
             value: C
           - dps_val: f
             value: F
       - id: 35
         name: current_temperature
         type: integer
-        unit: F
       - id: 27
         name: hvac_action
         type: boolean
@@ -55,34 +63,6 @@ entities:
                 value: cooling
           - dps_val: false
             value: idle
-  - entity: select
-    name: HVAC Mode
-    category: config
-    dps:
-      - id: 2
-        type: string
-        name: option
-        mapping:
-          - dps_val: HEAT
-            value: heat
-          - dps_val: COOL
-            value: cool
-  - entity: select
-    name: Fan Mode
-    category: diagnostic
-    dps:
-      - id: 19
-        type: string
-        name: option
-        mapping:
-          - dps_val: High
-            value: high
-          - dps_val: Mid
-            value: mid
-          - dps_val: Low
-            value: low
-  - entity: sensor
-    name: Inlet Temperature
     class: temperature
     dps:
       - id: 35
@@ -118,12 +98,6 @@ entities:
         name: sensor
   - entity: binary_sensor
     name: Compressor State
-    icon: "mdi:engine"
-    category: diagnostic
-    dps:
-      - id: 27
-        type: boolean
-        name: sensor
   - entity: binary_sensor
     name: Four-way Valve
     icon: "mdi:valve"
