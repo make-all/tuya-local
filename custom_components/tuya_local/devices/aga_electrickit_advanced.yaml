@@ -74,6 +74,9 @@ entities:
         name: switch
   # Live output of the 24/7 timer: on when the timer is currently running
   # the ovens, off during an off window.
+  # dps 156/157 are believed to relate to the optional vent fan, which was
+  # not fitted on the test device (disabled in the app), so they could not
+  # be confirmed. Both remained static through all other functions.
   - entity: binary_sensor
     name: Timer running
     class: running
@@ -82,25 +85,12 @@ entities:
       - id: 107
         type: boolean
         name: sensor
-  # dps 156/157 are believed to relate to the optional vent fan, which was
-  # not fitted on the test device (disabled in the app), so they could not
-  # be confirmed. Both remained static through all other functions.
-  - entity: binary_sensor
-    name: Unknown 156
-    category: diagnostic
-    hidden: true
-    dps:
       - id: 156
         type: boolean
-        name: sensor
-  - entity: sensor
-    name: Unknown 157
-    category: diagnostic
-    hidden: true
-    dps:
+        name: unknown_156
       - id: 157
         type: integer
-        name: sensor
+        name: unknown_157
   # Food timer, counts down in seconds. Can only be cancelled at the cooker.
   - entity: sensor
     translation_key: time_remaining
