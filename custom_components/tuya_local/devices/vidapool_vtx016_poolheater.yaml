@@ -45,8 +45,6 @@ entities:
           - dps_val: f
             value: F
             value: C
-          - dps_val: f
-            value: F
       - id: 35
         name: current_temperature
         type: integer
@@ -64,12 +62,6 @@ entities:
           - dps_val: false
             value: idle
     class: temperature
-    dps:
-      - id: 35
-        type: integer
-        name: sensor
-        unit: F
-        class: measurement
   - entity: sensor
     class: temperature
     translation_key: ambient_temperature
