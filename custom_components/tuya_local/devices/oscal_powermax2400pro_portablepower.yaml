@@ -64,10 +64,9 @@ entities:
         type: string
         name: unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
   - entity: switch
     translation_key: keytone
     category: config
@@ -493,7 +492,7 @@ entities:
         unit: W
         class: measurement
   - entity: select
-    name: AC Standby Time
+    name: AC standby sime
     class: timer
     category: config
     icon: "mdi:timer-outline"
@@ -519,7 +518,7 @@ entities:
           - dps_val: "24hour"
             value: "24h"
   - entity: select
-    name: DC Standby Time
+    name: DC standby time
     class: timer
     category: config
     icon: "mdi:timer-outline"
@@ -545,7 +544,7 @@ entities:
           - dps_val: "24hour"
             value: "24h"
   - entity: time
-    name: Primary feed-in time period start
+    name: Primary feed-in start
     category: config
     icon: "mdi:clock-start"
     dps:
@@ -562,7 +561,7 @@ entities:
           min: 0
           max: 59
   - entity: time
-    name: Primary feed-in time period end
+    name: Primary feed-in end
     category: config
     icon: "mdi:clock-end"
     dps:
@@ -592,7 +591,7 @@ entities:
         mapping:
           - step: 50
   - entity: time
-    name: Secondary feed-in time period start
+    name: Secondary feed-in start
     category: config
     icon: "mdi:clock-start"
     dps:
@@ -609,7 +608,7 @@ entities:
           min: 0
           max: 59
   - entity: time
-    name: Secondary feed-in time period end
+    name: Secondary feed-in end
     category: config
     icon: "mdi:clock-end"
     dps:
