@@ -30,14 +30,6 @@ entities:
         range:
           min: 18
           max: 40
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: f
-                value_redirect: temp_set_f
-                range:
-                  min: 32
-                  max: 104
       - id: 6
         name: temperature_unit
         type: string
