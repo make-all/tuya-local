@@ -132,6 +132,7 @@
 - Eurom AC 5201 Caravan and Home air conditioner
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- FM Solar mobile split heat pump
 - Fral Super Cool FSC08 WiFi portable air conditioner
 - Fral Super Cool FSC14.2 DH portable air conditioner
 - Friedrich Uni-Fit air conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
