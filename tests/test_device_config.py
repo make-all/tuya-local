@@ -293,7 +293,7 @@ KNOWN_DPS = {
     },
     "valve": {
         "required": ["valve"],
-        "optional": ["switch"],
+        "optional": ["switch", "current_position"],
     },
     "water_heater": {
         "required": [],
