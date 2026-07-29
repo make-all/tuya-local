@@ -1,0 +1,221 @@
+name: Pool heat pump
+products:
+  - id: e1k8cr2o
+    manufacturer: PoolSana
+    model: InverPRESTIGE 9
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool
+                value: cool
+              - dps_val: auto
+                value: auto
+              - dps_val: heat
+                value: heat
+              - dps_val: h_powerful
+                value: heat
+              - dps_val: h_silent
+                value: heat
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat
+            value: comfort
+          - dps_val: h_powerful
+            value: boost
+          - dps_val: h_silent
+            value: eco
+
+  # --- TEMPERATURES ---
+  - entity: sensor
+    class: temperature
+    name: Inlet temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Outlet temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Ambient temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Exhaust temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Suction temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Heating coil temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Cooling coil temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Heatsink temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  # --- ELECTRICAL & FREQUENCY ---
+  - entity: sensor
+    class: current
+    name: Compressor current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "A"
+
+  - entity: sensor
+    class: voltage
+    name: DC Bus voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: "V"
+
+  - entity: sensor
+    class: frequency
+    name: Compressor frequency
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "Hz"
+
+  # --- HARDWARE & MECHANICS ---
+  - entity: sensor
+    name: DC Fan speed
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: "rpm"
+
+  - entity: sensor
+    name: Main EEV steps
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "step"
+
+  - entity: sensor
+    name: EVI EEV steps
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: "step"
+
+  - entity: sensor
+    name: PCB Version
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+
+  # --- FAULT STATUS ---
+  # Error Code Mapping Reference:
+  # E03: Water flow fault          E15: Water inlet temp sensor fault
+  # E04: Antifreeze protection     E16: Outdoor coil temp sensor fault
+  # E05: High pressure fault       E18: Exhaust temp sensor fault
+  # E06: Low pressure fault        E20: Inverter module abnormal protection
+  # E09: Mainboard-Display comm    E21: Ambient temp sensor fault
+  # E10: Inverter-Mainboard comm   E23: Cooling outlet temp low protection
+  # E12: Exhaust temp too high     E27: Water outlet temp sensor fault
+  # E13: DC fan motor fault        E29: Suction temp sensor fault
+  # E32: Heating outlet temp high  E33: Outdoor coil high temp protection
+  # E35: Compressor overcurrent    E42: Indoor coil temp sensor fault
+  # Er69: Refrigerant sensor fault Er70: Refrigerant leakage protection
+  # Er71: Refrigerant extension board fault
+  - entity: sensor
+    name: Fault status
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
