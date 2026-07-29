@@ -1,0 +1,62 @@
+name: Aquaforte SC9xx Series Pool Heatpump
+
+# Tested with:
+# Aquaforte SC981 Full DC Inverter Pool Heat Pump
+# Other SC9xx models are expected to be compatible but have not been verified.
+
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 8
+          max: 40
+
+      - id: 3
+        name: current_temperature
+        type: integer
+
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: h_powerful
+            value: h_powerful
+          - dps_val: heat
+            value: heat
+          - dps_val: h_silent
+            value: silent_heat
+          - dps_val: c_silent
+            value: silent_cool
+          - dps_val: cool
+            value: cool
+          - dps_val: c_powerful
+            value: c_powerful
+
+      - id: 9
+        name: fault
+        type: bitfield
+
+  - entity: sensor
+    name: Fault
+    icon: mdi:alert-circle-outline
+
+    dps:
+      - id: 9
+        name: sensor
+        type: bitfield
+        
