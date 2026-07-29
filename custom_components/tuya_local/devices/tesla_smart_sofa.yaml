@@ -8,6 +8,7 @@ products:
 entities:
   - entity: climate
     icon: mdi:sofa
+    translation_key: pet_sofa
     dps:
       - id: 1
         name: hvac_mode
@@ -53,13 +54,13 @@ entities:
             value: Smart
 
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
     dps:
       - id: 102
         type: integer
         name: sensor
-        unit: C
+        unit: "C"
 
   - entity: sensor
     name: Fault
