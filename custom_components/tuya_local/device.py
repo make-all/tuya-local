@@ -658,7 +658,7 @@ class TuyaLocalDevice(object):
     async def _retry_on_failed_connection(self, func, error_message):
         if self._api_protocol_version_index is None:
             await self._rotate_api_protocol_version()
-        auto = (self._protocol_configured == "auto") and (
+        auto = (self._protocol_configured in ["auto", 3.22]) and (
             not self._api_protocol_working
         )
         connections = (
