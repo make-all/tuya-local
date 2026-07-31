@@ -1,71 +1,11 @@
-name: Five channel dimmer
+name: Titan Smart Kinetic Driver Single Colour
 products:
   - id: whg6uhsccujw03km
     manufacturer: Sensio
     model: Titan Smart Kinetic Driver
 entities:
   - entity: light
-    name: Channel 1
-    dps:
-      - id: 106
-        type: boolean
-        name: switch
-      - id: 101
-        type: integer
-        name: brightness
-        range:
-          min: 10
-          max: 1000
-  - entity: light
-    name: Channel 2
-    dps:
-      - id: 107
-        type: boolean
-        name: switch
-      - id: 102
-        type: integer
-        name: brightness
-        range:
-          min: 10
-          max: 1000
-  - entity: light
-    name: Channel 3
-    dps:
-      - id: 108
-        type: boolean
-        name: switch
-      - id: 103
-        type: integer
-        name: brightness
-        range:
-          min: 10
-          max: 1000
-  - entity: light
-    name: Channel 4
-    dps:
-      - id: 109
-        type: boolean
-        name: switch
-      - id: 104
-        type: integer
-        name: brightness
-        range:
-          min: 10
-          max: 1000
-  - entity: light
-    name: Channel 5
-    dps:
-      - id: 110
-        type: boolean
-        name: switch
-      - id: 105
-        type: integer
-        name: brightness
-        range:
-          min: 10
-          max: 1000
-  - entity: light
-    name: All channels
+    name: Driver Power
     dps:
       - id: 20
         type: boolean
@@ -78,6 +18,96 @@ entities:
             value: "off"
           - dps_val: scene
             value: Scene
+  - entity: light
+    name: Channel 1 Enable
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: light
+    name: Channel 2 Enable
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: light
+    name: Channel 3 Enable
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: light
+    name: Channel 4 Enable
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: light
+    name: Channel 5 Enable
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: light
+    name: Channel 1
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 101
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 2
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 3
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 103
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 4
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 104
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 5
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
   - entity: select
     translation_key: scene
     category: config
