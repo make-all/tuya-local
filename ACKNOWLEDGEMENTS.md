@@ -918,3 +918,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mathieupotier](https://github.com/mathieupotier) for contributing support for Klarstein MetroBreeze New York and Pure Blizzard air conditioners and Klarstein Bolero ceiling fan with light.
 - [dext0r](https://github.com/dext0r) for contributing support for Stahlmann Smart water leak control system.
 - [linedot](https://github.com/linedot) for contributing improvements to Oscal PowerMax2400Pro power station.
+- [jeremyames-gmail](https://github.com/jeremyames-gmail) for contributing improvements to Divoo water valves.
