@@ -5,7 +5,7 @@ products:
     model: Titan Smart Kinetic Driver
 entities:
   - entity: light
-    name: Driver Power
+    name: All Channels Control
     dps:
       - id: 20
         type: boolean
@@ -18,32 +18,37 @@ entities:
             value: "off"
           - dps_val: scene
             value: Scene
-  - entity: light
+  - entity: switch
     name: Channel 1 Enable
+    category: config
     dps:
       - id: 106
         type: boolean
         name: switch
-  - entity: light
+  - entity: switch
     name: Channel 2 Enable
+    category: config
     dps:
       - id: 107
         type: boolean
         name: switch
-  - entity: light
+  - entity: switch
     name: Channel 3 Enable
+    category: config
     dps:
       - id: 108
         type: boolean
         name: switch
-  - entity: light
+  - entity: switch
     name: Channel 4 Enable
+    category: config
     dps:
       - id: 109
         type: boolean
         name: switch
-  - entity: light
+  - entity: switch
     name: Channel 5 Enable
+    category: config
     dps:
       - id: 110
         type: boolean
