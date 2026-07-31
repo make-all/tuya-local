@@ -6,6 +6,9 @@ products:
   - id: zma7jiuomnao0lk4
     manufacturer: Afyeev
     model: "16A 11kW EV charger"
+  - id: dkzx0axhp6zzcyp4
+    manufacturer: Daolar
+    model: F098
 entities:
   - entity: sensor
     translation_key: status
@@ -100,7 +103,7 @@ entities:
         name: sensor
         optional: true
         unit: A
-        mask: "000000FFFF000000"
+        mask: "0000FFFFFF000000"
         class: measurement
         mapping:
           - scale: 1000
@@ -116,7 +119,7 @@ entities:
         optional: true
         unit: kW
         class: measurement
-        mask: "000000000000FFFF"
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
   - entity: binary_sensor

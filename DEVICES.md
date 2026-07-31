@@ -132,6 +132,7 @@
 - Eurom AC 5201 Caravan and Home air conditioner
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- FM Solar mobile split heat pump
 - Fral Super Cool FSC08 WiFi portable air conditioner
 - Fral Super Cool FSC14.2 DH portable air conditioner
 - Friedrich Uni-Fit air conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
@@ -1213,6 +1214,7 @@ port and password.
 - FurPipi PF05 pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Happy Paws CoreBox litter box
 - Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder

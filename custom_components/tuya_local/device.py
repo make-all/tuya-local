@@ -661,10 +661,15 @@ class TuyaLocalDevice(object):
         auto = (self._protocol_configured == "auto") and (
             not self._api_protocol_working
         )
+        dev22 = self._protocol_configured in (3.22, 3.42, 3.52)
         connections = (
             self._AUTO_CONNECTION_ATTEMPTS
             if auto
-            else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
+            else (
+                self._SINGLE_PROTO_CONNECTION_ATTEMPTS * 2
+                if dev22
+                else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
+            )
         )
 
         last_err_code = None
@@ -783,18 +788,27 @@ class TuyaLocalDevice(object):
             self.name,
             new_version,
         )
-        # Only enable tinytuya's "device22" auto-detect when using 3.22, 3.4, or 3.5
-        # Enabling this on 3.1 or 3.3 devices can cause them to stop responding to commands.
+        # Only enable tinytuya's "device22" auto-detect when exlpicitly requested
+        # as 3.22, 3.42, or 3.52
+        # Enabling this on other devices can cause them to stop responding to commands,
+        # as once tinytuya decides to switch to it, it never switches back.
         # 3.2 always uses the "device22" protocol variant.
         # 3.22 is a fake version that actually means 3.3 with auto-detect enabled
+        # likewise 3.42 and 3.52 actually mean 3.4 and 3.5 with auto-detect enabled.
         #
         # Note: "device22" is a misnomer for historical reasons. Not all devices with
         # 22 character device ids use this protocol variant.
         if new_version == 3.22:
             new_version = 3.3
             self._api.disabledetect = False
+        elif new_version == 3.42:
+            new_version = 3.4
+            self._api.disabledetect = False
+        elif new_version == 3.52:
+            new_version = 3.5
+            self._api.disabledetect = False
         else:
-            self._api.disabledetect = new_version < 3.4
+            self._api.disabledetect = True
 
         await self._hass.async_add_executor_job(
             self._api.set_version,
