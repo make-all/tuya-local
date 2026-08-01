@@ -919,3 +919,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dext0r](https://github.com/dext0r) for contributing support for Stahlmann Smart water leak control system.
 - [linedot](https://github.com/linedot) for contributing improvements to Oscal PowerMax2400Pro power station.
 - [jeremyames-gmail](https://github.com/jeremyames-gmail) for contributing improvements to Divoo water valves.
+- [clinis](https://github.com/clinis) for contributing support for Globmatic gate opener.
