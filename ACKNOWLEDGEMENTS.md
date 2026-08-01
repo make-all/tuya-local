@@ -923,3 +923,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Arbology](https://github.com/Arbology) for contributing support for Aga Electrikit Advanced range cooker.
 - [peetipablo](https://github.com/peetipablo) for contributing support for Vidapool VTX016 pool heat pump.
 - [toolson](https://github.com/toolson) for contributing support for Powerworld PW030-KZXYC-E pool heat pump.
+- [digitalvir](https://github.com/digitalvir) for contributing support for Lumary C2 ceiling fan with RGB+CW light.
