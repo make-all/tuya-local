@@ -638,6 +638,7 @@
 
 - Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
+- Aga Electrickit Advanced range cooker
 - Amenzo dishwasher
 - Anko 1.7L smart kettle
 - Atomi coffee maker

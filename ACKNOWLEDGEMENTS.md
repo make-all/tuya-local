@@ -920,3 +920,4 @@ Further device support has been made with the assistance of users. Please consid
 - [linedot](https://github.com/linedot) for contributing improvements to Oscal PowerMax2400Pro power station.
 - [jeremyames-gmail](https://github.com/jeremyames-gmail) for contributing improvements to Divoo water valves.
 - [clinis](https://github.com/clinis) for contributing support for Globmatic Castor gate opener.
+- [Arbology](https://github.com/Arbology) for contributing support for Aga Electrikit Advanced range cooker.
