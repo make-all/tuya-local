@@ -921,3 +921,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jeremyames-gmail](https://github.com/jeremyames-gmail) for contributing improvements to Divoo water valves.
 - [clinis](https://github.com/clinis) for contributing support for Globmatic Castor gate opener.
 - [Arbology](https://github.com/Arbology) for contributing support for Aga Electrikit Advanced range cooker.
+- [peetipablo](https://github.com/peetipablo) for contributing support for Vidapool VTX016 pool heat pump.

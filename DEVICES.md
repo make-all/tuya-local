@@ -209,6 +209,7 @@
 - Turbro 75000 btu pool heat pump
 - Varminpool pool heatpump
 - Varpoolfaye 5kW pool heat pump
+- Vidapool VTX016 pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
