@@ -1032,7 +1032,7 @@ of device.
 - Fakro ARZ roof blind
 - FS-03W curtain switch with backlight control
 - Garen TSI Fit and Kit Central garage door openers
-- Globmatic gate opener
+- Globmatic Castor gate opener
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
