@@ -10,25 +10,15 @@ entities:
     class: gate
     dps:
       - id: 101
-        name: control
-        type: integer
-        mapping:
-          - dps_val: 0
-            value: open
-          - dps_val: 100
-            value: close
-      - id: 101
-        name: action
-        type: integer
-        mapping:
-          - dps_val: 0
-            value: opened
-          - dps_val: 50
-            value: null
-          - dps_val: 100
-            value: closed
-      - id: 101
         name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 101
+        name: current_position
         type: integer
         range:
           min: 0
@@ -37,6 +27,7 @@ entities:
           - invert: true
 
   - entity: sensor
+    translation_key: status
     dps:
       - id: 10
         name: sensor
