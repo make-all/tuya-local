@@ -3,6 +3,10 @@ products:
   - id: abb8kaxcphfzkwsg
     manufacturer: PoolSana
     model: InverPower Next
+  - id: zwmuxensvaoxc8n5
+    manufacturer: Lyfco
+    model: 9kW
+    name: Lyfco 9kW Pool Heat Pump
 entities:
   - entity: climate
     translation_key: pool_heatpump
@@ -40,6 +44,17 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
+      - id: 17
+        type: string
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: standby
+            value: idle
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: idle
       - id: 5
         type: string
         name: preset_mode
@@ -74,3 +89,72 @@ entities:
       - id: 15
         type: bitfield
         name: fault_code
+      - id: 15
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "OK"
+          - dps_val: 1
+            value: "E01 IPM (Driver Module) Protection"
+          - dps_val: 2
+            value: "E02 AC Voltage Over/Under Protection"
+          - dps_val: 4
+            value: "E03 AC Current Overload Protection"
+          - dps_val: 8
+            value: "E04 Gas Exhaust Temperature High Protection"
+          - dps_val: 16
+            value: "E05 External Coil Temperature High Protection"
+          - dps_val: 32
+            value: "E06 Compressor Drive Protection"
+          - dps_val: 64
+            value: "E07 Air Temperature Sensor Error"
+          - dps_val: 128
+            value: "E08 External Coil Temperature Sensor Error"
+          - dps_val: 256
+            value: "E09 Gas Exhaust Temperature Sensor Error"
+          - dps_val: 512
+            value: "E10 Bus Voltage Over/Under voltage protection"
+          - dps_val: 1024
+            value: "E11 Current Sensor Error"
+          - dps_val: 2048
+            value: "E12 Compressor Driver Communication Error"
+          - dps_val: 4096
+            value: "E13 DC Fan Motor Error"
+          - dps_val: 8192
+            value: "E14 Gas Suction Temperature Sensor Error"
+          - dps_val: 16384
+            value: "E15 Driver EE Error"
+          - dps_val: 32768
+            value: "E16 Mainboard EE Error"
+          - dps_val: 65536
+            value: "E17 Low Pressure Protection"
+          - dps_val: 131072
+            value: "E18 High Pressure Protection"
+          - dps_val: 262144
+            value: "E19 IPM Temperature Above High Protection"
+          - dps_val: 524288
+            value: "E20 Sudden Loss of Mains"
+          - dps_val: 1048576
+            value: "E21 Evaporator Temperature (T2) Low Protection"
+          - dps_val: 2097152
+            value: "E22 Communication Error between Wireless Control and \
+            Mainboard"
+          - dps_val: 4194304
+            value: "E23 Phase Missing Protection"
+          - dps_val: 8388608
+            value: "E24 Inlet Temperature Sensor Error"
+          - dps_val: 16777216
+            value: "E25 Outlet Temperature Sensor Error"
+          - dps_val: 33554432
+            value: "E26 Water Flow Protection Error"
+          - dps_val: 67108864
+            value: "E27 Low Water Flow Protection"
+          - dps_val: 134217728
+            value: "E28 Outlet Temperature Exceed High Protection in \
+            Heating Mode"
+          - dps_val: 268435456
+            value: "E29 Outlet Temperature Exceed Low Protection \
+            in Cooling Mode"
+          - dps_val: 536870912
+            value: "E30 Evaporator Temperature Sensor (T2) Error"
