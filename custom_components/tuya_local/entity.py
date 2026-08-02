@@ -6,8 +6,8 @@ import json
 import logging
 
 from homeassistant.const import (
-    UnitOfDensity,
     UnitOfArea,
+    UnitOfDensity,
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
