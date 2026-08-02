@@ -232,6 +232,40 @@ When adding devices, some devices that are detected as protocol version
 3.3 at first require version 3.2 to work correctly. Either they cannot be
 detected, or work as read-only if the pprotocol is set to 3.3.
 
+## Sensor calibration
+
+If a device reports slightly inaccurate readings (for example one of
+several identical thermometers reads 0.4° too high), you can set a
+per-device calibration offset without modifying the device config.  The
+offset is added to the reading reported by the device and survives
+restarts.
+
+Call the `tuya_local.set_calibration` action with the entity and the
+offset:
+
+```yaml
+action: tuya_local.set_calibration
+data:
+  entity_id: sensor.thermometer_temperature
+  offset: -0.4
+```
+
+- By default the entity's main reading is calibrated: the value of
+  `sensor` entities, `current_temperature` of climate and water_heater
+  entities, and `current_humidity` of humidifier entities.  For climate
+  entities, `attribute: current_humidity` can be passed to calibrate
+  the humidity reading instead.
+- An offset of `0` removes the calibration.
+- Active offsets are shown as a `<reading>_calibration` attribute on
+  the entity.
+- Only read-only measurement readings can be calibrated.  Settable
+  values (target temperatures, numbers) and non-numeric readings
+  (enums, bitfields, timestamps) are not supported.
+
+The offset is stored with the device's configuration entry, so several
+identical devices sharing the same device config can each be corrected
+individually.
+
 ## Connecting to devices via hubs
 
 If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
