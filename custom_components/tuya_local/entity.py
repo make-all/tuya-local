@@ -6,7 +6,7 @@ import json
 import logging
 
 from homeassistant.const import (
-    UnitOfDensity.MICROGRAMS_PER_CUBIC_METER,
+    UnitOfDensity,
     UnitOfArea,
     UnitOfTemperature,
 )
