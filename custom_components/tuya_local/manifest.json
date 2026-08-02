@@ -5,7 +5,7 @@
         "@make-all"
     ],
     "config_flow": true,
-    "dependencies": [],
+    "dependencies": ["http"],
     "documentation": "https://github.com/make-all/tuya-local",
     "integration_type": "device",
     "iot_class": "local_push",
@@ -15,6 +15,7 @@
         "tinytuya"
     ],
     "requirements": [
+        "segno~=1.6.6",
         "tinytuya==1.20.0",
         "tuya-device-sharing-sdk~=0.2.4"
     ],

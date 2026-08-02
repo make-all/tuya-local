@@ -4,6 +4,7 @@ Common functionality for Tuya Local entities
 
 import json
 import logging
+from numbers import Number
 
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
@@ -11,6 +12,7 @@ from homeassistant.const import (
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
+from homeassistant.util import slugify
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -25,6 +27,7 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
+        self._cal_prefix = slugify(config.config_id)
         self._attr_translation_key = (
             config.translation_key or config.translation_only_key
         )
@@ -115,6 +118,18 @@ class TuyaLocalEntity:
                                 value,
                             )
                 attr[a.name] = value
+        # Surface user-set calibration offsets for transparency. The loop
+        # covers all dps of the entity (not just leftover attribute dps)
+        # because the calibrated reading is usually a popped platform dp.
+        get_cal = getattr(self._device, "get_calibration", None)
+        if get_cal and getattr(self._device, "has_calibration", False):
+            for dp in self._config.dps():
+                offset = get_cal(self._cal_prefix, dp.name)
+                if isinstance(offset, Number):
+                    key = f"{dp.name}_calibration"
+                    # never shadow a real dp attribute of the same name
+                    if key not in attr:
+                        attr[key] = offset
         return attr
 
     @property

@@ -19,6 +19,7 @@ from homeassistant.core import HomeAssistant, callback
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_CALIBRATION,
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
@@ -61,6 +62,7 @@ class TuyaLocalDevice(object):
         poll_only=False,
         manufacturer=None,
         model=None,
+        calibration=None,
     ):
         """
         Represents a Tuya-based device.
@@ -76,8 +78,11 @@ class TuyaLocalDevice(object):
             poll_only (bool): True if the device should be polled only.
             manufacturer (str | None): The device manufacturer, if known.
             model (str | None): The device model, if known.
+            calibration (dict | None): User-set calibration offsets, keyed by
+                "{entity_config_id}/{dp_name}".
         """
         self._name = name
+        self._calibration = calibration or {}
         self._manufacturer = manufacturer
         self._model = model
         self._children = []
@@ -144,6 +149,10 @@ class TuyaLocalDevice(object):
         self._protocol_configured = protocol_version
         self._poll_only = poll_only
         self._temporary_poll = False
+        # Retry delay for devices that have never answered; escalates up to
+        # _MAX_CONNECT_BACKOFF so offline devices are not hammered.
+        self._MAX_CONNECT_BACKOFF = 300
+        self._connect_backoff = 5
         self._reset_cached_state()
 
         self._hass = hass
@@ -192,6 +201,24 @@ class TuyaLocalDevice(object):
         """Return True if the device has returned some state."""
         cached = self._get_cached_state()
         return len(cached) > 1 or cached.get("updated_at", 0) > 0
+
+    @property
+    def has_received_state(self):
+        """Return True if the device has actually answered at least once.
+
+        Unlike has_returned_state, this is not satisfied by locally queued
+        pending updates, only by a reply from the device.
+        """
+        return self._cached_state.get("updated_at", 0) > 0
+
+    @property
+    def has_calibration(self):
+        """Return True if any calibration offsets are set for this device."""
+        return bool(self._calibration)
+
+    def get_calibration(self, entity_config_id, dp_name):
+        """Return the user-set calibration offset for a dp, if any."""
+        return self._calibration.get(f"{entity_config_id}/{dp_name}")
 
     @callback
     def actually_start(self, event=None):
@@ -448,7 +475,19 @@ class TuyaLocalDevice(object):
                     self._api_lock.release()
             if not self.has_returned_state:
                 force_backoff = True
-            await asyncio.sleep(5 if force_backoff else 0.1)
+            if not self.has_received_state:
+                # The device has never answered (or was fully reset after
+                # repeated failures): escalate the retry interval so an
+                # offline device does not monopolise an executor thread with
+                # continuous connection attempts.
+                delay = self._connect_backoff
+                self._connect_backoff = min(
+                    self._connect_backoff * 2, self._MAX_CONNECT_BACKOFF
+                )
+                await asyncio.sleep(delay)
+            else:
+                self._connect_backoff = 5
+                await asyncio.sleep(5 if force_backoff else 0.1)
 
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
@@ -843,6 +882,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_POLL_ONLY],
         manufacturer=config.get(CONF_MANUFACTURER),
         model=config.get(CONF_MODEL),
+        calibration=config.get(CONF_CALIBRATION),
     )
     hass.data[DOMAIN][get_device_id(config)] = {
         "device": device,

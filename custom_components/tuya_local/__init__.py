@@ -7,12 +7,14 @@ investigation into Goldair's tuyapi statuses
 https://github.com/codetheweb/tuyapi/issues/31.
 """
 
+import asyncio
 import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.entity_registry import (
     async_get as async_get_entity_registry,
 )
@@ -31,10 +33,17 @@ from .const import (
 from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
 from .helpers.discovery import async_start_discovery, async_stop_discovery
-from .services import async_setup_services
+from .services import async_register_calibration_service, async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
+
+async def async_setup(hass: HomeAssistant, config):
+    """Register integration-wide services that need no entry state."""
+    async_register_calibration_service(hass)
+    return True
 
 
 def replace_unique_ids(entity_entry, device_id, conf_file, replacements):
@@ -1013,8 +1022,38 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         raise ConfigEntryNotReady("tuya-local device not ready") from e
 
     if not device.has_returned_state:
-        cleanup_failed_device(hass, device_id)
-        raise ConfigEntryNotReady("tuya-local device offline")
+        # Devices do not have to be online 24/7: log it, but keep the entry
+        # loaded so the integrations page does not flag it as needing
+        # attention. The receive loop and LAN rediscovery reconnect when the
+        # device is reachable; entities stay unavailable until then.
+        _LOGGER.warning(
+            "Device %s is offline; continuing setup with entities "
+            "unavailable until it responds",
+            entry.title,
+        )
+
+        async def _reload_after_first_contact() -> None:
+            # Some entity features are derived from live dps values at
+            # construction time, so rebuild the entry once the device has
+            # answered for the first time. has_received_state is used rather
+            # than has_returned_state because the latter is also satisfied by
+            # locally queued commands that the device never acknowledged.
+            while True:
+                await asyncio.sleep(30)
+                data = hass.data.get(DOMAIN, {}).get(device_id)
+                if data is None or data.get("device") is not device:
+                    return
+                if device.has_received_state:
+                    break
+            # Scheduled as a hass-level task: this entry-scoped task gets
+            # cancelled by the unload that a direct await would trigger.
+            hass.config_entries.async_schedule_reload(entry.entry_id)
+
+        entry.async_create_background_task(
+            hass,
+            _reload_after_first_contact(),
+            "tuya_local_reload_after_first_contact",
+        )
 
     device_conf = await hass.async_add_executor_job(
         get_config,
@@ -1031,7 +1070,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     await hass.config_entries.async_forward_entry_setups(entry, entities)
     await async_setup_services(hass, entities)
 
-    entry.add_update_listener(async_update_entry)
+    # Registered via async_on_unload so a reload does not stack up duplicate
+    # listeners, which would race concurrent unload/setup cycles.
+    entry.async_on_unload(entry.add_update_listener(async_update_entry))
 
     return True
 
@@ -1079,5 +1120,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug("Updating entry for device: %s", get_device_id(entry.data))
-    await async_unload_entry(hass, entry)
-    await async_setup_entry(hass, entry)
+    # Reload through the manager rather than calling unload/setup directly so
+    # entry-scoped cleanups (async_on_unload, background tasks) run properly.
+    await hass.config_entries.async_reload(entry.entry_id)
