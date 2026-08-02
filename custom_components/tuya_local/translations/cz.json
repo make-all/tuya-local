@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Dokončete přihlášení",
-                "description": "Pomocí aplikace SmartLife nebo Tuya naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
+                "description": "Pomocí aplikace SmartLife nebo Tuya naskenujte následující QR kód a dokončete přihlášení.\n\n![QR]({qr_url})\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
             },
             "choose_device": {
                 "title": "Vyberte zařízení",
@@ -72,6 +72,7 @@
             "no_devices": "Nelze najít žádná neregistrovaná zařízení pro účet."
         },
         "error": {
+            "login_error": "Přihlášení se nezdařilo: {msg} (kód {code})",
             "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné. Pokud jste vybrali konkrétní verzi protokolu, zkuste místo toho 'auto'.",
             "does_not_need_hub": "Zařízení nepotřebuje bránu a byla vybrána. ",
             "needs_hub": "Zařízení potřebuje bránu a žádná nebyla vybrána."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Nastavit kalibraci",
+            "description": "Nastaví kalibrační posun pro odečet entity Tuya Local. Posun se přičítá k hlášené hodnotě a ukládá se pro každé zařízení zvlášť.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entita",
+                    "description": "Entita, jejíž odečet má být kalibrován."
+                },
+                "offset": {
+                    "name": "Posun",
+                    "description": "Hodnota přičítaná k hlášenému odečtu, např. -0.4, pokud zařízení měří o 0.4 více. 0 kalibraci odstraní."
+                },
+                "attribute": {
+                    "name": "Atribut",
+                    "description": "Atribut ke kalibraci. Výchozí je hlavní odečet entity."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Odeslat naučený IR příkaz",
             "description": "Odeslat dálkový příkaz, který byl dříve naučen entitou dálkového ovládání, na jakýkoli infračervený vysílač.",

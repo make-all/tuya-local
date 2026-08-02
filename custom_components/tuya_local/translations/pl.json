@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Dokończ logowanie",
-                "description": "Użyj aplikacji SmartLife lub aplikacji Tuya"
+                "description": "Użyj aplikacji SmartLife lub aplikacji Tuya\n\n![QR]({qr_url})"
             },
             "choose_device": {
                 "title": "Wybierz urządzenie",
@@ -72,6 +72,7 @@
             "no_devices": "Nie udało się znaleźć żadnych niezarejestrowanych urządzeń dla konta."
         },
         "error": {
+            "login_error": "Logowanie nie powiodło się: {msg} (kod {code})",
             "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem, lub mogą być one nieprawidłowe. Jeśli wybrałeś konkretną wersję protokołu, spróbuj zamiast tego 'auto'.",
             "does_not_need_hub": "Urządzenie nie potrzebuje bramy i taką wybrano. ",
             "needs_hub": "Urządzenie wymaga bramy"
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Ustaw kalibrację",
+            "description": "Ustawia przesunięcie kalibracji dla odczytu encji Tuya Local. Przesunięcie jest dodawane do raportowanej wartości i zapisywane dla urządzenia.",
+            "fields": {
+                "entity_id": {
+                    "name": "Encja",
+                    "description": "Encja, której odczyt ma zostać skalibrowany."
+                },
+                "offset": {
+                    "name": "Przesunięcie",
+                    "description": "Wartość dodawana do raportowanego odczytu, np. -0.4, jeśli urządzenie mierzy o 0.4 za dużo. 0 usuwa kalibrację."
+                },
+                "attribute": {
+                    "name": "Atrybut",
+                    "description": "Atrybut do kalibracji. Domyślnie główny odczyt encji."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Wyślij nauczoną komendę IR",
             "description": "Wyślij zdalną komendę, która została wcześniej nauczona przez encję pilota do dowolnego emitera podczerwieni.",

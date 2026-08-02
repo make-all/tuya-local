@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Finalizați autentificarea",
-                "description": "Folosiți aplicația SmartLife sau Tuya pentru a scana următorul cod QR pentru a finaliza autentificarea.\n\nContinuați la pasul următor după ce ați finalizat acest pas în aplicație."
+                "description": "Folosiți aplicația SmartLife sau Tuya pentru a scana următorul cod QR pentru a finaliza autentificarea.\n\n![QR]({qr_url})\n\nContinuați la pasul următor după ce ați finalizat acest pas în aplicație."
             },
             "choose_device": {
                 "title": "Alegeți dispozitivul de adăugat",
@@ -72,6 +72,7 @@
             "no_devices": "Nu a fost posibilă găsirea niciunui dispozitiv neînregistrat pentru cont."
         },
         "error": {
+            "login_error": "Autentificare eșuată: {msg} (cod {code})",
             "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele pot fi incorecte. Dacă ați selectat o versiune specifică a protocolului, încercați 'auto' în schimb.",
             "does_not_need_hub": "Dispozitivul nu necesită gateway și unul a fost selectat. Vă rugăm să revizuiți alegerea.",
             "needs_hub": "Dispozitivul necesită gateway și nu a fost selectat niciunul."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Setare calibrare",
+            "description": "Setează un decalaj de calibrare pentru o citire a unei entități Tuya Local. Decalajul se adaugă la valoarea raportată și se salvează per dispozitiv.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entitate",
+                    "description": "Entitatea a cărei citire trebuie calibrată."
+                },
+                "offset": {
+                    "name": "Decalaj",
+                    "description": "Valoare adăugată la citirea raportată, de ex. -0.4 dacă dispozitivul măsoară cu 0.4 mai mult. 0 elimină calibrarea."
+                },
+                "attribute": {
+                    "name": "Atribut",
+                    "description": "Atributul de calibrat. Implicit: citirea principală a entității."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Trimite comandă IR învățată",
             "description": "Trimite o comandă de telecomandă care a fost învățată anterior de entitatea de telecomandă către orice emițător infraroșu.",

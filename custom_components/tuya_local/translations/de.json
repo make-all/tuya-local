@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Schließen Sie die Anmeldung ab",
-                "description": "Verwenden Sie die SmartLife App oder die Tuya App"
+                "description": "Verwenden Sie die SmartLife App oder die Tuya App\n\n![QR]({qr_url})"
             },
             "choose_device": {
                 "title": "Wählen Sie das hinzuzufügende Gerät aus",
@@ -72,6 +72,7 @@
             "no_devices": "Für das Konto konnten keine nicht registrierten Geräte gefunden werden."
         },
         "error": {
+            "login_error": "Anmeldung fehlgeschlagen: {msg} (Code {code})",
             "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch. Wenn Sie eine bestimmte Protokollversion ausgewählt haben, versuchen Sie stattdessen 'auto'.",
             "does_not_need_hub": "Das Gerät benötigt kein Gateway und es wurde eines ausgewählt. ",
             "needs_hub": "Das Gerät benötigt ein Gateway und es wurde keines ausgewählt."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Kalibrierung festlegen",
+            "description": "Legt einen Kalibrierungs-Offset für einen Messwert einer Tuya-Local-Entität fest. Der Offset wird zum gemeldeten Wert addiert und pro Gerät gespeichert.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entität",
+                    "description": "Die Entität, deren Messwert kalibriert werden soll."
+                },
+                "offset": {
+                    "name": "Offset",
+                    "description": "Wert, der zum gemeldeten Messwert addiert wird, z. B. -0.4, wenn das Gerät 0.4 zu hoch misst. 0 entfernt die Kalibrierung."
+                },
+                "attribute": {
+                    "name": "Attribut",
+                    "description": "Das zu kalibrierende Attribut. Standard ist der Hauptmesswert der Entität."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Gelernten IR-Befehl senden",
             "description": "Senden Sie einen zuvor von der Fernbedienungsentität gelernten Fernbefehl an einen Infrarot-Emitter.",

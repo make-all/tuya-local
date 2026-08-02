@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Selesaikan login",
-                "description": "Gunakan aplikasi SmartLife atau aplikasi Tuya untuk memindai kode QR berikut untuk menyelesaikan login.\n\nLanjutkan ke langkah berikutnya setelah Anda menyelesaikan langkah ini di aplikasi."
+                "description": "Gunakan aplikasi SmartLife atau aplikasi Tuya untuk memindai kode QR berikut untuk menyelesaikan login.\n\n![QR]({qr_url})\n\nLanjutkan ke langkah berikutnya setelah Anda menyelesaikan langkah ini di aplikasi."
             },
             "choose_device": {
                 "title": "Pilih perangkat yang akan ditambahkan",
@@ -72,6 +72,7 @@
             "no_devices": "Tidak dapat menemukan perangkat yang tidak terdaftar untuk akun tersebut."
         },
         "error": {
+            "login_error": "Gagal masuk: {msg} (kode {code})",
             "connection": "Tidak dapat terkoneksi ke perangkat Anda dengan detail tersebut. Bisa jadi masalah sementara, atau mungkin salah. Jika Anda memilih versi protokol tertentu, coba 'otomatis' sebagai gantinya.",
             "does_not_need_hub": "Perangkat tidak memerlukan gateway dan satu telah dipilih. ",
             "needs_hub": "Perangkat memerlukan gateway dan tidak ada yang dipilih."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Atur kalibrasi",
+            "description": "Mengatur offset kalibrasi untuk pembacaan entitas Tuya Local. Offset ditambahkan ke nilai yang dilaporkan dan disimpan per perangkat.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entitas",
+                    "description": "Entitas yang pembacaannya akan dikalibrasi."
+                },
+                "offset": {
+                    "name": "Offset",
+                    "description": "Nilai yang ditambahkan ke pembacaan, mis. -0.4 jika perangkat membaca 0.4 lebih tinggi. 0 menghapus kalibrasi."
+                },
+                "attribute": {
+                    "name": "Atribut",
+                    "description": "Atribut yang akan dikalibrasi. Bawaan: pembacaan utama entitas."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Kirim perintah IR yang dipelajari",
             "description": "Kirim perintah remote yang sebelumnya dipelajari oleh entitas remote ke emitter inframerah mana pun.",

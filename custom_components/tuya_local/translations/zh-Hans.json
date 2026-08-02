@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "完成登录",
-                "description": "使用SmartLife或Tuya应用扫描以下二维码以完成登录。\n\n完成此步骤后，继续进行下一步。"
+                "description": "使用SmartLife或Tuya应用扫描以下二维码以完成登录。\n\n![QR]({qr_url})\n\n完成此步骤后，继续进行下一步。"
             },
             "choose_device": {
                 "title": "选择要添加的设备",
@@ -72,6 +72,7 @@
             "no_devices": "无法找到该账户的任何未注册设备。"
         },
         "error": {
+            "login_error": "登录失败：{msg}（代码 {code}）",
             "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。如果您选择了特定的协议版本，请改为尝试“自动”。",
             "does_not_need_hub": "设备不需要网关，但选择了一个。请检查您的选择。",
             "needs_hub": "设备需要网关，但未选择。"
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "设置校准",
+            "description": "为 Tuya Local 实体的读数设置校准偏移。偏移会加到设备上报的数值上，并按设备单独保存。",
+            "fields": {
+                "entity_id": {
+                    "name": "实体",
+                    "description": "需要校准读数的实体。"
+                },
+                "offset": {
+                    "name": "偏移",
+                    "description": "加到上报读数上的值，例如设备偏高 0.4 时填 -0.4。填 0 可移除校准。"
+                },
+                "attribute": {
+                    "name": "属性",
+                    "description": "要校准的属性。默认为实体的主要读数。"
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "发送学习到的红外命令",
             "description": "发送之前由遥控器实体学习的远程命令到任何红外发射器。",

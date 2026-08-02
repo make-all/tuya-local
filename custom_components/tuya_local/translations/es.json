@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Completa el inicio de sesión",
-                "description": "Utilice la aplicación SmartLife o la aplicación Tuya para escanear el siguiente código QR y completar el inicio de sesión.\n\nContinúe con el siguiente paso una vez que haya completado este paso en la aplicación."
+                "description": "Utilice la aplicación SmartLife o la aplicación Tuya para escanear el siguiente código QR y completar el inicio de sesión.\n\n![QR]({qr_url})\n\nContinúe con el siguiente paso una vez que haya completado este paso en la aplicación."
             },
             "choose_device": {
                 "title": "Elija el dispositivo para agregar",
@@ -72,6 +72,7 @@
             "no_devices": "No se puede encontrar ningún dispositivo no registrado para la cuenta."
         },
         "error": {
+            "login_error": "Error de inicio de sesión: {msg} (código {code})",
             "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos. Si seleccionó una versión de protocolo específica, pruebe 'auto' en su lugar.",
             "does_not_need_hub": "El dispositivo no necesita una puerta de enlace y se seleccionó una. ",
             "needs_hub": "El dispositivo necesita una puerta de enlace y no se seleccionó ninguna."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Establecer calibración",
+            "description": "Establece un ajuste de calibración para una lectura de una entidad de Tuya Local. El ajuste se suma al valor informado y se guarda por dispositivo.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entidad",
+                    "description": "La entidad cuya lectura se debe calibrar."
+                },
+                "offset": {
+                    "name": "Ajuste",
+                    "description": "Valor que se suma a la lectura informada, p. ej. -0.4 si el dispositivo mide 0.4 de más. 0 elimina la calibración."
+                },
+                "attribute": {
+                    "name": "Atributo",
+                    "description": "El atributo a calibrar. Por defecto, la lectura principal de la entidad."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Enviar comando IR aprendido",
             "description": "Enviar un comando remoto que fue aprendido previamente por la entidad remota a cualquier emisor infrarrojo.",

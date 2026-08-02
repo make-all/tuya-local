@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Completa il login",
-                "description": "Utilizza l'app SmartLife o l'app Tuya per scansionare il seguente codice QR per autorizzare l'accesso.\n\nProsegui al passo successivo una volta completato."
+                "description": "Utilizza l'app SmartLife o l'app Tuya per scansionare il seguente codice QR per autorizzare l'accesso.\n\n![QR]({qr_url})\n\nProsegui al passo successivo una volta completato."
             },
             "choose_device": {
                 "title": "Scegli il dispositivo da aggiungere",
@@ -72,6 +72,7 @@
             "no_devices": "Impossibile trovare dispositivi non registrati per l'account."
         },
         "error": {
+            "login_error": "Accesso non riuscito: {msg} (codice {code})",
             "connection": "Impossibile connettersi al dispositivo con quei dettagli. Potrebbe essere un problema intermittente o potrebbero essere errati. Se hai selezionato una versione specifica del protocollo, prova invece 'auto'.",
             "does_not_need_hub": "Il dispositivo non necessita di un gateway e ne è stato selezionato uno. ",
             "needs_hub": "Il dispositivo necessita di un gateway e non ne è stato selezionato nessuno."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Imposta calibrazione",
+            "description": "Imposta un offset di calibrazione per una lettura di un'entità Tuya Local. L'offset viene sommato al valore riportato e salvato per dispositivo.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entità",
+                    "description": "L'entità la cui lettura deve essere calibrata."
+                },
+                "offset": {
+                    "name": "Offset",
+                    "description": "Valore aggiunto alla lettura riportata, ad es. -0.4 se il dispositivo misura 0.4 in più. 0 rimuove la calibrazione."
+                },
+                "attribute": {
+                    "name": "Attributo",
+                    "description": "L'attributo da calibrare. Predefinito: la lettura principale dell'entità."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Invia comando IR appreso",
             "description": "Invia un comando remoto che è stato precedentemente appreso dall'entità remota a qualsiasi emettitore a infrarossi.",

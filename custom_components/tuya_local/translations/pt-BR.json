@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Conclua o login",
-                "description": "Use o aplicativo SmartLife ou Tuya para digitalizar o seguinte código QR para concluir o login.\n\nContinue para a próxima etapa depois de concluir esta etapa no aplicativo."
+                "description": "Use o aplicativo SmartLife ou Tuya para digitalizar o seguinte código QR para concluir o login.\n\n![QR]({qr_url})\n\nContinue para a próxima etapa depois de concluir esta etapa no aplicativo."
             },
             "choose_device": {
                 "title": "Escolha o dispositivo a ser adicionado",
@@ -72,6 +72,7 @@
             "no_devices": "Não foi possível encontrar nenhum dispositivo não registrado para a conta."
         },
         "error": {
+            "login_error": "Falha no login: {msg} (código {code})",
             "connection": "Não foi possível conectar ao seu dispositivo com esses detalhes. Pode ser um problema intermitente ou eles podem estar incorretos. Se você selecionou uma versão de protocolo específica, tente 'auto' em vez disso.",
             "does_not_need_hub": "O dispositivo não precisa de gateway e um foi selecionado. ",
             "needs_hub": "O dispositivo precisa de um gateway e nenhum foi selecionado."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Definir calibração",
+            "description": "Define um deslocamento de calibração para uma leitura de uma entidade Tuya Local. O deslocamento é somado ao valor informado e salvo por dispositivo.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entidade",
+                    "description": "A entidade cuja leitura deve ser calibrada."
+                },
+                "offset": {
+                    "name": "Deslocamento",
+                    "description": "Valor somado à leitura informada, ex.: -0.4 se o dispositivo mede 0.4 a mais. 0 remove a calibração."
+                },
+                "attribute": {
+                    "name": "Atributo",
+                    "description": "O atributo a calibrar. Padrão: a leitura principal da entidade."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Enviar comando IR aprendido",
             "description": "Enviar um comando remoto que foi aprendido anteriormente pela entidade remota para qualquer emissor infravermelho.",

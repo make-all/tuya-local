@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Complete the login",
-                "description": "Use SmartLife app or Tuya app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+                "description": "Use SmartLife app or Tuya app to scan the following QR-code to complete the login.\n\n![QR]({qr_url})\n\nContinue to the next step once you have completed this step in the app."
             },
             "choose_device": {
                 "title": "Choose the device to add",
@@ -72,6 +72,7 @@
             "no_devices": "Unable to find any unregistered devices for the account."
         },
         "error": {
+            "login_error": "Login failed: {msg} (code {code})",
             "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect. If you selected a specific protocol version, try 'auto' instead.",
             "does_not_need_hub": "Device does not need a gateway and one was selected. Please review your choices.",
             "needs_hub": "Device needs a gateway and none was selected."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Set calibration",
+            "description": "Set a calibration offset for a reading of a Tuya Local entity. The offset is added to the value reported by the device and stored per device, so identical devices can be corrected individually.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entity",
+                    "description": "The entity whose reading should be calibrated."
+                },
+                "offset": {
+                    "name": "Offset",
+                    "description": "Value added to the reported reading, e.g. -0.4 if the device reads 0.4 too high. 0 removes the calibration."
+                },
+                "attribute": {
+                    "name": "Attribute",
+                    "description": "The attribute to calibrate. Defaults to the entity's main reading (sensor value, current temperature or humidity)."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Send a learned remote command to infrared",
             "description": "Send a remote command that was previously learned by the remote entity to any infrared emitter.",

@@ -17,7 +17,7 @@
             },
             "scan": {
                 "title": "Completa l'inici de sessió",
-                "description": "Useu l'aplicació SmartLife o l'aplicació Tuya per a escanejar el codi QR següent i completar l'inici de sessió.\n\nContinueu al següent pas un cop hàgiu completat aquest pas a l'aplicació."
+                "description": "Useu l'aplicació SmartLife o l'aplicació Tuya per a escanejar el codi QR següent i completar l'inici de sessió.\n\n![QR]({qr_url})\n\nContinueu al següent pas un cop hàgiu completat aquest pas a l'aplicació."
             },
             "choose_device": {
                 "title": "Trieu el dispositiu a afegir",
@@ -71,6 +71,7 @@
             "no_devices": "No s'ha pogut trobar cap dispositiu sense registrar per al compte."
         },
         "error": {
+            "login_error": "L'inici de sessió ha fallat: {msg} (codi {code})",
             "connection": "No s'ha pogut conectar al vostre dispositiu con esos detalles. Podría ser un problema intermitente, o podrían ser incorrectos. Si seleccionó una versión de protocolo específica, intente 'auto' en su lugar.",
             "needs_hub": "El dispositiu necessita una passarel·la i no se n'ha seleccionat cap.",
             "does_not_need_hub": "El dispositiu no necessita una passarel·la i se n'ha seleccionat una. Reviseu les vostres opcions."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Estableix el calibratge",
+            "description": "Estableix un desplaçament de calibratge per a una lectura d'una entitat de Tuya Local. El desplaçament se suma al valor informat i es desa per dispositiu.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entitat",
+                    "description": "L'entitat la lectura de la qual s'ha de calibrar."
+                },
+                "offset": {
+                    "name": "Desplaçament",
+                    "description": "Valor que se suma a la lectura informada, p. ex. -0.4 si el dispositiu mesura 0.4 de més. 0 elimina el calibratge."
+                },
+                "attribute": {
+                    "name": "Atribut",
+                    "description": "L'atribut a calibrar. Per defecte, la lectura principal de l'entitat."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Enviar comando IR aprendido",
             "description": "Envía un comando IR que ha sido aprendido por un dispositivo Tuya Local compatible.",

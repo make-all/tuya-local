@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "完成登入",
-                "description": "使用SmartLife或Tuya應用程式掃描以下二維碼以完成登入。 \n\n完成此步驟後，繼續下一步。"
+                "description": "使用SmartLife或Tuya應用程式掃描以下二維碼以完成登入。 \n\n![QR]({qr_url})\n\n完成此步驟後，繼續下一步。"
             },
             "choose_device": {
                 "title": "選擇要新增的設備",
@@ -72,6 +72,7 @@
             "no_devices": "無法找到該帳戶的任何未註冊設備。"
         },
         "error": {
+            "login_error": "登入失敗：{msg}（代碼 {code}）",
             "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。如果您選擇了特定的協議版本，請改為嘗試'auto'。",
             "does_not_need_hub": "設備不需要網關，但選擇了一個。請檢查您的選擇。",
             "needs_hub": "設備需要網關，但未選擇。"
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "設定校準",
+            "description": "為 Tuya Local 實體的讀數設定校準偏移。偏移會加到裝置回報的數值上，並依裝置分別儲存。",
+            "fields": {
+                "entity_id": {
+                    "name": "實體",
+                    "description": "需要校準讀數的實體。"
+                },
+                "offset": {
+                    "name": "偏移",
+                    "description": "加到回報讀數上的值，例如裝置偏高 0.4 時填 -0.4。填 0 可移除校準。"
+                },
+                "attribute": {
+                    "name": "屬性",
+                    "description": "要校準的屬性。預設為實體的主要讀數。"
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "發送學習到的紅外線命令",
             "description": "將先前由遙控實體學習到的遠程命令發送到任何紅外線發射器。",

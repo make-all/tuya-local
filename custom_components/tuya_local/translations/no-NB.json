@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Fullfør påloggingen",
-                "description": "Bruk SmartLife appen eller Tuya appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
+                "description": "Bruk SmartLife appen eller Tuya appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\n![QR]({qr_url})\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
             },
             "choose_device": {
                 "title": "Velg enheten du vil legge til",
@@ -72,6 +72,7 @@
             "no_devices": "Kan ikke finne noen uregistrerte enheter for kontoen."
         },
         "error": {
+            "login_error": "Innlogging mislyktes: {msg} (kode {code})",
             "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt. Hvis du valgte en spesifikk protokollversjon, prøv 'auto' i stedet.",
             "does_not_need_hub": "Enheten trenger ikke en gateway",
             "needs_hub": "Enheten trenger en gateway"
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Angi kalibrering",
+            "description": "Angir en kalibreringsforskyvning for en avlesning fra en Tuya Local-entitet. Forskyvningen legges til den rapporterte verdien og lagres per enhet.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entitet",
+                    "description": "Entiteten hvis avlesning skal kalibreres."
+                },
+                "offset": {
+                    "name": "Forskyvning",
+                    "description": "Verdi som legges til avlesningen, f.eks. -0.4 hvis enheten måler 0.4 for høyt. 0 fjerner kalibreringen."
+                },
+                "attribute": {
+                    "name": "Attributt",
+                    "description": "Attributtet som skal kalibreres. Standard er entitetens hovedavlesning."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Send lært IR-fjernkontrollsignal",
             "description": "Send en fjernkontrollkommando som tidligere ble lært av fjernkontrollentiteten til en hvilken som helst infrarød sender.",

@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Töltse ki a bejelentkezést",
-                "description": "Használja a SmartLife alkalmazást vagy a Tuya alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
+                "description": "Használja a SmartLife alkalmazást vagy a Tuya alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\n![QR]({qr_url})\n\nHa befejezte ezt a lépést az alkalmazásban"
             },
             "choose_device": {
                 "title": "Válassza ki a hozzáadni kívánt eszközt",
@@ -72,6 +72,7 @@
             "no_devices": "Nem található a fiókhoz nem regisztrált eszköz."
         },
         "error": {
+            "login_error": "Sikertelen bejelentkezés: {msg} (kód: {code})",
             "connection": "A megadott adatokkal nem sikerült kapcsolódni az eszközhöz. Lehet ideiglenes a probléma, vagy nem megfelelőek a megadott adatok. Ha egy adott protokoll verziót választottál, próbáld meg 'auto'-ra állítani.",
             "does_not_need_hub": "Az eszköznek nincs szüksége átjáróra",
             "needs_hub": "Az eszköznek átjáróra van szüksége"
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Kalibráció beállítása",
+            "description": "Kalibrációs eltolást állít be egy Tuya Local entitás mért értékéhez. Az eltolás hozzáadódik a jelentett értékhez, és eszközönként tárolódik.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entitás",
+                    "description": "Az entitás, amelynek mért értékét kalibrálni kell."
+                },
+                "offset": {
+                    "name": "Eltolás",
+                    "description": "A jelentett értékhez adott érték, pl. -0.4, ha az eszköz 0.4-gyel többet mér. A 0 törli a kalibrációt."
+                },
+                "attribute": {
+                    "name": "Attribútum",
+                    "description": "A kalibrálandó attribútum. Alapértelmezés: az entitás fő mért értéke."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Tanult IR parancs küldése",
             "description": "Tanult IR parancs küldése egy infravörös emitternek, amelyet korábban a távirányító entitás tanult meg.",

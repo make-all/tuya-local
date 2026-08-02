@@ -18,7 +18,7 @@
             },
             "scan": {
                 "title": "Complétez la connexion",
-                "description": "Utilisez l'application SmartLife ou l'application Tuya pour scanner le code QR suivant afin de terminer la connexion.\n\nContinuez à l'étape suivante une fois que vous avez terminé cette étape dans l'application."
+                "description": "Utilisez l'application SmartLife ou l'application Tuya pour scanner le code QR suivant afin de terminer la connexion.\n\n![QR]({qr_url})\n\nContinuez à l'étape suivante une fois que vous avez terminé cette étape dans l'application."
             },
             "choose_device": {
                 "title": "Choisissez l'appareil à ajouter",
@@ -72,6 +72,7 @@
             "no_devices": "Impossible de trouver des appareils non enregistrés pour le compte."
         },
         "error": {
+            "login_error": "Échec de la connexion : {msg} (code {code})",
             "connection": "Impossible de se connecter à votre appareil avec ces détails. Il peut s'agir d'un problème intermittent, ou ils peuvent être incorrects. Si vous avez sélectionné une version de protocole spécifique, essayez 'auto' à la place.",
             "does_not_need_hub": "L'appareil n'a pas besoin de passerelle et une a été sélectionnée. ",
             "needs_hub": "L'appareil a besoin d'une passerelle et aucune n'a été sélectionnée."
@@ -107,6 +108,24 @@
         }
     },
     "services": {
+        "set_calibration": {
+            "name": "Définir l'étalonnage",
+            "description": "Définit un décalage d'étalonnage pour une mesure d'une entité Tuya Local. Le décalage est ajouté à la valeur rapportée et enregistré par appareil.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entité",
+                    "description": "L'entité dont la mesure doit être étalonnée."
+                },
+                "offset": {
+                    "name": "Décalage",
+                    "description": "Valeur ajoutée à la mesure rapportée, p. ex. -0.4 si l'appareil mesure 0.4 de trop. 0 supprime l'étalonnage."
+                },
+                "attribute": {
+                    "name": "Attribut",
+                    "description": "L'attribut à étalonner. Par défaut, la mesure principale de l'entité."
+                }
+            }
+        },
         "send_learned_ir_command": {
             "name": "Envoyer une commande IR apprise",
             "description": "Envoyer une commande à distance qui a été précédemment apprise par l'entité de télécommande à n'importe quel émetteur infrarouge.",
