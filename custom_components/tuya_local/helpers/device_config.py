@@ -483,6 +483,28 @@ class TuyaDpsConfig:
         endianness = self._config.get("endianness", "big")
         return endianness
 
+    def _calibrated(self, value, device):
+        """Apply any user-set calibration offset for this dp on read.
+
+        Calibration is deliberately read-only: the set_calibration service
+        only accepts measurement dps that platforms never write, so no
+        inverse is applied in get_values_to_set. Offsetting writes would
+        conflict with HA's uncalibrated entity bounds and with configs
+        that use raw values in cross-dp conditions.
+        """
+        get_cal = getattr(device, "get_calibration", None)
+        offset = (
+            get_cal(slugify(self._entity.config_id), self.name) if get_cal else None
+        )
+        if (
+            isinstance(offset, Number)
+            and offset
+            and isinstance(value, Number)
+            and not isinstance(value, bool)
+        ):
+            return value + offset
+        return value
+
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask
@@ -501,16 +523,18 @@ class TuyaDpsConfig:
                 bit_count = mask.bit_count()
                 raw_result = to_signed(raw_result, bit_count)
 
-            return self._map_from_dps(raw_result, device)
+            result = self._map_from_dps(raw_result, device)
 
         elif mask and isinstance(bytevalue, int):
             # Handle masking for integer DPs
             scale = mask & (1 + ~mask)
             raw_result = (bytevalue & mask) // scale
-            return self._map_from_dps(raw_result, device)
+            result = self._map_from_dps(raw_result, device)
 
         else:
-            return self._map_from_dps(raw_from_device, device)
+            result = self._map_from_dps(raw_from_device, device)
+
+        return self._calibrated(result, device)
 
     def decoded_value(self, device):
         v = self._map_from_dps(device.get_property(self.id), device)
