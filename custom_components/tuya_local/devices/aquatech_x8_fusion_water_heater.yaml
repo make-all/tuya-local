@@ -1,7 +1,8 @@
-name: Aquatech X8 Fusion
+name: Heat pump water heater
 products:
-  - id: "*"
-    name: Aquatech X8 Fusion
+  - id: 4zrn3rqjibkude2z
+    manufacturer: Aquatech
+    model: Fusion/X8
 
 entities:
   - entity: water_heater
@@ -24,7 +25,6 @@ entities:
                 value: high_demand
               - dps_val: electric
                 value: electric
-
       - id: 2
         type: integer
         name: temperature
@@ -32,33 +32,14 @@ entities:
         range:
           min: 15
           max: 75
-
       - id: 3
         type: integer
         name: current_temperature
         unit: C
-
       - id: 4
         type: string
         name: work_mode
         hidden: true
-
-  - entity: select
-    name: Mode
-    category: config
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: eco
-            value: Eco
-          - dps_val: standard
-            value: Standard
-          - dps_val: boot
-            value: Hybrid
-          - dps_val: electric
-            value: Heating Element
 
   - entity: binary_sensor
     class: problem
@@ -76,7 +57,7 @@ entities:
         name: fault_code
 
   - entity: sensor
-    name: Return Air Temperature
+    name: Coil temperature
     class: temperature
     category: diagnostic
     dps:
@@ -87,7 +68,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Ambient Temperature
+    name: Ambient temperature
     class: temperature
     category: diagnostic
     dps:
@@ -98,7 +79,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Coil Temperature
+    name: Return air temperature
     class: temperature
     category: diagnostic
     dps:
@@ -109,7 +90,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Exhaust Temperature
+    name: Exhaust temperature
     class: temperature
     category: diagnostic
     dps:
@@ -120,7 +101,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Water Tank Temperature
+    name: Water tank temperature
     class: temperature
     category: diagnostic
     dps:
@@ -131,7 +112,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Return Water Temperature
+    name: Return water temperature
     class: temperature
     category: diagnostic
     dps:
@@ -142,24 +123,27 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Main Valve Opening
+    name: Main valve opening
     category: diagnostic
     dps:
       - id: 107
         type: integer
         name: sensor
-        unit: "%"
+        unit: P
 
   - entity: sensor
-    name: Compressor
+    name: Compressor frequency
+    class: frequency
     category: diagnostic
     dps:
       - id: 108
         type: integer
         name: sensor
+        unit: Hz
+        class: measurement
 
   - entity: binary_sensor
-    name: Internal Flag DP109
+    name: Four-way valve
     category: diagnostic
     dps:
       - id: 109
@@ -167,15 +151,19 @@ entities:
         name: sensor
 
   - entity: sensor
-    name: Fan
+    name: Fan frequency
+    class: frequency
     category: diagnostic
     dps:
       - id: 110
         type: integer
         name: sensor
+        unit: Hz
+        class: measurement
 
   - entity: binary_sensor
-    name: Internal Flag DP113
+    name: Electric heating element
+    class: heat
     category: diagnostic
     dps:
       - id: 113
