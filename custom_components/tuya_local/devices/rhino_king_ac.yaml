@@ -1,6 +1,7 @@
-name: Rhino King AC
+name: Smart AC controller
 products:
   - id: y6lcryonnh5klkmo
+    manufacturer: Rhino King
 entities:
   - entity: climate
     dps:
@@ -75,7 +76,7 @@ entities:
         type: integer
         name: current_humidity
 
-  # 独立传感器依然保留，因为这是最稳妥的显示方式 
+  # 独立传感器依然保留，因为这是最稳妥的显示方式
   - entity: sensor
     name: Current Temperature
     class: temperature
@@ -116,4 +117,3 @@ entities:
             value: "制热+地暖"
           - dps_val: cold_floorcold
             value: "制冷+地冷"
- # 存档路径 /homeassistant/custom_components/tuya_local/devices/1ac.yaml
