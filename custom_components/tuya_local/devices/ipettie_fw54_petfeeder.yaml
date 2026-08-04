@@ -1,0 +1,43 @@
+name: Pet feeder
+products:
+  - id: tejdgn0tuyiq6vmt
+    manufacturer: iPettie
+    model: FW54
+entities:
+  - entity: switch
+    name: Water light
+    icon: "mdi:water-outline"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: number
+    name: Manual feed command
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 15
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
