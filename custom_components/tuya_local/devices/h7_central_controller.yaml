@@ -1,10 +1,8 @@
-  # ======基本完美了除了列表加的温度没有%标==== =======================================
-  # 存档路径/homeassistant/custom_components/tuya_local/devices/1xnwh7.yaml
-  #每个H7可能不同先去涂鸦IO网站点云开发-API调试-设备控制-查询物模型查ID实际值
-  # =========================================================================
-name: H7 Central Controller Full
+name: Central HVAC controller
 products:
   - id: ddbcuqy4usocv9lv
+    manufacturer: Rhino King
+    model: H7
 entities:
   # =========================================================================
   # --- 1. 主要控制区（日常核心控制，不带 category 直接显示在最顶部） ---
@@ -49,13 +47,13 @@ entities:
             value: "出风"
           - dps_val: "cold"
             value: "制冷"
-          - dps_val: "hea"              
+          - dps_val: "hea"
             value: "制热"
-          - dps_val: "floorhea"         
+          - dps_val: "floorhea"
             value: "地暖"
           - dps_val: "heat_floorheat"
             value: "制热+地暖"
-          - dps_val: "cold_floorcold"   
+          - dps_val: "cold_floorcold"
             value: "制冷+地冷"
 
       # --- 温度控制 ---
@@ -86,7 +84,7 @@ entities:
           min: 0
           max: 100
         mapping:
-          - scale: 1                        
+          - scale: 1
 
   # =========================================================================
   # --- 2. 轨道二：抽成独立的传感器实体，供顶部卡片与变色程序码直接调用 ---
@@ -140,8 +138,6 @@ entities:
         range:
           min: 0
           max: 6
-
-
 
   # ---关旁通D阀触发数 ---
   - entity: number
@@ -602,7 +598,7 @@ entities:
         range:
           min: 25
           max: 55
-          
+
   - entity: number
     name: 水箱控制温差
     icon: mdi:thermometer
@@ -616,7 +612,7 @@ entities:
         range:
           min: 1
           max: 5
-          
+
   - entity: number
     name: 地暖辐射最低供水温度
     icon: mdi:snowflake-thermometer
@@ -660,7 +656,7 @@ entities:
           max: 4
 
   - entity: number
-    name: 制热初切换切阀月数 # API接口未体现
+    name: 制热初切换切阀月数  # API接口未体现
     icon: mdi:calendar-month
     category: config
     dps:
