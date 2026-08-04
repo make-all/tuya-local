@@ -1,0 +1,119 @@
+name: Rhino King AC
+products:
+  - id: y6lcryonnh5klkmo
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+              - dps_val: floor_heat
+                value: heat
+              - dps_val: heat_floorheat
+                value: heat
+              - dps_val: cold_floorcold
+                value: cool
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: wind
+            value: "出风"
+          - dps_val: cold
+            value: "制冷"
+          - dps_val: hot
+            value: "制热"
+          - dps_val: floor_heat
+            value: "地暖"
+          - dps_val: heat_floorheat
+            value: "制热+地暖"
+          - dps_val: cold_floorcold
+            value: "制冷+地冷"
+      - id: 16
+        type: integer
+        name: temperature
+        range: {min: 150, max: 400}
+        mapping: [{scale: 10, step: 5}]
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping: [{scale: 10}]
+      - id: 28
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: "超强"
+          - dps_val: "1"
+            value: "AI除湿"
+          - dps_val: "2"
+            value: "极低"
+          - dps_val: "3"
+            value: "弱"
+          - dps_val: "4"
+            value: "标准"
+          - dps_val: "5"
+            value: "强"
+      # 关键修改：使用 current_humidity 属性名
+      - id: 34
+        type: integer
+        name: current_humidity
+
+  # 独立传感器依然保留，因为这是最稳妥的显示方式 
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
+        mapping: [{scale: 10}]
+
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 34
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: select
+    name: 运行模式
+    icon: mdi:hvac
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: wind
+            value: "出风"
+          - dps_val: cold
+            value: "制冷"
+          - dps_val: hot
+            value: "制热"
+          - dps_val: floor_heat
+            value: "地暖"
+          - dps_val: heat_floorheat
+            value: "制热+地暖"
+          - dps_val: cold_floorcold
+            value: "制冷+地冷"
+ # 存档路径 /homeassistant/custom_components/tuya_local/devices/1ac.yaml
