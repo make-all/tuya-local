@@ -3,6 +3,9 @@ products:
   - id: h3bhzu9m0ig80rdu
     manufacturer: Bcom
     model: Majic IPBox
+  - id: ntortv1hbykmc49z
+    manufacturer: 5tech
+    model: Versus One
 entities:
   - entity: switch
     name: Camera record
@@ -239,3 +242,18 @@ entities:
             value: false
           - dps_val: false
             value: true
+  - entity: event
+    translation_key: alarm
+    dps:
+      - id: 185
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 185
+        type: utf16b64
+        name: message
+        optional: true

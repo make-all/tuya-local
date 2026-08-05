@@ -3,7 +3,7 @@
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
-- Amantii Bespoke R1-2-AP1 fireplace
+- Amantii Bespoke R1-2-AP1 and TRD Lumina fireplaces
 - AMOS CY-B06ERW oil radiator
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
@@ -129,8 +129,10 @@
 - ElectriQ 12WMINV
 - ElectriQ Airflex, EcoSilent models
 - ElectriQ SupremeCool SC16HPW
+- Eurom AC 5201 Caravan and Home air conditioner
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- FM Solar mobile split heat pump
 - Fral Super Cool FSC08 WiFi portable air conditioner
 - Fral Super Cool FSC14.2 DH portable air conditioner
 - Friedrich Uni-Fit air conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
@@ -145,7 +147,7 @@
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
 - Kibernetik 12K portable split air conditioner
-- Klarstein Iceblock Ecosmart air conditioner
+- Klarstein Iceblock Ecosmart, MetroBreeze New York, Pure Blizzard air conditioners
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
@@ -156,6 +158,7 @@
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Olimpia Splendid Unico Pro air conditioner
 - Qlima SC 7035S and MS-AC 5002 air conditioners
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
@@ -206,6 +209,7 @@
 - Turbro 75000 btu pool heat pump
 - Varminpool pool heatpump
 - Varpoolfaye 5kW pool heat pump
+- Vidapool VTX016 pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -218,6 +222,7 @@
 
 - Apricus heat pump water heater
 - A.O. Smith HeatBot 15L electric water heater
+- Aqua Plus APAIO270 heat pump water heater
 - Aquatech Rapid/X6 heat pump water heater
 - Aquaviva AVH15S combo air-water heat pump
 - Arçelik AHPH-MM series combo air-water heat pump
@@ -246,7 +251,7 @@
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
 - Omni X Duplex water heater
-- Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
+- Powerworld PW030, PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Shuangri SR223 solar water heating controller
@@ -267,6 +272,7 @@
 - Avatto ME81, WS20R and WT100 thermostats
 - Avonflow AFD14-H radiator thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
+- Baxi Smart Link OpenTherm thermostat
 - Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
@@ -408,16 +414,15 @@
 - Humhold 24" low profile ceiling fan with RGB+CW lights
 - Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
+- Imagine 3+1 triple switch with fan controller
 - Immax Neo Lite Vento ceiling fan with light
 - Inkbird IVC001W fan controller
 - InTec ceiling fan with light
 - Kavunion C1 100 ventilation fan
 - KCvents VT501-W heat recovery ventilation
 - Kendal KVT-Touchtower pedestal fan
-- Klarstein Airfold Smart ceiling fan with light
-- Klarstein Icewind Plus Smart cooling fan
-- Klarstein Skyscaper Ice cooling fan
-- Klarstein Skytower Grand Smart cooling fan
+- Klarstein Airfold, Bolero ceiling fans with light
+- Klarstein Icewind Plus, Skyscraper Ice, Skytower Grand cooling fans
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
@@ -426,7 +431,7 @@
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
-- Lumary A1 and B2 ceiling fans with lights
+- Lumary A1, B2, C2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
 - MeacoFan Sefte Pro table air circulator
@@ -462,6 +467,7 @@
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
+- Sofucor KBS ceiling fan with light
 - Stirling FS1-40DC pedestal fan
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
@@ -502,6 +508,7 @@
 - Meaco Clean CA-HEPA air purifier
 - Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
+- Neotec XJ-3900A air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
 - Proscenic A8 and A9 air purifiers
@@ -517,7 +524,7 @@
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
-- Webber AP9750 air purifier
+- Webber AP9750 and APG7800 air purifiers
 
 ### Dehumidifiers
 
@@ -595,6 +602,7 @@
 - Eanons QT-JS2014 purifying humidifier
 - Eberg HUMI H03G1 humidifier
 - Eta Noble humidifier
+- Flymoon Top Fill 5L Cool Mist humidifier
 - Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea and Humea Grande humidifiers
@@ -631,6 +639,7 @@
 
 - Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
+- Aga Electrickit Advanced range cooker
 - Amenzo dishwasher
 - Anko 1.7L smart kettle
 - Atomi coffee maker
@@ -728,9 +737,8 @@
 - WMDL 2C dual channel bidirectional energy meter
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff and iMeter 3PN energy meters
-- Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
-- Zemismart SMD02T-TZ 2-phase 120A bidirectional energy meter
-- Zemismart SPM02-(multiple variants) 3-phase energy meter
+- Zemismart SDM01 1 and 3-phase bidirectional energy meters
+- Zemismart SPM02-(multiple variants) 2 and 3-phase energy meter
 - Zemismart ZMAi-90 smart switch energy meter
 - ZM-Wi-Fi smart meter
 
@@ -741,6 +749,8 @@
 - AFYEEV 16A 11kW, 32A 7kW and 22kW portable EV chargers
 - Aimiler 11kW 16A and 40A EV chargers
 - Ampbolt Level 1/2 portable EV charger
+- AmperePoint Q series EV chargers
+- Conow CBE2000 Pro solar battery
 - dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
@@ -956,6 +966,7 @@ of device.
 - LSC Smart Connect Neon LED strip
 - LSC Smart Connect Party string lights
 - LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
+- Lumary D1 6 inch retrofit downlight (independent RGB ring and CCT centre)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
 - Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
@@ -1023,6 +1034,7 @@ of device.
 - Fakro ARZ roof blind
 - FS-03W curtain switch with backlight control
 - Garen TSI Fit and Kit Central garage door openers
+- Globmatic Castor gate opener
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
@@ -1205,6 +1217,7 @@ port and password.
 - FurPipi PF05 pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Happy Paws CoreBox litter box
 - Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
@@ -1248,6 +1261,7 @@ port and password.
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
 - Tesla Smart pet feeder
+- Ti Pro25 cat litter box
 - Tonepie T1PRO cat litter box
 - Tonepie T1 Pro MAX cat litter box
 - V330L pet feeder
@@ -1285,12 +1299,16 @@ port and password.
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
+- Inkbird IIC400 irrigation controller
+- Joekol dual pump watering system
 - KRain KRX8 (also KRX6) irrigation controller
+- Neo Coolcam 16 zone sprinkler controller
 - Neo NAS-WV02W water use monitoring valve
 - Neptun Smart and Smart+ water leak control systems
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
+- Stahlmann Smart water leak control system
 - Sunlary indoor plant watering system
 - Wasserstein AquaPal water monitor
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
@@ -1380,6 +1398,7 @@ port and password.
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
+- Satisure power outage alarm
 - SD123 HPR01 human presence radar
 - Shrivee triple water timer
 - SNT957W-TDE temperature sensor
@@ -1505,7 +1524,7 @@ entity types as sub devices.
 - WL-898WZ water leak sensor
 - WL-RTCZ-05Z human presence sensor
 - Zemismart SPM01 energy meter
-- Zemismart ZM85EL-1x roller blind motor
+- Zemismart ZM85EL-1x and ZM25EL roller blind motors
 - ZPmeter 214C-Z water meter (with and without valve control)
 - ZTH08ZTU temperature and humidity sensor
 

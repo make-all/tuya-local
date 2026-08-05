@@ -22,7 +22,6 @@ entities:
         name: daily
         optional: true
   - entity: sensor
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: A
@@ -34,10 +33,10 @@ entities:
         unit: V
         optional: true
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -49,10 +48,10 @@ entities:
         unit: A
         optional: true
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: A
@@ -64,10 +63,10 @@ entities:
         unit: kW
         optional: true
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: B
@@ -79,10 +78,10 @@ entities:
         unit: V
         optional: true
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: B
@@ -94,10 +93,10 @@ entities:
         unit: A
         optional: true
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: B
@@ -109,10 +108,10 @@ entities:
         unit: kW
         optional: true
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: C
@@ -124,10 +123,10 @@ entities:
         unit: V
         optional: true
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: C
@@ -139,10 +138,10 @@ entities:
         unit: A
         optional: true
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: C
@@ -154,11 +153,11 @@ entities:
         unit: kW
         optional: true
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 9
         type: integer

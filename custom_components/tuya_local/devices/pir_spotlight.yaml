@@ -117,25 +117,21 @@ entities:
           min: 1
           max: 480
         unit: min
-        mapping:
-          - scale: 1
-          - dps_val: null
         optional: true
   - entity: number
-    name: Standby bright
+    name: Standby brightness
     category: config
     dps:
       - id: 59
         name: value
         type: integer
+        unit: "%"
+        optional: true
         range:
           min: 0
           max: 1000
-        unit: min
         mapping:
-          - scale: 1
-          - dps_val: null
-        optional: true
+          - scale: 10
   - entity: select
     name: Ambient light sensor
     category: config

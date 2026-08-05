@@ -3,11 +3,14 @@ products:
   - id: djxo7tynpa1aocaa
     manufacturer: Vevor
     model: 76L
+  - id: dqdhcckklsbbkksz
+    manufacturer: Hazrela
 entities:
   - entity: switch
     dps:
       - id: 1
         type: boolean
+        optional: true
         name: switch
   - entity: select
     name: Cleaning
@@ -28,6 +31,7 @@ entities:
     dps:
       - id: 3
         type: boolean
+        optional: true
         name: button
   - entity: lock
     translation_key: child_lock
@@ -35,6 +39,7 @@ entities:
     dps:
       - id: 4
         type: boolean
+        optional: true
         name: lock
   - entity: number
     name: Cleaning delay
@@ -52,9 +57,27 @@ entities:
     dps:
       - id: 6
         type: integer
+        optional: true
         name: sensor
-        unit: kg
         class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: LB
+                value_redirect: pounds
+      - id: 111
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: LB
+            value: lb
+          - value: kg
+      - id: 112
+        type: integer
+        optional: true
+        name: pounds
         mapping:
           - scale: 10
   - entity: sensor
@@ -63,6 +86,7 @@ entities:
     dps:
       - id: 7
         type: integer
+        optional: true
         name: sensor
         unit: times
   - entity: sensor
@@ -72,6 +96,7 @@ entities:
     dps:
       - id: 8
         type: integer
+        optional: true
         name: sensor
         unit: s
   - entity: button
@@ -80,6 +105,7 @@ entities:
     dps:
       - id: 9
         type: boolean
+        optional: true
         name: button
   - entity: button
     translation_key: factory_reset
@@ -96,18 +122,21 @@ entities:
     dps:
       - id: 101
         type: integer
+        optional: true
         name: sensor
         unit: times
   - entity: light
     dps:
       - id: 107
         type: integer
+        optional: true
         name: brightness
         range:
           min: 0
           max: 255
       - id: 102
         type: string
+        optional: true
         name: named_color
         mapping:
           - dps_val: red
@@ -150,6 +179,7 @@ entities:
           - scale: 10
       - id: 108
         type: string
+        optional: true
         name: log
   - entity: binary_sensor
     class: problem
@@ -157,16 +187,21 @@ entities:
     dps:
       - id: 105
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: "0"
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 105
         type: string
+        optional: true
         name: fault_code
       - id: 105
         type: string
+        optional: true
         name: description
         mapping:
           - dps_val: "0"
@@ -228,4 +263,28 @@ entities:
             value: occupied
       - id: 109
         type: string
+        optional: true
         name: trigger
+  - entity: select
+    name: Weight unit
+    icon: "mdi:scale"
+    category: config
+    hidden: unavailable  # not on all models
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: KG
+            value: kg
+          - dps_val: LB
+            value: lb
+      - id: 111
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

@@ -3,6 +3,9 @@ products:
   - id: vv3blwenchl2xnyj
     manufacturer: Pureborne
     model: HTF1001
+  - id: 7vv5uaymmrsealcu
+    manufacturer: Flanur
+    model: HTF1003
 entities:
   - entity: fan
     translation_key: fan_with_presets
@@ -20,6 +23,10 @@ entities:
             value: nature
           - dps_val: nomal
             value: sleep
+            available: pureborne_variant
+          - dps_val: Nomal
+            value: sleep
+            available: flanur_variant
           - dps_val: auto
             value: auto
       - id: 5
@@ -31,12 +38,44 @@ entities:
         mapping:
           - dps_val: F1
             value: 25
+            available: pureborne_variant
           - dps_val: F2
             value: 50
+            available: pureborne_variant
           - dps_val: F3
             value: 75
+            available: pureborne_variant
           - dps_val: F4
             value: 100
+            available: pureborne_variant
+          - dps_val: level_1
+            value: 25
+            available: flanur_variant
+          - dps_val: level_2
+            value: 50
+            available: flanur_variant
+          - dps_val: level_3
+            value: 75
+            available: flanur_variant
+          - dps_val: level_4
+            value: 100
+            available: flanur_variant
+      - id: 102
+        type: string
+        name: pureborne_variant
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [F1, F2, F3, F4]
+                value: true
+      - id: 102
+        type: string
+        name: flanur_variant
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [level_1, level_2, level_3, level_4]
+                value: true
   - entity: switch
     translation_key: sound
     dps:

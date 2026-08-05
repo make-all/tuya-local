@@ -79,9 +79,6 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             return self._tone_dp.get_value(self._device) != "off"
 
     async def async_turn_on(self, **kwargs) -> None:
-        await self._async_turn_on_locked(**kwargs)
-
-    async def _async_turn_on_locked(self, **kwargs) -> None:
         tone = kwargs.get(ATTR_TONE, None)
         duration = kwargs.get(ATTR_DURATION, None)
         volume = kwargs.get(ATTR_VOLUME_LEVEL, None)

@@ -202,6 +202,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -223,6 +224,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -243,6 +245,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -264,6 +267,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -285,6 +289,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -306,6 +311,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -327,6 +333,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -372,6 +379,7 @@ entities:
                00000000000000000000000000000000FFFFFFFF00000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        class: measurement
   - entity: sensor
     name: Heat sink temperature
     class: temperature
@@ -386,6 +394,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -407,6 +416,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                FFFFFFFF0000000000000000000000000000000000000000\
                0000000000000000"
+        class: measurement
   - entity: sensor
     name: Compressor frequency
     class: frequency
@@ -460,6 +470,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                00000000000000000000000000000000FFFFFFFF00000000\
                0000000000000000"
+        class: measurement
   - entity: sensor
     name: Low pressure gas temperature
     class: temperature
@@ -474,6 +485,7 @@ entities:
                0000000000000000000000000000000000000000FFFFFFFF\
                0000000000000000"
         mask_signed: true
+        class: measurement
       - id: 6
         type: string
         name: unit
@@ -510,6 +522,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -521,6 +534,7 @@ entities:
         optional: true
         name: sensor
         unit: A
+        class: measurement
         mask: "0000000000000000FFFFFFFF000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -534,6 +548,7 @@ entities:
         optional: true
         name: sensor
         unit: V
+        class: measurement
         mask: "000000000000000000000000FFFFFFFF0000000000000000\
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
@@ -547,6 +562,7 @@ entities:
         optional: true
         name: sensor
         unit: W
+        class: measurement
         mask: "00000000000000000000000000000000FFFFFFFF00000000\
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\

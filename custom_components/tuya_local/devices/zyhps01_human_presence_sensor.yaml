@@ -2,6 +2,8 @@ name: Human presence sensor
 products:
   - id: wzp9yjsobanavsut
     model: ZY-HPS01-5.8G
+  - id: bemwtiswj5euk9rr
+    model: ZY-HPS01-2.4G
 entities:
   - entity: binary_sensor
     class: motion
@@ -15,6 +17,24 @@ entities:
           - dps_val: none
             value: false
 
+  - entity: sensor
+    class: distance
+    hidden: unavailable
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: cm
+        class: measurement
+      - id: 102
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     class: illuminance
     dps:

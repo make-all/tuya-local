@@ -34,34 +34,33 @@ entities:
   - entity: sensor
     name: Soil temperature 1
     class: temperature
-    category: diagnostic
     dps:
       - id: 101
         name: sensor
         type: integer
         unit: C
+        class: measurement
   - entity: sensor
     name: Soil moisture 1
     class: moisture
-    category: diagnostic
     dps:
       - id: 102
         name: sensor
         type: integer
         unit: "%"
+        class: measurement
   - entity: sensor
     name: Last water flow 1
     class: water
-    category: diagnostic
     icon: "mdi:water"
     dps:
       - id: 103
         name: sensor
         type: integer
         unit: L
+        class: measurement
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 105
         type: integer
@@ -462,31 +461,31 @@ entities:
   - entity: sensor
     name: Soil temperature 2
     class: temperature
-    category: diagnostic
     dps:
       - id: 150
         name: sensor
         type: integer
         unit: C
+        class: measurement
   - entity: sensor
     name: Soil moisture 2
     class: moisture
-    category: diagnostic
     dps:
       - id: 151
         name: sensor
         type: integer
         unit: "%"
+        class: measurement
   - entity: sensor
     name: Last water flow 2
     class: water
-    category: diagnostic
     icon: "mdi:water"
     dps:
       - id: 152
         name: sensor
         type: integer
         unit: L
+        class: measurement
   - entity: sensor
     name: Timer status 2
     class: enum

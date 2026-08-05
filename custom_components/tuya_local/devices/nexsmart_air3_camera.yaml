@@ -33,13 +33,12 @@ entities:
   # ------------------------------------
   - entity: sensor
     class: battery
-    category: diagnostic
     # Battery Level Sensor (matches wireless_electricity: 145)
     dps:
       - id: 145
         type: integer
         name: sensor
-
+        unit: "%"
   - entity: binary_sensor
     class: battery_charging
     # Power Mode Sensor (matches wireless_powermode: 146)

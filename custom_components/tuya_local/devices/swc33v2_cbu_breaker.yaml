@@ -75,6 +75,7 @@ entities:
         force: true
         type: base64
         unit: kW
+        class: measurement
         name: sensor
         mask: "0000000000FFFFFF"
         mapping:
@@ -126,6 +127,7 @@ entities:
         type: base64
         unit: kW
         name: sensor
+        class: measurement
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
@@ -175,6 +177,7 @@ entities:
         force: true
         type: base64
         unit: kW
+        class: measurement
         name: sensor
         mask: "0000000000FFFFFF"
         mapping:
@@ -278,6 +281,7 @@ entities:
         optional: true
         type: integer
         name: sensor
+        class: measurement
         unit: mA
 
   - entity: switch
@@ -596,5 +600,6 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
         mapping:
           - scale: 10

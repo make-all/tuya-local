@@ -52,6 +52,7 @@ entities:
       - id: 122
         name: sensor
         type: integer
+        class: measurement
         optional: true
         unit: "%"
   # Sensor entities intelligent
@@ -193,7 +194,6 @@ entities:
   # Diagnostic entities
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 121
         type: integer

@@ -103,9 +103,6 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
 
     async def async_set_value(self, value: datetime):
         """Set the datetime."""
-        return await self._async_set_value_locked(value)
-
-    async def _async_set_value_locked(self, value: datetime):
         settings = {}
         # Use Local time if split into components
         if self._year_dps:

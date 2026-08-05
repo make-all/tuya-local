@@ -40,21 +40,6 @@ entities:
         range:
           min: 0
           max: 86399
-  - entity: number
-    translation_key: timer
-    deprecated: time.timer  # 2026-01-20
-    class: duration
-    category: config
-    dps:
-      - id: 9
-        name: value
-        type: integer
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

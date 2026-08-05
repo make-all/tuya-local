@@ -1,0 +1,310 @@
+name: Litter box
+products:
+  - id: xniit4zwcaqmzrl7
+    manufacturer: Happy Paws
+    model: CoreBox
+entities:
+  - entity: switch
+    translation_key: auto_clean
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: Auto clean delay
+    category: config
+    class: duration
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: sensor
+    name: Daily times used
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: times
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: time
+    name: Sleep start
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1435
+        mapping:
+          - step: 5
+  - entity: time
+    name: Sleep end
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1435
+        mapping:
+          - step: 5
+  - entity: event
+    name: Notification
+    icon: "mdi:message-alert"
+    dps:
+      - id: 21
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 21
+        type: bitfield
+        optional: true
+        name: event
+        mapping:
+          - dps_val: 0
+            value: Clear
+          - dps_val: 1
+            value: Waste full
+          - dps_val: 2
+            value: Anti pinch
+          - dps_val: 4
+            value: Case open
+          - dps_val: 8
+            value: Motor jammed
+          - dps_val: 16
+            value: Ball missing
+          - dps_val: 32
+            value: Waste bin missing
+          - dps_val: null
+            value: null
+          - value: Unknown error
+      - id: 21
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Anti pinch
+          - dps_val: 2
+            value: Case open
+          - dps_val: 4
+            value: Motor jammed
+          - dps_val: 8
+            value: Ball missing
+          - dps_val: 16
+            value: Waste bin missing
+  - entity: button
+    translation_key: factory_reset
+    hidden: true
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: waiting
+            value: waiting
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: cat_get_in
+            value: occupied
+          - dps_val: pause
+            value: paused
+          - dps_val: garbage_box_full
+            value: full
+          - dps_val: Error
+            value: fault
+          - dps_val: empty_done
+            value: empty
+          - dps_val: emptying
+            value: emptying
+          - dps_val: pause_2
+            value: caking
+          - dps_val: clean_done
+            value: cleaned
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: event
+    name: Usage report
+    dps:
+      - id: 102
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: Used
+      - id: 102
+        type: base64
+        optional: true
+        name: report
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: lock
+  - entity: button
+    name: Manual empty
+    dps:
+      - id: 104
+        type: string
+        name: button
+        mapping:
+          - dps_val: empty
+            value: true
+  - entity: button
+    name: Emptying pause
+    dps:
+      - id: 104
+        type: string
+        name: button
+        mapping:
+          - dps_val: pause1
+            value: true
+      - id: 104
+        type: string
+        name: available
+        mapping:
+          - dps_val: empty
+            value: true
+          - value: false
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: button
+    name: Manual clean
+    dps:
+      - id: 106
+        type: string
+        name: button
+        mapping:
+          - dps_val: cleaning
+            value: true
+  - entity: button
+    name: Cleaning pause
+    dps:
+      - id: 106
+        type: string
+        name: button
+        mapping:
+          - dps_val: pause
+            value: true
+      - id: 106
+        type: string
+        name: available
+        mapping:
+          - dps_val: cleaning
+            value: true
+          - value: false
+  - entity: sensor
+    name: History
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: enter
+            value: Cat entered
+          - dps_val: done
+            value: Cat exited
+          - dps_val: finish_clean
+            value: Finished cleaning
+          - dps_val: garbage_full
+            value: Waste bin full
+          - dps_val: E1
+            value: Anti pinch
+          - dps_val: E2
+            value: Case open
+          - dps_val: E3
+            value: Motor jammed
+          - dps_val: E4
+            value: Ball missing
+          - dps_val: E5
+            value: Waste bin missing
+  - entity: switch
+    name: Kitten mode
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Deodorizer reminder
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
