@@ -990,6 +990,29 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_21)
         hass.config_entries.async_update_entry(entry, minor_version=21)
+
+    if entry.version == 13 and entry.minor_version < 22:
+        # A child device ID is only unique within its gateway. Scope it by the
+        # parent device ID so children on separate gateways can coexist.
+        old_device_id = get_device_unique_id(entry)
+        new_device_id = get_device_id(entry.data)
+        if old_device_id != new_device_id:
+
+            @callback
+            def update_gateway_scoped_unique_id(entity_entry):
+                """Scope entity identities by the parent gateway."""
+                if entity_entry.unique_id.startswith(old_device_id):
+                    return {
+                        "new_unique_id": entity_entry.unique_id.replace(
+                            old_device_id, new_device_id, 1
+                        )
+                    }
+
+            await async_migrate_entries(
+                hass, entry.entry_id, update_gateway_scoped_unique_id
+            )
+            hass.config_entries.async_update_entry(entry, unique_id=new_device_id)
+        hass.config_entries.async_update_entry(entry, minor_version=22)
     return True
 
 

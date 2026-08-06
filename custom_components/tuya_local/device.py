@@ -89,6 +89,7 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
+        self.dev_id = dev_id
         self.dev_cid = dev_cid
         try:
             if dev_cid:
@@ -172,8 +173,12 @@ class TuyaLocalDevice(object):
 
     @property
     def unique_id(self):
-        """Return the unique id for this device (the dev_id or dev_cid)."""
-        return self.dev_cid or self._api.id
+        """Return the unique ID for this device."""
+        if self.dev_cid:
+            return get_device_id(
+                {CONF_DEVICE_ID: self.dev_id, CONF_DEVICE_CID: self.dev_cid}
+            )
+        return self._api.id
 
     @property
     def device_info(self):
