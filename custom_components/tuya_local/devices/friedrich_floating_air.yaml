@@ -1,0 +1,135 @@
+name: Air conditioner
+
+products:
+  - id: iufq71jwsputqsct
+    manufacturer: Friedrich
+    model: Floating Air
+
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool
+                value: cool
+              - dps_val: heat
+                value: heat
+              - dps_val: dry
+                value: dry
+              - dps_val: fan
+                value: fan_only
+              - dps_val: auto
+                value: auto
+
+      - id: 2
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 61
+          max: 88
+
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: F
+
+      - id: 4
+        name: mode
+        type: string
+
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: Auto
+            value: auto
+          - dps_val: Lowest
+            value: lowest
+          - dps_val: Low
+            value: low
+          - dps_val: Medium
+            value: medium
+          - dps_val: High
+            value: high
+          - dps_val: Higest
+            value: highest
+
+      - id: 7
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: none
+          - dps_val: true
+            value: 46_heat
+
+      - id: 19
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+
+      - id: 101
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: vertical
+
+      - id: 105
+        name: swing_horizontal_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+
+  - entity: switch
+    name: Quiet
+    icon: mdi:volume-off
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: sleep
+    icon: mdi:sleep
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Eco
+    icon: mdi:leaf
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Surge
+    icon: mdi:weather-windy
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
