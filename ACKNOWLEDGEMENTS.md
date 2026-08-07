@@ -925,3 +925,5 @@ Further device support has been made with the assistance of users. Please consid
 - [toolson](https://github.com/toolson) for contributing support for Powerworld PW030-KZXYC-E pool heat pump.
 - [digitalvir](https://github.com/digitalvir) for contributing support for Lumary C2 ceiling fan with RGB+CW light.
 - [grinser](https://github.com/grinser) for contributing improvements to Costway portable AC.
+- [lucasoskorep](https://github.com/lucasoskorep) for contributing improvements to Friedrich air conditioner.
+- [devonuto](https://github.com/devonuto) for contributing support for Zemismart ZM25EL roller shade.
