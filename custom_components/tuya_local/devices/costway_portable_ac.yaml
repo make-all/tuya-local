@@ -2,6 +2,9 @@ name: Portable air conditioner
 products:
   - id: 86sjxqebxymrjt3z
     manufacturer: Costway
+  - id: av6ejal3j9epuw3e
+    manufacturer: Hantech
+    model: 9000 BTU
 entities:
   - entity: climate
     dps:
@@ -42,15 +45,31 @@ entities:
             value: low
           - dps_val: high
             value: high
-      - id: 20
-        type: integer
-        name: unknown_20
-      - id: 103
-        type: boolean
-        name: unknown_103
       - id: 107
         type: integer
-        name: unknown_106
+        name: temp_set_f
+        hidden: true
       - id: 109
         type: integer
-        name: unknown_107
+        name: unknown_109
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code

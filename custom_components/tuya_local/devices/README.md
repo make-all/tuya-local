@@ -650,6 +650,7 @@ Either **position**, **action** or **open** should be specified otherwise the co
 
 - **position** (optional, number 0-100): a dp to control the percentage that the cover is open.
     0 means completely close, 100 means completely open.
+- **current_position** (optional, number 0-100): a dp to report the current percentage that the cover is open. This is required to get feedback from the curtain even if **position** is the same dp, as some curtains always report the last user set position even after the curtain is changed from another source so we need to be able to ignore the position reported by those devices.
 - **control** (optional, mapping of strings): a dp to control the cover. Mainly useful if **position** cannot be used.
     Valid values are `open, close, stop`
 - **action** (optional, string): a dp that reports the current state of the cover.

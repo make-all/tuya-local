@@ -209,6 +209,7 @@
 - Turbro 75000 btu pool heat pump
 - Varminpool pool heatpump
 - Varpoolfaye 5kW pool heat pump
+- Vidapool VTX016 pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -250,12 +251,13 @@
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
 - Omni X Duplex water heater
-- Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
+- Powerworld PW030, PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Shuangri SR223 solar water heating controller
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
+- SPT Dark Knight heat pump water heater
 - Tauclima DGN-250 heat pump water heater
 - Thermann R290 heat pump water heater
 - Thermex IF series V pro and Lima 80V hot water systems
@@ -430,7 +432,7 @@
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
-- Lumary A1 and B2 ceiling fans with lights
+- Lumary A1, B2, C2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
 - MeacoFan Sefte Pro table air circulator
@@ -638,6 +640,7 @@
 
 - Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
+- Aga Electrickit Advanced range cooker
 - Amenzo dishwasher
 - Anko 1.7L smart kettle
 - Atomi coffee maker
@@ -1032,6 +1035,7 @@ of device.
 - Fakro ARZ roof blind
 - FS-03W curtain switch with backlight control
 - Garen TSI Fit and Kit Central garage door openers
+- Globmatic Castor gate opener
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
@@ -1204,7 +1208,7 @@ port and password.
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
 - Dxophiex fish feeder
-- Els Pet Spaceship pet litter box
+- Els Pet Spaceship and Orbitie pet litter boxes
 - Evergreen Solar bird feeder camera
 - Faroro PF50 pet feeder
 - Faroro TD20 pet treat camera
@@ -1521,7 +1525,7 @@ entity types as sub devices.
 - WL-898WZ water leak sensor
 - WL-RTCZ-05Z human presence sensor
 - Zemismart SPM01 energy meter
-- Zemismart ZM85EL-1x roller blind motor
+- Zemismart ZM85EL-1x and ZM25EL roller blind motors
 - ZPmeter 214C-Z water meter (with and without valve control)
 - ZTH08ZTU temperature and humidity sensor
 

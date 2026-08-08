@@ -3,6 +3,9 @@ products:
   - id: deedvplnx2yvge08
     manufacturer: FM Solar
     model: 12K portable split with heating
+  - id: swda8udjkwmydxhe
+    manufacturer: Qlima
+    model: Q Split Flex
 entities:
   - entity: climate
     translation_only_key: aircon_extra
@@ -27,17 +30,21 @@ entities:
       - id: 2
         name: temperature
         type: integer
+        range:
+          min: 16
+          max: 32
         mapping:
           - constraint: temperature_unit
             conditions:
-              - dps_val: C
-                range:
-                  min: 16
-                  max: 32
               - dps_val: F
                 range:
                   min: 60
                   max: 90
+              # Qlima has 16-30 range always in C
+              - dps_val: [c, f]
+                range:
+                  min: 16
+                  max: 30
       - id: 3
         name: current_temperature
         type: integer
@@ -62,6 +69,10 @@ entities:
       - id: 19
         name: temperature_unit
         type: string
+        mapping:
+          - dps_val: F
+            value: F
+          - value: C
       - id: 101
         type: boolean
         name: preset_mode
@@ -87,6 +98,7 @@ entities:
   - entity: select
     translation_key: temperature_unit
     category: config
+    hidden: unavailable
     dps:
       - id: 19
         type: string
@@ -96,6 +108,16 @@ entities:
             value: celsius
           - dps_val: F
             value: fahrenheit
+      - id: 19
+        type: string
+        name: available
+        mapping:
+          - dps_val: C
+            value: true
+          - dps_val: F
+            value: true
+          # Qlima gives lower case c and f here, but actual unit is fixed to C
+          - value: false
   - entity: switch
     translation_key: auto_dry
     category: config

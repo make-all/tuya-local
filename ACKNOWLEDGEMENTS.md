@@ -918,3 +918,15 @@ Further device support has been made with the assistance of users. Please consid
 - [mathieupotier](https://github.com/mathieupotier) for contributing support for Klarstein MetroBreeze New York and Pure Blizzard air conditioners and Klarstein Bolero ceiling fan with light.
 - [dext0r](https://github.com/dext0r) for contributing support for Stahlmann Smart water leak control system.
 - [linedot](https://github.com/linedot) for contributing improvements to Oscal PowerMax2400Pro power station.
+- [jeremyames-gmail](https://github.com/jeremyames-gmail) for contributing improvements to Divoo water valves.
+- [clinis](https://github.com/clinis) for contributing support for Globmatic Castor gate opener.
+- [Arbology](https://github.com/Arbology) for contributing support for Aga Electrikit Advanced range cooker.
+- [peetipablo](https://github.com/peetipablo) for contributing support for Vidapool VTX016 pool heat pump.
+- [toolson](https://github.com/toolson) for contributing support for Powerworld PW030-KZXYC-E pool heat pump.
+- [digitalvir](https://github.com/digitalvir) for contributing support for Lumary C2 ceiling fan with RGB+CW light.
+- [grinser](https://github.com/grinser) for contributing improvements to Costway portable AC.
+- [lucasoskorep](https://github.com/lucasoskorep) for contributing improvements to Friedrich air conditioner.
+- [devonuto](https://github.com/devonuto) for contributing support for Zemismart ZM25EL roller shade.
+- [sthomas727](https://github.com/sthomas727) for contributing support for Elspet Orbitie litter box.
+- [odiechoo](https://github.com/odiechoo) for contributing support for SPT Dark Knight water heater.
+- [fuentesdelafuente](https://github.com/fuentesdelafuente) for contributing support for Tongou TOWSMR1-40A breaker.

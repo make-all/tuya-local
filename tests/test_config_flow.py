@@ -13,6 +13,7 @@ from custom_components.tuya_local import (
     async_migrate_entry,
     async_setup_entry,
     async_unload_entry,
+    async_update_entry,
     config_flow,
     get_device_unique_id,
 )
@@ -163,6 +164,33 @@ async def test_async_unload_entry_ignores_missing_device_data(hass):
     )
 
     assert await async_unload_entry(hass, entry)
+
+
+@pytest.mark.asyncio
+async def test_async_update_entry_reloads_config_entry(hass, mocker):
+    """Entry updates should delegate lifecycle management to Home Assistant."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        data={CONF_DEVICE_ID: "deviceid"},
+    )
+    schedule_reload = mocker.patch.object(
+        hass.config_entries,
+        "async_schedule_reload",
+    )
+    unload_entry = mocker.patch(
+        "custom_components.tuya_local.async_unload_entry",
+        new=AsyncMock(),
+    )
+    setup_entry = mocker.patch(
+        "custom_components.tuya_local.async_setup_entry",
+        new=AsyncMock(),
+    )
+
+    await async_update_entry(hass, entry)
+
+    schedule_reload.assert_called_once_with(entry.entry_id)
+    unload_entry.assert_not_awaited()
+    setup_entry.assert_not_awaited()
 
 
 @pytest.mark.asyncio

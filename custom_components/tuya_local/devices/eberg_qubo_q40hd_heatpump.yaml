@@ -71,7 +71,7 @@ entities:
         name: swing_mode
         mapping:
           - dps_val: true
-            value: vertical
+            value: "on"
           - dps_val: false
             value: "off"
       - id: 101
@@ -81,6 +81,13 @@ entities:
         mapping:
           - dps_val: heat_s
             value: heating
+            # Some variants report heat_s for any "active" mode
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cooling
+              - dps_val: dehumidify
+                value: drying
           - dps_val: cool_s
             value: cooling
           - dps_val: ventilation
