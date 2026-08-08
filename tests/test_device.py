@@ -175,11 +175,22 @@ async def test_api_protocol_version_is_rotated_with_each_failure(
 
     mock_api().set_version.assert_has_calls(
         [
+            mocker.call(3.3),
             mocker.call(3.1),
             mocker.call(3.2),
             mocker.call(3.4),
             mocker.call(3.5),
             mocker.call(3.3),
+            mocker.call(3.4),
+            mocker.call(3.5),
+            mocker.call(3.3),
+            mocker.call(3.1),
+            mocker.call(3.2),
+            mocker.call(3.4),
+            mocker.call(3.5),
+            mocker.call(3.3),
+            mocker.call(3.4),
+            mocker.call(3.5),
             mocker.call(3.3),
             mocker.call(3.1),
         ]

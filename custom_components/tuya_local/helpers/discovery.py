@@ -43,7 +43,7 @@ from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_track_time_interval
 
-from ..const import CONF_DEVICE_ID, CONF_TYPE, DATA_DISCOVERY, DOMAIN
+from ..const import CONF_DEVICE_CID, CONF_DEVICE_ID, CONF_TYPE, DATA_DISCOVERY, DOMAIN
 from .config import get_device_id
 from .device_config import get_config
 
@@ -200,7 +200,9 @@ class TuyaLANRediscovery:
             for gwid, info in by_gwid.items():
                 entry = configured.get(gwid)
                 if entry is not None:
-                    await self._check_product(entry, info.get("productKey"))
+                    # Skip sub-devices for now, the WiFi reported product id is for the hub
+                    if not entry.data.get(CONF_DEVICE_CID):
+                        await self._check_product(entry, info.get("productKey"))
                 else:
                     self._discover_new(gwid, info)
         finally:

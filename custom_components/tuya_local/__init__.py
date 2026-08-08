@@ -1079,5 +1079,4 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug("Updating entry for device: %s", get_device_id(entry.data))
-    await async_unload_entry(hass, entry)
-    await async_setup_entry(hass, entry)
+    hass.config_entries.async_schedule_reload(entry.entry_id)

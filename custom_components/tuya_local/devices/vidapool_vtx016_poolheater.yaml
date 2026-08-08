@@ -1,0 +1,109 @@
+name: Pool heat pump
+products:
+  - id: tujtt0l6dup0is9d
+    manufacturer: Vidapool
+    model: 16000 BTU Pool Heat Pump
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: HEAT
+                value: heat
+              - dps_val: COOL
+                value: cool
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 34
+        name: temperature
+        type: integer
+        range:
+          min: 18
+          max: 40
+      - id: 6
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 35
+        name: current_temperature
+        type: integer
+      - id: 27
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: HEAT
+                value: heating
+              - dps_val: COOL
+                value: cooling
+          - dps_val: false
+            value: idle
+    class: temperature
+  - entity: sensor
+    class: temperature
+    translation_key: ambient_temperature
+    dps:
+      - id: 38
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Coiler Temperature
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Defrost Timer
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 41
+        type: integer
+        unit: min
+        name: sensor
+  - entity: binary_sensor
+    name: Four-way Valve
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 28
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Water Flow Switch
+    class: opening
+    icon: "mdi:water-pump"
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: High Pressure Switch
+    class: opening
+    icon: "mdi:gauge"
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
