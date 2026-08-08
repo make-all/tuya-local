@@ -931,3 +931,4 @@ Further device support has been made with the assistance of users. Please consid
 - [odiechoo](https://github.com/odiechoo) for contributing support for SPT Dark Knight water heater.
 - [fuentesdelafuente](https://github.com/fuentesdelafuente) for contributing support for Tongou TOWSMR1-40A breaker.
 - [larstobi](https://github.com/larstobi) for contributing support for Frankever water valve and improvements to valves in general.
+- [nitaybz](https://github.com/nitaybz) for contributing improved subdevice unique id allocation.
