@@ -101,20 +101,8 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
         pos = self.current_valve_position
         return not pos
 
-    async def _async_set_position_and_switch(self, position):
-        """Set a target position together with its separate enable switch."""
-        settings = self._valve_dp.get_values_to_set(self._device, position)
-        settings.update(
-            self._switch_dp.get_values_to_set(self._device, position > 0),
-        )
-        await self._device.async_set_properties(settings)
-
     async def async_open_valve(self):
         """Open the valve."""
-        if self._current_position_dp and self._switch_dp:
-            _LOGGER.info("%s fully opening valve", self._config.config_id)
-            await self._async_set_position_and_switch(100)
-            return
         if self._switch_dp:
             _LOGGER.info("%s opening valve", self._config.config_id)
             await self._switch_dp.async_set_value(self._device, True)
@@ -128,10 +116,6 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
 
     async def async_close_valve(self):
         """Close the valve"""
-        if self._current_position_dp and self._switch_dp:
-            _LOGGER.info("%s closing valve to 0%%", self._config.config_id)
-            await self._async_set_position_and_switch(0)
-            return
         if self._switch_dp:
             _LOGGER.info("%s closing valve", self._config.config_id)
             await self._switch_dp.async_set_value(self._device, False)
@@ -149,7 +133,4 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
         _LOGGER.info(
             "%s setting valve position to %s%%", self._config.config_id, position
         )
-        if self._current_position_dp and self._switch_dp:
-            await self._async_set_position_and_switch(position)
-        else:
-            await self._valve_dp.async_set_value(self._device, position)
+        await self._valve_dp.async_set_value(self._device, position)

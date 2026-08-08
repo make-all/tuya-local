@@ -120,38 +120,38 @@ def test_separate_current_position(mocker, position, expected_state):
 
 
 @pytest.mark.asyncio
-async def test_set_position_enables_valve(mocker):
-    """Setting a non-zero target position also enables the valve."""
+async def test_set_position_writes_target_only(mocker):
+    """Setting a target position does not change the separate switch."""
     valve, device = _make_frankever_valve(mocker)
 
-    async with assert_device_properties_set(device, {"101": 50, "1": True}):
+    async with assert_device_properties_set(device, {"101": 50}):
         await valve.async_set_valve_position(50)
 
 
 @pytest.mark.asyncio
-async def test_set_zero_disables_valve(mocker):
-    """Setting a zero target position matches the device's off behavior."""
+async def test_set_zero_writes_target_only(mocker):
+    """Setting a zero target position does not change the separate switch."""
     valve, device = _make_frankever_valve(mocker)
 
-    async with assert_device_properties_set(device, {"101": 0, "1": False}):
+    async with assert_device_properties_set(device, {"101": 0}):
         await valve.async_set_valve_position(0)
 
 
 @pytest.mark.asyncio
-async def test_open_sets_maximum(mocker):
-    """Opening sets the maximum target position and enables the valve."""
+async def test_open_uses_switch(mocker):
+    """Opening uses the switch without changing a non-zero target position."""
     valve, device = _make_frankever_valve(mocker)
 
-    async with assert_device_properties_set(device, {"101": 100, "1": True}):
+    async with assert_device_properties_set(device, {"1": True}):
         await valve.async_open_valve()
 
 
 @pytest.mark.asyncio
-async def test_close_sets_off(mocker):
-    """Closing sets a zero target position and disables the valve."""
+async def test_close_uses_switch(mocker):
+    """Closing uses the switch without changing the target position."""
     valve, device = _make_frankever_valve(mocker)
 
-    async with assert_device_properties_set(device, {"101": 0, "1": False}):
+    async with assert_device_properties_set(device, {"1": False}):
         await valve.async_close_valve()
 
 

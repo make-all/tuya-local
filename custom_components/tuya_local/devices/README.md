@@ -809,7 +809,7 @@ to use it for other length timers.
 ### `valve`
 - **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state.  If a number, it should be a percentage between 0 and 100 indicating how far open the valve is.  If a boolean, it should indicate open (true) or closed (false).
 - **switch** (optional, boolean): if the valve dp is an integer, the valve may also have a boolean switch dp for closing and opening the valve without affecting the open valve position.
-- **current_position** (optional, number 0-100): a read-only dp that reports the actual position when the writable **valve** dp is only a target position. If a separate **switch** is also present, position commands set both the target and switch so that 0 closes the valve and non-zero positions enable it. Open and close commands set 100 and 0 respectively.
+- **current_position** (optional, number 0-100): a dp that reports the actual position when the writable **valve** dp is only a target position.
 
 ### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.
