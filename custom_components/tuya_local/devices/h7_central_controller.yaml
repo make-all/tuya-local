@@ -1,0 +1,779 @@
+name: Central HVAC controller
+products:
+  - id: ddbcuqy4usocv9lv
+    manufacturer: Rhino King
+    model: H7
+entities:
+  # =========================================================================
+  # --- 1. 主要控制区（日常核心控制，不带 category 直接显示在最顶部） ---
+  # =========================================================================
+  - entity: climate
+    dps:
+      # --- 主开关：关机直接对应 off；开机时依据 DP2 回报 HA 标准 HVAC 模式 ---
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "wind"
+                value: fan_only
+              - dps_val: "cold"
+                value: cool
+              - dps_val: "hea"
+                value: heat
+              - dps_val: "floorhea"
+                value: heat
+              - dps_val: "heat_floorheat"
+                value: heat
+              - dps_val: "cold_floorcold"
+                value: cool
+
+      # --- 核心模式原始 DP：供 hvac_mode 條件映射使用 ---
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+
+      # --- 核心模式：H7 专有的 6 种运行模式，放在 climate preset 里 ---
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "wind"
+            value: "出风"
+          - dps_val: "cold"
+            value: "制冷"
+          - dps_val: "hea"
+            value: "制热"
+          - dps_val: "floorhea"
+            value: "地暖"
+          - dps_val: "heat_floorheat"
+            value: "制热+地暖"
+          - dps_val: "cold_floorcold"
+            value: "制冷+地冷"
+
+      # --- 温度控制 ---
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 150
+          max: 400
+        mapping:
+          - scale: 10
+            step: 1                     # 0.1℃ 步進
+
+      - id: 24
+        type: integer
+        name: current_temperature
+        range:
+          min: -200
+          max: 500
+        mapping:
+          - scale: 10
+
+      # --- 轨道一：塞进空调内，让温控器面板正中央显示湿度 ---
+      - id: 34
+        type: integer
+        name: current_humidity
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 1
+
+  # =========================================================================
+  # --- 2. 轨道二：抽成独立的传感器实体，供顶部卡片与变色程序码直接调用 ---
+  # =========================================================================
+  - entity: sensor
+    name: "H7 Indoor Humidity"          # 给它一个专有名字，避免后台生成实体时打架
+    class: humidity
+    dps:
+      - id: 34
+        type: integer
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 1
+
+  - entity: select
+    name: H7运行模式
+    icon: mdi:hvac
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: "wind"
+            value: "出风"
+          - dps_val: "cold"
+            value: "制冷"
+          - dps_val: "hea"
+            value: "制热"
+          - dps_val: "floorhea"
+            value: "地暖"
+          - dps_val: "heat_floorheat"
+            value: "制热+地暖"
+          - dps_val: "cold_floorcold"
+            value: "制冷+地冷"
+
+  # =========================================================================
+  # --- 3. 辅助旁通数量 ---
+  # =========================================================================
+  - entity: number
+    name: 辅助旁通数量
+    icon: mdi:source-branch
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 6
+
+  # ---关旁通D阀触发数 ---
+  - entity: number
+    name: 关旁通D阀触发数
+    icon: mdi:clock-start
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 10
+
+  - entity: switch
+    name: 内外机联动控制开关
+    icon: mdi:link-variant
+    dps:
+      - id: 142
+        type: boolean
+        optional: true
+        name: switch
+
+  # =========================================================================
+  # --- 2. 传感器日常监控区 ---
+  # =========================================================================
+  - entity: sensor
+    name: H7系统计算露点
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: 辐射混水供水温度
+    class: temperature
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: 辐射混水回水温度
+    class: temperature
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: PM2.5
+    class: pm25
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: sensor
+        unit: "µg/m³"
+        mapping:
+          - step: 1
+
+  - entity: sensor
+    name: H7外机运行状态
+    icon: mdi:heat-pump
+    dps:
+      - id: 125
+        type: string
+        optional: true
+        name: sensor
+
+  - entity: sensor
+    name: 外机供水温度
+    class: temperature
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+  - entity: sensor
+    name: 外机回水温度
+    class: temperature
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: H7当前运行模式状态
+    icon: mdi:list-status
+    dps:
+      - id: 128
+        type: string
+        optional: true
+        name: sensor
+
+  - entity: sensor
+    name: CO2
+    class: carbon_dioxide
+    dps:
+      - id: 130
+        type: integer         #   type: value 数值形态
+        optional: true        #   API 可選屬性
+        name: sensor
+        unit: "ppm"           #   体现 unit: "ppm"
+        mapping:
+          - step: 1           #  体现 step: 1
+
+  - entity: sensor
+    name: H7水泵当前状态
+    class: enum
+    icon: mdi:pump
+    dps:
+      - id: 131
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: all_off
+            value: "全关"
+          - dps_val: fancoilpump_on
+            value: "风盘水泵开"
+          - dps_val: floorheatingpump_on
+            value: "地暖水泵开"
+          - dps_val: all_on
+            value: "全开"
+
+  - entity: sensor
+    name: 水箱温度
+    class: temperature
+    dps:
+      - id: 135
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - step: 1
+
+  - entity: sensor
+    name: 外机环境实际温度
+    class: temperature
+    dps:
+      - id: 146
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 1
+
+  # =========================================================================
+  # --- 3. 诊断区（H7系统故障代码） ---
+  # =========================================================================
+  - entity: sensor
+    class: enum   # 依据标准规范，必须将 device_class 改写为顶层的 class: enum
+    name: H7系统故障代码
+    category: diagnostic
+    icon: mdi:alert-circle-outline
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: "正常"
+          - dps_val: "none"
+            value: "正常"
+          - dps_val: "stop_rotate"
+            value: "阀门停止 (stop_rotate)"
+          - dps_val: "pos_rotate"
+            value: "阀门正转 (pos_rotate)"
+          - dps_val: "neg_rotate"
+            value: "阀门反转 (neg_rotate)"
+          - dps_val: "dewpont_prot"
+            value: "露点保护 (dewpont_prot)"
+
+  - entity: sensor
+    class: enum
+    name: 内机冷热阀  # 🌟 内机冷热阀 (ID: 138) - 只读枚举型传感器
+    category: diagnostic
+    icon: mdi:valve-letter
+    dps:
+      - id: 138
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "all_off"
+            value: "全关 (all_off)"
+          - dps_val: "cold_on"
+            value: "开启制冷 (cold_on)"
+          - dps_val: "heat_on"
+            value: "开启制热 (heat_on)"
+          - dps_val: "all_on"
+            value: "全开 (all_on)"
+
+  # =========================================================================
+  # --- 4. 配置面板区（所有的控制下拉选择菜单全部在此） ---
+  # =========================================================================
+  - entity: select
+    name: 外机型号
+    category: config
+    icon: mdi:factory
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: HITACHI
+            value: "日立"
+          - dps_val: YORK_012_018
+            value: "约克"
+          - dps_val: MACQUAY
+            value: "麦克维尔"
+          - dps_val: TRANE
+            value: "特灵"
+
+  - entity: select
+    name: 外机接口方式
+    category: config
+    icon: mdi:cable-data
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "RS485"
+            value: "总线485"
+          - dps_val: "RELAY"
+            value: "干接点"
+          - dps_val: "TANK_TEMP"
+            value: "干接点+水箱温度"
+
+  - entity: select
+    name: 外机变水温  # 🌟  (ID: 105) - 可读写列举型，生成 select 实体
+    icon: mdi:sine-wave
+    category: config
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "manual"
+            value: "手动"
+          - dps_val: "auto"
+            value: "自动"
+
+  - entity: number
+    name: 丛控地址   # 🌟  (ID: 108)
+    icon: mdi:ip-network
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0               # min: 0
+          max: 32              # 体现 max: 32
+
+  - entity: number
+    name: 新风数量
+    icon: mdi:fan-alert
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0               # 100% 体现 min: 0
+          max: 10              # 100% 体现 max: 10
+
+  - entity: select
+    name: 混水阀类型    # 🌟 (ID: 117) - 可读写列举型，生成 select 实体
+    icon: mdi:valve
+    category: config
+    dps:
+      - id: 117
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "220V"
+            value: "220V"
+          - dps_val: "24V"
+            value: "24V"
+          - dps_val: "12V"
+            value: "12V"
+
+  - entity: select
+    name: 外机水温控制方式
+    category: config
+    icon: mdi:router-wireless-settings
+    dps:
+      - id: 123
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: water_return_control
+            value: "回水控制"
+          - dps_val: water_out_control
+            value: "出水控制"
+
+  - entity: select
+    name: 主从模式设置
+    category: config
+    icon: mdi:account-network
+    dps:
+      - id: 133
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: master
+            value: "主控"
+          - dps_val: slave
+            value: "从控"
+
+  - entity: select
+    name: 干接点模式配置
+    category: config
+    icon: mdi:toggle-switch
+    dps:
+      - id: 136
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cold_open
+            value: "制冷闭合"
+          - dps_val: cold_close
+            value: "制热闭合"
+
+  - entity: select
+    name: 干接点开关配置
+    category: config
+    icon: mdi:toggle-switch-outline
+    dps:
+      - id: 137
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay_onoff_open
+            value: "开机闭合"
+          - dps_val: relay_onoff_close
+            value: "关机闭合"
+
+  - entity: select
+    name: 季节模式切换
+    category: config
+    icon: mdi:calendar-sync
+    dps:
+      - id: 139
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: hand
+            value: "手动"
+          - dps_val: manual
+            value: "手动"
+          - dps_val: Manual
+            value: "手动"
+          - dps_val: auto
+            value: "自动"
+          - dps_val: Auto
+            value: "自动"
+
+  - entity: number
+    name: 外机安装数量
+    icon: mdi:numeric-1-box-multiple
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 6
+
+  - entity: number
+    name: 系统的内机总数
+    icon: mdi:format-list-numbered
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 32
+
+  - entity: number
+    name: 本地总线地址
+    icon: mdi:bus
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 32
+
+  - entity: number
+    name: 从机控制面板数量
+    icon: mdi:dots-hexagon
+    category: config
+    dps:
+      - id: 134
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 10
+
+  - entity: number
+    name: 外机采暖热水温度设置
+    icon: mdi:thermometer-hot
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 25
+          max: 55
+
+  - entity: number
+    name: 水箱控制温差
+    icon: mdi:thermometer
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 1
+          max: 5
+
+  - entity: number
+    name: 地暖辐射最低供水温度
+    icon: mdi:snowflake-thermometer
+    category: config
+    dps:
+      - id: 124
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 25
+          max: 45
+
+  - entity: number
+    name: 外机供冷目标温度设置
+    icon: mdi:thermometer-water
+    category: config
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 5
+          max: 20
+
+  - entity: number
+    name: 制冷初切换切阀月数  # API接口未体现
+    icon: mdi:calendar-month
+    category: config
+    dps:
+      - id: 140
+        type: integer
+        optional: true
+        name: value
+        unit: "m"
+        range:
+          min: 1
+          max: 4
+
+  - entity: number
+    name: 制热初切换切阀月数  # API接口未体现
+    icon: mdi:calendar-month
+    category: config
+    dps:
+      - id: 141
+        type: integer
+        optional: true
+        name: value
+        unit: "m"
+        range:
+          min: 10
+          max: 12
+
+  - entity: number
+    name: 直通常开延时
+    icon: mdi:clock-start
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: number
+    name: 直通常关延时
+    icon: mdi:clock-end
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: number
+    name: 混水泵开启延时
+    icon: mdi:clock-start
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: number
+    name: 混水泵关闭延时
+    icon: mdi:clock-end
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: switch
+    name: 辐射混水控制开关
+    icon: mdi:water-sync
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        optional: true
+        name: switch
+
+  - entity: select
+    name: 外机状态运行指示
+    category: config
+    icon: mdi:power-cycle
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "ON"
+            value: "运行中"
+          - dps_val: "OFF"
+            value: "已停止"
+
+  - entity: number
+    name: 壁挂炉温度设置
+    icon: mdi:speedometer
+    category: config
+    dps:
+      - id: 143
+        type: integer
+        optional: true
+        name: value        #  体现 type: value 的标准声明
+        unit: "%"          #   体现 unit: "%"
+        range:
+          min: -15         #   体现 min: -15
+          max: 20          #  体现 max: 20
+
+  - entity: switch
+    name: 壁挂炉辅助系统开关
+    icon: mdi:fire
+    category: config
+    dps:
+      - id: 132
+        type: boolean
+        optional: true
+        name: switch
