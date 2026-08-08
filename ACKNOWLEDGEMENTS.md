@@ -927,3 +927,4 @@ Further device support has been made with the assistance of users. Please consid
 - [grinser](https://github.com/grinser) for contributing improvements to Costway portable AC.
 - [lucasoskorep](https://github.com/lucasoskorep) for contributing improvements to Friedrich air conditioner.
 - [devonuto](https://github.com/devonuto) for contributing support for Zemismart ZM25EL roller shade.
+- [sthomas727](https://github.com/sthomas727) for contributing support for Elspet Orbitie litter box.
