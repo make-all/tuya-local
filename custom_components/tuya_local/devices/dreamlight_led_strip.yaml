@@ -6,11 +6,15 @@ products:
   - id: rqrkvuxebofiaifp
     manufacturer: Fancy LED
     model: Fancy Lightstrip  3
+  - id: m6abhkeubvtdfjgw
+    manufacturer: Arlec
+    model: Smart Sound Sync Mood Lamp - ALP018HA
 entities:
   - entity: light
     dps:
       - id: 20
         type: boolean
+        optional: true
         name: switch
       - id: 21
         type: string
@@ -72,9 +76,11 @@ entities:
       - id: 46
         name: length_cm
         type: integer
+        optional: true
       - id: 47
         name: pixels
         type: integer
+        optional: true
       - id: 51
         name: dreamlight_scene
         type: string
@@ -110,8 +116,7 @@ entities:
           min: 1
           max: 1000
   - entity: select
-    name: Color mode
-    icon: "mdi:palette"
+    translation_key: mode
     category: config
     dps:
       - id: 21
@@ -119,7 +124,9 @@ entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "color"
+          - dps_val: "white"
+            value: "White"
+          - dps_val: "colour"
             value: "Color"
           - dps_val: "scene"
             value: "Scene"
@@ -222,3 +229,61 @@ entities:
             value: "Summer wind"
           - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
             value: "Planet journey"
+  - entity: select
+    name: Sound sync mode
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 52
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AQEAA2QZAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Flash 25%"
+          - dps_val: "AQEAA2QyAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Flash 50%"
+          - dps_val: "AQEAA2RLAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Flash 75%"
+          - dps_val: "AQEAA2RkAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Flash 100%"
+          - dps_val: "AQEAAmQZAAAAZAAAUAB4UADwUAA8UAC0UAEsUAAAAA=="
+            value: "Fade 25%"
+          - dps_val: "AQEAAmQyAAAAZAAAUAB4UADwUAA8UAC0UAEsUAAAAA=="
+            value: "Fade 50%"
+          - dps_val: "AQEAAmRLAAAAZAAAUAB4UADwUAA8UAC0UAEsUAAAAA=="
+            value: "Fade 75%"
+          - dps_val: "AQEAAmRkAAAAZAAAUAB4UADwUAA8UAC0UAEsUAAAAA=="
+            value: "Fade 100%"
+          - dps_val: "AQEAEmQZAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Jump 25%"
+          - dps_val: "AQEAEmQyAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Jump 50%"
+          - dps_val: "AQEAEmRLAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Jump 75%"
+          - dps_val: "AQEAEmRkAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Jump 100%"
+          - dps_val: "AQEBAmQZAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Scroll 25%"
+          - dps_val: "AQEBAmQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Scroll 50%"
+          - dps_val: "AQEBAmRLAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Scroll 75%"
+          - dps_val: "AQEBAmRkAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Scroll 100%"
+          - dps_val: "AQECAGQZAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZA=="
+            value: "Energy 25%"
+          - dps_val: "AQECAGQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZA=="
+            value: "Energy 50%"
+          - dps_val: "AQECAGRLAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZA=="
+            value: "Energy 75%"
+          - dps_val: "AQECAGRkAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZA=="
+            value: "Energy 100%"
+          - dps_val: "AQEDEGQZAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Spectrum 25%"
+          - dps_val: "AQEDEGQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Spectrum 50%"
+          - dps_val: "AQEDEGRLAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Spectrum 75%"
+          - dps_val: "AQEDEGRkAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Spectrum 100%"
