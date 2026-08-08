@@ -929,3 +929,4 @@ Further device support has been made with the assistance of users. Please consid
 - [devonuto](https://github.com/devonuto) for contributing support for Zemismart ZM25EL roller shade.
 - [sthomas727](https://github.com/sthomas727) for contributing support for Elspet Orbitie litter box.
 - [odiechoo](https://github.com/odiechoo) for contributing support for SPT Dark Knight water heater.
+- [fuentesdelafuente](https://github.com/fuentesdelafuente) for contributing support for Tongou TOWSMR1-40A breaker.
