@@ -7,6 +7,7 @@ import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import entity_registry as er
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
@@ -347,6 +348,37 @@ async def test_migrate_entry(hass, mocker):
 
 
 @pytest.mark.asyncio
+async def test_migrate_child_device_identity_is_scoped_by_gateway(hass):
+    """Child device identities include their parent gateway after migration."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=13,
+        minor_version=21,
+        unique_id="001",
+        title="Kitchen AC",
+        data={
+            CONF_DEVICE_ID: "gatewayid",
+            CONF_DEVICE_CID: "001",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_TYPE: "idea_heatingbelt_airconditioner",
+            CONF_PROTOCOL_VERSION: 3.3,
+            CONF_POLL_ONLY: True,
+        },
+    )
+    entry.add_to_hass(hass)
+    registry = er.async_get(hass)
+    entity = registry.async_get_or_create(
+        "climate", DOMAIN, "001-climate", config_entry=entry
+    )
+
+    assert await async_migrate_entry(hass, entry)
+    assert entry.unique_id == "gatewayid/001"
+    assert entry.minor_version == 22
+    assert registry.async_get(entity.entity_id).unique_id == "gatewayid/001-climate"
+
+
+@pytest.mark.asyncio
 async def test_flow_user_init(hass, mocker):
     """Test the initialisation of the form in the first page of the manual config flow path."""
     result = await hass.config_entries.flow.async_init(
@@ -447,7 +479,7 @@ async def test_async_test_connection_for_subdevice_valid(hass, mocker):
     mock_instance.pause = mocker.MagicMock()
     mock_instance.resume = mocker.MagicMock()
     mock_device.return_value = mock_instance
-    hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
+    hass.data[DOMAIN] = {"deviceid/subdeviceid": {"device": mock_instance}}
 
     device = await config_flow.async_test_connection(
         {
