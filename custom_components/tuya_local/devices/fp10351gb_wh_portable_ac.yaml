@@ -1,0 +1,107 @@
+name: Portable air conditioner
+
+products:
+  - id: asgmtdjvhragxx24
+    model: FP10351GB-WH
+
+entities:
+  - entity: climate
+    dps:
+      # Main power and operating mode
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+
+      # Target temperature
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 31
+        unit: C
+
+      # Current room temperature
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+
+      # Raw mode used by the conditional power mapping
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+
+      # This model supports low and high fan speeds only
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+
+      # Sleep mode exposed as a climate preset
+      - id: 103
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: comfort
+          - dps_val: true
+            value: sleep
+
+      # Fahrenheit target-temperature duplicate
+      - id: 107
+        type: integer
+        name: temp_set_f
+        hidden: true
+
+      # Fahrenheit current-temperature duplicate
+      - id: 108
+        type: integer
+        name: temp_current_f
+        optional: true
+        hidden: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+
+      - id: 20
+        type: bitfield
+        name: fault_code
+
+  - entity: sensor
+    name: Function flags
+    category: diagnostic
+    icon: "mdi:code-bitwise"
+    hidden: true
+    dps:
+      - id: 109
+        type: bitfield
+        name: sensor
