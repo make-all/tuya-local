@@ -146,10 +146,8 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
     def is_away_mode_on(self):
         if self._away_mode_dps:
             return self._away_mode_dps.get_value(self._device)
-        elif self._operation_mode_dps and (
-            "away" in self._operation_mode_dps.values(self._device)
-        ):
-            return self.current_operation == "away"
+        elif self._operation_mode_dps:
+            return self._operation_mode_dps.get_value(self._device) == "away"
 
     @property
     def current_temperature(self):
