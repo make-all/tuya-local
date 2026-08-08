@@ -45,7 +45,7 @@ entities:
           min: 0
           max: 1800
   - entity: light
-    name: Indicator light
+    translation_key: indicator
     category: config
     dps:
       - id: 116
@@ -59,7 +59,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Kitten (manual) mode
+    name: Kitten mode
     icon: "mdi:cat"
     category: config
     dps:
@@ -161,8 +161,8 @@ entities:
         type: boolean
         name: button
   - entity: button
-    name: Full reset
-    class: restart
+    translation_key: factory_reset
+    hidden: true
     category: config
     dps:
       - id: 115
