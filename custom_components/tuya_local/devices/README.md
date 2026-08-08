@@ -827,3 +827,4 @@ to use it for other length timers.
 - **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value.
 
 - **away_mode** (optional, boolean): a dp to control whether the water heater is in away mode.
+
