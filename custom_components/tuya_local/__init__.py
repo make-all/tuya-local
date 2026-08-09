@@ -29,8 +29,8 @@ from .const import (
     DOMAIN,
 )
 from .device import async_delete_device, get_device_id, setup_device
+from .discovery import async_start_discovery, async_stop_discovery
 from .helpers.device_config import get_config
-from .helpers.discovery import async_start_discovery, async_stop_discovery
 from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
