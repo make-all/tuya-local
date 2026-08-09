@@ -1682,8 +1682,8 @@ async def test_flow_choose_entities_uses_cloud_name_as_default(
 
 
 @pytest.mark.asyncio
-async def test_flow_integration_discovery_shows_local_form(hass):
-    """A device found by background discovery advances to the local setup form."""
+async def test_flow_integration_discovery_shows_user_form(hass):
+    """A device found by background discovery advances to the user setup form."""
     result = await hass.config_entries.flow.async_init(
         DOMAIN,
         context={"source": "integration_discovery"},
@@ -1695,7 +1695,7 @@ async def test_flow_integration_discovery_shows_local_form(hass):
         },
     )
     assert result["type"] == "form"
-    assert result["step_id"] == "local"
+    assert result["step_id"] == "user"
 
 
 @pytest.mark.asyncio

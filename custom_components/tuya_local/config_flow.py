@@ -60,7 +60,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
 
     __qr_code: str | None = None
     __cloud_devices: dict[str, Any] = {}
-    __cloud_device: dict[str, Any] | None = None
+    __discovered_device: dict[str, Any] | None = None
 
     def __init__(self) -> None:
         """Initialize the config flow."""
@@ -82,7 +82,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         self._abort_if_unique_id_configured()
         # Reuse the cloud-device plumbing that async_step_local reads for its
         # form defaults; the local key is not known from discovery.
-        self.__cloud_device = {
+        self.__discovered_device = {
             "id": device_id,
             "ip": discovery_info.get(CONF_HOST),
             "version": discovery_info.get("version"),
@@ -92,7 +92,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         self.context["title_placeholders"] = {
             "name": discovery_info.get(CONF_HOST) or device_id
         }
-        return await self.async_step_local()
+        return await self.async_step_user()
 
     async def async_step_user(self, user_input=None):
         errors = {}
@@ -218,7 +218,19 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             )
 
         self.__cloud_devices = await self.cloud.async_get_devices()
-
+        if self.__discovered_device:
+            # If local discovery already found a device, we can skip the choose device step
+            # after updating discovery_info.
+            device_choice = self.__cloud_devices.get(self.__discovered_device["id"])
+            if device_choice:
+                self.__discovered_device[CONF_LOCAL_KEY] = device_choice.get(
+                    CONF_LOCAL_KEY
+                )
+                self.__discovered_device["product_id"] = device_choice.get("product_id")
+                self.__discovered_device["product_name"] = device_choice.get(
+                    "product_name"
+                )
+            return await self.async_step_local()
         return await self.async_step_choose_device()
 
     async def async_step_choose_device(self, user_input=None):
@@ -230,7 +242,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 # This is a directly addable device.
                 if user_input["hub_id"] == "None":
                     device_choice["ip"] = ""
-                    self.__cloud_device = device_choice
+                    self.__discovered_device = device_choice
                     return await self.async_step_search()
                 else:
                     # Show error if user selected a hub.
@@ -251,7 +263,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     # Communicate the sub device product id to help match the
                     # correect device config in the next step.
                     hub_choice["product_id"] = device_choice["product_id"]
-                    self.__cloud_device = hub_choice
+                    self.__discovered_device = hub_choice
                     return await self.async_step_search()
                 else:
                     # Show error if user did not select a hub.
@@ -320,11 +332,11 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     @property
     def _device_name_placeholder(self) -> str:
         """Return device name placeholder for step descriptions."""
-        if self.__cloud_device and self.__cloud_device.get("product_name"):
+        if self.__discovered_device and self.__discovered_device.get("product_name"):
             parts = []
-            if self.__cloud_device.get("name"):
-                parts.append(self.__cloud_device["name"])
-            parts.append(self.__cloud_device["product_name"])
+            if self.__discovered_device.get("name"):
+                parts.append(self.__discovered_device["name"])
+            parts.append(self.__discovered_device["product_name"])
             return "**" + " — ".join(parts) + "**\n\n"
         return ""
 
@@ -335,27 +347,27 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             # will just leave the IP address blank and hope the user can discover the IP by other
             # means such as router device IP assignments.
             _LOGGER.debug(
-                f"Scanning network to get IP address for {self.__cloud_device.get('id', 'DEVICE_KEY_UNAVAILABLE')}."
+                f"Scanning network to get IP address for {self.__discovered_device.get('id', 'DEVICE_KEY_UNAVAILABLE')}."
             )
-            self.__cloud_device["ip"] = ""
+            self.__discovered_device["ip"] = ""
             try:
                 local_device = await self.hass.async_add_executor_job(
-                    scan_for_device, self.__cloud_device.get("id")
+                    scan_for_device, self.__discovered_device.get("id")
                 )
             except OSError:
                 local_device = {"ip": None, "version": ""}
 
             if local_device.get("ip"):
                 _LOGGER.debug(f"Found: {local_device}")
-                self.__cloud_device["ip"] = local_device.get("ip")
-                self.__cloud_device["version"] = local_device.get("version")
-                if not self.__cloud_device.get(CONF_DEVICE_CID):
-                    self.__cloud_device["local_product_id"] = local_device.get(
+                self.__discovered_device["ip"] = local_device.get("ip")
+                self.__discovered_device["version"] = local_device.get("version")
+                if not self.__discovered_device.get(CONF_DEVICE_CID):
+                    self.__discovered_device["local_product_id"] = local_device.get(
                         "productKey"
                     )
             else:
                 _LOGGER.warning(
-                    f"Could not find device: {self.__cloud_device.get('id', 'DEVICE_KEY_UNAVAILABLE')}"
+                    f"Could not find device: {self.__discovered_device.get('id', 'DEVICE_KEY_UNAVAILABLE')}"
                 )
             return await self.async_step_local()
 
@@ -378,15 +390,15 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         polling_opts = {"default": False}
         devcid_opts = {}
 
-        if self.__cloud_device is not None:
+        if self.__discovered_device is not None:
             # We already have some or all of the device settings from the cloud flow. Set them into the defaults.
-            devid_opts = {"default": self.__cloud_device.get("id")}
-            host_opts = {"default": self.__cloud_device.get("ip")}
-            key_opts = {"default": self.__cloud_device.get(CONF_LOCAL_KEY)}
-            if self.__cloud_device.get("version"):
-                proto_opts = {"default": str(self.__cloud_device.get("version"))}
-            if self.__cloud_device.get(CONF_DEVICE_CID):
-                devcid_opts = {"default": self.__cloud_device.get(CONF_DEVICE_CID)}
+            devid_opts = {"default": self.__discovered_device.get("id")}
+            host_opts = {"default": self.__discovered_device.get("ip")}
+            key_opts = {"default": self.__discovered_device.get(CONF_LOCAL_KEY)}
+            if self.__discovered_device.get("version"):
+                proto_opts = {"default": str(self.__discovered_device.get("version"))}
+            if self.__discovered_device.get(CONF_DEVICE_CID):
+                devcid_opts = {"default": self.__discovered_device.get(CONF_DEVICE_CID)}
 
         if user_input is not None:
             proto = user_input.get(CONF_PROTOCOL_VERSION)
@@ -407,14 +419,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                         **self.data,
                         CONF_PROTOCOL_VERSION: self._auto_detected_protocol,
                     }
-                if self.__cloud_device:
-                    if self.__cloud_device.get("product_id"):
+                if self.__discovered_device:
+                    if self.__discovered_device.get("product_id"):
                         self.device.set_detected_product_id(
-                            self.__cloud_device.get("product_id")
+                            self.__discovered_device.get("product_id")
                         )
-                    if self.__cloud_device.get("local_product_id"):
+                    if self.__discovered_device.get("local_product_id"):
                         self.device.set_detected_product_id(
-                            self.__cloud_device.get("local_product_id")
+                            self.__discovered_device.get("local_product_id")
                         )
                 await self.async_set_unique_id(get_device_id(user_input))
                 self._abort_if_unique_id_configured()
@@ -492,23 +504,25 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
-        if self.__cloud_device:
+        if self.__discovered_device:
             _LOGGER.warning(
                 "Adding %s device with product id %s",
-                self.__cloud_device.get("product_name", "UNKNOWN"),
-                self.__cloud_device.get("product_id", "UNKNOWN"),
+                self.__discovered_device.get("product_name", "UNKNOWN"),
+                self.__discovered_device.get("product_id", "UNKNOWN"),
             )
-            if self.__cloud_device.get("local_product_id") and self.__cloud_device.get(
+            if self.__discovered_device.get(
                 "local_product_id"
-            ) != self.__cloud_device.get("product_id"):
+            ) and self.__discovered_device.get(
+                "local_product_id"
+            ) != self.__discovered_device.get("product_id"):
                 _LOGGER.warning(
                     "Local product id differs from cloud: %s",
-                    self.__cloud_device.get("local_product_id"),
+                    self.__discovered_device.get("local_product_id"),
                 )
             try:
                 self.init_cloud()
                 model = await self.cloud.async_get_datamodel(
-                    self.__cloud_device.get("id"),
+                    self.__discovered_device.get("id"),
                 )
                 if model:
                     _LOGGER.warning(
@@ -574,8 +588,8 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 title=title, data={**self.data, **user_input}
             )
         default_name = config.name
-        if self.__cloud_device and self.__cloud_device.get("name"):
-            default_name = self.__cloud_device["name"]
+        if self.__discovered_device and self.__discovered_device.get("name"):
+            default_name = self.__discovered_device["name"]
         schema = {vol.Required(CONF_NAME, default=default_name): str}
 
         return self.async_show_form(
