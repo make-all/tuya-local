@@ -100,6 +100,9 @@ class TuyaLANRediscovery:
     @callback
     def async_start(self) -> None:
         """Begin periodic discovery tasks."""
+        # TEMPORARILY DISABLED: the sweep is a bit too aggressive and can cause
+        # incorrect IP updates if a device is temporarily unreachable, see #5713.
+        #
         # if self._unsub_sweep is None:
         #     self._unsub_sweep = async_track_time_interval(
         #         self._hass, self._async_sweep, SWEEP_INTERVAL
