@@ -100,10 +100,10 @@ class TuyaLANRediscovery:
     @callback
     def async_start(self) -> None:
         """Begin periodic discovery tasks."""
-        if self._unsub_sweep is None:
-            self._unsub_sweep = async_track_time_interval(
-                self._hass, self._async_sweep, SWEEP_INTERVAL
-            )
+        # if self._unsub_sweep is None:
+        #     self._unsub_sweep = async_track_time_interval(
+        #         self._hass, self._async_sweep, SWEEP_INTERVAL
+        #     )
         if self._unsub_scan is None:
             self._unsub_scan = async_track_time_interval(
                 self._hass, self._async_discovery_scan, SCAN_INTERVAL
