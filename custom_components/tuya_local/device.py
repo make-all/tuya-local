@@ -306,9 +306,13 @@ class TuyaLocalDevice(object):
             _LOGGER.exception(
                 "%s receive loop terminated by exception %s", self.name, t
             )
+        finally:
+            # Ensure the persistent connection is closed when the loop exits
+            # and device appears as unavailable
             self._api.set_socketPersistent(False)
             if self._api.parent:
                 self._api.parent.set_socketPersistent(False)
+            self._reset_cached_state()
 
     @property
     def should_poll(self):
