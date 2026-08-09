@@ -1401,6 +1401,7 @@ port and password.
 - Ryakka 7-in-1 smart pool monitor
 - Satisure power outage alarm
 - SD123 HPR01 human presence radar
+- Shrivee dual water timer
 - Shrivee triple water timer
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
