@@ -7,6 +7,7 @@ import pytest
 from homeassistant.const import CONF_HOST
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
+from custom_components.tuya_local import discovery
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
@@ -21,7 +22,6 @@ from custom_components.tuya_local.discovery import (
     async_start_discovery,
     async_stop_discovery,
 )
-from custom_components.tuya_local import discovery
 
 TESTKEY = ")<jO<@)'P1|kR$Kd"
 DEVID = "bf1234567890abcdef"
