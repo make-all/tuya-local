@@ -44,8 +44,8 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_track_time_interval
 
 from .const import CONF_DEVICE_CID, CONF_DEVICE_ID, CONF_TYPE, DATA_DISCOVERY, DOMAIN
-from helpers.config import get_device_id
-from helpers.device_config import get_config
+from .helpers.config import get_device_id
+from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 
