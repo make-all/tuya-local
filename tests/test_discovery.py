@@ -170,7 +170,7 @@ async def test_sweep_scans_when_no_device_object(hass, mocker):
 @pytest.mark.asyncio
 async def test_start_is_idempotent_and_stop_cancels(hass, mocker):
     """async_start_discovery schedules the sweep + scan intervals; stop cancels both."""
-    unsub_sweep = mocker.MagicMock()
+    # unsub_sweep = mocker.MagicMock()
     unsub_scan = mocker.MagicMock()
     track = mocker.patch(
         "custom_components.tuya_local.discovery.async_track_time_interval",
