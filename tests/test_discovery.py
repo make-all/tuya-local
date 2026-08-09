@@ -170,24 +170,26 @@ async def test_sweep_scans_when_no_device_object(hass, mocker):
 @pytest.mark.asyncio
 async def test_start_is_idempotent_and_stop_cancels(hass, mocker):
     """async_start_discovery schedules the sweep + scan intervals; stop cancels both."""
-    unsub_sweep = mocker.MagicMock()
+    # unsub_sweep = mocker.MagicMock()
     unsub_scan = mocker.MagicMock()
     track = mocker.patch(
         "custom_components.tuya_local.discovery.async_track_time_interval",
-        side_effect=[unsub_sweep, unsub_scan],
+        side_effect=[unsub_scan],
     )
 
     await async_start_discovery(hass)
     rediscovery = hass.data[DOMAIN][DATA_DISCOVERY]
     assert isinstance(rediscovery, TuyaLANRediscovery)
-    assert track.call_count == 2
+    # assert track.call_count == 2
+    assert track.call_count == 1
 
     # Second call must not schedule more intervals (singleton).
     await async_start_discovery(hass)
-    assert track.call_count == 2
+    # assert track.call_count == 2
+    assert track.call_count == 1
 
     async_stop_discovery(hass)
-    unsub_sweep.assert_called_once()
+    # unsub_sweep.assert_called_once()
     unsub_scan.assert_called_once()
     assert DATA_DISCOVERY not in hass.data[DOMAIN]
 

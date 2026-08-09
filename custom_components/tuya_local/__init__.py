@@ -13,9 +13,8 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
-from homeassistant.helpers.entity_registry import (
-    async_get as async_get_entity_registry,
-)
+from homeassistant.helpers.device_registry import async_get as async_get_device_registry
+from homeassistant.helpers.entity_registry import async_get as async_get_entity_registry
 from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
 
@@ -1011,6 +1010,14 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             await async_migrate_entries(
                 hass, entry.entry_id, update_gateway_scoped_unique_id
             )
+            # ensure the device entry itself is updated to the new ID
+            dr = async_get_device_registry(hass)
+            device_entry = dr.async_get_device(identifiers={(DOMAIN, old_device_id)})
+            if device_entry:
+                dr.async_update_device(
+                    device_entry.id,
+                    new_identifiers={(DOMAIN, new_device_id)},
+                )
             hass.config_entries.async_update_entry(entry, unique_id=new_device_id)
         hass.config_entries.async_update_entry(entry, minor_version=22)
     return True
