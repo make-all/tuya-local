@@ -17,7 +17,6 @@ entities:
     dps:
       - id: 20
         type: boolean
-        optional: true
         name: switch
       - id: 21
         type: string
@@ -90,21 +89,6 @@ entities:
           - dps_val: null
             value: false
           - value: true
-  - entity: select
-    translation_key: mode
-    category: config
-    dps:
-      - id: 21
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: "colour"
-            value: "Color"
-          - dps_val: "scene"
-            value: "Scene"
-          - dps_val: "music"
-            value: "Music"
   - entity: select
     translation_key: scene
     category: config
