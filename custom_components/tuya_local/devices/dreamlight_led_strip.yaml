@@ -104,6 +104,23 @@ entities:
         range:
           min: 1
           max: 1000
+  - entity: select
+    name: Color mode
+    deprecated: light.color_mode  # 2026-08-10
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "color"
+            value: "Color"
+          - dps_val: "scene"
+            value: "Scene"
+          - dps_val: "music"
+            value: "Music"
   - entity: text
     translation_key: scene
     category: config
