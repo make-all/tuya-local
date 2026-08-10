@@ -1,4 +1,4 @@
-name: WD-01GDE Irrigation Controller
+name: Irrigation controller
 products:
   - id: cgz1qpr1aeladx2t
     model: WD-01GDE
@@ -72,9 +72,8 @@ entities:
         type: string
         name: sensor
         optional: true
-  - entity: sensor
-    name: Fault
-    class: enum
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 106
@@ -83,7 +82,12 @@ entities:
         optional: true
         mapping:
           - dps_val: 0
-            value: "OK"
+            value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: number
     name: Cut-off time
     category: config
