@@ -16,7 +16,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
+            constraint: preset_mode
             conditions:
               - dps_val: cold
                 value: cool
@@ -27,10 +27,6 @@ entities:
               - dps_val: floor_heat
                 value: heat
                 hidden: true
-      - id: 2
-        type: string
-        name: mode
-        hidden: true
       - id: 2
         type: string
         name: preset_mode
