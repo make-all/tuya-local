@@ -934,3 +934,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nitaybz](https://github.com/nitaybz) for contributing improved subdevice unique id allocation.
 - [doctordarko](https://github.com/doctordarko) for contributing improvements to Dreamlight LED light.
 - [calexander3](https://github.com/calexander3) for contributing support for Anderic UC7235T4 ceiling fan receiver.
+- [jrhrsmit](https://github.com/jrhrsmit) for contributing support for Blaupunkt XBoost robot vacuum.
