@@ -1,0 +1,171 @@
+name: Heat pump water heater
+products:
+  - id: 4zrn3rqjibkude2z
+    manufacturer: Aquatech
+    model: Fusion/X8
+
+entities:
+  - entity: water_heater
+    translation_only_key: hot_water
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: eco
+                value: eco
+              - dps_val: standard
+                value: heat_pump
+              - dps_val: boot
+                value: high_demand
+              - dps_val: electric
+                value: electric
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 75
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+      - id: 4
+        type: string
+        name: work_mode
+        hidden: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    translation_key: ambient_temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Return air temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Water tank temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Return water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Main valve opening
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: P
+
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+
+  - entity: binary_sensor
+    name: Four-way valve
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+
+  - entity: sensor
+    name: Fan frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+
+  - entity: binary_sensor
+    name: Electric heating element
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
