@@ -927,3 +927,12 @@ Further device support has been made with the assistance of users. Please consid
 - [grinser](https://github.com/grinser) for contributing improvements to Costway portable AC.
 - [lucasoskorep](https://github.com/lucasoskorep) for contributing improvements to Friedrich air conditioner.
 - [devonuto](https://github.com/devonuto) for contributing support for Zemismart ZM25EL roller shade.
+- [sthomas727](https://github.com/sthomas727) for contributing support for Elspet Orbitie litter box.
+- [odiechoo](https://github.com/odiechoo) for contributing support for SPT Dark Knight water heater.
+- [fuentesdelafuente](https://github.com/fuentesdelafuente) for contributing support for Tongou TOWSMR1-40A breaker.
+- [larstobi](https://github.com/larstobi) for contributing support for Frankever water valve and improvements to valves in general.
+- [nitaybz](https://github.com/nitaybz) for contributing improved subdevice unique id allocation.
+- [doctordarko](https://github.com/doctordarko) for contributing improvements to Dreamlight LED light.
+- [calexander3](https://github.com/calexander3) for contributing support for Anderic UC7235T4 ceiling fan receiver.
+- [jrhrsmit](https://github.com/jrhrsmit) for contributing support for Blaupunkt XBoost robot vacuum.
+- [SiwatS](https://github.com/SiwatS) for contributing support for Kogan heater fan.

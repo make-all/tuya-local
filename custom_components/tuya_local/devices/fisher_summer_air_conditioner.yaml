@@ -116,12 +116,30 @@ entities:
         #   ??? - 19 is missing in Tuya json
         #   20. presence or absence of PM2.5 (implemented on PM25)
         #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
-        #   22. soft wind (implemented on Sleep)
+        #   22. soft wind (implemented on Soft wind)
         #   23. left and right wide-angle air supply (implemented on Set
         #       horizontal direction to filter "wide" options)
+        #   24. fresh air function
       - id: 123
         name: options
         type: string
+        # bit field for togling advanced options
+        #  0. Eco
+        #  1. Intelligent dehumidification / anti-mildew
+        #  2. Evaporator cleaning
+        #  3. light
+        #  4. beep
+        #  5. health
+        #  6. ---
+        #  7. photosensitive
+        #  8. dry
+        #  9. ---
+        # 10. ---
+        # 11. ---
+        # 12. 8 degree heating
+        # 13. filter detection
+        # 14. Fahrenheit +1 flag
+        # 15. Soft wind
       - id: 128
         name: style
         type: string
@@ -176,16 +194,41 @@ entities:
   - entity: switch
     name: Soft wind
     category: config
+    hidden: unavailable
     icon: "mdi:weather-windy"
     dps:
       - id: 123
         type: hex
         name: switch
         mask: "8000"
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 4194304
+            value: true
+          - value: false
   - entity: switch
     name: Anti-mildew
     category: config
+    hidden: unavailable
     icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0002"
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 128
+            value: true
+          - value: false
+  - entity: switch
+    name: Evaporator drying
+    icon: "mdi:water-off-outline"
+    category: config
     dps:
       - id: 123
         type: hex
@@ -277,29 +320,28 @@ entities:
     name: Sleep
     category: config
     icon: "mdi:weather-night"
-    hidden: unavailable
     dps:
       - id: 105
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: "off"
             value: "Off"
-            default: true
           - dps_val: normal
             value: Normal
           - dps_val: old
             value: Elderly
           - dps_val: child
             value: Child
+      - id: 105
+        type: string
         optional: true
-      - id: 110
-        type: bitfield
         name: available
         mapping:
-          - dps_val: 4194394
-            value: true
-          - value: false
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     name: Vertical sweep
     category: config
@@ -578,6 +620,7 @@ entities:
   - entity: select
     name: Hot cold wind
     category: config
+    hidden: unavailable
     icon: "mdi:sun-snowflake"
     dps:
       - id: 132

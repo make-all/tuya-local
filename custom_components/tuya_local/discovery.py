@@ -43,9 +43,9 @@ from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_track_time_interval
 
-from ..const import CONF_DEVICE_CID, CONF_DEVICE_ID, CONF_TYPE, DATA_DISCOVERY, DOMAIN
-from .config import get_device_id
-from .device_config import get_config
+from .const import CONF_DEVICE_CID, CONF_DEVICE_ID, CONF_TYPE, DATA_DISCOVERY, DOMAIN
+from .helpers.config import get_device_id
+from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -100,10 +100,13 @@ class TuyaLANRediscovery:
     @callback
     def async_start(self) -> None:
         """Begin periodic discovery tasks."""
-        if self._unsub_sweep is None:
-            self._unsub_sweep = async_track_time_interval(
-                self._hass, self._async_sweep, SWEEP_INTERVAL
-            )
+        # TEMPORARILY DISABLED: the sweep is a bit too aggressive and can cause
+        # incorrect IP updates if a device is temporarily unreachable, see #5713.
+        #
+        # if self._unsub_sweep is None:
+        #     self._unsub_sweep = async_track_time_interval(
+        #         self._hass, self._async_sweep, SWEEP_INTERVAL
+        #     )
         if self._unsub_scan is None:
             self._unsub_scan = async_track_time_interval(
                 self._hass, self._async_discovery_scan, SCAN_INTERVAL

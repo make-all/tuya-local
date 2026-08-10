@@ -61,6 +61,21 @@ def test_unique_id(subject, mock_api):
     assert subject.unique_id is mock_api().id
 
 
+def test_subdevice_unique_id_is_scoped_by_gateway(patched_hass, mock_api):
+    """Returns a gateway-scoped ID for a child device."""
+    subject = TuyaLocalDevice(
+        "Some name",
+        "gateway_id",
+        "some.ip.address",
+        "some_local_key",
+        "3.3",
+        "child_id",
+        patched_hass,
+    )
+
+    assert subject.unique_id == "gateway_id/child_id"
+
+
 def test_device_info(subject, mock_api):
     """Returns generic info plus the unique ID for categorisation."""
     assert subject.device_info == {

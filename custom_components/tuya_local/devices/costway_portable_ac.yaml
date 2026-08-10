@@ -5,6 +5,9 @@ products:
   - id: av6ejal3j9epuw3e
     manufacturer: Hantech
     model: 9000 BTU
+  - id: asgmtdjvhragxx24
+    manufacturer: Costway
+    model: FP10351GB-WH
 entities:
   - entity: climate
     dps:
@@ -23,6 +26,9 @@ entities:
                 value: fan_only
               - dps_val: wet
                 value: dry
+              - dps_val: hot
+                value: heat
+                available: heat_supported
       - id: 2
         type: integer
         name: temperature
@@ -49,9 +55,22 @@ entities:
         type: integer
         name: temp_set_f
         hidden: true
-      - id: 109
+      - id: 108
         type: integer
-        name: unknown_109
+        optional: true
+        name: temp_cur_f
+        hidden: true
+      - id: 109
+        type: bitfield
+        name: feature_flags
+      - id: 109
+        type: bitfield
+        name: heat_supported
+        hidden: true
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
   - entity: switch
     translation_key: sleep
     category: config

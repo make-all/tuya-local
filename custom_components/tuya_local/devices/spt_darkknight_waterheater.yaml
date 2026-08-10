@@ -1,5 +1,8 @@
-name: Hot water
-# products: Hydrotherm DYNAMIC/X8
+name: Water heater
+products:
+  - id: gbna0cgw5i7lhjup
+    manufacturer: SPT
+    model: Dark Knight WH315A-RE
 entities:
   - entity: water_heater
     dps:
@@ -10,43 +13,46 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: work_mode
+            constraint: mode
             conditions:
-              - dps_val: ECO
-                value: eco
-              - dps_val: STANDARD
+              - dps_val: WATER
                 value: heat_pump
-              - dps_val: HYBRID
+              - dps_val: COOL
                 value: high_demand
-              - dps_val: HYBRID1
-                value: performance
-              - dps_val: ELEMENT
+              - dps_val: eh
                 value: electric
       - id: 2
         type: integer
         name: temperature
         unit: C
+        # 38-75 confirmed as the controller's setpoint range on the unit's
+        # own panel. The manual's 35-70 figure is the outlet water temp
+        # spec, not the setpoint clamp.
         range:
-          min: 15
+          min: 38
           max: 75
       - id: 3
         type: integer
         name: current_temperature
+        unit: C
+      # DP4 enum confirmed by observation on a WH315A-RE:
+      #   WATER = heat pump only, COOL = hybrid (heat pump + element),
+      #   eh = element only
       - id: 4
         type: string
-        name: work_mode
+        name: mode
         hidden: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
-      - id: 21
+      - id: 9
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
-      - id: 21
+      - id: 9
         type: bitfield
         name: fault_code

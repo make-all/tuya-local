@@ -6,6 +6,9 @@ products:
   - id: rqrkvuxebofiaifp
     manufacturer: Fancy LED
     model: Fancy Lightstrip  3
+  - id: m6abhkeubvtdfjgw
+    manufacturer: Arlec
+    model: Smart Sound Sync Mood Lamp - ALP018HA
 entities:
   - entity: light
     dps:
@@ -75,14 +78,6 @@ entities:
       - id: 47
         name: pixels
         type: integer
-      - id: 51
-        name: dreamlight_scene
-        type: string
-        optional: true
-      - id: 52
-        name: dreamlight_music_data
-        type: string
-        optional: true
       - id: 61
         name: paint_colour_data
         type: string
@@ -111,6 +106,7 @@ entities:
           max: 1000
   - entity: select
     name: Color mode
+    deprecated: light.color_mode  # 2026-08-10
     icon: "mdi:palette"
     category: config
     dps:
@@ -125,6 +121,15 @@ entities:
             value: "Scene"
           - dps_val: "music"
             value: "Music"
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
   - entity: select
     translation_key: scene
     category: config
@@ -222,3 +227,13 @@ entities:
             value: "Summer wind"
           - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
             value: "Planet journey"
+  - entity: text
+    name: Sound sync
+    icon: "mdi:music"
+    category: config
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        name: value
+        optional: true

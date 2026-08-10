@@ -293,7 +293,7 @@ KNOWN_DPS = {
     },
     "valve": {
         "required": ["valve"],
-        "optional": ["switch"],
+        "optional": ["switch", "current_position"],
     },
     "water_heater": {
         "required": [],
@@ -777,10 +777,11 @@ def test_values_with_mirror(mocker):
 
 
 def test_get_device_id():
-    """Test that check if device id is correct"""
+    """Test that child devices are scoped to their gateway."""
     assert "my-device-id" == get_device_id({"device_id": "my-device-id"})
     assert "sub-id" == get_device_id({"device_cid": "sub-id"})
-    assert "s" == get_device_id({"device_id": "d", "device_cid": "s"})
+    assert "d/s" == get_device_id({"device_id": "d", "device_cid": "s"})
+    assert "other/s" == get_device_id({"device_id": "other", "device_cid": "s"})
 
 
 def test_getting_masked_hex(mocker):
