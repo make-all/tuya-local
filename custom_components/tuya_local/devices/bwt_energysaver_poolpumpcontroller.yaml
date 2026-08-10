@@ -1,0 +1,335 @@
+name: Energy saver
+entities:
+  # === BASE COMMANDS ===
+  - entity: switch
+    name: Pool pump
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: mode
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "day"
+            value: "day"
+          - dps_val: "night"
+            value: "night"
+          - dps_val: "backwash"
+            value: "backwash"
+
+  - entity: sensor
+    class: power
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: W
+
+  - entity: number
+    name: Boost time
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+
+  # === MAIN SPEEDS ===
+  - entity: number
+    name: Night speed
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 1650
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Day speed
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1700
+          max: 2400
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Backwash speed
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 2450
+          max: 2900
+        mapping:
+          - step: 50
+
+  # === SCHEDULED SPEEDS & OTHERS ===
+  - entity: number
+    name: Program 1 speed
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Program 2 speed
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Program 3 speed
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Program 4 speed
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Minimum speed
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Di2 speed
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Di3 speed
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Di4 speed
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Startup speed
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        range:
+          min: 1200
+          max: 2900
+        mapping:
+          - step: 50
+
+  # === READ-ONLY SENSORS ===
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+      - id: 114
+        type: integer
+        name: fault_code_2
+      - id: 115
+        type: string
+        name: unknown_115
+
+  - entity: binary_sensor
+    class: safety
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+
+  # === SCHEDULE PROGRAMMING ===
+  # Prog 1
+  - entity: switch
+    name: Program 1 enable
+    dps:
+      - id: 133
+        type: boolean
+        name: switch
+
+  - entity: time
+    name: Program 1 start
+    dps:
+      - id: 117
+        type: integer
+        name: hour
+      - id: 118
+        type: integer
+        name: minute
+
+  - entity: time
+    name: Program 1 end
+    dps:
+      - id: 119
+        type: integer
+        name: hour
+      - id: 120
+        type: integer
+        name: minute
+
+  # Prog 2
+  - entity: switch
+    name: Program 2 enable
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+
+  - entity: time
+    name: Program 2 start
+    dps:
+      - id: 121
+        type: integer
+        name: hour
+      - id: 122
+        type: integer
+        name: minute
+
+  - entity: time
+    name: Program 2 end
+    dps:
+      - id: 123
+        type: integer
+        name: hour
+      - id: 124
+        type: integer
+        name: minute
+
+  # Prog 3
+  - entity: switch
+    name: Program 3 enable
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+
+  - entity: time
+    name: Program 3 start
+    dps:
+      - id: 125
+        type: integer
+        name: hour
+      - id: 126
+        type: integer
+        name: minute
+
+  - entity: time
+    name: Program 3 end
+    dps:
+      - id: 127
+        type: integer
+        name: hour
+      - id: 128
+        type: integer
+        name: minute
+
+  # Prog 4
+  - entity: switch
+    name: Program 4 enable
+    dps:
+      - id: 136
+        type: boolean
+        name: switch
+
+  - entity: time
+    name: Program 4 start
+    dps:
+      - id: 129
+        type: integer
+        name: hour
+      - id: 130
+        type: integer
+        name: minute
+
+  - entity: time
+    name: Program 4 end
+    dps:
+      - id: 131
+        type: integer
+        name: hour
+      - id: 132
+        type: integer
+        name: minute
