@@ -5,6 +5,7 @@ products:
     model: Smart Thermostat
 entities:
   - entity: climate
+    translation_key: combo_floor
     dps:
       - id: 1
         type: boolean
@@ -36,17 +37,17 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: wind
-            value: Fan only
+            value: fan_only
           - dps_val: cold
-            value: Cooling
+            value: cool
           - dps_val: hot
-            value: Heating
+            value: heat
           - dps_val: floor_heat
-            value: Floor heating
+            value: floor_heat
           - dps_val: heat_floorheat
-            value: Heating + floor heating
+            value: air_floor_heat
           - dps_val: cold_floorcold
-            value: Cooling + floor cooling
+            value: air_floor_cool
       - id: 16
         type: integer
         name: temperature

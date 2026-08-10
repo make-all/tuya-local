@@ -8,6 +8,7 @@ products:
     model: XNW-AC
 entities:
   - entity: climate
+    translation_key: combo_floor
     dps:
       - id: 1
         type: boolean
@@ -32,13 +33,13 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: wind
-            value: Fan only
+            value: fan_only
           - dps_val: cold
-            value: Cooling
+            value: cool
           - dps_val: hot
-            value: Heating
+            value: heat
           - dps_val: floor_heat
-            value: Floor heating
+            value: floor_heat
       - id: 16
         type: integer
         name: temperature
