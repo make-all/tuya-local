@@ -354,6 +354,7 @@
 - Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
 - Airwoods AV-EW8/DF heat recovery ventilation with humidity control
 - Amico 52" ceiling fan with light
+- Anderic UC7235T4 ceiling fan receiver
 - Anko HEGSM40 fan
 - Arida Venti 160 small through-wall heat-recovery ventilation fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
