@@ -937,3 +937,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jrhrsmit](https://github.com/jrhrsmit) for contributing support for Blaupunkt XBoost robot vacuum.
 - [SiwatS](https://github.com/SiwatS) for contributing support for Kogan heater fan.
 - [pranksta02](https://github.com/pranksta02) for contributing support for Aquatech X8 Fusion water heater.
+- [matisere38](https://github.com/matisere38) for contributing support for BWT Energy Saver pool controller.
