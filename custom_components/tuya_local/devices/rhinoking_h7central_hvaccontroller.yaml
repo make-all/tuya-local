@@ -45,9 +45,9 @@ entities:
           - dps_val: "floorhea"
             value: floor_heat
           - dps_val: "heat_floorheat"
-            value: Heating + floor heating
+            value: air_floor_heat
           - dps_val: "cold_floorcold"
-            value: Cooling + floor cooling
+            value: air_floor_cool
 
       - id: 16
         type: integer
@@ -80,6 +80,7 @@ entities:
   - entity: number
     name: Auxiliary bypass count
     icon: "mdi:source-branch"
+    category: config
     dps:
       - id: 109
         type: integer
@@ -92,6 +93,7 @@ entities:
   - entity: number
     name: Bypass D valve closing trigger count
     icon: "mdi:clock-start"
+    category: config
     dps:
       - id: 111
         type: integer
@@ -104,6 +106,7 @@ entities:
   - entity: switch
     name: Indoor-outdoor unit linkage
     icon: "mdi:link-variant"
+    category: config
     dps:
       - id: 142
         type: boolean
@@ -125,6 +128,7 @@ entities:
   - entity: sensor
     name: Radiant mixing supply temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 115
         type: integer
@@ -137,6 +141,7 @@ entities:
   - entity: sensor
     name: Radiant mixing return temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 116
         type: integer
@@ -158,6 +163,7 @@ entities:
   - entity: sensor
     translation_key: status
     icon: "mdi:heat-pump"
+    category: diagnostic
     dps:
       - id: 125
         type: string
@@ -167,6 +173,7 @@ entities:
   - entity: sensor
     name: Outdoor unit supply water temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 126
         type: integer
@@ -176,6 +183,7 @@ entities:
   - entity: sensor
     name: Outdoor unit return water temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 127
         type: integer
@@ -186,6 +194,7 @@ entities:
   - entity: sensor
     name: Operating mode status
     icon: "mdi:list-status"
+    category: diagnostic
     dps:
       - id: 128
         type: string
@@ -205,6 +214,7 @@ entities:
     name: Pump status
     class: enum
     icon: "mdi:pump"
+    category: diagnostic
     dps:
       - id: 131
         type: string
@@ -242,16 +252,26 @@ entities:
         mapping:
           - scale: 1
 
-  - entity: sensor
-    class: enum
-    name: System fault code
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    icon: "mdi:alert-circle-outline"
     dps:
       - id: 122
         type: string
         optional: true
         name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "none"
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 122
+        type: string
+        optional: true
+        name: description
         mapping:
           - dps_val: "0"
             value: Normal
@@ -511,7 +531,7 @@ entities:
 
   - entity: number
     name: Outdoor unit heating water temperature
-    icon: "mdi:thermometer-hot"
+    class: temperature
     category: config
     dps:
       - id: 119
@@ -525,7 +545,7 @@ entities:
 
   - entity: number
     name: Tank temperature differential
-    icon: "mdi:thermometer"
+    class: temperature_delta
     category: config
     dps:
       - id: 120
@@ -539,7 +559,7 @@ entities:
 
   - entity: number
     name: Minimum floor heating supply temperature
-    icon: "mdi:snowflake-thermometer"
+    class: temperature
     category: config
     dps:
       - id: 124
@@ -553,7 +573,7 @@ entities:
 
   - entity: number
     name: Outdoor unit cooling target temperature
-    icon: "mdi:thermometer-water"
+    class: temperature
     category: config
     dps:
       - id: 129
@@ -594,6 +614,7 @@ entities:
   - entity: number
     name: Normally open bypass delay
     icon: "mdi:clock-start"
+    class: duration
     category: config
     dps:
       - id: 110
@@ -610,6 +631,7 @@ entities:
   - entity: number
     name: Normally closed bypass delay
     icon: "mdi:clock-end"
+    class: duration
     category: config
     dps:
       - id: 112
@@ -626,6 +648,7 @@ entities:
   - entity: number
     name: Mixing pump start delay
     icon: "mdi:clock-start"
+    class: duration
     category: config
     dps:
       - id: 110
@@ -642,6 +665,7 @@ entities:
   - entity: number
     name: Mixing pump stop delay
     icon: "mdi:clock-end"
+    class: duration
     category: config
     dps:
       - id: 113
