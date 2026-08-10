@@ -5,6 +5,7 @@ products:
     model: H7
 entities:
   - entity: climate
+    translation_key: combo_floor
     dps:
       - id: 1
         type: boolean
@@ -36,13 +37,13 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: "wind"
-            value: Fan only
+            value: fan_only
           - dps_val: "cold"
-            value: Cooling
+            value: cool
           - dps_val: "hea"
-            value: Heating
+            value: heat
           - dps_val: "floorhea"
-            value: Floor heating
+            value: floor_heat
           - dps_val: "heat_floorheat"
             value: Heating + floor heating
           - dps_val: "cold_floorcold"
