@@ -220,10 +220,10 @@
 
 ### Water heaters
 
-- Apricus heat pump water heater
 - A.O. Smith HeatBot 15L electric water heater
+- Apricus heat pump water heater
 - Aqua Plus APAIO270 heat pump water heater
-- Aquatech Rapid/X6 heat pump water heater
+- Aquatech Rapid/X6 and X8 Fusion heat pump water heaters
 - Aquaviva AVH15S combo air-water heat pump
 - Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)

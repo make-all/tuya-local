@@ -936,3 +936,4 @@ Further device support has been made with the assistance of users. Please consid
 - [calexander3](https://github.com/calexander3) for contributing support for Anderic UC7235T4 ceiling fan receiver.
 - [jrhrsmit](https://github.com/jrhrsmit) for contributing support for Blaupunkt XBoost robot vacuum.
 - [SiwatS](https://github.com/SiwatS) for contributing support for Kogan heater fan.
+- [pranksta02](https://github.com/pranksta02) for contributing support for Aquatech X8 Fusion water heater.
