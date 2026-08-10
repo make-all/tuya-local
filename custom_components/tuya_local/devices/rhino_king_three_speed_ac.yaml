@@ -26,10 +26,23 @@ entities:
                 value: fan_only
               - dps_val: floor_heat
                 value: heat
+                hidden: true
       - id: 2
         type: string
         name: mode
         hidden: true
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: wind
+            value: Fan only
+          - dps_val: cold
+            value: Cooling
+          - dps_val: hot
+            value: Heating
+          - dps_val: floor_heat
+            value: Floor heating
       - id: 16
         type: integer
         name: temperature
@@ -63,24 +76,3 @@ entities:
       - id: 34
         type: integer
         name: current_humidity
-
-  - entity: sensor
-    name: Current Temperature
-    class: temperature
-    dps:
-      - id: 24
-        type: integer
-        name: sensor
-        unit: "°C"
-        class: measurement
-        mapping:
-          - scale: 10
-
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 34
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
