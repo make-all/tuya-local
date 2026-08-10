@@ -426,7 +426,7 @@
 - Klarstein Airfold, Bolero ceiling fans with light
 - Klarstein Icewind Plus, Skyscraper Ice, Skytower Grand cooling fans
 - Keyun MKCFE002 RGB chandelier fan
-- Kogan bladeless and 3D oscillating fans
+- Kogan bladeless, 3D oscillating and heating fans
 - Ledkia fan and light controller
 - Ledvance Ceiling fan with light
 - Lexy F501 fan
