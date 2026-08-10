@@ -333,6 +333,7 @@
 - Polytherm Polyalpha thermostat
 - ProWarm Touch Button S series underfloor heating controller
 - Psmart T436 thermostat
+- Rhino King XNW-AC 3-speed and Smart AC thermostats
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Sajun steam room
 - Salcar T9W thermostat _(likely also Tellur TSH02)_

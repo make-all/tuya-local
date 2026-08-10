@@ -938,3 +938,4 @@ Further device support has been made with the assistance of users. Please consid
 - [SiwatS](https://github.com/SiwatS) for contributing support for Kogan heater fan.
 - [pranksta02](https://github.com/pranksta02) for contributing support for Aquatech X8 Fusion water heater.
 - [matisere38](https://github.com/matisere38) for contributing support for BWT Energy Saver pool controller.
+- [zhuguoqing123](https://github.com/zhuguoqing123) for contributing support for Rhino King XNW-AC and Smart AC thermostats.
