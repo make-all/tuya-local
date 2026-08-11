@@ -15,11 +15,19 @@ entities:
         optional: true
         mapping:
           - dps_val: single_click
-            value: single_click
+            value: press_end
           - dps_val: long_press
-            value: long_press
+            value: long_press_end
           - dps_val: double_click
-            value: double_click
+            value: multi_press_end
+      - id: 1
+        type: string
+        optional: true
+        name: multi_press_count
+        mapping:
+          - dps_val: double_click
+            value: 2
+          - value: null
   - entity: sensor
     class: battery
     dps:
