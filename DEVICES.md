@@ -758,6 +758,7 @@
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
 - EcoPoint EV charger
+- eLoad Gen2 EV charger
 - Emini 16A Public EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)
