@@ -3,6 +3,8 @@ name: Fireplace
 # "PRO V2 W/Wi-Fi & Bluetooth LE"
 products:
   - id: v4r5dzjgkhnagnqc
+    manufacturer: Modern Flames
+    model: Landscape Pro Slim
 entities:
   - entity: climate
     icon: "mdi:fireplace"
@@ -23,6 +25,7 @@ entities:
                 value: heat
               - dps_val: "3"
                 value: heat
+                hidden: true
       - id: 2
         name: temperature
         type: integer
@@ -60,8 +63,7 @@ entities:
         name: temperature_unit
         type: string
         mapping:
-          - dps_val: c
-            value: C
+          - value: C
           - dps_val: f
             value: F
       - id: 20
@@ -126,7 +128,7 @@ entities:
         name: sensor
         unit: min
   - entity: select
-    name: Light effect
+    name: Light preset
     icon: "mdi:palette"
     category: config
     dps:
@@ -167,11 +169,11 @@ entities:
         name: rgbhsv
         type: hex
         format:
-          - name: spare_r
+          - name: r
             bytes: 1
-          - name: spare_g
+          - name: g
             bytes: 1
-          - name: spare_b
+          - name: b
             bytes: 1
           - name: h
             bytes: 2
@@ -199,11 +201,11 @@ entities:
         name: rgbhsv
         type: hex
         format:
-          - name: spare_r
+          - name: r
             bytes: 1
-          - name: spare_g
+          - name: g
             bytes: 1
-          - name: spare_b
+          - name: b
             bytes: 1
           - name: h
             bytes: 2
@@ -232,11 +234,11 @@ entities:
         name: rgbhsv
         type: hex
         format:
-          - name: spare_r
+          - name: r
             bytes: 1
-          - name: spare_g
+          - name: g
             bytes: 1
-          - name: spare_b
+          - name: b
             bytes: 1
           - name: h
             bytes: 2
@@ -319,7 +321,7 @@ entities:
         name: value
         optional: true
   - entity: text
-    name: Weekly schedule
+    translation_key: schedule
     icon: "mdi:calendar-clock"
     category: config
     hidden: true
