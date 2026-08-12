@@ -737,7 +737,8 @@ no information will be available about which specific credential was used to unl
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
 - **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.
 - **approve_intercom** (optional, boolean): a dp to unlock the lock in response to an intercom request.
-- **code_unlock** (optional, base64): a dp to unlock the lock by giving an 8 digit code. This corresponds in the Tuya info to `remote_no_dp_key` and has a specific format. The 8 digit key assigned to user 1 must be sent to unlock (and optionally lock) the lock.
+- **code_unlock** (optional, base64): a dp to unlock the lock by giving an 8 digit code. This corresponds in the Tuya info to `remote_no_dp_key` and has a specific format. If not accompanied by **set_unlock_code**(below), then the 8 digit key assigned to user 1 must be sent to unlock (and optionally lock) the lock. This can generally be found in the Tuya developer portal logs after opening the lock with the app on first phone that was paired.
+- **set_unlock_code** (optional, base64): a dp that allows setting the 8 digit code at the same time as it is used in code_unlock, so the user does not need to enter an 8 digit number. This corresponds in the Tuya info to `remote_no_pd_setkey` and has a specific format. If this is supplied, the integration will simultaneously set a random code in slot 7, and use it to unlock the lock, so the user does not need to provide any code.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
 ### `number`

@@ -49,6 +49,11 @@ entities:
         name: unlock_temp_pwd
         optional: true
         persist: false
+      - id: 60
+        type: base64
+        optional: true
+        sensitive: true
+        name: set_unlock_code
       - id: 61
         type: base64
         optional: true
@@ -132,17 +137,6 @@ entities:
             step: 33
             value: 100
             icon: "mdi:volume-high"
-  - entity: text
-    name: Remote unlock code
-    category: config
-    icon: "mdi:form-textbox-password"
-    hidden: true
-    dps:
-      - id: 60
-        type: base64
-        optional: true
-        sensitive: true
-        name: value
   - entity: text
     name: New credential
     category: config
