@@ -186,7 +186,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             _LOGGER.info("%s locking", self._config.config_id)
             await self._lock_dp.async_set_value(self._device, True)
         elif self._code_unlock_dp and self._set_code_dp:
-            code = sprintf("%08d", randbelow(100000000))
+            code = "%08d" % randbelow(100000000)
             setting = self.build_code_set_msg(code)
             msg = self.build_code_unlock_msg(
                 CODE_LOCK, member_id=7, code=code, source=CODE_SRC_UNKNOWN
@@ -216,7 +216,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             _LOGGER.info("%s unlocking", self._config.config_id)
             await self._lock_dp.async_set_value(self._device, False)
         elif self._code_unlock_dp and self._set_code_dp:
-            code = sprintf("%08d", randbelow(100000000))
+            code = "%08d" % randbelow(100000000)
             setting = self.build_code_set_msg(code)
             msg = self.build_code_unlock_msg(
                 CODE_UNLOCK, member_id=7, code=code, source=CODE_SRC_UNKNOWN
