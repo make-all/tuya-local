@@ -6,6 +6,7 @@ import logging
 from base64 import b64encode
 from secrets import randbelow
 from time import time
+
 from homeassistant.components.lock import LockEntity, LockEntityFeature
 
 from .device import TuyaLocalDevice
