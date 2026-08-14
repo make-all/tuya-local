@@ -21,35 +21,18 @@ entities:
             value: sleep
           - dps_val: manual
             value: manual
-  - entity: select
-    translation_key: mode
-    dps:
-      - id: 3
-        type: string
-        name: option
-        mapping:
-          - dps_val: auto
-            value: Auto
-            default: true
-          - dps_val: sleep
-            value: Sleep
-          - dps_val: manual
-            value: Manual
-  - entity: select
-    name: Fan speed
-    dps:
       - id: 4
         type: string
-        name: option
+        name: speed
         mapping:
           - dps_val: Low
-            value: Low
+            value: 25
           - dps_val: Medium
-            value: Medium
+            value: 50
           - dps_val: High
-            value: High
+            value: 75
           - dps_val: Pet
-            value: Pet
+            value: 100
   - entity: sensor
     class: pm25
     dps:
