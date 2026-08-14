@@ -939,3 +939,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pranksta02](https://github.com/pranksta02) for contributing support for Aquatech X8 Fusion water heater.
 - [matisere38](https://github.com/matisere38) for contributing support for BWT Energy Saver pool controller.
 - [zhuguoqing123](https://github.com/zhuguoqing123) for contributing support for Rhino King XNW-AC and Smart AC thermostats.
+- [bapesupreme](https://github.com/bapesupreme) for contributing support for Dayette AP409 air purifier.
