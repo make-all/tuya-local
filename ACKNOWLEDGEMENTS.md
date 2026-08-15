@@ -938,6 +938,6 @@ Further device support has been made with the assistance of users. Please consid
 - [SiwatS](https://github.com/SiwatS) for contributing support for Kogan heater fan.
 - [pranksta02](https://github.com/pranksta02) for contributing support for Aquatech X8 Fusion water heater.
 - [matisere38](https://github.com/matisere38) for contributing support for BWT Energy Saver pool controller.
-- [zhuguoqing123](https://github.com/zhuguoqing123) for contributing support for Rhino King XNW-AC and Smart AC thermostats.
+- [zhuguoqing123](https://github.com/zhuguoqing123) for contributing support for Rhino King XNW-AC, Smart AC, H7 central HVAC thermostats.
 - [bapesupreme](https://github.com/bapesupreme) for contributing support for Dayette AP409 air purifier.
 - [mabrews](https://github.com/mabrews) for contributing support for Modern Flames Landscape Pro Slim fireplace.
