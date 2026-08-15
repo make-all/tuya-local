@@ -9,15 +9,14 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            mapping:
-              - constraint: electric
-                conditions:
-                  - dps_val: true
-                    value: electric
-                  - dps_val: false
-                    value: heat_pump
-                  - dps_val: null
-                    value: heat_pump
+            constraint: electric
+            conditions:
+              - dps_val: true
+                value: electric
+              - dps_val: false
+                value: heat_pump
+              - dps_val: null
+                value: heat_pump
       - id: 2
         type: integer
         name: temperature
