@@ -31,7 +31,6 @@ entities:
               - dps_val: "cold_floorcold"
                 value: cool
                 hidden: true
-
       - id: 2
         type: string
         name: preset_mode
@@ -48,7 +47,6 @@ entities:
             value: air_floor_heat
           - dps_val: "cold_floorcold"
             value: air_floor_cool
-
       - id: 16
         type: integer
         name: temperature
@@ -57,26 +55,27 @@ entities:
           max: 400
         mapping:
           - scale: 10
-            step: 1
-
       - id: 24
         type: integer
         name: current_temperature
-        range:
-          min: -200
-          max: 500
         mapping:
           - scale: 10
-
       - id: 34
         type: integer
         name: current_humidity
-        range:
-          min: 0
-          max: 100
+      - id: 138
+        type: string
+        optional: true
+        name: hvac_action
         mapping:
-          - scale: 1
-
+          - dps_val: "all_off"
+            value: idle
+          - dps_val: "cold_on"
+            value: cooling
+          - dps_val: "heat_on"
+            value: heating
+          - dps_val: "all_on"
+            value: null
   - entity: number
     name: Auxiliary bypass count
     icon: "mdi:source-branch"
@@ -249,8 +248,6 @@ entities:
         optional: true
         name: sensor
         unit: "°C"
-        mapping:
-          - scale: 1
 
   - entity: binary_sensor
     class: problem
@@ -285,26 +282,6 @@ entities:
             value: Valve rotating reverse
           - dps_val: "dewpont_prot"
             value: Dew point protection
-
-  - entity: sensor
-    class: enum
-    name: Indoor cooling and heating valve
-    category: diagnostic
-    icon: "mdi:valve-letter"
-    dps:
-      - id: 138
-        type: string
-        optional: true
-        name: sensor
-        mapping:
-          - dps_val: "all_off"
-            value: All off
-          - dps_val: "cold_on"
-            value: Cooling on
-          - dps_val: "heat_on"
-            value: Heating on
-          - dps_val: "all_on"
-            value: All on
 
   - entity: select
     name: Outdoor unit model
@@ -368,7 +345,7 @@ entities:
         optional: true
         name: value
         range:
-          min: 0               # min: 0
+          min: 0
           max: 32
 
   - entity: number
