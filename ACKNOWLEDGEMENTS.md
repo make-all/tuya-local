@@ -804,7 +804,7 @@ Further device support has been made with the assistance of users. Please consid
 - [DomJoke](https://github.com/DomJoke) for contributing support for Hiniso dehumidifier.
 - [c3p0vsr2d2](https://github.com/c3p0vsr2d2) for contributing support for KMC 4-outlet wall tap with energy monitoring.
 - [mcguires5](https://github.com/mcguires5) for contributing support for the red-blue variant of Touchstone Sideline fireplace.
-- [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch.
+- [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch, WD-01GDE irrigation controller.
 - [kdog31](https://github.com/kdog31) for contributing support for Arlec PFC002HA Series 2 pet feeder..
 - [NarfX4](https://github.com/NarfX4) for contributing support for Konyks eCosy 2024 pilot wire heating controller.
 - [maxios777](https://github.com/maxios777) for contributing support for WetAir WAD-A10L dehumidifier.
