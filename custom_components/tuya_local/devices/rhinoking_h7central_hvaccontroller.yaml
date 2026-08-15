@@ -1,0 +1,706 @@
+name: Central HVAC controller
+products:
+  - id: ddbcuqy4usocv9lv
+    manufacturer: Rhino King
+    model: H7
+entities:
+  - entity: climate
+    translation_key: combo_floor
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "wind"
+                value: fan_only
+              - dps_val: "cold"
+                value: cool
+              - dps_val: "hea"
+                value: heat
+              - dps_val: "floorhea"
+                value: heat
+                hidden: true
+              - dps_val: "heat_floorheat"
+                value: heat
+                hidden: true
+              - dps_val: "cold_floorcold"
+                value: cool
+                hidden: true
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "wind"
+            value: fan_only
+          - dps_val: "cold"
+            value: cool
+          - dps_val: "hea"
+            value: heat
+          - dps_val: "floorhea"
+            value: floor_heat
+          - dps_val: "heat_floorheat"
+            value: air_floor_heat
+          - dps_val: "cold_floorcold"
+            value: air_floor_cool
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 150
+          max: 400
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 34
+        type: integer
+        name: current_humidity
+      - id: 138
+        type: string
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: "all_off"
+            value: idle
+          - dps_val: "cold_on"
+            value: cooling
+          - dps_val: "heat_on"
+            value: heating
+          - dps_val: "all_on"
+            value: null
+  - entity: number
+    name: Auxiliary bypass count
+    icon: "mdi:source-branch"
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 6
+
+  - entity: number
+    name: Bypass D valve closing trigger count
+    icon: "mdi:clock-start"
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 10
+
+  - entity: switch
+    name: Indoor-outdoor unit linkage
+    icon: "mdi:link-variant"
+    category: config
+    dps:
+      - id: 142
+        type: boolean
+        optional: true
+        name: switch
+
+  - entity: sensor
+    name: Calculated dew point
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Radiant mixing supply temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Radiant mixing return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: sensor
+        unit: "µg/m³"
+
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:heat-pump"
+    category: diagnostic
+    dps:
+      - id: 125
+        type: string
+        optional: true
+        name: sensor
+
+  - entity: sensor
+    name: Outdoor unit supply water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+  - entity: sensor
+    name: Outdoor unit return water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Operating mode status
+    icon: "mdi:list-status"
+    category: diagnostic
+    dps:
+      - id: 128
+        type: string
+        optional: true
+        name: sensor
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 130
+        type: integer
+        optional: true
+        name: sensor
+        unit: "ppm"
+
+  - entity: sensor
+    name: Pump status
+    class: enum
+    icon: "mdi:pump"
+    category: diagnostic
+    dps:
+      - id: 131
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: all_off
+            value: All off
+          - dps_val: fancoilpump_on
+            value: Fan coil pump on
+          - dps_val: floorheatingpump_on
+            value: Floor heating pump on
+          - dps_val: all_on
+            value: All on
+
+  - entity: sensor
+    name: Tank temperature
+    class: temperature
+    dps:
+      - id: 135
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Outdoor ambient temperature
+    class: temperature
+    dps:
+      - id: 146
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°C"
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "none"
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 122
+        type: string
+        optional: true
+        name: description
+        mapping:
+          - dps_val: "0"
+            value: Normal
+          - dps_val: "none"
+            value: Normal
+          - dps_val: "stop_rotate"
+            value: Valve stopped
+          - dps_val: "pos_rotate"
+            value: Valve rotating forward
+          - dps_val: "neg_rotate"
+            value: Valve rotating reverse
+          - dps_val: "dewpont_prot"
+            value: Dew point protection
+
+  - entity: select
+    name: Outdoor unit model
+    category: config
+    icon: "mdi:factory"
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: HITACHI
+            value: Hitachi
+          - dps_val: YORK_012_018
+            value: York
+          - dps_val: MACQUAY
+            value: McQuay
+          - dps_val: TRANE
+            value: Trane
+
+  - entity: select
+    name: Outdoor unit interface
+    category: config
+    icon: "mdi:cable-data"
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "RS485"
+            value: RS485 bus
+          - dps_val: "RELAY"
+            value: Dry contact
+          - dps_val: "TANK_TEMP"
+            value: Dry contact + tank temperature
+
+  - entity: select
+    name: Outdoor water temperature control
+    translation_key: mode
+    icon: "mdi:sine-wave"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "manual"
+            value: manual
+          - dps_val: "auto"
+            value: auto
+
+  - entity: number
+    name: Group control address
+    icon: "mdi:ip-network"
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 32
+
+  - entity: number
+    name: Fresh air unit count
+    icon: "mdi:fan-alert"
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 10
+
+  - entity: select
+    name: Mixing valve type
+    icon: "mdi:valve"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "220V"
+            value: "220V"
+          - dps_val: "24V"
+            value: "24V"
+          - dps_val: "12V"
+            value: "12V"
+
+  - entity: select
+    name: Outdoor water temperature control method
+    category: config
+    icon: "mdi:router-wireless-settings"
+    dps:
+      - id: 123
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: water_return_control
+            value: Return water control
+          - dps_val: water_out_control
+            value: Supply water control
+
+  - entity: select
+    name: Master-slave mode
+    category: config
+    icon: "mdi:account-network"
+    dps:
+      - id: 133
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: master
+            value: Master
+          - dps_val: slave
+            value: Slave
+
+  - entity: select
+    name: Dry contact mode
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 136
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cold_open
+            value: Close on cooling
+          - dps_val: cold_close
+            value: Close on heating
+
+  - entity: select
+    name: Dry contact switching
+    category: config
+    icon: "mdi:toggle-switch-outline"
+    dps:
+      - id: 137
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay_onoff_open
+            value: Close when on
+          - dps_val: relay_onoff_close
+            value: Close when off
+
+  - entity: select
+    name: Seasonal mode
+    translation_key: mode
+    category: config
+    icon: "mdi:calendar-sync"
+    dps:
+      - id: 139
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: hand
+            value: manual
+          - dps_val: auto
+            value: auto
+
+  - entity: number
+    name: Outdoor unit count
+    icon: "mdi:numeric-1-box-multiple"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 6
+
+  - entity: number
+    name: Indoor unit count
+    icon: "mdi:format-list-numbered"
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 32
+
+  - entity: number
+    name: Local bus address
+    icon: "mdi:bus"
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 32
+
+  - entity: number
+    name: Slave control panel count
+    icon: "mdi:dots-hexagon"
+    category: config
+    dps:
+      - id: 134
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 10
+
+  - entity: number
+    name: Outdoor unit heating water temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 25
+          max: 55
+
+  - entity: number
+    name: Tank temperature differential
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 1
+          max: 5
+
+  - entity: number
+    name: Minimum floor heating supply temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 124
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 25
+          max: 45
+
+  - entity: number
+    name: Outdoor unit cooling target temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: value
+        unit: "°C"
+        range:
+          min: 5
+          max: 20
+
+  - entity: number
+    name: Cooling valve changeover start month
+    icon: "mdi:calendar-month"
+    category: config
+    dps:
+      - id: 140
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 4
+
+  - entity: number
+    name: Heating valve changeover start month
+    icon: "mdi:calendar-month"
+    category: config
+    dps:
+      - id: 141
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 10
+          max: 12
+
+  - entity: number
+    name: Normally open bypass delay
+    icon: "mdi:clock-start"
+    class: duration
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: number
+    name: Normally closed bypass delay
+    icon: "mdi:clock-end"
+    class: duration
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: number
+    name: Mixing pump start delay
+    icon: "mdi:clock-start"
+    class: duration
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: number
+    name: Mixing pump stop delay
+    icon: "mdi:clock-end"
+    class: duration
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: "s"
+        mapping:
+          - step: 5
+        range:
+          min: 0
+          max: 250
+
+  - entity: switch
+    name: Radiant mixing control
+    icon: "mdi:water-sync"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        optional: true
+        name: switch
+
+  - entity: select
+    name: Outdoor unit operating state
+    category: config
+    icon: "mdi:power-cycle"
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "ON"
+            value: Running
+          - dps_val: "OFF"
+            value: Stopped
+
+  - entity: number
+    name: Boiler temperature setting
+    icon: "mdi:speedometer"
+    category: config
+    dps:
+      - id: 143
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: -15
+          max: 20
+
+  - entity: switch
+    name: Boiler auxiliary system
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 132
+        type: boolean
+        optional: true
+        name: switch
