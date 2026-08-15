@@ -234,6 +234,7 @@
 - Envirosun ES330M9 hot water system
 - Ferroli EGEA and Titano Twin water heaters
 - Fisher air to water heat pump
+- Gamp BCV 300 water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
 - Giatsu VAW 2 heat pump water heater
 - Haier air-water combo heat pump
