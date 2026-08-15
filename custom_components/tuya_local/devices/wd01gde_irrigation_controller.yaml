@@ -1,0 +1,166 @@
+name: Irrigation controller
+products:
+  - id: cgz1qpr1aeladx2t
+    model: WD-01GDE
+entities:
+  - entity: valve
+    name: Zone A
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone B
+    class: water
+    dps:
+      - id: 2
+        type: boolean
+        name: valve
+  - entity: switch
+    name: Protection
+    icon: "mdi:shield-check"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Schedule A
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Schedule B
+    category: diagnostic
+    dps:
+      - id: 102
+        type: base64
+        name: sensor
+        optional: true
+  - entity: number
+    name: Watering time A
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1800
+        unit: s
+  - entity: number
+    name: Watering time B
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1800
+        unit: s
+  - entity: sensor
+    name: Run log
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: number
+    name: Cut-off time
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 60
+        unit: min
+  - entity: sensor
+    class: enum
+    name: Switch log A
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: key_off
+            value: "Key off"
+          - dps_val: time_off
+            value: "Timer off"
+          - dps_val: cloud_off
+            value: "Cloud off"
+  - entity: sensor
+    class: enum
+    name: Switch log B
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: key_off
+            value: "Key off"
+          - dps_val: time_off
+            value: "Timer off"
+          - dps_val: cloud_off
+            value: "Cloud off"
+  - entity: select
+    name: Power level A
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: "Level 1"
+          - dps_val: 2
+            value: "Level 2"
+          - dps_val: 3
+            value: "Level 3"
+  - entity: select
+    name: Power level B
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: "Level 1"
+          - dps_val: 2
+            value: "Level 2"
+          - dps_val: 3
+            value: "Level 3"
