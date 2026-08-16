@@ -1062,6 +1062,7 @@ of device.
 - QS-WIFI-C01(BK) curtain module
 - QS-WIFI-C02 dual curtain module
 - Safe CON09 barrier controller
+- Shanglin Motor FD-1515 Pergola controller
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
