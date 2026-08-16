@@ -447,7 +447,7 @@
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
-- Orison RGB ambient bladeless ceiling fan
+- Orison Chanfok Neo, RGB ambient bladeless, and RGB+CW ceiling fans
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Pioneer ECOasis 150 ERV
 - Plikc Ario WiFi air vent
