@@ -1,4 +1,4 @@
-name: Clean Air Optima CA-707
+name: Dehumidifier
 
 products:
   - id: gynthidZEhTUCoMN
@@ -43,24 +43,24 @@ entities:
         name: current_humidity
         type: integer
 
-      - id: 102
-        name: sleep_mode
-        type: boolean
-
   #
   # Fan speed
   #
-  - entity: select
-    name: "Fan speed"
+  - entity: fan
+    name: Fan
     dps:
+      - id: 1
+        name: switch
+        type: boolean
+
       - id: 6
-        name: option
+        name: speed
         type: string
         mapping:
           - dps_val: "1"
-            value: low
+            value: 33
           - dps_val: "3"
-            value: high
+            value: 100
 
   #
   # Ionizer
@@ -92,18 +92,6 @@ entities:
         name: sensor
         type: integer
         unit: "°C"
-        class: measurement
-
-  #
-  # Current humidity
-  #
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 104
-        name: sensor
-        type: integer
-        unit: "%"
         class: measurement
 
   #
