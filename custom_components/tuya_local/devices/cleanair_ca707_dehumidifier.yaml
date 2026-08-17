@@ -1,0 +1,213 @@
+name: Dehumidifier
+
+products:
+  - id: gynthidZEhTUCoMN
+    manufacturer: Clean Air Optima
+    model: CA-707 Smart
+
+entities:
+  #
+  # Main
+  #
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: normal
+          - dps_val: "1"
+            value: continuous
+          - dps_val: "2"
+            value: laundry
+          - dps_val: "3"
+            value: purify
+
+      - id: 4
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+
+      - id: 104
+        name: current_humidity
+        type: integer
+
+  #
+  # Fan speed
+  #
+  - entity: fan
+    name: Fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+      - id: 6
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: 33
+          - dps_val: "3"
+            value: 100
+
+  #
+  # Ionizer
+  #
+  - entity: switch
+    translation_key: ionizer
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+
+  #
+  # Sleep mode
+  #
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+
+  #
+  # Temperature
+  #
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+
+  #
+  # Timer
+  #
+  # Note: according to the official Tuya DP spec, this value should
+  # reflect the actual remaining timer duration when read, and
+  # (re)start the timer when written. In practice, this device's
+  # firmware only ever reports back the last commanded value; it does
+  # not count down and no "cancel" event is sent when the timer
+  # expires. Timers set via the physical control panel are not
+  # reported back on this DP at all. Treat this entity as "last
+  # commanded value", not as a reliable live status.
+  - entity: select
+    translation_key: timer
+    dps:
+      - id: 12
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "5h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "7"
+            value: "7h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "9"
+            value: "9h"
+          - dps_val: "10"
+            value: "10h"
+          - dps_val: "11"
+            value: "11h"
+          - dps_val: "12"
+            value: "12h"
+          - dps_val: "13"
+            value: "13h"
+          - dps_val: "14"
+            value: "14h"
+          - dps_val: "15"
+            value: "15h"
+          - dps_val: "16"
+            value: "16h"
+          - dps_val: "17"
+            value: "17h"
+          - dps_val: "18"
+            value: "18h"
+          - dps_val: "19"
+            value: "19h"
+          - dps_val: "20"
+            value: "20h"
+          - dps_val: "21"
+            value: "21h"
+          - dps_val: "22"
+            value: "22h"
+          - dps_val: "23"
+            value: "23h"
+          - dps_val: "24"
+            value: "24h"
+
+  #
+  # Tank full
+  #
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 11
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+
+  #
+  # General problem
+  #
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 8
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+
+      - id: 11
+        name: fault_code
+        type: bitfield
+
+  #
+  # Defrost
+  #
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: boolean
