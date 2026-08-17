@@ -941,3 +941,4 @@ Further device support has been made with the assistance of users. Please consid
 - [zhuguoqing123](https://github.com/zhuguoqing123) for contributing support for Rhino King XNW-AC, Smart AC, H7 central HVAC thermostats.
 - [bapesupreme](https://github.com/bapesupreme) for contributing support for Dayette AP409 air purifier.
 - [mabrews](https://github.com/mabrews) for contributing support for Modern Flames Landscape Pro Slim fireplace.
+- [Tweebloesem](https://github.com/Tweebloesem) for contributing support for Clean Air Optima CA-707 dehumidifier.
