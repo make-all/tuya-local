@@ -41,6 +41,7 @@ HUB_CATEGORIES = [
     "gywg",  # Industrial gateway
     "cnwg",  # Energy gateway
     "wnykq",  # Smart IR
+    "wfcon",  # new type of Zigbee gateway
 ]
 
 
