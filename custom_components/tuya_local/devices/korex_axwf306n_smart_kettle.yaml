@@ -204,3 +204,53 @@ entities:
       - id: 103
         type: boolean
         name: keep_warm
+  - entity: select
+    name: Boil preset
+    icon: "mdi:kettle"
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "41 C / 105 F - Baby"
+          - dps_val: "1"
+            value: "49 C / 120 F - Warm"
+          - dps_val: "2"
+            value: "60 C / 140 F - Delicate"
+          - dps_val: "3"
+            value: "70 C / 158 F"
+          - dps_val: "4"
+            value: "79 C / 175 F - Green Tea"
+          - dps_val: "5"
+            value: "91 C / 195 F - Oolong"
+          - dps_val: "6"
+            value: "95 C / 203 F - Coffee"
+          - dps_val: "7"
+            value: "100 C / 212 F - Boil"
+  - entity: select
+    name: Boil and cool preset
+    icon: "mdi:kettle-steam"
+    dps:
+      - id: 107
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "41 C / 105 F - Baby"
+          - dps_val: "1"
+            value: "49 C / 120 F - Warm"
+          - dps_val: "2"
+            value: "60 C / 140 F - Delicate"
+          - dps_val: "3"
+            value: "70 C / 158 F"
+          - dps_val: "4"
+            value: "79 C / 175 F - Green Tea"
+          - dps_val: "5"
+            value: "91 C / 195 F - Oolong"
+          - dps_val: "6"
+            value: "95 C / 203 F - Coffee"
+          - dps_val: "7"
+            value: "100 C / 212 F - Boil"
