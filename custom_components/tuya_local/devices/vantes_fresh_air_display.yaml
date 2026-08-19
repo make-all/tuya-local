@@ -1,0 +1,119 @@
+name: Fresh air display
+products:
+  - id: onduum6xf3wqeuzy
+    manufacturer: Vantes
+    model: Fresh air display
+
+entities:
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+          - dps_val: timing
+            value: timer
+            hidden: true
+      - id: 101
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 66
+          - dps_val: high
+            value: 100
+          - dps_val: "off"
+            value: 0
+
+  - entity: select
+    name: Mode
+    icon: mdi:tune-variant
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+
+  - entity: switch
+    name: Bypass
+    icon: mdi:valve
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: switch
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: ug/m3
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: ppm
+
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+# DPS reference (Tuya category xfj, verified 2026-06):
+# 1 switch, 2 mode (auto/manual/timing), 3 pm25, 6 eco2, 7 tvoc,
+# 8 humidity, 9 temperature, 11 filter_life, 13 filter_reset, 41 bypass,
+# 101 supply fan speed — strings low/mid/high/off (not "medium")
