@@ -124,6 +124,7 @@ entities:
             value: "on"
   - entity: sensor
     name: SD capacity
+    deprecated: sensor_sd_status.capacity  # 2026-08-19
     category: diagnostic
     icon: "mdi:micro-sd"
     dps:
@@ -132,11 +133,9 @@ entities:
         name: sensor
         optional: true
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
-    icon: "mdi:micro-sd"
     dps:
       - id: 110
         type: integer
@@ -155,6 +154,10 @@ entities:
             value: missing
           - dps_val: null
             value: normal
+      - id: 109
+        type: string
+        name: capacity
+        optional: true
   - entity: button
     name: SD format
     category: config
