@@ -7,12 +7,14 @@ import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import entity_registry as er
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
     async_migrate_entry,
     async_setup_entry,
     async_unload_entry,
+    async_update_entry,
     config_flow,
     get_device_unique_id,
 )
@@ -38,6 +40,19 @@ def auto_enable_custom_integrations(enable_custom_integrations):
 @pytest.fixture(autouse=True)
 def prevent_task_creation(mocker):
     mocker.patch("custom_components.tuya_local.device.TuyaLocalDevice.register_entity")
+    yield
+
+
+@pytest.fixture(autouse=True)
+def bypass_discovery(mocker):
+    """Don't open real LAN discovery sockets during setup in these tests.
+
+    The discovery listener is exercised directly in tests/test_discovery.py.
+    """
+    mocker.patch(
+        "custom_components.tuya_local.async_start_discovery",
+        new=AsyncMock(),
+    )
     yield
 
 
@@ -150,6 +165,33 @@ async def test_async_unload_entry_ignores_missing_device_data(hass):
     )
 
     assert await async_unload_entry(hass, entry)
+
+
+@pytest.mark.asyncio
+async def test_async_update_entry_reloads_config_entry(hass, mocker):
+    """Entry updates should delegate lifecycle management to Home Assistant."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        data={CONF_DEVICE_ID: "deviceid"},
+    )
+    schedule_reload = mocker.patch.object(
+        hass.config_entries,
+        "async_schedule_reload",
+    )
+    unload_entry = mocker.patch(
+        "custom_components.tuya_local.async_unload_entry",
+        new=AsyncMock(),
+    )
+    setup_entry = mocker.patch(
+        "custom_components.tuya_local.async_setup_entry",
+        new=AsyncMock(),
+    )
+
+    await async_update_entry(hass, entry)
+
+    schedule_reload.assert_called_once_with(entry.entry_id)
+    unload_entry.assert_not_awaited()
+    setup_entry.assert_not_awaited()
 
 
 @pytest.mark.asyncio
@@ -306,6 +348,36 @@ async def test_migrate_entry(hass, mocker):
 
 
 @pytest.mark.asyncio
+async def test_migrate_child_device_identity_is_scoped_by_gateway(hass):
+    """Child device identities include their parent gateway after migration."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=13,
+        minor_version=21,
+        unique_id="001",
+        title="Kitchen AC",
+        data={
+            CONF_DEVICE_ID: "gatewayid",
+            CONF_DEVICE_CID: "001",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_TYPE: "idea_heatingbelt_airconditioner",
+            CONF_PROTOCOL_VERSION: 3.3,
+            CONF_POLL_ONLY: True,
+        },
+    )
+    entry.add_to_hass(hass)
+    registry = er.async_get(hass)
+    entity = registry.async_get_or_create(
+        "climate", DOMAIN, "001-climate", config_entry=entry
+    )
+
+    assert await async_migrate_entry(hass, entry)
+    assert entry.unique_id == "gatewayid/001"
+    assert registry.async_get(entity.entity_id).unique_id == "gatewayid/001-climate"
+
+
+@pytest.mark.asyncio
 async def test_flow_user_init(hass, mocker):
     """Test the initialisation of the form in the first page of the manual config flow path."""
     result = await hass.config_entries.flow.async_init(
@@ -406,7 +478,7 @@ async def test_async_test_connection_for_subdevice_valid(hass, mocker):
     mock_instance.pause = mocker.MagicMock()
     mock_instance.resume = mocker.MagicMock()
     mock_device.return_value = mock_instance
-    hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
+    hass.data[DOMAIN] = {"deviceid/subdeviceid": {"device": mock_instance}}
 
     device = await config_flow.async_test_connection(
         {
@@ -1606,3 +1678,37 @@ async def test_flow_choose_entities_uses_cloud_name_as_default(
     # Validate it accepts the cloud device name
     validated = schema({CONF_NAME: "My Cloud Device"})
     assert validated[CONF_NAME] == "My Cloud Device"
+
+
+@pytest.mark.asyncio
+async def test_flow_integration_discovery_shows_user_form(hass):
+    """A device found by background discovery advances to the user setup form."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": "integration_discovery"},
+        data={
+            CONF_DEVICE_ID: "bfdiscovered000000",
+            CONF_HOST: "192.168.1.77",
+            "product_id": "keyxyz",
+            "version": "3.5",
+        },
+    )
+    assert result["type"] == "form"
+    assert result["step_id"] == "user"
+
+
+@pytest.mark.asyncio
+async def test_flow_integration_discovery_aborts_if_configured(hass):
+    """A discovered device that is already configured (or ignored) aborts."""
+    entry = MockConfigEntry(domain=DOMAIN, unique_id="bfdiscovered000000")
+    entry.add_to_hass(hass)
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": "integration_discovery"},
+        data={
+            CONF_DEVICE_ID: "bfdiscovered000000",
+            CONF_HOST: "192.168.1.77",
+        },
+    )
+    assert result["type"] == "abort"
+    assert result["reason"] == "already_configured"

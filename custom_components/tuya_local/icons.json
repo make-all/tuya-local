@@ -144,7 +144,9 @@
                             "program_2": "mdi:numeric-2-circle",
                             "program_3": "mdi:numeric-3-circle",
                             "standby": "mdi:power-standby",
-                            "fan_only": "mdi:fan"
+                            "fan_only": "mdi:fan",
+                            "program": "mdi:calendar-clock",
+                            "anti_frost": "mdi:snowflake-alert"
                         }
                     }
                 }
@@ -224,7 +226,7 @@
             "thermostat": {
                 "default": "mdi:thermostat",
                 "state_attributes": {
-                    "fan-mode": {
+                    "fan_mode": {
                         "state": {
                             "cycle": "mdi:auto-renew"
                         }
@@ -344,7 +346,7 @@
                             "auto": "mdi:auto-mode",
                             "manual": "mdi:hand-back-left",
                             "eco": "mdi:leaf",
-                            "anti-condensation": "mdi:water-off",
+                            "anti_condensation": "mdi:water-off",
                             "extractor": "mdi:hvac",
                             "heat_recovery": "mdi:recycle",
                             "timer": "mdi:timer",
@@ -826,6 +828,16 @@
                     "full": "mdi:gauge-full"
                 }
             },
+            "sd_status": {
+                "default": "mdi:micro-sd",
+                "state": {
+                    "fault": "mdi:content-save-alert",
+                    "missing": "mdi:content-save-off",
+                    "formatting": "mdi:content-save-cog",
+                    "unformatted": "mdi:content-save-alert",
+                    "full": "mdi:content-save-all"
+                }
+            },
             "status": {
                 "default": "mdi:information-variant-circle",
                 "state": {
@@ -889,7 +901,7 @@
                     "rinsing": "mdi:water",
                     "drying": "mdi:tumble-dryer",
                     "air_purging": "mdi:air-filter",
-                    "anti-freeze": "mdi:snowflake-melt",
+                    "anti_freeze": "mdi:snowflake-melt",
                     "close": "mdi:close-circle",
                     "monitor": "mdi:eye-check",
                     "working": "mdi:hammer-wrench",
@@ -977,6 +989,9 @@
                     "on": "mdi:fuse",
                     "off": "mdi:fuse-off"
                 }
+            },
+            "camera_record": {
+                "default": "mdi:record-rec"
             },
             "do_not_disturb": {
                 "default": "mdi:bell-sleep",
@@ -1070,6 +1085,12 @@
             },
             "watermark": {
                 "default": "mdi:watermark"
+            },
+            "motion_detection": {
+                "default": "mdi:motion-sensor",
+                "state": {
+                    "off": "mdi:motion-sensor-off"
+                }
             }
         },
         "text": {

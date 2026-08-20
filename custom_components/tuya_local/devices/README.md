@@ -650,6 +650,7 @@ Either **position**, **action** or **open** should be specified otherwise the co
 
 - **position** (optional, number 0-100): a dp to control the percentage that the cover is open.
     0 means completely close, 100 means completely open.
+- **current_position** (optional, number 0-100): a dp to report the current percentage that the cover is open. This is required to get feedback from the curtain even if **position** is the same dp, as some curtains always report the last user set position even after the curtain is changed from another source so we need to be able to ignore the position reported by those devices.
 - **control** (optional, mapping of strings): a dp to control the cover. Mainly useful if **position** cannot be used.
     Valid values are `open, close, stop`
 - **action** (optional, string): a dp that reports the current state of the cover.
@@ -736,7 +737,8 @@ no information will be available about which specific credential was used to unl
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
 - **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.
 - **approve_intercom** (optional, boolean): a dp to unlock the lock in response to an intercom request.
-- **code_unlock** (optional, base64): a dp to unlock the lock by giving an 8 digit code. This corresponds in the Tuya info to `remote_no_dp_key` and has a specific format. The 8 digit key assigned to user 1 must be sent to unlock (and optionally lock) the lock.
+- **code_unlock** (optional, base64): a dp to unlock the lock by giving an 8 digit code. This corresponds in the Tuya info to `remote_no_dp_key` and has a specific format. If not accompanied by **set_unlock_code**(below), then the 8 digit key assigned to user 1 must be sent to unlock (and optionally lock) the lock. This can generally be found in the Tuya developer portal logs after opening the lock with the app on first phone that was paired.
+- **set_unlock_code** (optional, base64): a dp that allows setting the 8 digit code at the same time as it is used in code_unlock, so the user does not need to enter an 8 digit number. This corresponds in the Tuya info to `remote_no_pd_setkey` and has a specific format. If this is supplied, the integration will simultaneously set a random code in slot 7, and use it to unlock the lock, so the user does not need to provide any code.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
 ### `number`
@@ -809,6 +811,7 @@ to use it for other length timers.
 ### `valve`
 - **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state.  If a number, it should be a percentage between 0 and 100 indicating how far open the valve is.  If a boolean, it should indicate open (true) or closed (false).
 - **switch** (optional, boolean): if the valve dp is an integer, the valve may also have a boolean switch dp for closing and opening the valve without affecting the open valve position.
+- **current_position** (optional, number 0-100): a dp that reports the actual position when the writable **valve** dp is only a target position.
 
 ### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.

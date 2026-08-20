@@ -30,12 +30,12 @@ entities:
   - entity: sensor
     name: PV voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 100
   - entity: sensor
@@ -51,12 +51,12 @@ entities:
   - entity: sensor
     name: AC current
     class: current
-    category: diagnostic
     dps:
       - id: 106
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 100
   - entity: switch
@@ -93,12 +93,12 @@ entities:
   - entity: sensor
     name: PV current
     class: current
-    category: diagnostic
     dps:
       - id: 111
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 100
   - entity: sensor
@@ -116,11 +116,11 @@ entities:
   - entity: sensor
     name: AC voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 114
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 100

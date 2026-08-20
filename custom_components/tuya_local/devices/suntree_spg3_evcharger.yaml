@@ -76,7 +76,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: A
@@ -85,13 +84,13 @@ entities:
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -99,6 +98,7 @@ entities:
       - id: 6
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: A
         mask: "000000FFFF000000"
@@ -106,7 +106,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: A
@@ -122,7 +121,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     hidden: unavailable
     translation_key: voltage_x
     translation_placeholders:
@@ -131,6 +129,7 @@ entities:
       - id: 7
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: V
         mask: "FFFF000000000000"
@@ -146,7 +145,6 @@ entities:
           - value: true
   - entity: sensor
     class: current
-    category: diagnostic
     hidden: unavailable
     translation_key: current_x
     translation_placeholders:
@@ -155,6 +153,7 @@ entities:
       - id: 7
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: A
         mask: "000000FFFF000000"
@@ -170,7 +169,6 @@ entities:
           - value: true
   - entity: sensor
     class: power
-    category: diagnostic
     hidden: unavailable
     translation_key: power_x
     translation_placeholders:
@@ -195,7 +193,6 @@ entities:
           - value: true
   - entity: sensor
     class: voltage
-    category: diagnostic
     hidden: unavailable
     translation_key: voltage_x
     translation_placeholders:
@@ -205,6 +202,7 @@ entities:
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFF000000000000"
         mapping:
@@ -219,7 +217,6 @@ entities:
           - value: true
   - entity: sensor
     class: current
-    category: diagnostic
     hidden: unavailable
     translation_key: current_x
     translation_placeholders:
@@ -228,6 +225,7 @@ entities:
       - id: 8
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: A
         mask: "000000FFFF000000"
@@ -243,7 +241,6 @@ entities:
           - value: true
   - entity: sensor
     class: power
-    category: diagnostic
     hidden: unavailable
     translation_key: power_x
     translation_placeholders:

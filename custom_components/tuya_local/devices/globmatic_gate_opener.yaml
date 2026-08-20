@@ -1,0 +1,35 @@
+name: Gate opener
+
+products:
+  - id: 4iispvj6a6vsavxl
+    manufacturer: Globmatic
+    model: Castor
+
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 101
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 101
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+
+  - entity: sensor
+    translation_key: status
+    dps:
+      - id: 10
+        name: sensor
+        type: string
+        optional: true

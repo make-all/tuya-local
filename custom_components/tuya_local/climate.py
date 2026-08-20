@@ -99,12 +99,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
 
         self._init_end(dps_map)
 
-        # Disable HA's backwards compatibility auto creation of turn_on/off
-        # we explicitly define our own so this should have no effect, but
-        # the deprecation notices in HA use this flag rather than properly
-        # checking whether we are falling back on the auto-generation.
-        self._enable_turn_on_off_backwards_compatibility = False
-
         if self._fan_mode_dps:
             self._attr_supported_features |= ClimateEntityFeature.FAN_MODE
         if self._humidity_dps:

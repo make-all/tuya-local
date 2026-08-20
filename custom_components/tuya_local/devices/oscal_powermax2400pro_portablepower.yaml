@@ -1,0 +1,623 @@
+name: Portable power station
+products:
+  - id: 8fges9jxy2ovdwxn
+    manufacturer: Oscal
+    model: PowerMax 2400 Pro
+entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 112
+        type: integer
+        optional: true
+        name: power_packs
+  - entity: switch
+    name: AC power
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: sw_version
+  - entity: switch
+    name: DC power
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Light
+    icon: "mdi:led"
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: bright
+            value: Dim
+          - dps_val: high_bright
+            value: Bright
+          - dps_val: sos
+            value: Emergency
+          - dps_val: breath
+            value: Pulse
+          - dps_val: flash
+            value: Flash
+  - entity: sensor
+    class: temperature
+    name: Battery temperature
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    name: USB
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 24
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: d
+      - id: 37
+        type: integer
+        name: hour
+      - id: 127
+        type: integer
+        name: minute
+  - entity: switch
+    name: Notifications
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Total input
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Total output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: AC output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: number
+    name: Charge limit
+    category: config
+    icon: "mdi:battery-charging-90"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 70
+          max: 100
+  - entity: number
+    name: Discharge limit
+    category: config
+    icon: "mdi:battery-20"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 30
+  - entity: select
+    name: Display timeout
+    icon: "mdi:television-ambient-light"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1min"
+            value: "1m"
+          - dps_val: "5min"
+            value: "5m"
+          - dps_val: "10min"
+            value: "10m"
+          - dps_val: "30min"
+            value: "30m"
+          - dps_val: "never_close"
+            value: "cancel"
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: discharging
+          - dps_val: "1"
+            value: standby
+          - dps_val: "2"
+            value: charging
+  - entity: sensor
+    name: AC input
+    class: power
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Solar input
+    class: power
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: switch
+    name: Bluetooth speaker
+    category: config
+    icon: "mdi:speaker-bluetooth"
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Grid feed-in
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: DC output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: USB output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: text
+    name: Emergency message
+    category: config
+    icon: "mdi:dots-horizontal"
+    dps:
+      - id: 118
+        type: string
+        name: value
+        range:
+          min: 0
+          max: 255
+  - entity: number
+    name: Primary feed-in limit
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 50
+          max: 800
+        mapping:
+          - step: 50
+  - entity: sensor
+    name: Pack 1
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Pack 1 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Pack 1 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Pack 2
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Pack 2 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Pack 2 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: number
+    name: AC charging limit
+    icon: "mdi:battery-charging-90"
+    category: config
+    class: power
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 100
+          max: 1400
+        mapping:
+          - step: 100
+  - entity: sensor
+    name: Pack 3
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Pack 3 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Pack 3 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Pack 4
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Pack 4 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Pack 4 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Pack 5
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Pack 5 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Pack 5 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 141
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: select
+    name: AC standby sime
+    class: timer
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 139
+        type: string
+        name: option
+        mapping:
+          - dps_val: never_close
+            value: cancel
+          - dps_val: "30min"
+            value: "30m"
+          - dps_val: "1hour"
+            value: "1h"
+          - dps_val: "2hour"
+            value: "2h"
+          - dps_val: "4hour"
+            value: "4h"
+          - dps_val: "6hour"
+            value: "6h"
+          - dps_val: "12hour"
+            value: "12h"
+          - dps_val: "24hour"
+            value: "24h"
+  - entity: select
+    name: DC standby time
+    class: timer
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 140
+        type: string
+        name: option
+        mapping:
+          - dps_val: never_close
+            value: cancel
+          - dps_val: "30min"
+            value: "30m"
+          - dps_val: "1hour"
+            value: "1h"
+          - dps_val: "2hour"
+            value: "2h"
+          - dps_val: "4hour"
+            value: "4h"
+          - dps_val: "6hour"
+            value: "6h"
+          - dps_val: "12hour"
+            value: "12h"
+          - dps_val: "24hour"
+            value: "24h"
+  - entity: time
+    name: Primary feed-in start
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 143
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 144
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59
+  - entity: time
+    name: Primary feed-in end
+    category: config
+    icon: "mdi:clock-end"
+    dps:
+      - id: 145
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 146
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Secondary feed-in limit
+    category: config
+    dps:
+      - id: 147
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 50
+          max: 800
+        mapping:
+          - step: 50
+  - entity: time
+    name: Secondary feed-in start
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 148
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 149
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59
+  - entity: time
+    name: Secondary feed-in end
+    category: config
+    icon: "mdi:clock-end"
+    dps:
+      - id: 150
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 151
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59

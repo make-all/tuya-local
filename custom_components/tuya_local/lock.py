@@ -4,6 +4,8 @@ Setup for different kinds of Tuya lock devices
 
 import logging
 from base64 import b64encode
+from secrets import randbelow
+from time import time
 
 from homeassistant.components.lock import LockEntity, LockEntityFeature
 
@@ -88,6 +90,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._req_unlock_dp = dps_map.pop("request_unlock", None)
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._code_unlock_dp = dps_map.pop("code_unlock", None)
+        self._set_code_dp = dps_map.pop("set_unlock_code", None)
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
         self._approve_intercom_dp = dps_map.pop("approve_intercom", None)
         self._jam_dp = dps_map.pop("jammed", None)
@@ -139,7 +142,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
     @property
     def code_format(self):
         """Return the code format of the lock."""
-        if self._code_unlock_dp:
+        if self._code_unlock_dp and not self._set_code_dp:
             return r".{8}"
         return None
 
@@ -183,6 +186,19 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         if self._lock_dp and not self._lock_dp.readonly:
             _LOGGER.info("%s locking", self._config.config_id)
             await self._lock_dp.async_set_value(self._device, True)
+        elif self._code_unlock_dp and self._set_code_dp:
+            code = "%08d" % randbelow(100000000)
+            setting = self.build_code_set_msg(code)
+            msg = self.build_code_unlock_msg(
+                CODE_LOCK, member_id=7, code=code, source=CODE_SRC_UNKNOWN
+            )
+            _LOGGER.info("%s locking with random code", self._config.config_id)
+            await self._device.async_set_properties(
+                {
+                    self._set_code_dp.id: setting,
+                    self._code_unlock_dp.id: msg,
+                }
+            )
         elif self._code_unlock_dp:
             code = kwargs.get("code")
             if not code:
@@ -197,7 +213,23 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
 
     async def async_unlock(self, **kwargs):
         """Unlock the lock."""
-        if self._code_unlock_dp:
+        if self._lock_dp and not self._lock_dp.readonly:
+            _LOGGER.info("%s unlocking", self._config.config_id)
+            await self._lock_dp.async_set_value(self._device, False)
+        elif self._code_unlock_dp and self._set_code_dp:
+            code = "%08d" % randbelow(100000000)
+            setting = self.build_code_set_msg(code)
+            msg = self.build_code_unlock_msg(
+                CODE_UNLOCK, member_id=7, code=code, source=CODE_SRC_UNKNOWN
+            )
+            _LOGGER.info("%s locking with random code", self._config.config_id)
+            await self._device.async_set_properties(
+                {
+                    self._set_code_dp.id: setting,
+                    self._code_unlock_dp.id: msg,
+                }
+            )
+        elif self._code_unlock_dp:
             code = kwargs.get("code")
             if not code:
                 raise ValueError("Code required to unlock")
@@ -206,9 +238,6 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             )
             _LOGGER.info("%s unlocking with code", self._config.config_id)
             await self._code_unlock_dp.async_set_value(self._device, msg)
-        elif self._lock_dp and not self._lock_dp.readonly:
-            _LOGGER.info("%s unlocking", self._config.config_id)
-            await self._lock_dp.async_set_value(self._device, False)
         elif self._approve_unlock_dp:
             if self._req_unlock_dp and not self._req_unlock_dp.get_value(self._device):
                 raise TimeoutError()
@@ -240,4 +269,18 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         msg += code.encode("ascii")
         msg += source.to_bytes(2, "big")
         # msg += b"\x00"  # ordinary user (0x01 is admin)
+        return b64encode(msg).decode("utf-8")
+
+    def build_code_set_msg(self, code):
+        """Generate the set code message."""
+        if len(code) != 8 or not code.isascii():
+            raise ValueError("Code must be 8 ASCII characters")
+        validity = int(time())
+        msg = bytearray()
+        msg += (7).to_bytes(3, "big")  # valid + member ID
+        # start and end times. 5 minute allowance each way for clock drift
+        msg += (validity - 300).to_bytes(4, "big")
+        msg += (validity + 300).to_bytes(4, "big")
+        msg += (1).to_bytes(2, "big")  # usable times
+        msg += code.encode("ascii")
         return b64encode(msg).decode("utf-8")

@@ -350,6 +350,12 @@ class TestCurrentState:
         cover._position_dp.get_value.return_value = 50
         assert cover._current_state == "opened"
 
+    def test_mid_position_near_setpos_is_opened(self):
+        cover = _make_cover(action=False, currentpos=True, position=True)
+        cover._currentpos_dp.get_value.return_value = 49
+        cover._position_dp.get_value.return_value = 50
+        assert cover._current_state == "opened"
+
     def test_mid_position_with_open_cmd_is_opening(self):
         cover = _make_cover(action=False, currentpos=True, position=True, control=True)
         cover._currentpos_dp.get_value.return_value = 50

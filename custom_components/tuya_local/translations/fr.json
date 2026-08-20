@@ -310,7 +310,9 @@
                             "fan_only": "Ventilation",
                             "heat": "Air Chaud",
                             "floor_cool": "Sol froid",
-                            "floor_heat": "Sol chaud"
+                            "floor_heat": "Sol chaud",
+                            "air_floor_cool": "Air et sol froid",
+                            "air_floor_heat": "Air et sol chaud"
                         }
                     }
                 }
@@ -333,10 +335,10 @@
                         "state": {
                             "smart_heat": "Chauffage Intelligent",
                             "quick_heat": "Chauffage Boost",
-                            "quiet_heat": "Chauffage Eco",
+                            "quiet_heat": "Chauffage Silencieux",
                             "smart_cool": "Froid Intelligent",
                             "quick_cool": "Froid Boost",
-                            "quiet_cool": "Froid Eco",
+                            "quiet_cool": "Froid Silencieux",
                             "auto": "Auto",
                             "smart": "Intelligent",
                             "quick": "Boost",
@@ -357,7 +359,9 @@
                             "program_2": "Programme 2",
                             "program_3": "Programme 3",
                             "standby": "Veille",
-                            "fan_only": "Ventilation"
+                            "fan_only": "Ventilation",
+                            "program": "Programme",
+                            "anti_frost": "Anti-gel"
                         }
                     }
                 }
@@ -504,7 +508,7 @@
                             "auto": "Auto",
                             "manual": "Manuel",
                             "eco": "Écologique",
-                            "anti-condensation": "Anti-condensation",
+                            "anti_condensation": "Anti-condensation",
                             "extractor": "Extracteur",
                             "heat_recovery": "Récupération de chaleur",
                             "timer": "Minuteur",
@@ -1169,6 +1173,17 @@
                     "danger": "Danger"
                 }
             },
+            "sd_status": {
+                "name": "État de la carte SD",
+                "state": {
+                    "fault": "Défaut",
+                    "formatting": "Formatage",
+                    "full": "Plein",
+                    "missing": "Manquant",
+                    "normal": "Normal",
+                    "unformatted": "Non formaté"
+                }
+            },
             "status": {
                 "name": "État",
                 "state": {
@@ -1247,8 +1262,6 @@
                     "full": "Plein",
                     "empty": "Vide",
                     "missing": "Manquant",
-                    "formatting": "Formatage",
-                    "unformatted": "Non formaté",
                     "failed": "Échoué",
                     "replying": "Répondre",
                     "playback": "Lecture",
@@ -1370,6 +1383,9 @@
                     "on": "Fermé"
                 }
             },
+            "camera_record": {
+                "name": "Enregistrement de la caméra"
+            },
             "do_not_disturb": {
                 "name": "Ne pas déranger"
             },
@@ -1456,6 +1472,9 @@
             },
             "snooze": {
                 "name": "Répétition"
+            },
+            "motion_detection": {
+                "name": "Détection de mouvement"
             },
             "watermark": {
                 "name": "Filigrane"

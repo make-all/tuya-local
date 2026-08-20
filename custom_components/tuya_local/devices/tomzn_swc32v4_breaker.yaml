@@ -54,6 +54,7 @@ entities:
         unit: A
         name: sensor
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
 
@@ -70,6 +71,7 @@ entities:
         unit: kW
         name: sensor
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
 
@@ -104,6 +106,7 @@ entities:
         unit: A
         name: sensor
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
 
@@ -120,6 +123,7 @@ entities:
         unit: kW
         name: sensor
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
 
@@ -154,6 +158,7 @@ entities:
         unit: A
         name: sensor
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
 
@@ -170,6 +175,7 @@ entities:
         unit: kW
         name: sensor
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
 
@@ -182,6 +188,7 @@ entities:
         type: integer
         unit: mA
         name: sensor
+        class: measurement
 
   - entity: sensor
     class: temperature
@@ -190,5 +197,6 @@ entities:
         type: integer
         unit: C
         name: sensor
+        class: measurement
         mapping:
           - scale: 10

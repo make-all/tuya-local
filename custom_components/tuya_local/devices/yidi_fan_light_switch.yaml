@@ -16,10 +16,20 @@ entities:
           min: 1
           max: 100
   - entity: light
+    hidden: unavailable
     dps:
       - id: 5
         type: boolean
+        optional: true
         name: switch
+      - id: 5
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: time
     category: config
     translation_key: timer

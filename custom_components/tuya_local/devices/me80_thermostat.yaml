@@ -257,12 +257,12 @@ entities:
         name: fault_code
   - entity: sensor
     name: Floor temperature
-    category: diagnostic
     class: temperature
     dps:
       - id: 101
         type: integer
         name: sensor
+        class: measurement
         mapping:
           - constraint: unit
             conditions:

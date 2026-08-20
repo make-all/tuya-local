@@ -30,13 +30,19 @@ entities:
       - id: 2
         type: integer
         name: temperature
-        unit: F
         range:
-          min: 610
-          max: 880
+          min: 160
+          max: 310
         mapping:
           - scale: 10
-            step: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: 2097152
+                step: 10
+                range:
+                  min: 610
+                  max: 880
       - id: 3
         type: integer
         name: current_temperature
@@ -45,9 +51,12 @@ entities:
           min: -20
           max: 100
         mapping:
-          - target_range:
-              min: -4
-              max: 212
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: 2097152
+                target_range:
+                  min: -4
+                  max: 212
       - id: 4
         type: string
         name: mode
@@ -84,6 +93,13 @@ entities:
       - id: 110
         type: bitfield
         name: flags
+      - id: 110
+        type: bitfield
+        name: temperature_unit
+        mapping:
+          - dps_val: 2097152
+            value: F
+          - value: C
       - id: 113
         type: string
         name: swing_mode

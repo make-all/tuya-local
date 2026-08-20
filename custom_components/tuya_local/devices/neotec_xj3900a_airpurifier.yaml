@@ -1,0 +1,114 @@
+name: Air purifier
+products:
+  - id: aeazj0gwjjmgpmrw
+    manufacturer: Neotec
+    model: XJ-3900A
+entities:
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: silent
+            value: 20
+          - dps_val: low
+            value: 40
+          - dps_val: middle
+            value: 60
+          - dps_val: high
+            value: 80
+          - dps_val: turbo
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    name: HEPA filter life
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    translation_key: ionizer
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Pre-filter life
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: moderate
+          - dps_val: severe
+            value: severe
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

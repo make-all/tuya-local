@@ -1,0 +1,70 @@
+name: Ceiling fan light
+products:
+  - id: vfqiwthdnlkynebk
+    manufacturer: Varin
+    model: VA-E002
+entities:
+  - entity: light
+    icon: "mdi:ceiling-fan-light"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: fan
+    translation_key: fan_with_presets
+    icon: "mdi:ceiling-fan"
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        optional: true
+  - entity: number
+    translation_key: timer
+    icon: "mdi:fan-clock"
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540

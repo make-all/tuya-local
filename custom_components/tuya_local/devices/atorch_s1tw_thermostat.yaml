@@ -161,6 +161,8 @@ entities:
         name: switch
   - entity: sensor
     class: temperature
+    deprecated: climate_thermostat.current_temperature  # 2026-07-12
+    category: diagnostic
     dps:
       - id: 102
         type: integer

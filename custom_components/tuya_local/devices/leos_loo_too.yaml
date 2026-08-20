@@ -3,14 +3,31 @@ products:
   - id: 1badzyvwh1e1hrog
     manufacturer: "Leo's Loo"
     model: Too
+  # Same hardware under the MEET / Chinese-market firmware, which enrols under a
+  # different Tuya product id - not a separate product.
+  - id: kw4ztiq3kxmcf8dx
+    manufacturer: "Leo's Loo"
+    model: Too (MEET firmware)
 entities:
   - entity: sensor
     name: Times used today
     icon: "mdi:counter"
+    # Constant 1 on the local protocol; the cloud sums per-use pulses
+    # server-side, so the LAN value never changes.
+    hidden: unavailable
     dps:
       - id: 7
         type: integer
         name: sensor
+        optional: true
+      - id: 7
+        type: integer
+        name: available
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Power
     category: config
@@ -27,6 +44,8 @@ entities:
       - id: 2
         type: string
         name: option
+        # Absent on some units (the MEET variant omits it).
+        optional: true
         mapping:
           - dps_val: auto_clean
             value: Auto clean
@@ -40,8 +59,18 @@ entities:
       - id: 13
         name: switch
         type: boolean
+  - entity: switch
+    translation_key: sleep
+    category: config
+    class: switch
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
   - entity: light
     category: config
+    # Not reported on the local protocol here.
+    hidden: true
     dps:
       - id: 16
         name: switch
@@ -56,6 +85,8 @@ entities:
       - id: 5
         type: integer
         name: value
+        # Absent on the MEET variant.
+        optional: true
         range:
           min: 6
           max: 1200
@@ -69,8 +100,11 @@ entities:
         type: integer
         name: sensor
         unit: kg
+        # Live pad load (box + litter + waste), not a per-cat weight.
+        class: measurement
         mapping:
-          - scale: 0.1
+          # Raw value is tenths of a kg (42 = 4.2 kg).
+          - scale: 10
   - entity: button
     icon: "mdi:heat-pump-outline"
     name: Manual clean
@@ -78,3 +112,65 @@ entities:
       - id: 9
         type: boolean
         name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    # Any non-zero DP22 bit -> problem; raw fault_code kept to decode the bit
+    # when one fires (model labels, unverified: bit0 motor, bit1 program,
+    # bit2 g_sensor).
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 21
+        type: bitfield
+        name: notification_code
+        optional: true
+  - entity: binary_sensor
+    name: Bin full
+    icon: "mdi:tray-full"
+    # DP21 bit0; latches until the bin is emptied and reset.
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Cleaning
+    class: running
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          # DP21 bits 1|2 (mask 6): a clean rotation is active (bit2 auto,
+          # bit1 manual/commanded).
+          - dps_val: 6
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: UV sterilizing
+    class: running
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 64
+            value: true
+          - value: false

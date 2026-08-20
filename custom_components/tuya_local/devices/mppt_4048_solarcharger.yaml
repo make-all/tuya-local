@@ -3,6 +3,8 @@ products:
   - id: vf7vdxbt6zd5xyuz
     manufacturer: Demuda
     model: LM 4048/6048
+  - id: 5idear0gjcqrbvno
+    model: HM-6069
 entities:
   # energy
   - entity: sensor
@@ -92,9 +94,11 @@ entities:
         name: switch
         optional: true
   - entity: number
-    name: Over-voltage threshold
     category: config
     class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over voltage
     dps:
       - id: 11
         type: integer
@@ -107,9 +111,11 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Under-voltage threshold
     category: config
     class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Under voltage
     dps:
       - id: 12
         type: integer
@@ -215,6 +221,9 @@ entities:
             value: 48V-59.2
           - dps_val: auto
             value: auto
+          - dps_val: USER
+            value: User Custom
+
   - entity: select
     name: Battery type
     category: config
@@ -513,3 +522,46 @@ entities:
         mask: "00000000FFFF"
         mapping:
           - scale: 10
+  # DP 116: LED / Screen display toggle
+  - entity: light
+    translation_key: display
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+        optional: true
+      - id: 116
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  # DP 117: Battery balance voltage
+  - entity: number
+    name: Balance voltage
+    category: config
+    class: voltage
+    hidden: unavailable
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+      - id: 117
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

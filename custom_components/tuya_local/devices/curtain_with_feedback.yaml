@@ -1,4 +1,7 @@
 name: Curtain module
+products:
+  - id: uoa3mayicscacseb
+    model: QS-WIFI-S10-C04
 entities:
   - entity: cover
     class: curtain
@@ -51,3 +54,50 @@ entities:
         range:
           min: 1
           max: 60
+  - entity: button
+    name: Calibration start
+    category: config
+    hidden: true
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: start
+            value: true
+  - entity: button
+    name: Calibration end
+    category: config
+    hidden: true
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: end
+            value: true
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 12
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: rock
+            value: Rocker switch
+          - dps_val: push
+            value: Push button
+      - id: 12
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

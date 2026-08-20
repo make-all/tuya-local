@@ -113,6 +113,7 @@ entities:
         optional: true
         name: sensor
         unit: kWh
+        class: measurement
         mapping:
           - scale: 100
       - id: 11
@@ -152,16 +153,17 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
         mapping:
           - scale: 100
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 131
         type: integer
         optional: true
         name: sensor
+        class: measurement
         unit: C
         mapping:
           - scale: 10

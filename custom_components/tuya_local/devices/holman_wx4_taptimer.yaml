@@ -1,0 +1,1214 @@
+name: Tap timer
+products:
+  - id: d4qm2jmqth1rlscj
+    manufacturer: Holman
+    model: WX4
+entities:
+  - entity: switch
+    hidden: true  # marked "not enabled" despite being defined
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: string
+        name: level
+        mapping:
+          - dps_val: "0"
+            value: Empty
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Normal
+          - dps_val: "3"
+            value: Empty - charging
+          - dps_val: "4"
+            value: Low - charging
+          - dps_val: "5"
+            value: Normal - charging
+          - dps_val: "6"
+            value: Full
+  - entity: binary_sensor
+    class: battery_charging
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "3"
+            value: true
+          - dps_val: "4"
+            value: true
+          - dps_val: "5"
+            value: true
+          - value: false
+  - entity: select
+    name: Weather delay
+    category: config
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    hidden: true  # marked "not enabled" despite being defined
+    dps:
+      - id: 10
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+  - entity: time
+    translation_key: timer
+    category: config
+    hidden: true  # marked "not enabled" despite being defined
+    dps:
+      - id: 11
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: sensor
+    name: Zone 1 soil temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+      - id: 101
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 1 soil moisture
+    class: moisture
+    hidden: unavailable
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 102
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 1 consumption
+    class: water
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: L
+        class: total_increasing
+        mapping:
+          - scale: 10
+      - id: 185
+        type: integer
+        name: daily
+        mapping:
+          - scale: 10
+  - entity: valve
+    name: Zone 1
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+  - entity: text
+    name: Zone 1 timer 1
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 1 timer 2
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 1 timer 3
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: time_format
+    category: config
+    dps:
+      - id: 114
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "12"
+            value: "12_hour"
+          - dps_val: "24"
+            value: "24_hour"
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: celsius
+          - dps_val: "2"
+            value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 120
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 120
+        type: bitfield
+        name: fault_code
+      - id: 127
+        type: string
+        name: mcu_version
+      - id: 170
+        type: base64
+        optional: true
+        name: device_info
+      - id: 171
+        type: base64
+        optional: true
+        name: status
+  - entity: select
+    name: Zone 1 rain delay
+    category: config
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    dps:
+      - id: 121
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+  - entity: select
+    name: Zone 2 rain delay
+    category: config
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+  - entity: select
+    name: Zone 3 rain delay
+    category: config
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    dps:
+      - id: 123
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+  - entity: select
+    name: Zone 4 rain delay
+    category: config
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    dps:
+      - id: 124
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+  - entity: text
+    name: Time
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 126
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 3 timer 1
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 130
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 3 timer 2
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 131
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 3 timer 3
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 4 timer 1
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 133
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 4 timer 2
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 134
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 4 timer 3
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Zone 2 soil temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 150
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+      - id: 150
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 2 soil moisture
+    class: moisture
+    hidden: unavailable
+    dps:
+      - id: 151
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 151
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 2 consumption
+    class: water
+    dps:
+      - id: 152
+        type: integer
+        name: sensor
+        unit: L
+        class: total_increasing
+        mapping:
+          - scale: 10
+      - id: 186
+        type: integer
+        name: daily
+        mapping:
+          - scale: 10
+  - entity: valve
+    name: Zone 2
+    dps:
+      - id: 155
+        type: boolean
+        name: valve
+  - entity: text
+    name: Zone 2 timer 1
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 157
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 2 timer 2
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 158
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone 2 timer 3
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 159
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Zone 1 flow rate
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 160
+        type: integer
+        optional: true
+        name: sensor
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Zone 2 flow rate
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 161
+        type: integer
+        optional: true
+        name: sensor
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Zone 3 flow rate
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 162
+        type: integer
+        optional: true
+        name: sensor
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Zone 4 flow rate
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 163
+        type: integer
+        optional: true
+        name: sensor
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: text
+    name: Irrigation time or flow
+    category: config
+    icon: "mdi:sprinkler-variant"
+    hidden: true
+    dps:
+      - id: 164
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Zone 1 status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 165
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: rain_delay
+            value: rain_delay
+          - dps_val: "off"
+            value: "off"
+          - dps_val: null
+            value_redirect: alt
+      - id: 171
+        type: base64
+        optional: true
+        name: alt
+        hidden: true
+        mask: "ff000000"
+        mapping:
+          - dps_val: 0
+            value: idle
+          - dps_val: 1
+            value: manual
+          - dps_val: 2
+            value: auto
+          - dps_val: 3
+            value: rain_delay
+          - dps_val: 4
+            value: "off"
+  - entity: sensor
+    name: Zone 2 status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 166
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: rain_delay
+            value: rain_delay
+          - dps_val: "off"
+            value: "off"
+          - dps_val: null
+            value_redirect: alt
+      - id: 171
+        type: base64
+        optional: true
+        name: alt
+        hidden: true
+        mask: "00ff0000"
+        mapping:
+          - dps_val: 0
+            value: idle
+          - dps_val: 1
+            value: manual
+          - dps_val: 2
+            value: auto
+          - dps_val: 3
+            value: rain_delay
+          - dps_val: 4
+            value: "off"
+  - entity: sensor
+    name: Zone 3 status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 167
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: rain_delay
+            value: rain_delay
+          - dps_val: "off"
+            value: "off"
+          - dps_val: null
+            value_redirect: alt
+      - id: 171
+        type: base64
+        optional: true
+        name: alt
+        hidden: true
+        mask: "0000ff00"
+        mapping:
+          - dps_val: 0
+            value: idle
+          - dps_val: 1
+            value: manual
+          - dps_val: 2
+            value: auto
+          - dps_val: 3
+            value: rain_delay
+          - dps_val: 4
+            value: "off"
+  - entity: sensor
+    name: Zone 4 status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 168
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: rain_delay
+            value: rain_delay
+          - dps_val: "off"
+            value: "off"
+          - dps_val: null
+            value_redirect: alt
+      - id: 171
+        type: base64
+        optional: true
+        name: alt
+        hidden: true
+        mask: "000000ff"
+        mapping:
+          - dps_val: 0
+            value: idle
+          - dps_val: 1
+            value: manual
+          - dps_val: 2
+            value: auto
+          - dps_val: 3
+            value: rain_delay
+          - dps_val: 4
+            value: "off"
+  - entity: time
+    name: Zone 1 manual timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 172
+        type: base64
+        mask: "ff00000000000000"
+        optional: true
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 172
+        type: base64
+        mask: "00ff000000000000"
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 173
+        type: base64
+        mask: "ff00000000000000"
+        optional: true
+        name: remaining_h
+      - id: 173
+        type: base64
+        mask: "00ff000000000000"
+        optional: true
+        name: remaining_min
+  - entity: time
+    name: Zone 2 manual timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 172
+        type: base64
+        mask: "0000ff0000000000"
+        optional: true
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 172
+        type: base64
+        mask: "000000ff00000000"
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 173
+        type: base64
+        mask: "0000ff0000000000"
+        optional: true
+        name: remaining_h
+      - id: 173
+        type: base64
+        mask: "000000ff00000000"
+        optional: true
+        name: remaining_min
+  - entity: time
+    name: Zone 3 manual timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 172
+        type: base64
+        mask: "00000000ff000000"
+        optional: true
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 172
+        type: base64
+        mask: "0000000000ff0000"
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 173
+        type: base64
+        mask: "00000000ff000000"
+        optional: true
+        name: remaining_h
+      - id: 173
+        type: base64
+        mask: "0000000000ff0000"
+        optional: true
+        name: remaining_min
+  - entity: time
+    name: Zone 4 manual timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 172
+        type: base64
+        mask: "000000000000ff00"
+        optional: true
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 172
+        type: base64
+        mask: "00000000000000ff"
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 173
+        type: base64
+        mask: "000000000000ff00"
+        optional: true
+        name: remaining_h
+      - id: 173
+        type: base64
+        mask: "00000000000000ff"
+        optional: true
+        name: remaining_min
+  - entity: text
+    name: Timer delays
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 175
+        type: base64
+        optional: true
+        name: value
+      - id: 176
+        type: base64
+        optional: true
+        name: next
+  - entity: text
+    name: Add soil sensor
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 177
+        type: base64
+        optional: true
+        name: value
+      - id: 178
+        type: base64
+        optional: true
+        name: info
+  - entity: select
+    name: Zone 1 soil
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "ff00000000000000"
+        name: option
+        mapping:
+          - dps_val: 0
+            value: default
+          - dps_val: 1
+            value: peat
+          - dps_val: 2
+            value: black soil
+          - dps_val: 3
+            value: sandy loam
+          - dps_val: 4
+            value: red soil
+          - dps_val: 5
+            value: other
+          - dps_val: 255
+            value: null
+            hidden: true
+  - entity: select
+    name: Zone 2 soil
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "0000ff0000000000"
+        name: option
+        mapping:
+          - dps_val: 0
+            value: default
+          - dps_val: 1
+            value: peat
+          - dps_val: 2
+            value: black soil
+          - dps_val: 3
+            value: sandy loam
+          - dps_val: 4
+            value: red soil
+          - dps_val: 5
+            value: other
+          - dps_val: 255
+            value: null
+            hidden: true
+  - entity: select
+    name: Zone 3 soil
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "00000000ff000000"
+        name: option
+        mapping:
+          - dps_val: 0
+            value: default
+          - dps_val: 1
+            value: peat
+          - dps_val: 2
+            value: black soil
+          - dps_val: 3
+            value: sandy loam
+          - dps_val: 4
+            value: red soil
+          - dps_val: 5
+            value: other
+          - dps_val: 255
+            value: null
+            hidden: true
+  - entity: select
+    name: Zone 4 soil
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "000000000000ff00"
+        name: option
+        mapping:
+          - dps_val: 0
+            value: default
+          - dps_val: 1
+            value: peat
+          - dps_val: 2
+            value: black soil
+          - dps_val: 3
+            value: sandy loam
+          - dps_val: 4
+            value: red soil
+          - dps_val: 5
+            value: other
+          - dps_val: 255
+            value: null
+            hidden: true
+  - entity: number
+    name: Zone 1 moisture limit
+    category: config
+    class: moisture
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "007f000000000000"
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: 127
+            value: null
+            hidden: true
+  - entity: number
+    name: Zone 2 moisture limit
+    category: config
+    class: moisture
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "0000007f00000000"
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: 127
+            value: null
+            hidden: true
+  - entity: number
+    name: Zone 3 moisture limit
+    category: config
+    class: moisture
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "00000000007f0000"
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: 127
+            value: null
+            hidden: true
+  - entity: number
+    name: Zone 4 moisture limit
+    category: config
+    class: moisture
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "000000000000007f"
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: 127
+            value: null
+            hidden: true
+  - entity: switch
+    name: Zone 1 moisture alarm
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "0080000000000000"
+        name: switch
+  - entity: switch
+    name: Zone 2 moisture alarm
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "0000008000000000"
+        name: switch
+  - entity: switch
+    name: Zone 3 moisture alarm
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "0000000000800000"
+        name: switch
+  - entity: switch
+    name: Zone 4 moisture alarm
+    category: config
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        mask: "0000000000000080"
+        name: switch
+  - entity: text
+    name: Seasonal adustment
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 180
+        type: base64
+        optional: true
+        name: value
+  - entity: valve
+    name: Zone 3
+    dps:
+      - id: 181
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 4
+    dps:
+      - id: 182
+        type: boolean
+        name: valve
+  - entity: sensor
+    name: Zone 3 consumption
+    class: water
+    dps:
+      - id: 183
+        type: integer
+        name: sensor
+        unit: L
+        class: total_increasing
+        mapping:
+          - scale: 10
+      - id: 187
+        type: integer
+        name: daily
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Zone 4 consumption
+    class: water
+    dps:
+      - id: 184
+        type: integer
+        name: sensor
+        unit: L
+        class: total_increasing
+        mapping:
+          - scale: 10
+      - id: 188
+        type: integer
+        name: daily
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Zone 3 soil temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 189
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+      - id: 189
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 3 soil moisture
+    class: moisture
+    hidden: unavailable
+    dps:
+      - id: 190
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 190
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 4 soil temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 191
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+      - id: 191
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 4 soil moisture
+    class: moisture
+    hidden: unavailable
+    dps:
+      - id: 192
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 192
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Zone 1 use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 193
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: Zone 2 use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 194
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: Zone 3 use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 195
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: Zone 4 use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 196
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement

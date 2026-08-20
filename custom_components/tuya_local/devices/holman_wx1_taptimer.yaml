@@ -31,13 +31,13 @@ entities:
   - entity: sensor
     name: Soil temperature
     class: temperature
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 101
         name: sensor
         type: integer
         optional: true
+        class: measurement
         unit: C
       - id: 115
         name: available
@@ -49,13 +49,13 @@ entities:
   - entity: sensor
     name: Soil moisture
     class: moisture
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 102
         name: sensor
         type: integer
         optional: true
+        class: measurement
         unit: "%"
       - id: 102
         type: integer
@@ -72,16 +72,15 @@ entities:
   - entity: sensor
     name: Water flow
     class: water
-    category: diagnostic
     icon: "mdi:water"
     dps:
       - id: 103
         name: sensor
         type: integer
+        class: measurement
         unit: L
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 105
         type: integer

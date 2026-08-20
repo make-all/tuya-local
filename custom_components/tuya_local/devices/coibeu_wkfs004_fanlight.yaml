@@ -1,0 +1,69 @@
+name: Ceiling fan light
+products:
+  - id: 05nijjtjtotiiuyw
+    manufacturer: Coibeu
+    model: WKFS-004
+entities:
+  - entity: light
+    icon: "mdi:ceiling-fan-light"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 104
+        type: integer
+        name: speed
+        mapping:
+          - dps_val: 15
+            value: 17
+          - dps_val: 30
+            value: 33
+          - dps_val: 45
+            value: 50
+          - dps_val: 60
+            value: 67
+          - dps_val: 75
+            value: 83
+          - dps_val: 100
+            value: 100
+      - id: 105
+        type: string
+        name: direction
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86399

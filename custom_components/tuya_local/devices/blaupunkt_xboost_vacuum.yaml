@@ -1,0 +1,152 @@
+name: Robot vacuum
+products:
+  - id: jtyaym20ydwcrith
+    manufacturer: Blaupunkt
+    model: XBoost
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 25
+        type: boolean
+        name: activate
+      - id: 27
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: stop
+          - dps_val: smart
+            value: smart
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: single
+            value: single
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: chargego
+            value: return_to_base
+      - id: 28
+        type: string
+        name: status
+        mapping:
+          - dps_val: charging
+            value: charging
+          - dps_val: pause
+            value: paused
+          - dps_val: sleep
+            value: sleep
+          # Reported briefly when a cleaning run finishes, before standby.
+          - dps_val: workcompleted
+            value: standby
+          # Paired with a non-zero fault dp, which takes priority anyway.
+          - dps_val: fault
+            value: error
+          # The vacuum reports "standby" while it is actually cleaning
+          # or returning to base, so the real activity has to be
+          # derived from the mode dp.
+          - dps_val: standby
+            value: standby
+            constraint: command
+            conditions:
+              - dps_val: chargego
+                value: return_to_base
+              - dps_val:
+                  - smart
+                  - spiral
+                  - single
+                  - wall_follow
+                value: cleaning
+      - id: 26
+        type: string
+        name: direction_control
+        mapping:
+          # "foward" is misspelled in the device firmware.
+          - dps_val: foward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 30
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: normal
+            value: normal
+          - dps_val: high
+            value: high
+      # The product schema declares 7 fault labels (edge_sweep,
+      # middle_sweep, left_wheel, right_wheel, garbage_box, land_check,
+      # collision) but they are not positional: a stuck main brush was
+      # observed as bit 11 (2048), not middle_sweep's bit 1. The rest of
+      # the bits are unknown, so the raw code is exposed as an attribute
+      # rather than decoded into labels that would be wrong.
+      - id: 11
+        type: bitfield
+        name: error
+        optional: true
+        hidden: true
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 31
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Clean area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: m2
+        class: measurement
+      - id: 34
+        type: string
+        name: clean_record
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+        optional: true

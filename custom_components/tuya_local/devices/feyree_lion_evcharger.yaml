@@ -91,7 +91,8 @@ entities:
         optional: true
         unit: V
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Voltage phase 2
     class: voltage
@@ -102,7 +103,8 @@ entities:
         optional: true
         unit: V
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Voltage phase 3
     class: voltage
@@ -113,7 +115,8 @@ entities:
         optional: true
         unit: V
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Current phase 1
     class: current
@@ -124,7 +127,8 @@ entities:
         optional: true
         unit: A
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Current phase 2
     class: current
@@ -135,7 +139,8 @@ entities:
         optional: true
         unit: A
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Current phase 3
     class: current
@@ -146,7 +151,8 @@ entities:
         optional: true
         unit: A
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Active power
     class: power
@@ -157,7 +163,8 @@ entities:
         optional: true
         unit: kW
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Charging session energy
     class: energy
@@ -168,6 +175,8 @@ entities:
         optional: true
         unit: kWh
         class: total_increasing
+        mapping:
+          - scale: 10
 
   - entity: sensor
     name: Internal temperature

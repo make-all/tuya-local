@@ -63,7 +63,6 @@ entities:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -72,11 +71,11 @@ entities:
         unit: A
         name: sensor
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -85,6 +84,7 @@ entities:
         unit: kW
         name: sensor
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor

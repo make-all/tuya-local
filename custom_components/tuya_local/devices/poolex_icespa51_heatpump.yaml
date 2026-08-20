@@ -1,0 +1,419 @@
+name: Pool heat pump
+products:
+  - id: am4nomaadnhwvekq
+    manufacturer: Poolex
+    model: IceSpa 51
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: Heat
+                value: heat
+              - dps_val: Cool
+                value: cool
+              - dps_val: Auto
+                value: heat_cool
+              - dps_val: BoostHeat
+                value: heat
+                hidden: true
+              - dps_val: SilentHeat
+                value: heat
+                hidden: true
+              - dps_val: BoostCool
+                value: cool
+                hidden: true
+              - dps_val: SilentCool
+                value: cool
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Heat
+            value: smart_heat
+          - dps_val: Cool
+            value: smart_cool
+          - dps_val: Auto
+            value: auto
+          - dps_val: BoostHeat
+            value: quick_heat
+          - dps_val: SilentHeat
+            value: quiet_heat
+          - dps_val: BoostCool
+            value: quick_cool
+          - dps_val: SilentCool
+            value: quiet_cool
+      - id: 115
+        type: integer
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: 1
+            value: defrosting
+          - value: null
+      - id: 142
+        type: integer
+        name: max_temperature
+      - id: 145
+        type: integer
+        name: min_temperature
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+
+  - entity: switch
+    name: Aux heat
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Pump
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outdoor coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    translation_key: ambient_temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Indoor coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Target frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: sensor
+        unit: Hz
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Main valve
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
+  - entity: sensor
+    name: Aux valve
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Heating time
+    class: duration
+    category: config
+    icon: "mdi:fire"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 30
+          max: 120
+  - entity: number
+    name: Defrost time limit
+    category: config
+    class: duration
+    icon: "mdi:snowflake-melt"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 25
+  - entity: number
+    name: Defrost cutout temperature
+    category: config
+    class: temperature
+    icon: "mdi:snowflake-melt"
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 20
+  - entity: number
+    name: Heating start hysteresis
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 18
+  - entity: number
+    name: Heating end hysteresis
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 18
+  - entity: number
+    name: Cooling start hysteresis
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 18
+  - entity: number
+    name: Cooling end hysteresis
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 131
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 18
+  - entity: number
+    name: Defrost temperature
+    category: config
+    class: temperature
+    icon: "mdi:snowflake-thermometer"
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 20
+  - entity: switch
+    name: Auto aux heating
+    category: config
+    dps:
+      - id: 135
+        type: integer
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: number
+    name: Aux heating start temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 136
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 2
+          max: 15
+  - entity: number
+    name: Minimum EEV opening
+    category: config
+    dps:
+      - id: 140
+        type: integer
+        name: value
+        unit: P
+        range:
+          min: 50
+          max: 480
+  - entity: switch
+    name: Forced defrost
+    category: config
+    dps:
+      - id: 141
+        type: integer
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: number
+    translation_key: maximum_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 35
+          max: 60
+  - entity: number
+    translation_key: minimum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 145
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 2
+          max: 10

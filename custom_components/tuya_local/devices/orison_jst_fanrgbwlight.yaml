@@ -1,0 +1,174 @@
+name: Ceiling fan
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Orison
+#     model: Smart-fan-JST
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+  - entity: light
+    name: white
+    dps:
+      - id: 20
+        type: boolean
+        name: main_switch
+        hidden: true
+      - id: 51
+        type: base64
+        optional: true
+        name: switch
+        mask: "000100000000000000000000"
+        mapping:
+          - dps_val: null
+            value_redirect: main_switch
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: light
+    name: Color
+    dps:
+      - id: 20
+        type: boolean
+        name: main_switch
+      - id: 51
+        type: base64
+        optional: true
+        name: switch
+        mask: "000200000000000000000000"
+        mapping:
+          - dps_val: null
+            value_redirect: main_switch
+      - id: 51
+        type: base64
+        optional: true
+        name: rgbhsv
+        format:
+          - name: sw
+            bytes: 2
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: wb
+            bytes: 2
+          - name: ct
+            bytes: 2
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value
+  - entity: text
+    name: Music
+    category: config
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Mix RGBCW
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    name: Fan timer
+    category: config
+    class: duration
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540

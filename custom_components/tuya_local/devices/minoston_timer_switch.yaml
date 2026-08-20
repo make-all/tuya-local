@@ -95,7 +95,31 @@ entities:
         range:
           min: 0
           max: 100
+  - entity: select
+    name: Active timer
+    icon: "mdi:timer-cog"
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: None
+          - dps_val: 1
+            value: Preset 1
+          - dps_val: 2
+            value: Preset 2
+          - dps_val: 3
+            value: Preset 3
+          - dps_val: 4
+            value: Preset 4
+          - dps_val: 5
+            value: Preset 5
+          - dps_val: 6
+            value: Preset 6
   - entity: sensor
+    deprecated: select_active_timer  # 2026-07-30
     name: Active timer
     class: enum
     category: diagnostic

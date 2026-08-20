@@ -310,7 +310,9 @@
                             "fan_only": "風扇",
                             "heat": "熱風",
                             "floor_cool": "冷地板",
-                            "floor_heat": "熱地板"
+                            "floor_heat": "熱地板",
+                            "air_floor_cool": "冷風+冷地板",
+                            "air_floor_heat": "熱風+熱地板"
                         }
                     }
                 }
@@ -357,7 +359,9 @@
                             "program_2": "程式2",
                             "program_3": "程式3",
                             "standby": "待機",
-                            "fan_only": "僅風扇"
+                            "fan_only": "僅風扇",
+                            "program": "程式",
+                            "anti_frost": "防凍"
                         }
                     }
                 }
@@ -504,7 +508,7 @@
                             "auto": "自動",
                             "manual": "手動",
                             "eco": "節能",
-                            "anti-condensation": "防凝結",
+                            "anti_condensation": "防凝結",
                             "extractor": "抽氣",
                             "heat_recovery": "熱回收",
                             "timer": "計時",
@@ -1169,6 +1173,17 @@
                     "danger": "危險"
                 }
             },
+            "sd_status": {
+                "name": "SD卡狀態",
+                "state": {
+                    "fault": "故障",
+                    "formatting": "格式化中",
+                    "full": "已滿",
+                    "missing": "缺失",
+                    "normal": "正常",
+                    "unformatted": "未格式化"
+                }
+            },
             "status": {
                 "name": "狀態",
                 "state": {
@@ -1247,8 +1262,6 @@
                     "full": "滿",
                     "empty": "空",
                     "missing": "缺失",
-                    "formatting": "格式化中",
-                    "unformatted": "未格式化",
                     "failed": "失敗",
                     "replying": "回覆中",
                     "playback": "播放中",
@@ -1370,6 +1383,9 @@
                     "off": "跳閘"
                 }
             },
+            "camera_record": {
+                "name": "攝像頭錄影"
+            },
             "do_not_disturb": {
                 "name": "請勿打擾"
             },
@@ -1456,6 +1472,9 @@
             },
             "snooze": {
                 "name": "貪睡"
+            },
+            "motion_detection": {
+                "name": "動作偵測"
             },
             "watermark": {
                 "name": "水印"

@@ -34,6 +34,7 @@ entities:
         name: sensor
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -44,6 +45,7 @@ entities:
         name: sensor
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: button

@@ -1,0 +1,51 @@
+name: Door Light
+products:
+  - id: jahu6lbhx0o5opo2
+    manufacturer: Pirnar
+    model: SmartLux
+entities:
+  - entity: light
+    name: Exterior
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+      - id: 104
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 105
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+  - entity: light
+    name: Interior
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500

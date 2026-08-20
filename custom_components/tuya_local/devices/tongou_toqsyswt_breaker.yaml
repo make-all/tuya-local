@@ -25,11 +25,11 @@ entities:
         name: cycle_time
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: V
         mask: "FFFF000000000000"
@@ -37,24 +37,24 @@ entities:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: A
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: kW
         mask: "0000000000FFFFFF"
         mapping:
@@ -206,6 +206,7 @@ entities:
             value: trip_breaker
   - entity: binary_sensor
     class: connectivity
+    deprecated: button_live_updates  # 2026-06-29
     category: diagnostic
     dps:
       - id: 109

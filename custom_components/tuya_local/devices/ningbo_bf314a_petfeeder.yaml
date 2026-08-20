@@ -26,8 +26,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
@@ -49,8 +48,7 @@ entities:
         optional: true
         name: snapshot
   - entity: switch
-    name: Motion detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_detection
     category: config
     dps:
       - id: 134
@@ -104,11 +102,9 @@ entities:
           - dps_val: "2"
             value: high
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
-    icon: "mdi:micro-sd"
     dps:
       - id: 110
         type: integer

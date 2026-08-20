@@ -1,8 +1,9 @@
 name: Circuit breaker
+legacy_type: tongou_towsmr1-20_rcbo_breaker
 products:
   - id: hktsllupwmoii1it
     manufacturer: Tongou
-    model: tongou 20A Wi-Fi Smart Reclosing RCBO
+    model: 20A Wi-Fi Smart Reclosing RCBO
     model_id: TOSMR1-20JWTR
 entities:
   - entity: sensor
@@ -170,9 +171,22 @@ entities:
             value: alarm
           - dps_val: Trip
             value: trip_breaker
+  - entity: button
+    name: Refresh
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
   - entity: binary_sensor
     class: connectivity
     category: diagnostic
+    deprecated: button_refresh  # 2026-06-29
     dps:
       - id: 109
         type: string

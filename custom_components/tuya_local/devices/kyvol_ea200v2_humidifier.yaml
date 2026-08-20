@@ -1,0 +1,135 @@
+name: Humidifier
+products:
+  - id: lvyrh7wfq2rt0xw8
+    manufacturer: Kyvol
+    model: EA200
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 14
+        type: integer
+        name: current_humidity
+      - id: 101
+        type: string
+        name: humidity
+        range:
+          min: 40
+          max: 90
+        mapping:
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+          - dps_val: "85"
+            value: 85
+          - dps_val: "90"
+            value: 90
+          - value: null
+            hidden: true
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 23
+        type: string
+        name: speed
+        mapping:
+          - dps_val: level_1
+            value: 33
+          - dps_val: level_2
+            value: 66
+          - dps_val: level_3
+            value: 100
+          - value: null
+            hidden: true
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        optional: true
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: binary_sensor
+    translation_key: tank_empty
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

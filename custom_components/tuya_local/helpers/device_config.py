@@ -174,6 +174,12 @@ class TuyaDeviceConfig:
 
         return product_match or len(missing_dps) == 0
 
+    def matches_product(self, product_id):
+        """Whether this config lists the given Tuya product id in `products`."""
+        if not product_id:
+            return False
+        return any(p.get("id") == product_id for p in self._config.get("products", []))
+
     def _get_all_dps(self):
         all_dps_list = []
         all_dps_list += [d for dev in self.all_entities() for d in dev.dps()]
@@ -807,6 +813,7 @@ class TuyaDpsConfig:
                     return None
                 replaced = replaced or "value" in cond
                 result = cond.get("value", result)
+                invert = cond.get("invert", invert)
                 redirect = cond.get("value_redirect", redirect)
                 mirror = cond.get("value_mirror", mirror)
                 target_range = cond.get("target_range", target_range)
@@ -942,15 +949,23 @@ class TuyaDpsConfig:
             for cond in conditions:
                 if not self.mapping_available(cond, device):
                     continue
-                if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
+                cond_dpval = cond.get("dps_val")
+                if c_val is not None and (_equal_or_in(c_val, cond_dpval)):
                     c_match = cond
                 # Case where matching None, need extra checks to ensure we
                 # are not just defaulting and it is really a match
                 elif (
                     c_val is None
                     and c_dps is not None
+                    and cond_dpval is None
                     and "dps_val" in cond
-                    and cond.get("dps_val") is None
+                ):
+                    c_match = cond
+                elif (
+                    c_val is not None
+                    and cond_dpval is not None
+                    and c_dps.rawtype == "bitfield"
+                    and (int(c_val) & int(cond_dpval)) == int(cond_dpval)
                 ):
                     c_match = cond
                 # when changing, another condition may become active
@@ -1040,6 +1055,7 @@ class TuyaDpsConfig:
                 step = cond.get("step", step)
                 redirect = cond.get("value_redirect", redirect)
                 target_range = cond.get("target_range", target_range)
+                invert = cond.get("invert", invert)
 
             if redirect:
                 _LOGGER.debug("Redirecting %s to %s", self.name, redirect)

@@ -1,5 +1,8 @@
 name: Heater
-# products: id unknown, name: Eurom Sani-Wall-Heat 2000
+products:
+  - id: keysjrn8pnr7mrd4
+    manufacturer: Eurom
+    model: Sani-Wall-Heat 2000
 entities:
   - entity: climate
     translation_only_key: heater
@@ -19,8 +22,10 @@ entities:
                 value: heat
               - dps_val: "50_per"
                 value: heat
+                hidden: true
               - dps_val: "100_per"
                 value: heat
+                hidden: true
       - id: 2
         type: integer
         name: temperature
@@ -51,3 +56,25 @@ entities:
             value: vertical
           - dps_val: false
             value: "off"
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Holiday mode
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: holiday
+            value: true
+          - dps_val: program
+            value: false

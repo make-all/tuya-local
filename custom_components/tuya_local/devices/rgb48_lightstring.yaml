@@ -34,18 +34,17 @@ entities:
         name: switch
       - id: 21
         type: string
-        name: color_mode
+        name: effect
         mapping:
           - dps_val: "white"
-            value: "color_temp"
+            value: "off"
           - dps_val: "colour"
-            value: "hs"
-            hidden: true  # there is no RGB dp, so prevent selection of this
+            value: "draw"
           - dps_val: "scene"
             value: "scene"
           - dps_val: "music"
             value: "music"
-            hidden: true
+            hidden: true  # No music dps
       - id: 22
         type: integer
         name: brightness

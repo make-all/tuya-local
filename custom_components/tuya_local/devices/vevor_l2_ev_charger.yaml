@@ -60,7 +60,6 @@ entities:
           max: 48
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -68,6 +67,7 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
       - id: 9
@@ -77,7 +77,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -85,11 +84,11 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -97,6 +96,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: binary_sensor
@@ -188,9 +188,22 @@ entities:
         unit: kWh
         mapping:
           - scale: 100
+  - entity: button
+    name: Refresh
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
   - entity: binary_sensor
     class: connectivity
     category: diagnostic
+    deprecated: button_refresh  # 2026-06-29
     dps:
       - id: 27
         type: string

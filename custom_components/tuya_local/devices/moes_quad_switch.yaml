@@ -3,6 +3,9 @@ products:
   - id: mwiiltjyanw48oxm
     manufacturer: Moes
     model: MS-104D
+  - id: ailtrfobq95yw5ls
+    manufacturer: Avatto
+    model: WSMD-4
 entities:
   - entity: switch
     translation_key: switch_x
@@ -14,6 +17,7 @@ entities:
         name: switch
       - id: 44
         type: string
+        optional: true
         name: inching
       - id: 48
         type: string
@@ -54,11 +58,13 @@ entities:
         name: second
         range:
           min: 0
-          max: 86400
+          max: 86399
       - id: 42
         type: string
+        optional: true
         name: random_timer
       - id: 43
+        optional: true
         type: string
         name: cycle_timer
   - entity: time
@@ -72,7 +78,7 @@ entities:
         name: second
         range:
           min: 0
-          max: 86400
+          max: 86399
   - entity: time
     category: config
     translation_key: timer_x
@@ -84,7 +90,7 @@ entities:
         name: second
         range:
           min: 0
-          max: 86400
+          max: 86399
   - entity: time
     category: config
     translation_key: timer_x
@@ -96,7 +102,7 @@ entities:
         name: second
         range:
           min: 0
-          max: 86400
+          max: 86399
   - entity: select
     translation_key: initial_state
     category: config
@@ -107,10 +113,55 @@ entities:
         mapping:
           - dps_val: "off"
             value: "off"
+            available: standard
           - dps_val: "on"
             value: "on"
+            available: standard
           - dps_val: memory
             value: memory
+            available: standard
+          - dps_val: "0"
+            value: "off"
+            available: numeric
+          - dps_val: "1"
+            value: "on"
+            available: numeric
+          - dps_val: "2"
+            value: memory
+            available: numeric
+          - dps_val: power_off
+            value: "off"
+            available: power
+          - dps_val: power_on
+            value: "on"
+            available: power
+          - dps_val: last
+            value: memory
+            available: power
+      - id: 38
+        type: string
+        name: standard
+        mapping:
+          - conditions:
+              - dps_val: ["on", "off", memory]
+                value: true
+            value: false
+      - id: 38
+        type: string
+        name: numeric
+        mapping:
+          - conditions:
+              - dps_val: ["0", "1", "2"]
+                value: true
+            value: false
+      - id: 38
+        type: string
+        name: power
+        mapping:
+          - conditions:
+              - dps_val: [power_off, power_on, last]
+                value: true
+            value: false
   - entity: select
     name: Switch type
     icon: "mdi:toggle-switch"

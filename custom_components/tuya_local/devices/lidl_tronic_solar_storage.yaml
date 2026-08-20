@@ -1,0 +1,547 @@
+# Lidl Tronic Solarstromspeicher, identical hardware to Marstek Saturn
+# B2500, Tuya category bxsdy, protocol Tuya 3.3
+# DP source: https://github.com/Maztah/tronic-speicher-tuya-local
+
+name: Battery storage
+
+products:
+  - id: fpi7g58s9hoxlvng
+    manufacturer: Lidl
+    model: Tronic Solarstromspeicher
+
+entities:
+
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+
+  # Values: charge / discharge / standby
+  - entity: sensor
+    translation_key: status
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        readonly: true
+
+  # bytes 4-5
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: Battery
+    class: power
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "00000000FFFF"
+        unit: W
+
+  # bytes 2-3
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: Battery
+    class: current
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "0000FFFF0000"
+        unit: A
+        mapping:
+          - scale: 10
+
+  # bytes 0-1
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Battery
+    class: voltage
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "FFFF00000000"
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: min
+
+  # bytes 5-6, daytime only
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: "PV 1"
+    class: power
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        class: measurement
+        force: true
+        optional: true
+        mask: "0000000000FFFF000000000000"
+        unit: W
+
+  # bytes 11-12, daytime only
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: "PV 2"
+    class: power
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        class: measurement
+        force: true
+        optional: true
+        mask: "0000000000000000000000FFFF"
+        unit: W
+
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 37
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  # bytes 5-6
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: "Output 1"
+    class: power
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "0000000000FFFF000000000000"
+        unit: W
+
+  # bytes 11-12
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: "Output 2"
+    class: power
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "0000000000000000000000FFFF"
+        unit: W
+
+  - entity: sensor
+    name: Energy charged
+    class: energy
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Energy discharged
+    class: energy
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: select
+    name: Operating mode
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_discharge
+            value: charge_discharge
+          - dps_val: charge_first
+            value: charge_first
+
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 24
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+
+  # Mirrors "Inverter Configuration -> Power" in the app. Acts as a ceiling
+  # only: lowering it also caps discharge slot 1 (DP 106) and, below ~200W,
+  # the standby threshold (DP 108); raising it does not restore either.
+  # Not suitable for zero feed-in - use DP 106 slot 1 for that instead.
+  - entity: number
+    name: Inverter output power limit
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 800
+
+  # tuya-local reads the blob, changes only bytes 6-7, writes it back - all
+  # other schedule slots are left untouched. Minimum 80W: 1-79W is ignored
+  # by the device. 0W is intentionally excluded - use "Charge first"
+  # (DP 105) to stop discharging instead.
+  # Flash wear: see Known limitations in the README.
+  - entity: number
+    name: Discharge power (slot 1)
+    category: config
+    dps:
+      - id: 106
+        type: base64
+        name: value
+        optional: true
+        force: true
+        mask: "000000000000FFFF00000000000000000000000000000000000000000000000000000000"  # yamllint disable-line rule:line-length
+        unit: W
+        range:
+          min: 80
+          max: 800
+        mapping:
+          - step: 10
+
+  # Raw, unmasked DP 106 blob. Needed because the device never pushes
+  # DP 106 on its own - without this sensor, "Discharge power (slot 1)"
+  # stays unknown after restart/reconnect until the first full write.
+  - entity: sensor
+    name: Discharge schedule raw
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        optional: true
+        readonly: true
+
+  # Writes the app default (all 5 slots at 80W, only slot 1 active)
+  # directly to DP 106, unmasked. Fixes "Cannot mask unknown current
+  # value" after restart/reconnect, before the device pushes a real blob.
+  - entity: button
+    name: Discharge schedule reset
+    dps:
+      - id: 106
+        type: base64
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "AAEAABc7AFAAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAABQ"
+            value: true
+
+  - entity: number
+    name: Depth of discharge
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 100
+
+  # Threshold at which the device leaves standby and starts operating.
+  # Calculated and set by the device itself, so treated as a sensor.
+  - entity: sensor
+    name: Standby threshold
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        readonly: true
+        unit: W
+
+  - entity: button
+    name: Force refresh
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+
+  - entity: sensor
+    name: Fault code
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Battery pack count
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+
+  # bytes 1-2
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "Output 1"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "00FFFF00000000000000000000"
+        unit: V
+        mapping:
+          - scale: 10
+
+  # bytes 3-4
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "Output 1"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "000000FFFF0000000000000000"
+        unit: A
+        mapping:
+          - scale: 100
+
+  # bytes 7-8
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "Output 2"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "00000000000000FFFF00000000"
+        unit: V
+        mapping:
+          - scale: 10
+
+  # bytes 9-10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "Output 2"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        mask: "000000000000000000FFFF0000"
+        unit: A
+        mapping:
+          - scale: 10
+
+  # bytes 1-2
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "PV 1"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        class: measurement
+        force: true
+        optional: true
+        mask: "00FFFF00000000000000000000"
+        unit: V
+        mapping:
+          - scale: 10
+
+  # bytes 3-4
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "PV 1"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        class: measurement
+        force: true
+        optional: true
+        mask: "000000FFFF0000000000000000"
+        unit: A
+        mapping:
+          - scale: 10
+
+  # bytes 7-8
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "PV 2"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        class: measurement
+        force: true
+        optional: true
+        mask: "00000000000000FFFF00000000"
+        unit: V
+        mapping:
+          - scale: 10
+
+  # bytes 9-10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "PV 2"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        class: measurement
+        force: true
+        optional: true
+        mask: "000000000000000000FFFF0000"
+        unit: A
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: DC output raw
+    hidden: true
+    category: diagnostic
+    dps:
+      - id: 33
+        type: base64
+        name: sensor
+        optional: true
+        force: true
+        readonly: true
+
+  # bytes 6-7
+  - entity: sensor
+    name: Inverter max power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        force: true
+        readonly: true
+        mask: "000000000000FFFF"
+        unit: W
+
+  - entity: sensor
+    name: Inverter configuration raw
+    hidden: true
+    category: diagnostic
+    dps:
+      - id: 114
+        type: base64
+        name: sensor
+        optional: true
+        force: true
+        readonly: true

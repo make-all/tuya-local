@@ -29,8 +29,17 @@ entities:
   - entity: switch
     translation_key: sound
     category: config
+    hidden: unavailable
     dps:
       - id: 66
         type: boolean
         name: switch
         optional: true
+      - id: 66
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

@@ -1,0 +1,133 @@
+name: Five channel dimmer
+products:
+  - id: whg6uhsccujw03km
+    manufacturer: Sensio
+    model: Titan Smart Kinetic Driver
+entities:
+  - entity: light
+    name: Channel 1
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+      - id: 101
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 2
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 3
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+      - id: 103
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 4
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+      - id: 104
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Channel 5
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: All channels
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        mapping:
+          - dps_val: white
+            value: "off"
+          - dps_val: scene
+            value: Scene
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Scene 1
+          - dps_val: "2"
+            value: Scene 2
+          - dps_val: "3"
+            value: Scene 3
+          - dps_val: "4"
+            value: Scene 4
+  - entity: text
+    name: Scene 1
+    category: config
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Scene 2
+    category: config
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Scene 3
+    category: config
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Scene 4
+    category: config
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        name: value
+        optional: true

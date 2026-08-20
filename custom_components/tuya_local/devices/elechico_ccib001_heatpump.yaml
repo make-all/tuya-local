@@ -1,0 +1,106 @@
+# Elechico / Guangdong Chico CCIB001-CC1177D — pool / ice-bath heat pump chiller
+# (Tuya Wi-Fi module + separate MCU, TuyaMCU). Local protocol 3.4.
+#
+# Authoritative datapoint spec from Tuya IoT "Query Things Data Model"
+# (GET /v2.0/cloud/thing/<device_id>/model), 24 DPs total:
+#   1  switch            bool                     power on/off
+#   2  temp_set          value 3..45 °C step1     target temperature (°C)
+#   3  temp_current      value -40..200 °C  (ro)  inlet water temperature (°C)
+#   4  mode              enum [auto, heat, cool]  0-auto / 1-heat / 2-cool
+#   17 temp_unit_convert enum [c, f]
+#   20 fault             bitmap 14 bits:
+#      01 02 03 04 05 06 09 10 12 15 16 18 20 21
+#   25 temp_set_f        value 37..113 °F         target temperature (°F)
+#   26 temp_current_f    value -40..200 °F  (ro)  inlet water temperature (°F)
+#   101..116  two schedule timers (timer1: 101-107,115 / timer2: 108-114,116):
+#     101/108 timerN enable (bool); 102-105/109-112 on-h,on-m,off-h,off-m;
+#     106/113 timer mode enum[auto,heat,cool]; 107/114 timer temp °C;
+#     115/116 timer temp °F. Not mapped here (thermostat scope).
+#
+# NOTE: the detailed telemetry visible on the controller HMI (exhaust gas /
+# evaporator coil / ambient temp, EEV opening, protection setpoints) is NOT
+# exposed in the Tuya data model — only the DPs above are available locally.
+name: Ice bath heat pump
+products:
+  - id: uliewnhms8amzxli
+    manufacturer: Elechico
+    model: CCIB001-CC1177D
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    icon: "mdi:hot-tub"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: heat
+                value: heat
+              - dps_val: cool
+                value: cool
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 3
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 37
+                  max: 113
+      - id: 25
+        type: integer
+        name: temp_set_f
+        optional: true
+        range:
+          min: 37
+          max: 113
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 26
+        type: integer
+        name: temp_current_f
+        optional: true
+      - id: 17
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code

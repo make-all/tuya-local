@@ -310,7 +310,9 @@
                             "fan_only": "Ventilátor",
                             "heat": "Ohřejte vzduch",
                             "floor_cool": "Chladná podlaha",
-                            "floor_heat": "Tepelná podlaha"
+                            "floor_heat": "Tepelná podlaha",
+                            "air_floor_cool": "Chladný vzduch a podlaha",
+                            "air_floor_heat": "Ohřejte vzduch a podlahu"
                         }
                     }
                 }
@@ -357,7 +359,9 @@
                             "program_2": "Program 2",
                             "program_3": "Program 3",
                             "standby": "Pohotovostní režim",
-                            "fan_only": "Pouze ventilátor"
+                            "fan_only": "Pouze ventilátor",
+                            "program": "Program",
+                            "anti_frost": "Protizámrazový"
                         }
                     }
                 }
@@ -416,7 +420,7 @@
                 "state_attributes": {
                     "mode": {
                         "state": {
-                            "laundry": "Suché prádlo",
+                            "laundry": "Sušení prádla",
                             "purify": "Očistit",
                             "continuous": "Nepřetržitý"
                         }
@@ -504,7 +508,7 @@
                             "auto": "Auto",
                             "manual": "Manuál",
                             "eco": "Eco",
-                            "anti-condensation": "Proti kondenzaci",
+                            "anti_condensation": "Proti kondenzaci",
                             "extractor": "Odsávání",
                             "heat_recovery": "Ovzduší",
                             "timer": "Časovač",
@@ -1169,6 +1173,17 @@
                     "danger": "Nebezpečná"
                 }
             },
+            "sd_status": {
+                "name": "Stav SD karty",
+                "state": {
+                    "fault": "Chyba",
+                    "formatting": "Formátování",
+                    "full": "Plná",
+                    "missing": "Chybí",
+                    "normal": "Normální",
+                    "unformatted": "Neformátováno"
+                }
+            },
             "status": {
                 "name": "Stav",
                 "state": {
@@ -1247,8 +1262,6 @@
                     "full": "Plný",
                     "empty": "Prázdný",
                     "missing": "Chybí",
-                    "formatting": "Formátování",
-                    "unformatted": "Neformátováno",
                     "failed": "Selhalo",
                     "replying": "Odpovídání",
                     "playback": "Přehrávání",
@@ -1370,6 +1383,9 @@
                     "on": "Zavřeno"
                 }
             },
+            "camera_record": {
+                "name": "Nahrávání kamery"
+            },
             "do_not_disturb": {
                 "name": "Nerušit"
             },
@@ -1456,6 +1472,9 @@
             },
             "snooze": {
                 "name": "Odložení"
+            },
+            "motion_detection": {
+                "name": "Detekce pohybu"
             },
             "watermark": {
                 "name": "Vodotisk"

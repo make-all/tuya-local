@@ -31,18 +31,25 @@ entities:
         mapping:
           - dps_val: Auto
             value: auto
+            available: preset_available
           - dps_val: Heating_Smart
             value: smart_heat
+            available: preset_available
           - dps_val: Heating_Powerful
             value: quick_heat
+            available: preset_available
           - dps_val: Heating_Silent
             value: quiet_heat
+            available: preset_available
           - dps_val: Cooling_Smart
             value: smart_cool
+            available: preset_available
           - dps_val: Cooling_Powerful
             value: quick_cool
+            available: preset_available
           - dps_val: Cooling_Silent
             value: quiet_cool
+            available: preset_available
       - id: 2
         type: string
         name: mode_as_hvac
@@ -99,11 +106,20 @@ entities:
                 value: cooling
               # Unfortunately we cannot tell what Auto is doing
               - dps_val: Auto
-                value: null
+                value_redirect: work_mode_action
           - dps_val: Defrosting
             value: defrosting
           - dps_val: Standby
             value: idle
+          - value: null
+      - id: 5
+        type: string
+        name: work_mode_action
+        mapping:
+          - dps_val: Cool_mode
+            value: cooling
+          - dps_val: Heat_mode
+            value: heating
           - value: null
       - id: 35
         type: integer
@@ -157,6 +173,21 @@ entities:
         optional: true
         name: set_auto_temp
         mapping:
+          - constraint: work_mode
+            conditions:
+              - dps_val: null
+                value_redirect: set_real_auto_temp
+              - dps_val: Auto_mode
+                value_redirect: set_real_auto_temp
+              - dps_val: Cool_mode
+                value_redirect: set_cold_temp
+              - dps_val: Heat_mode
+                value_redirect: set_heating_temp
+      - id: 104
+        type: integer
+        optional: true
+        name: set_real_auto_temp
+        mapping:
           - constraint: temperature_unit
             conditions:
               - dps_val: f
@@ -179,6 +210,84 @@ entities:
       - id: 109
         type: integer
         name: unit_type
+        mapping:
+          - dps_val: 0
+            value: presetless
+          - dps_val: 1
+            value: hvac_modeless
+      - id: 109
+        type: integer
+        name: preset_available
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 5
+        type: string
+        optional: true
+        name: min_temperature
+        mapping:
+          - dps_val: Heat_mode
+            value: 15
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value: 59
+          - dps_val: null
+            value_redirect: min_temp_from_preset
+          - value: 8
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value: 46
+      - id: 5
+        type: string
+        optional: true
+        name: max_temperature
+        mapping:
+          - dps_val: Cool_mode
+            value: 28
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value: 82
+          - dps_val: null
+            value_redirect: max_temp_from_preset
+          - value: 40
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value: 104
+      - id: 6
+        type: string
+        name: min_temp_from_preset
+        mapping:
+          - dps_val: f
+            value: 46
+            constraint: preset_mode
+            conditions:
+              - dps_val: [Heating_Smart, Heating_Powerful, Heating_Silent]
+                value: 59
+          - value: 8
+            constraint: preset_mode
+            conditions:
+              - dps_val: [Heating_Smart, Heating_Powerful, Heating_Silent]
+                value: 15
+      - id: 6
+        type: string
+        name: max_temp_from_preset
+        mapping:
+          - dps_val: f
+            value: 104
+            constraint: preset_mode
+            conditions:
+              - dps_val: [Cooling_Smart, Cooling_Powerful, Cooling_Silent]
+                value: 82
+          - value: 40
+            constraint: preset_mode
+            conditions:
+              - dps_val: [Cooling_Smart, Cooling_Powerful, Cooling_Silent]
+                value: 28
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -349,6 +458,7 @@ entities:
   - entity: select
     translation_key: mode
     category: config
+    hidden: unavailable
     dps:
       - id: 117
         type: string
@@ -360,6 +470,13 @@ entities:
             value: Smart
           - dps_val: Powerful
             value: Powerful
+      - id: 109
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: sensor
     name: Return temperature
     class: temperature
@@ -390,7 +507,7 @@ entities:
             value: F
           - value: C
   - entity: sensor
-    name: Colling coil temperature
+    name: Cooling coil temperature
     class: temperature
     category: diagnostic
     dps:
@@ -424,5 +541,5 @@ entities:
       - id: 125
         type: integer
         name: sensor
-        unit: "%"
+        unit: P
         class: measurement

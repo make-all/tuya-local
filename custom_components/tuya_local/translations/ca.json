@@ -310,7 +310,9 @@
                             "fan_only": "Ventilador",
                             "heat": "Aire calent",
                             "floor_cool": "Terra fred",
-                            "floor_heat": "Terra calent"
+                            "floor_heat": "Terra calent",
+                            "air_floor_cool": "Aire i terra freds",
+                            "air_floor_heat": "Aire i terra calents"
                         }
                     }
                 }
@@ -357,7 +359,9 @@
                             "program_2": "Programa 2",
                             "program_3": "Programa 3",
                             "standby": "En espera",
-                            "fan_only": "Només ventilador"
+                            "fan_only": "Només ventilador",
+                            "program": "Programa",
+                            "anti_frost": "Anticongelació"
                         }
                     }
                 }
@@ -542,7 +546,7 @@
                             "auto": "Automàtic",
                             "manual": "Manual",
                             "eco": "Ecològic",
-                            "anti-condensation": "Anticondensació",
+                            "anti_condensation": "Anticondensació",
                             "extractor": "Extractor",
                             "heat_recovery": "Recuperació de calor",
                             "timer": "Temporitzador",
@@ -1202,6 +1206,17 @@
             "energy_consumed_x": {
                 "name": "Energia consumida {x}"
             },
+            "sd_status": {
+                "name": "Estat de la targeta SD",
+                "state": {
+                    "fault": "Errada",
+                    "formatting": "Formatant",
+                    "full": "Plena",
+                    "missing": "Sense targeta SD",
+                    "normal": "Normal",
+                    "unformatted": "Sense formatar"
+                }
+            },
             "status": {
                 "name": "Estat",
                 "state": {
@@ -1280,8 +1295,6 @@
                     "full": "Ple",
                     "empty": "Buit",
                     "missing": "Falta",
-                    "formatting": "Formatant",
-                    "unformatted": "No formatat",
                     "failed": "Ha fallat",
                     "replying": "Responent",
                     "playback": "Reproducció",
@@ -1370,6 +1383,9 @@
                     "off": "Normal"
                 }
             },
+            "camera_record": {
+                "name": "Gravació de la càmera"
+            },
             "do_not_disturb": {
                 "name": "No molestar"
             },
@@ -1456,6 +1472,9 @@
             },
             "snooze": {
                 "name": "Ajornament"
+            },
+            "motion_detection": {
+                "name": "Detecció de moviment"
             },
             "watermark": {
                 "name": "Marca de agua"

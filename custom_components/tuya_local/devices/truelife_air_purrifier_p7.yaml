@@ -32,12 +32,12 @@ entities:
             value: 100
   - entity: sensor
     class: pm25
-    category: diagnostic
     dps:
       - id: 2
         type: integer
         name: sensor
         unit: ugm3
+        class: measurement
   - entity: switch
     translation_key: ionizer
     category: config

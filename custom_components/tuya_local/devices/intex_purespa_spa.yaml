@@ -3,6 +3,9 @@ products:
   - id: chsaskllmust5d7a
     manufacturer: Intex
     model: PureSpa
+  - id: bksofco59ud7eovz
+    manufacturer: Intex
+    model: PureSpa
 entities:
   - entity: water_heater
     dps:
@@ -31,6 +34,23 @@ entities:
       - id: 104
         type: boolean
         name: switch
+  - entity: switch
+    name: Jets
+    icon: "mdi:shower-head"
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: switch
+      - id: 105
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Filtration
     icon: "mdi:air-filter"

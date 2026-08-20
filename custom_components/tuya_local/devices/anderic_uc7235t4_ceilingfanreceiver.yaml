@@ -1,0 +1,32 @@
+name: Ceiling fan
+products:
+  - id: kzmjklvux6c5cu1u
+    manufacturer: Anderic
+    model: UC7235T4
+entities:
+  - entity: fan
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 104
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 33
+          - dps_val: "2"
+            value: 66
+          - dps_val: "3"
+            value: 100
+  - entity: light
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: brightness
+        range:
+          min: 25
+          max: 255

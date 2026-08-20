@@ -1,0 +1,37 @@
+name: Watering timer
+products:
+  - id: 6pahkcau
+    manufacturer: Parkside
+    model: PBB A1
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 5
+        name: minute
+        type: integer
+        range:
+          min: 0
+          max: 1439
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: min

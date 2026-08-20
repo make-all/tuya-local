@@ -34,6 +34,14 @@ from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
+# Extra context for tinytuya error codes whose message does not fully describe
+# the possible causes.  Error 914 in particular is reported for any failure to
+# negotiate a session, which includes a device that is refusing connections
+# until it is power cycled, not just a misconfigured key or protocol version.
+_ERROR_HINTS = {
+    "914": "  If previously running OK, likely the device needs to be power cycled.",
+}
+
 
 def _collect_possible_matches(cached_state, product_ids):
     """Collect possible matches from generator into an array."""
@@ -81,6 +89,7 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
+        self.dev_id = dev_id
         self.dev_cid = dev_cid
         try:
             if dev_cid:
@@ -149,7 +158,7 @@ class TuyaLocalDevice(object):
         # its switches.
         self._FAKE_IT_TIMEOUT = 5
         self._CACHE_TIMEOUT = 30
-        self._HEARTBEAT_INTERVAL = 10
+        self._HEARTBEAT_INTERVAL = 5
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = len(API_PROTOCOL_VERSIONS) * 2 + 1
@@ -164,8 +173,12 @@ class TuyaLocalDevice(object):
 
     @property
     def unique_id(self):
-        """Return the unique id for this device (the dev_id or dev_cid)."""
-        return self.dev_cid or self._api.id
+        """Return the unique ID for this device."""
+        if self.dev_cid:
+            return get_device_id(
+                {CONF_DEVICE_ID: self.dev_id, CONF_DEVICE_CID: self.dev_cid}
+            )
+        return self._api.id
 
     @property
     def device_info(self):
@@ -293,9 +306,13 @@ class TuyaLocalDevice(object):
             _LOGGER.exception(
                 "%s receive loop terminated by exception %s", self.name, t
             )
+        finally:
+            # Ensure the persistent connection is closed when the loop exits
+            # and device appears as unavailable
             self._api.set_socketPersistent(False)
             if self._api.parent:
                 self._api.parent.set_socketPersistent(False)
+            self._reset_cached_state()
 
     @property
     def should_poll(self):
@@ -303,6 +320,7 @@ class TuyaLocalDevice(object):
 
     def pause(self):
         self._temporary_poll = True
+        _LOGGER.debug("%s pausing connection temporarily", self.name, False)
         self._api.set_socketPersistent(False)
         if self._api.parent:
             self._api.parent.set_socketPersistent(False)
@@ -417,6 +435,7 @@ class TuyaLocalDevice(object):
                 self._running = False
                 # Close the persistent connection when exiting the loop
                 persist = False
+                _LOGGER.debug("%s receive loop interrupted", self.name)
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -636,7 +655,6 @@ class TuyaLocalDevice(object):
         try:
             self._lock.acquire()
             self._api.set_multiple_values(properties, nowait=True)
-            self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
@@ -652,19 +670,26 @@ class TuyaLocalDevice(object):
         auto = (self._protocol_configured == "auto") and (
             not self._api_protocol_working
         )
+        dev22 = self._protocol_configured in (3.22, 3.42, 3.52)
         connections = (
             self._AUTO_CONNECTION_ATTEMPTS
             if auto
-            else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
+            else (
+                self._SINGLE_PROTO_CONNECTION_ATTEMPTS * 2
+                if dev22
+                else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
+            )
         )
 
         last_err_code = None
+        last_err_msg = None
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
                         last_err_code = retval.get("Err")
+                        last_err_msg = retval.get("Error")
                         if last_err_code == "900":
                             # Some devices (e.g. IR/RF remotes) never return
                             # status data; error 900 is their normal response
@@ -700,12 +725,24 @@ class TuyaLocalDevice(object):
                         self._api_protocol_working = False
                         for entity in self._children:
                             entity.async_schedule_update_ha_state()
+                    if last_err_code:
+                        log_format = "%s Device reported error %s: %s%s"
+                        log_args = (
+                            error_message,
+                            last_err_code,
+                            last_err_msg,
+                            _ERROR_HINTS.get(last_err_code, ""),
+                        )
+                    else:
+                        log_format = "%s"
+                        log_args = (error_message,)
+
                     if self._api_working_protocol_failures == 1 and not (
                         last_err_code == "914" and self._protocol_configured == "auto"
                     ):
-                        _LOGGER.error(error_message)
+                        _LOGGER.error(log_format, *log_args)
                     else:
-                        _LOGGER.debug(error_message)
+                        _LOGGER.debug(log_format, *log_args)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()
@@ -760,9 +797,24 @@ class TuyaLocalDevice(object):
             self.name,
             new_version,
         )
-        # Only enable tinytuya's auto-detect when using 3.22
+        # Only enable tinytuya's "device22" auto-detect when exlpicitly requested
+        # as 3.22, 3.42, or 3.52
+        # Enabling this on other devices can cause them to stop responding to commands,
+        # as once tinytuya decides to switch to it, it never switches back.
+        # 3.2 always uses the "device22" protocol variant.
+        # 3.22 is a fake version that actually means 3.3 with auto-detect enabled
+        # likewise 3.42 and 3.52 actually mean 3.4 and 3.5 with auto-detect enabled.
+        #
+        # Note: "device22" is a misnomer for historical reasons. Not all devices with
+        # 22 character device ids use this protocol variant.
         if new_version == 3.22:
             new_version = 3.3
+            self._api.disabledetect = False
+        elif new_version == 3.42:
+            new_version = 3.4
+            self._api.disabledetect = False
+        elif new_version == 3.52:
+            new_version = 3.5
             self._api.disabledetect = False
         else:
             self._api.disabledetect = True

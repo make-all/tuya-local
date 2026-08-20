@@ -310,7 +310,9 @@
                             "fan_only": "Fläkt",
                             "heat": "Värmeluft",
                             "floor_cool": "Kylgolv",
-                            "floor_heat": "Värmegolv"
+                            "floor_heat": "Värmegolv",
+                            "air_floor_cool": "Kylning luft + golv",
+                            "air_floor_heat": "Värme luft + golv"
                         }
                     }
                 }
@@ -357,7 +359,9 @@
                             "program_2": "Program 2",
                             "program_3": "Program 3",
                             "standby": "Standby",
-                            "fan_only": "Endast fläkt"
+                            "fan_only": "Endast fläkt",
+                            "program": "Program",
+                            "anti_frost": "Antifrost"
                         }
                     }
                 }
@@ -504,7 +508,7 @@
                             "auto": "Auto",
                             "manual": "Manuell",
                             "eco": "Eko",
-                            "anti-condensation": "Anti-kondens",
+                            "anti_condensation": "Anti-kondens",
                             "extractor": "Fläkt",
                             "heat_recovery": "Värmeåtervinning",
                             "timer": "Timer",
@@ -1169,6 +1173,17 @@
                     "danger": "Fara"
                 }
             },
+            "sd_status": {
+                "name": "SD-kortstatus",
+                "state": {
+                    "fault": "Fel",
+                    "formatting": "Formaterar",
+                    "full": "Full",
+                    "missing": "Saknas",
+                    "normal": "Normal",
+                    "unformatted": "Oformaterad"
+                }
+            },
             "status": {
                 "name": "Status",
                 "state": {
@@ -1247,8 +1262,6 @@
                     "full": "Full",
                     "empty": "Tom",
                     "missing": "Saknas",
-                    "formatting": "Formaterar",
-                    "unformatted": "Oformaterad",
                     "failed": "Misslyckades",
                     "replying": "Svarar",
                     "playback": "Uppspelning",
@@ -1370,6 +1383,9 @@
                     "on": "Stängd"
                 }
             },
+            "camera_record": {
+                "name": "Kamera inspelning"
+            },
             "do_not_disturb": {
                 "name": "Stör ej"
             },
@@ -1456,6 +1472,9 @@
             },
             "snooze": {
                 "name": "Slummer"
+            },
+            "motion_detection": {
+                "name": "Rörelsedetektering"
             },
             "watermark": {
                 "name": "Vattenstämpel"

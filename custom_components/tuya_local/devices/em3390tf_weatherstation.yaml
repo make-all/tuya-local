@@ -1,0 +1,264 @@
+name: Weather station
+legacy_type: EM3390TF_weather_station
+products:
+  - id: cvurn5ynloebrpwy
+    manufacturer: Viflykoo
+    model: EM3390TF
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Outdoor humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: atmospheric_pressure
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: sensor
+        unit: hPa
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: wind_speed
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        unit: km/h
+        class: measurement
+  - entity: sensor
+    name: Gust
+    class: wind_speed
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: sensor
+        unit: km/h
+        class: measurement
+  - entity: sensor
+    class: wind_direction
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: sensor
+        unit: °
+        mapping:
+          - dps_val: N
+            value: 0
+          - dps_val: NNE
+            value: 22
+          - dps_val: NE
+            value: 45
+          - dps_val: ENE
+            value: 67
+          - dps_val: E
+            value: 90
+          - dps_val: ESE
+            value: 112
+          - dps_val: SE
+            value: 135
+          - dps_val: SSE
+            value: 157
+          - dps_val: S
+            value: 180
+          - dps_val: SSW
+            value: 202
+          - dps_val: SW
+            value: 225
+          - dps_val: WSW
+            value: 247
+          - dps_val: W
+            value: 270
+          - dps_val: WNW
+            value: 292
+          - dps_val: NW
+            value: 315
+          - dps_val: NNW
+            value: 337
+          - value: null
+      - id: 110
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    class: precipitation_intensity
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: sensor
+        unit: mm/h
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: precipitation
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: sensor
+        unit: mm
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 134
+        type: integer
+        optional: true
+        name: alt
+        # just "rain" in docs (114 is rain_24h) but range is more limited than
+        # rain_24h or even rain_1h. Not showing in log
+  - entity: sensor
+    name: Comfort
+    class: enum
+    dps:
+      - id: 126
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: moist
+            value: moist
+          - dps_val: dry
+            value: dry
+          - dps_val: comfortable
+            value: comfortable
+          - dps_val: na
+            value: null
+            hidden: true
+  - entity: text
+    translation_key: alarm_settings
+    category: config
+    hidden: true
+    dps:
+      - id: 127
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alert settings
+    category: config
+    icon: "mdi:thermometer-alert"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Unit settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 129
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Battery data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 130
+        type: base64
+        optional: true
+        name: sensor
+  - entity: text
+    name: Settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 131
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 132
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 132
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: text
+    name: Data display
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 133
+        type: base64
+        optional: true
+        name: value

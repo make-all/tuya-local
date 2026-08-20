@@ -1,0 +1,59 @@
+name: Pet feeder
+products:
+  - id: xatwi1ep0ntk551r
+    manufacturer: Rojeco
+    model: PAF-186B
+entities:
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 40
+  - entity: text
+    translation_key: meal_plan
+    category: config
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+        optional: true
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: "mdi:paw"
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    icon: "mdi:paw"
+    name: Feed report
+    category: diagnostic
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        unit: portions
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: button

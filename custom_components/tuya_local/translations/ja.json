@@ -310,7 +310,9 @@
                             "fan_only": "ファン",
                             "heat": "温風",
                             "floor_cool": "冷却床",
-                            "floor_heat": "床暖房"
+                            "floor_heat": "床暖房",
+                            "air_floor_cool": "空気と床冷却",
+                            "air_floor_heat": "空気と床暖房"
                         }
                     }
                 }
@@ -357,7 +359,9 @@
                             "program_2": "プログラム 2",
                             "program_3": "プログラム 3",
                             "standby": "スタンバイ",
-                            "fan_only": "ファンのみ"
+                            "fan_only": "ファンのみ",
+                            "program": "プログラム",
+                            "anti_frost": "霜防止"
                         }
                     }
                 }
@@ -504,7 +508,7 @@
                             "auto": "自動",
                             "manual": "マニュアル",
                             "eco": "エコ",
-                            "anti-condensation": "結露防止",
+                            "anti_condensation": "結露防止",
                             "extractor": "抽出",
                             "heat_recovery": "熱回収",
                             "timer": "タイマー",
@@ -1169,6 +1173,17 @@
                     "danger": "危険"
                 }
             },
+            "sd_status": {
+                "name": "SDカードステータス",
+                "state": {
+                    "fault": "故障",
+                    "formatting": "フォーマット中",
+                    "full": "満杯",
+                    "missing": "欠落",
+                    "normal": "正常",
+                    "unformatted": "未フォーマット"
+                }
+            },
             "status": {
                 "name": "ステータス",
                 "state": {
@@ -1247,8 +1262,6 @@
                     "full": "満杯",
                     "empty": "空",
                     "missing": "欠落",
-                    "formatting": "フォーマット中",
-                    "unformatted": "未フォーマット",
                     "failed": "失敗",
                     "replying": "返信中",
                     "playback": "再生",
@@ -1370,6 +1383,9 @@
                     "on": "リセット"
                 }
             },
+            "camera_record": {
+                "name": "カメラ録画"
+            },
             "do_not_disturb": {
                 "name": "邪魔しないでください"
             },
@@ -1456,6 +1472,9 @@
             },
             "snooze": {
                 "name": "スヌーズ"
+            },
+            "motion_detection": {
+                "name": "モーション検出"
             },
             "watermark": {
                 "name": "ウォーターマーク"

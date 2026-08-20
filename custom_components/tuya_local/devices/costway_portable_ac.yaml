@@ -2,6 +2,12 @@ name: Portable air conditioner
 products:
   - id: 86sjxqebxymrjt3z
     manufacturer: Costway
+  - id: av6ejal3j9epuw3e
+    manufacturer: Hantech
+    model: 9000 BTU
+  - id: asgmtdjvhragxx24
+    manufacturer: Costway
+    model: FP10351GB-WH
 entities:
   - entity: climate
     dps:
@@ -20,6 +26,9 @@ entities:
                 value: fan_only
               - dps_val: wet
                 value: dry
+              - dps_val: hot
+                value: heat
+                available: heat_supported
       - id: 2
         type: integer
         name: temperature
@@ -42,15 +51,44 @@ entities:
             value: low
           - dps_val: high
             value: high
-      - id: 20
-        type: integer
-        name: unknown_20
-      - id: 103
-        type: boolean
-        name: unknown_103
       - id: 107
         type: integer
-        name: unknown_106
-      - id: 109
+        name: temp_set_f
+        hidden: true
+      - id: 108
         type: integer
-        name: unknown_107
+        optional: true
+        name: temp_cur_f
+        hidden: true
+      - id: 109
+        type: bitfield
+        name: feature_flags
+      - id: 109
+        type: bitfield
+        name: heat_supported
+        hidden: true
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
