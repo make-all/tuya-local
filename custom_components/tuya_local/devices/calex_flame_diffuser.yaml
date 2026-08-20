@@ -1,8 +1,8 @@
 name: Calex Flame Diffuser
 products:
-- id: jwusuabpzoyjpaxu
-  manufacturer: Calex
-  model: Flame Diffuser
+  - id: jwusuabpzoyjpaxu
+    manufacturer: Calex
+    model: Flame Diffuser
 entities:
   - entity: fan
     translation_key: aroma_diffuser
@@ -94,7 +94,7 @@ entities:
         name: switch
         type: boolean
   - entity: binary_sensor
-    name: Problem
+    translation_key: Problem
     category: diagnostic
     dps:
       - id: 11
