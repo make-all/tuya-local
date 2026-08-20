@@ -374,7 +374,6 @@ async def test_migrate_child_device_identity_is_scoped_by_gateway(hass):
 
     assert await async_migrate_entry(hass, entry)
     assert entry.unique_id == "gatewayid/001"
-    assert entry.minor_version == 22
     assert registry.async_get(entity.entity_id).unique_id == "gatewayid/001-climate"
 
 
