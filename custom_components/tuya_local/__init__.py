@@ -1020,6 +1020,37 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 )
             hass.config_entries.async_update_entry(entry, unique_id=new_device_id)
         hass.config_entries.async_update_entry(entry, minor_version=22)
+
+    if entry.version == 13 and entry.minor_version < 23:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_23(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "sensor_sd_card": "sensor_sd_status",
+                "sensor_sd_card_status": "sensor_sd_status",
+                "switch_record": "switch_camera_record",
+                "switch_sd_card_recording": "switch_camera_record",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_23)
+        hass.config_entries.async_update_entry(entry, minor_version=23)
+
     return True
 
 
