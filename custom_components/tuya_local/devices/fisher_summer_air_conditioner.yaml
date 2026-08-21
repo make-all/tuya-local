@@ -269,19 +269,6 @@ entities:
         type: hex
         name: switch
         mask: "0004"
-        mapping:
-          - dps_val: false
-            value: "Off"
-          - dps_val: true
-            constraint: power
-            conditions:
-              - dps_val: true
-                invalid: true
-              - dps_val: false
-                value: Cleaning
-      - id: 1
-        name: power
-        type: boolean
   - entity: binary_sensor
     class: problem
     category: diagnostic
