@@ -201,13 +201,14 @@ entities:
     name: Connection
     icon: "mdi:ev-plug-type2"
     class: enum
+    translation_key: status
     dps:
       - id: 13  # connection_state
         type: string
         name: sensor
         mapping:
           - dps_val: controlpi_12v
-            value: Standby
+            value: standby
           - dps_val: controlpi_12v_pwm
             value: Communication initialising
           - dps_val: controlpi_9v
@@ -217,9 +218,9 @@ entities:
           - dps_val: controlpi_6v
             value: Ready to charge
           - dps_val: controlpi_6v_pwm
-            value: Charging
+            value: charging
           - dps_val: controlpi_error
-            value: Error
+            value: fault
   - entity: select
     translation_key: charging_mode
     category: config

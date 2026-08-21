@@ -20,6 +20,7 @@ entities:
           max: 12
   - entity: sensor
     name: Feed status
+    translation_key: status
     icon: "mdi:paw"
     class: enum
     dps:
@@ -28,9 +29,9 @@ entities:
         type: string
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: feeding
-            value: Feeding
+            value: feeding
   - entity: button
     translation_key: factory_reset
     category: config
