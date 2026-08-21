@@ -1045,6 +1045,9 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "sensor_sd_card_status": "sensor_sd_status",
                 "switch_record": "switch_camera_record",
                 "switch_sd_card_recording": "switch_camera_record",
+                "event_push_message": "event_notification",
+                "event_reminder": "event_notification",
+                "event_status": "event_notification",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 
