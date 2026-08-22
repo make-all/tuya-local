@@ -1,0 +1,405 @@
+name: Robot vacuum
+# Generic Tuya robot vacuum using the standard sweep-robot DP set
+# (same layout as ILIFE V20/A30 family). Confirmed with cloud status for
+# model KBSF003/KBSF006 ("Robô Aspirador de Pó 700").
+products:
+  - id: kbsf003
+    manufacturer: Generic
+    model: KBSF003
+    model_id: KBSF003/KBSF006
+  - id: kbsf006
+    manufacturer: Generic
+    model: KBSF006
+entities:
+  - entity: vacuum
+    dps:
+      # power_go
+      - id: 1
+        type: boolean
+        name: activate
+        optional: true
+        mapping:
+          - dps_val: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+              - dps_val: false
+                value: false
+                hidden: true
+              - dps_val: null
+                value: false
+                hidden: true
+          - dps_val: true
+            constraint: pause
+            conditions:
+              - dps_val: false
+                value: true
+              - dps_val: true
+                value: true
+                hidden: true
+              - dps_val: null
+                value: true
+                hidden: true
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 2
+        type: boolean
+        name: pause
+        optional: true
+        hidden: true
+      # mode
+      - id: 4
+        type: string
+        name: command
+        optional: true
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: goto_charge
+            value: return_to_base
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: select_room
+            value: select_room
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: cleaning
+          - dps_val: smart_clean
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located_spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: select_room
+            value: selecting_room
+          - dps_val: mapping
+            value: mapping
+          - dps_val: mapping_done
+            value: mapping_done
+          - dps_val: fault
+            value: error
+          - dps_val: in_trouble
+            value: error
+          - dps_val: in_positioning
+            value: positioning
+      # suction
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: gentle
+            value: low
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+          - dps_val: max
+            value: max
+          - dps_val: superstrong
+            value: turbo
+      # seek
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          # firmware typo observed on KBSF003/KBSF006
+          - dps_val: foward
+            value: forward
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 14
+        type: string
+        name: path_data
+        optional: true
+      - id: 15
+        type: string
+        name: command_trans
+        optional: true
+      - id: 28
+        type: bitfield
+        name: error
+        optional: true
+        hidden: true
+      - id: 32
+        type: string
+        name: device_timer
+        optional: true
+      - id: 33
+        type: string
+        name: disturb_time_set
+        optional: true
+      - id: 34
+        type: string
+        name: device_info
+        optional: true
+      - id: 35
+        type: string
+        name: voice_data
+        optional: true
+  - entity: switch
+    name: Charge
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      # switch_charge
+      - id: 3
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: Cleaning time
+    icon: "mdi:progress-clock"
+    class: duration
+    category: diagnostic
+    dps:
+      # clean_time
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      # clean_area
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      # electricity_left
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      # cistern
+      - id: 10
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: select
+    name: Fetch request
+    icon: "mdi:message-question"
+    category: config
+    dps:
+      # request
+      - id: 16
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: get_map
+            value: Map
+          - dps_val: get_path
+            value: Path
+          - dps_val: get_both
+            value: Both
+  - entity: sensor
+    name: Edge brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      # edge_brush
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+  - entity: sensor
+    name: Rolling brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      # roll_brush
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    class: duration
+    dps:
+      # filter
+      - id: 21
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+  - entity: sensor
+    name: Mop cloth lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      # duster_cloth
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      # volume_set
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      # reset_map
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      # reset_edge_brush
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      # reset_roll_brush
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      # reset_filter
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset mop cloth
+    category: config
+    dps:
+      # reset_duster_cloth
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      # switch_disturb
+      - id: 25
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Resume cleaning
+    icon: "mdi:restore"
+    category: config
+    dps:
+      # break_clean — continue unfinished clean after recharge
+      - id: 27
+        type: boolean
+        name: switch
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      # fault
+      - id: 28
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+        optional: true
