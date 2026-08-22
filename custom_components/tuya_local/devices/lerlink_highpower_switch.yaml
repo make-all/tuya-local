@@ -76,3 +76,20 @@ entities:
         type: string
         optional: true
         name: value
+  - entity: light
+    translation_key: backlight
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 16
+        type: boolean
+        optional: true
+        name: switch
+      - id: 16
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
