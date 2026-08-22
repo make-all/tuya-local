@@ -1139,6 +1139,7 @@ work reliably, even if listed below.
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 - Orion Grid Connect SWS07HA indoor siren
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
+- Qnect SH-SI01-QNE siren
 - Sirena WS-902 Plus outdoor strobe siren
 - STL siren
 

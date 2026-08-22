@@ -1,0 +1,72 @@
+name: Siren
+products:
+  - id: hf0phcrchgkquvke
+    manufacturer: Qnect
+    model: SH-SI01-QNE
+entities:
+  - entity: siren
+    dps:
+      - id: 5
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0.0
+          - dps_val: low
+            value: 0.3
+          - dps_val: middle
+            value: 0.6
+          - dps_val: high
+            value: 1.0
+      - id: 7
+        type: integer
+        name: duration
+        range:
+          min: 1
+          max: 60
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: Audible alarm
+          - dps_val: "2"
+            value: Visual alarm
+          - dps_val: "3"
+            value: Audio and visual alarm
+          - dps_val: "4"
+            value: idle
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 6
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Muffling
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
