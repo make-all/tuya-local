@@ -439,6 +439,7 @@
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
+- Lucci Air Radar Connect ceiling fan
 - Lumary A1, B2, C2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
