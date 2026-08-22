@@ -30,6 +30,7 @@
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiators
 - Ecostrad iQ heating elements
+- EF-R Pro electric fireplace
 - ElectriQ MY130 oil radiator
 - Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
