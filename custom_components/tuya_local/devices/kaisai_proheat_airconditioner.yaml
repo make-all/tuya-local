@@ -138,8 +138,18 @@ entities:
           - dps_val: true
             value: eco
           - dps_val: null
+            value_redirect: ai_eco
+      - id: 111
+        name: ai_eco
+        type: boolean
+        optional: true
+        hidden: true
+        mapping:
+          - dps_val: false
             value: none
-            hidden: true
+          - dps_val: true
+            value: eco
+
   - entity: sensor
     name: Outdoor temperature
     class: temperature
