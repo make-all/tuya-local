@@ -1,0 +1,99 @@
+name: Fish feeder
+products:
+  - id: vd9dyozjl2jestpz
+    manufacturer: Tesla Smart
+    model: TSL-PC-059DW
+entities:
+  - entity: switch
+    icon: "mdi:fishbowl"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 2
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 5
+  - entity: select
+    name: Feeding
+    translation_key: timer
+    category: config
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: diy
+            value: custom
+  - entity: number
+    name: Auto feed
+    category: config
+    icon: "mdi:fish"
+    dps:
+      - id: 4
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 3
+  - entity: text
+    translation_key: meal_plan
+    category: config
+    hidden: true
+    dps:
+      - id: 5
+        type: base64
+        optional: true
+        name: value
+  - entity: event
+    name: Manual feed report
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: 0
+            value: error
+          - dps_val: null
+            value: null
+          - value: fed
+      - id: 6
+        type: integer
+        optional: true
+        name: portions
+  - entity: event
+    name: Auto feed report
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: 0
+            value: error
+          - dps_val: null
+            value: null
+          - value: fed
+      - id: 7
+        type: integer
+        optional: true
+        name: portions
