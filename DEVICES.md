@@ -299,7 +299,7 @@
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - ETOP-HT-CH thermostat (branded as Ferco GN1)
-- ETOP-HT=CH Pro thermostat (branded as PNI CT36 Pro)
+- ETOP-HT-CH Pro thermostat (branded as PNI CT36 Pro)
 - Ettroit LN4102 thermostat
 - Eurom WiFi thermostat
 - Euroster 4040 Smart thermostat
@@ -330,7 +330,7 @@
 - Owon PCT513 thermostat
 - Pilot Wire RP5 bath thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
-- PNI CT45 thermostat
+- PNI CT45, CT400 thermostats
 - Polytherm Polyalpha thermostat
 - ProWarm Touch Button S series underfloor heating controller
 - Psmart T436 thermostat
