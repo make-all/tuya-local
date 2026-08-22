@@ -4,8 +4,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from homeassistant.const import (
-    UnitOfDensity,
     UnitOfArea,
+    UnitOfDensity,
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
