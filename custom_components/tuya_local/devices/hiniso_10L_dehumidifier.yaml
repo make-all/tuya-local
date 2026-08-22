@@ -1,0 +1,151 @@
+# HINISO Model: RM10S (10L Smart Dehumidifier)
+# Device ID: d7696cfb645eb04673gobl
+
+name: Hiniso 10L Smart Dehumidifier
+
+entities:
+  # CORE HUMIDIFIER CONTROLS
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 90
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          # Dehumidify mode, runs the compressor based on set target humidity
+          - dps_val: dehumidify
+            value: normal
+          # Comfort mode (AU) as per the manual, relies on internal logic.
+          # it controls the compressor based on ambient temperature.
+          - dps_val: auto
+            value: comfort
+          # Continuous mode (CO) runs the compressor continuously
+          - dps_val: continuous
+            value: boost
+      - id: 6
+        name: current_humidity
+        type: integer
+
+  # HUMIDITY SENSOR (Making this Sensor available for use in automations)
+  - entity: sensor
+    name: Relative Humidity
+    icon: mdi:water-percent
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  # WATER TANK FULL
+  - entity: binary_sensor
+    translation_key: tank_full
+    icon: mdi:water-alert-outline
+    category: diagnostic
+    dps:
+      - id: 25
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+
+  # FAN SPEED
+  - entity: select
+    name: Fan Speed
+    icon: mdi:fan
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: high
+            value: High
+
+  # TIMER
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "None"
+            value: cancel
+          - dps_val: "1hr"
+            value: 1h
+          - dps_val: "2hrs"
+            value: 2h
+          - dps_val: "3hrs"
+            value: 3h
+          - dps_val: "4hrs"
+            value: 4h
+          - dps_val: "5hrs"
+            value: 5h
+          - dps_val: "6hrs"
+            value: 6h
+          - dps_val: "7hrs"
+            value: 7h
+          - dps_val: "8hrs"
+            value: 8h
+          - dps_val: "9hrs"
+            value: 9h
+          - dps_val: "10hrs"
+            value: 10h
+          - dps_val: "11hrs"
+            value: 11h
+          - dps_val: "12hrs"
+            value: 12h
+          - dps_val: "13hrs"
+            value: 13h
+          - dps_val: "14hrs"
+            value: 14h
+          - dps_val: "15hrs"
+            value: 15h
+          - dps_val: "16hrs"
+            value: 16h
+          - dps_val: "17hrs"
+            value: 17h
+          - dps_val: "18hrs"
+            value: 18h
+          - dps_val: "19hrs"
+            value: 19h
+          - dps_val: "20hrs"
+            value: 20h
+          - dps_val: "21hrs"
+            value: 21h
+          - dps_val: "22hrs"
+            value: 22h
+          - dps_val: "23hrs"
+            value: 23h
+          - dps_val: "24hrs"
+            value: 24h
+
+  # --- HIDDEN DPS - Features Not Supported/Available for this Specific Unit ---
+
+  # CHILD LOCK (Hidden because physical unit lacks support)
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    hidden: true
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
