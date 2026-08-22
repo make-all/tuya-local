@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from homeassistant.const import (
-    CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
+    UnitOfDensity,
     UnitOfArea,
     UnitOfTemperature,
 )
@@ -308,7 +308,7 @@ class TestUnitFromAscii:
         assert unit_from_ascii("F") == UnitOfTemperature.FAHRENHEIT.value
 
     def test_micrograms(self):
-        assert unit_from_ascii("ugm3") == CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
+        assert unit_from_ascii("ugm3") == UnitOfDensity.MICROGRAMS_PER_CUBIC_METER.value
 
     def test_square_meters(self):
         assert unit_from_ascii("m2") == UnitOfArea.SQUARE_METERS
