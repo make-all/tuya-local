@@ -1469,6 +1469,7 @@ port and password.
 - BSTUOKEY Invisible induction door lock
 - Diivoo DWV010, WT05 dual water timers
 - Dituo DT-T2190A aroma diffuser
+- Eshico HCT-622 single valve water timer
 - Gainsborough Liberty entrance lock
 - HCT-611 water timer
 - HCT-626 dual water timer
