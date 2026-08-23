@@ -605,7 +605,7 @@
 - AlecoAir PU55 Humino humidifier
 - Arida Eva humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
-- Breville Smart Mist Glow Connect humidifier
+- Breville Smart Mist Glow Connect and Smart Mist Top humidifiers
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B, CA-607B humidifiers
 - Clofte Duo 400 humidifier
