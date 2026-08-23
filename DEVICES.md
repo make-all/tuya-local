@@ -1436,6 +1436,7 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
+- TS100 water quality controller
 - TX-E gas sensor/alarm
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
