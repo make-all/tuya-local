@@ -88,6 +88,21 @@ entities:
             value: Motion
           - dps_val: false
             value: Continuous
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
   - entity: switch
     translation_key: motion_detection
     category: config
