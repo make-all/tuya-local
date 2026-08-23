@@ -1276,6 +1276,7 @@ port and password.
 - Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
+- TA-FD-BL6 camera pet feeder
 - Tesla Smart fish and pet feeders
 - Ti Pro25 cat litter box
 - Tonepie T1PRO cat litter box
