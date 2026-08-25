@@ -52,13 +52,12 @@ entities:
   - entity: sensor
     name: Last water flow 1
     class: water
-    icon: "mdi:water"
     dps:
       - id: 103
         name: sensor
         type: integer
         unit: L
-        class: measurement
+        class: total_increasing
   - entity: sensor
     class: battery
     dps:
@@ -479,13 +478,12 @@ entities:
   - entity: sensor
     name: Last water flow 2
     class: water
-    icon: "mdi:water"
     dps:
       - id: 152
         name: sensor
         type: integer
         unit: L
-        class: measurement
+        class: total_increasing
   - entity: sensor
     name: Timer status 2
     class: enum
