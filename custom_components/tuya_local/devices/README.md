@@ -741,6 +741,24 @@ no information will be available about which specific credential was used to unl
 - **set_unlock_code** (optional, base64): a dp that allows setting the 8 digit code at the same time as it is used in code_unlock, so the user does not need to enter an 8 digit number. This corresponds in the Tuya info to `remote_no_pd_setkey` and has a specific format. If this is supplied, the integration will simultaneously set a random code in slot 7, and use it to unlock the lock, so the user does not need to provide any code.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
+### `media_player`
+
+- **switch** (optional, boolean): a switch-like dp to toggle power on and off
+- **volume** (optional, number 0.0 - 1.0): a dp to control the volume level
+- **mute** (optional, boolean): a switch-like dp to mute and unmute the audio
+- **source** (optional, string): a dp to select the source. A mapping of values is required to let HA know the sources that are available for the user to select.
+- **playback_state** (optional, string): a read-only dp that reports the current playback state (states must be valid MediaPlayerState values). If not provided, the integration will try to reverse engineer the state based on `play`, `pause`, `power` dps
+- **play** (optional, boolean): a button-like dp to start playback
+- **pause** (optional, boolean): a button-like dp to pause playback
+- **prev** (optional, boolean): a button-like dp to jump to the previous track, or start of the current track (behaviour may vary depending on the device)
+- **next** (optional, boolean): a button-like dp to jump to the next track
+- **stop** (optional, boolean): a button-like dp to stop playback. Unlike `pause`, a subsequent `play` will not resume from the position it was stopped at.
+- **seek_position** (optional, integer): a dp to seek to the specified position within the current track
+- **clear_playlist** (optional, boolean): a button-like dp to clear the current playlist
+- **shuffle** (optional, boolean): a switch-like dp to control whether to shuffle the playlist
+- **repeat** (optional, string): a dp to control the repeat mode. Valid RepeatMode values are ["off", "one", "all"]
+- **sound_mode** (optional, string): a dp to select the sound mode. A mapping of values is required to let HA know which modes are available for the user to select.
+
 ### `number`
 - **value** (required, number): a dp to control the number that is set.
 - **unit** (optional, string): a dp that reports the units returned by the number.
