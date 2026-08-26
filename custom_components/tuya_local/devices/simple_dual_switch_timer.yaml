@@ -4,9 +4,6 @@ products:
   - id: ittunrhd
     manufacturer: Outsmart
     model: ZS3LCBCIO
-  - id: key5ckdnys3pqgec
-    manufacturer: Steren
-    model: SHOME-110
 entities:
   - entity: switch
     translation_key: switch_x
@@ -48,27 +45,3 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: select
-    translation_key: initial_state
-    category: config
-    hidden: unavailable
-    dps:
-      - id: 14
-        type: string
-        optional: true
-        name: option
-        mapping:
-          - dps_val: "off"
-            value: "off"
-          - dps_val: "on"
-            value: "on"
-          - dps_val: memory
-            value: memory
-      - id: 14
-        type: string
-        optional: true
-        name: available
-        mapping:
-          - dps_val: null
-            value: false
-          - value: true
