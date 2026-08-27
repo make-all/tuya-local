@@ -3,7 +3,6 @@
 from unittest.mock import AsyncMock, Mock
 
 import pytest
-
 from homeassistant.components.media_player import MediaPlayerState
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
