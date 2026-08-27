@@ -34,6 +34,7 @@ entities:
                 value: heat
               - dps_val: heat_0
                 value: heat
+                hidden: true
       - id: 2
         type: integer
         name: temperature
@@ -49,18 +50,17 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: heat_low
-            value: "Fan Only"
-            hidden: true
+            value: fan_only
           - dps_val: heat_high
             constraint: fan_mode
             conditions:
               - dps_val: SleepWind
-                value: "Low Heat"
+                value: low
           - dps_val: heat_0
             constraint: fan_mode
             conditions:
               - dps_val: SleepWind
-                value: "High Heat"
+                value: high
       - id: 5
         type: string
         name: fan_mode
