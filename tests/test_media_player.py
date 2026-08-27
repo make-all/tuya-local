@@ -106,7 +106,6 @@ class TestMediaPlayerState:
     @pytest.mark.asyncio
     async def async_test_state(self, hass, mocker):
         """Test the state property."""
-        tuya_device = mocker.MagicMock()
         dps = {"82": True}
         entry = MockConfigEntry(
             domain=DOMAIN,

@@ -2,7 +2,6 @@
 Implementation of the Tuya media player devices
 """
 
-import asyncio
 import logging
 
 from homeassistant.components.media_player import (
