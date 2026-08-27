@@ -9,6 +9,7 @@ from homeassistant.components.media_player import (
     MediaPlayerEntityFeature,
     MediaPlayerState,
 )
+
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
