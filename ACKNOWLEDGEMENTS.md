@@ -942,3 +942,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mabrews](https://github.com/mabrews) for contributing support for Modern Flames Landscape Pro Slim fireplace.
 - [Tweebloesem](https://github.com/Tweebloesem) for contributing support for Clean Air Optima CA-707 dehumidifier.
 - [RamonJardim](https://github.com/RamonJardim) for contributing support for Liwokit backlit dimmer switch.
+- [elcarabo](https://github.com/elcarabo) for contributing support for Breville AllRounder purifier heater.
