@@ -195,6 +195,7 @@
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
+- Giatsu GIA-BP07MDA pool heat pump
 - Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
