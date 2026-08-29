@@ -1,0 +1,579 @@
+name: Dual clamp meter
+products:
+  - id: wifech3utowiyknu
+    model: PJ-1103C
+entities:
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -10
+      - id: 102
+        type: string
+        optional: true
+        name: direction
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -10
+      - id: 104
+        type: string
+        optional: true
+        name: direction
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
+    class: energy
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
+    class: energy
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
+    class: energy
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
+    class: energy
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    name: Power factor A
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: frequency
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Voltage calibration
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Current A calibration
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Power A calibration
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Energy consumed A calibration
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: button
+    name: Calibration A reset
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Power factor B
+    class: power_factor
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Frequency calibration
+    category: config
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Current B calibration
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Power B calibration
+    category: config
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Energy consumed B calibration
+    category: config
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: button
+    name: Calibration B reset
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Energy produced A calibration
+    category: config
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Energy produced B calibration
+    category: config
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Reporting rate
+    category: config
+    class: duration
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 60
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 132
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: Over voltage
+    category: config
+    dps:
+      - id: 133
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: Under voltage
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: Over current A
+    category: config
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: Over power A
+    category: config
+    dps:
+      - id: 136
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over voltage
+    class: voltage
+    category: config
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 800
+          max: 2600
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Under voltage
+    class: voltage
+    category: config
+    dps:
+      - id: 138
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 800
+          max: 2600
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over current A
+    class: current
+    category: config
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 150000
+        mapping:
+          - scale: 1000
+            step: 500
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over power A
+    class: power
+    category: config
+    dps:
+      - id: 140
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 100
+          max: 600000
+        mapping:
+          - scale: 10
+            step: 100
+  - entity: event
+    name: Over voltage
+    dps:
+      - id: 141
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Alarm
+          - dps_val: false
+            value: Clear
+  - entity: event
+    name: Under voltage
+    dps:
+      - id: 142
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Alarm
+          - dps_val: false
+            value: Clear
+  - entity: event
+    name: Over current A
+    dps:
+      - id: 143
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Alarm
+          - dps_val: false
+            value: Clear
+  - entity: event
+    name: Over power A
+    dps:
+      - id: 144
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Alarm
+          - dps_val: false
+            value: Clear
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholder:
+      sensor: Over current B
+    category: config
+    dps:
+      - id: 145
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 150000
+        mapping:
+          - scale: 1000
+            step: 500
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholder:
+      sensor: Over power B
+    category: config
+    dps:
+      - id: 146
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 100
+          max: 600000
+        mapping:
+          - scale: 10
+            step: 100
+  - entity: event
+    name: Over current B
+    dps:
+      - id: 147
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Alarm
+          - dps_val: false
+            value: Clear
+  - entity: event
+    name: Over power B
+    dps:
+      - id: 148
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Alarm
+          - dps_val: false
+            value: Clear
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: Over current B
+    category: config
+    dps:
+      - id: 149
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: Over power B
+    category: config
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
