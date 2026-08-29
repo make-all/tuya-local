@@ -72,6 +72,20 @@ entities:
             range:
               min: 0
               max: 1000
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: breath
+            value: flash
+          - dps_val: light_on
+            value: "on"
+          - dps_val: light_off
+            value: "off"            
   - entity: media_player
     class: speaker
     dps:
