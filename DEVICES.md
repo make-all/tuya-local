@@ -977,10 +977,8 @@ of device.
 - Loycco Smart Nursery light
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
-- LSC Smart Connect CCT + RGB led strip
+- LSC Smart Connect CCT+RGB, RGB/IC+CCT/IC, Neon, Party led strips
 - LSC Smart Connect garden spotlights
-- LSC Smart Connect Neon LED strip
-- LSC Smart Connect Party string lights
 - LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lumary D1 6 inch retrofit downlight (independent RGB ring and CCT centre)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
