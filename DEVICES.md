@@ -1371,9 +1371,10 @@ port and password.
 - Haoliyuen EWC02 air quality monitor
 - Haozee explosive gas leak and carbon monoxide alarm
 - Haozee PS10 mmWave presence sensing light switch
+- Holman Helios weather station
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
-- Holman Helios weather station
+- HX-002-Z human presence sensor
 - iHseno ZTU human presence sensor
 - idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
