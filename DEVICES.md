@@ -509,7 +509,7 @@
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Homemedics C500 air purifier
-- Honeywell Air Touch P2 Air Purifier
+- Honeywell Air Touch P2 and H-Speed Pro air purifiers
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
 - Jafanda JF260S and JF500 air purifiers
