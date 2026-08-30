@@ -1,9 +1,8 @@
-name: Kältebringer Split AC (R290)
+name: Air conditioner
 products:
   - id: 64z8cyptsfd23tas
     manufacturer: Kältebringer
     model: KBO Series (Split R290)
-
 entities:
   - entity: climate
     dps:
@@ -26,7 +25,6 @@ entities:
                 value: dry
               - dps_val: "wind"
                 value: fan_only
-
       - id: 2
         name: temperature
         type: integer
@@ -34,17 +32,13 @@ entities:
           min: 16
           max: 31
         unit: C
-
       - id: 3
         name: current_temperature
         type: integer
-        unit: C
-
       - id: 4
         name: mode
         type: string
         hidden: true
-
       - id: 5
         name: fan_mode
         type: string
@@ -59,48 +53,40 @@ entities:
             value: medium
           - dps_val: "5"
             value: high
-
-  - entity: switch
-    name: Eco mode
-    icon: "mdi:leaf"
-    category: config
-    dps:
       - id: 8
-        name: switch
+        name: preset_mode
         type: boolean
-
+        mapping:
+          - dps_val: false
+            value: comfort
+          - dps_val: true
+            value: eco
+      - id: 106
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 107
+        name: swing_horizontal_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: switch
-    name: Sleep mode
-    icon: "mdi:sleep"
-    category: config
+    translation_key: sleep
     dps:
       - id: 101
         name: switch
         type: boolean
-
-  - entity: switch
-    name: Display
-    icon: "mdi:led-on"
+  - entity: light
+    translation_key: display
     category: config
     dps:
       - id: 104
-        name: switch
-        type: boolean
-
-  - entity: switch
-    name: Vertical swing
-    icon: "mdi:arrow-up-down"
-    category: config
-    dps:
-      - id: 106
-        name: switch
-        type: boolean
-
-  - entity: switch
-    name: Horizontal swing
-    icon: "mdi:arrow-left-right"
-    category: config
-    dps:
-      - id: 107
         name: switch
         type: boolean
