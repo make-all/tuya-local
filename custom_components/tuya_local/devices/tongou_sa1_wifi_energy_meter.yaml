@@ -35,8 +35,6 @@ entities:
         name: sensor
         optional: true
         class: measurement
-        force: true
-        persist: false
         unit: V
         mask: "FFFF000000000000"
         mapping:
@@ -50,8 +48,6 @@ entities:
         name: sensor
         optional: true
         class: measurement
-        force: true
-        persist: false
         unit: A
         mask: "0000FFFFFF000000"
         mapping:
@@ -64,9 +60,7 @@ entities:
         type: base64
         name: sensor
         optional: true
-        persist: false
         class: measurement
-        force: true
         unit: kW
         mask: "0000000000FFFFFF"
         mapping:
