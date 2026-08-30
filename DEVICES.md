@@ -1412,7 +1412,7 @@ port and password.
 - PV28-AW 3-in-1 CO2 monitor
 - PV28-CW 8 in 1 air quality monitor
 - QTFV3-3 air quality monitor
-- Raddy PT-5 pool thermometer
+- Raddy PT-3 and PT-5 pool thermometers
 - RainPoint TTV103FRF water timer
 - RQ400A gas alarm
 - RSE TY-WFH v3.01 gate controller

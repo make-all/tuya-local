@@ -1,0 +1,299 @@
+name: Pool weather station
+products:
+  - id: bev7tpincjaysgzs
+    manufacturer: Raddy
+    model: PT-3
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 112
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: false
+            value: F
+          - value: C
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Channel 1 temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 112
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: false
+            value: F
+          - value: C
+  - entity: sensor
+    name: Channel 1 humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Channel 2 temperature
+    class: temperature
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 112
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: false
+            value: F
+          - value: C
+  - entity: sensor
+    name: Channel 2 humidity
+    class: humidity
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Channel 3 temperature
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 112
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: false
+            value: F
+          - value: C
+  - entity: sensor
+    name: Channel 3 humidity
+    class: humidity
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: text
+    name: Time setting
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    class: atmospheric_pressure
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+      - id: 111
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: inHg
+            value: inHg
+          - dps_val: mmHg
+            value: mmHg
+          - value: hPa
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: text
+    name: Temperature alarm settings
+    category: config
+    icon: "mdi:thermometer-alert"
+    hidden: true
+    dps:
+      - id: 113
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Humidity alarm settings
+    category: config
+    icon: "mdi:water-percent-alert"
+    hidden: true
+    dps:
+      - id: 114
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: External temperature alarm settings
+    category: config
+    icon: "mdi:thermometer-alert"
+    hidden: true
+    dps:
+      - id: 115
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: External humidity alarm settings
+    category: config
+    icon: "mdi:water-percent-alert"
+    hidden: true
+    dps:
+      - id: 116
+        type: string
+        optional: true
+        name: value
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 117
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 117
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 117
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: temperature_high
+          - dps_val: 2
+            value: temperature_low
+          - dps_val: 4
+            value: humidity_high
+          - dps_val: 8
+            value: humidity_low
+          - dps_val: 16
+            value: external_temperature_high
+          - dps_val: 32
+            value: external_temperature_low
+          - dps_val: 64
+            value: external_humidity_high
+          - dps_val: 128
+            value: external_humidity_low
+          - dps_val: 256
+            value: channel_1_battery_low
+          - dps_val: 512
+            value: channel_2_battery_low
+          - dps_val: 1024
+            value: channel_3_battery_low
+      - id: 122
+        type: string
+        name: battery_levels
+      - id: 123
+        type: base64
+        optional: true
+        name: data
+      - id: 124
+        type: base64
+        optional: true
+        name: settings
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 118
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: close
+            value: 0
+          - dps_val: low
+            value: 85
+          - dps_val: middle
+            value: 170
+          - dps_val: high
+            value: 255
+  - entity: select
+    translation_key: time_format
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "12_hour"
+          - dps_val: true
+            value: "24_hour"
+  - entity: switch
+    name: Date display
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Backlight duration
+    category: config
+    class: duration
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
