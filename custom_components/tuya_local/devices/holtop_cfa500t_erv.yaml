@@ -5,26 +5,115 @@ products:
     model: CFA-500t
 
 entities:
-  - entity: switch
+  - entity: fan
+    translation_key: ventilation
     dps:
       - id: 1
         type: boolean
         name: switch
-
-  - entity: select
-    name: Operating mode
-    dps:
       - id: 2
         type: string
-        name: option
+        name: preset_mode
         mapping:
           - dps_val: "0"
             value: manual
           - dps_val: "1"
-            value: timing
+            value: timer
           - dps_val: "2"
             value: sleep
+      - id: 104
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
 
+  - entity: fan
+    name: Exhaust
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
+
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 111
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 9
+        type: integer
+        name: current_temperature
+      - id: 117
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 16
+          max: 30
+      - id: 101
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - value: idle
+
+  - entity: humidifier
+    dps:
+      - id: 8
+        type: integer
+        name: current_humidity
+      - id: 106
+        type: integer
+        name: humidity
+        unit: "%"
+        range:
+          min: 50
+          max: 99
+
+  - entity: climate
+    name: Bypass
+    dps:
+      - id: 113
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: fan_only
+      - id: 112
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: automatic
+          - dps_val: false
+            value: manual
+      - id: 116
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 30
+      - id: 22
+        type: integer
+        name: current_temperature
+      - id: 21
+        type: integer
+        name: current_humidity
+    
   - entity: sensor
     class: carbon_dioxide
     dps:
@@ -32,26 +121,6 @@ entities:
         type: integer
         name: sensor
         unit: ppm
-        class: measurement
-
-  - entity: sensor
-    name: Indoor humidity
-    class: humidity
-    dps:
-      - id: 8
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-
-  - entity: sensor
-    name: Indoor temperature
-    class: temperature
-    dps:
-      - id: 9
-        type: integer
-        name: sensor
-        unit: C
         class: measurement
 
   - entity: sensor
@@ -80,58 +149,9 @@ entities:
         type: bitfield
         name: fault_code
 
-  - entity: sensor
-    name: Outdoor humidity
-    class: humidity
-    dps:
-      - id: 21
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-
-  - entity: sensor
-    name: Outdoor temperature
-    class: temperature
-    dps:
-      - id: 22
-        type: integer
-        name: sensor
-        unit: C
-        class: measurement
-
-  - entity: binary_sensor
-    name: Heating active
-    category: diagnostic
-    dps:
-      - id: 101
-        type: boolean
-        name: sensor
-
-  - entity: number
-    name: Exhaust fan speed
-    category: config
-    dps:
-      - id: 103
-        type: integer
-        name: value
-        range:
-          min: 1
-          max: 5
-
-  - entity: number
-    name: Supply fan speed
-    category: config
-    dps:
-      - id: 104
-        type: integer
-        name: value
-        range:
-          min: 1
-          max: 5
-
   - entity: select
-    name: Filter replacement time
+    name: Filter replacement
+    translation_key: timer
     category: config
     dps:
       - id: 105
@@ -139,28 +159,15 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: disabled
+            value: cancel
           - dps_val: "1"
-            value: 60 days
+            value: 60d
           - dps_val: "2"
-            value: 80 days
+            value: 80d
           - dps_val: "3"
-            value: 100 days
+            value: 100d
           - dps_val: "4"
-            value: 120 days
-
-  - entity: number
-    name: Relative humidity setting
-    class: humidity
-    category: config
-    dps:
-      - id: 106
-        type: integer
-        name: value
-        unit: "%"
-        range:
-          min: 50
-          max: 99
+            value: 120d
 
   - entity: button
     translation_key: factory_reset
@@ -197,7 +204,7 @@ entities:
           - step: 100
 
   - entity: number
-    name: Defrost entry temperature
+    name: Defrost temperature
     class: temperature
     category: config
     dps:
@@ -210,34 +217,6 @@ entities:
           max: 10
 
   - entity: switch
-    name: Heating function
-    category: config
-    dps:
-      - id: 111
-        type: boolean
-        name: switch
-
-  - entity: select
-    name: Bypass mode
-    category: config
-    dps:
-      - id: 112
-        type: boolean
-        name: option
-        mapping:
-          - dps_val: true
-            value: automatic
-          - dps_val: false
-            value: manual
-
-  - entity: switch
-    name: Bypass active
-    dps:
-      - id: 113
-        type: boolean
-        name: switch
-
-  - entity: switch
     name: High speed
     dps:
       - id: 114
@@ -246,6 +225,8 @@ entities:
 
   - entity: number
     name: High speed time
+    translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 115
@@ -255,32 +236,6 @@ entities:
         range:
           min: 1
           max: 120
-
-  - entity: number
-    name: Bypass opening temperature
-    class: temperature
-    category: config
-    dps:
-      - id: 116
-        type: integer
-        name: value
-        unit: C
-        range:
-          min: 5
-          max: 30
-
-  - entity: number
-    name: Electric heater temperature
-    class: temperature
-    category: config
-    dps:
-      - id: 117
-        type: integer
-        name: value
-        unit: C
-        range:
-          min: 16
-          max: 30
 
   - entity: number
     name: Bypass temperature range
