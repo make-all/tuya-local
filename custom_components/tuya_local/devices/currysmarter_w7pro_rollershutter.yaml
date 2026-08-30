@@ -1,4 +1,4 @@
-name: Curry Smarter 7-Gen roller shutter switch
+name: Roller shutter
 products:
   - id: mxeyhho2cvjgqake
     manufacturer: Curry Smarter
@@ -31,7 +31,6 @@ entities:
   # === Sensors (from optional paired light/rain sensor) ===
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 15
         type: integer
@@ -57,10 +56,9 @@ entities:
         name: sensor
 
   # === Configuration switches ===
-  - entity: switch
-    name: Child lock
+  - entity: lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:account-lock"
     dps:
       - id: 105
         type: boolean
@@ -93,31 +91,28 @@ entities:
         type: boolean
         name: switch
 
-  - entity: switch
-    name: Light sensor LED
+  - entity: light
+    translation_key: indicator
     category: config
-    icon: "mdi:led-on"
     dps:
       - id: 128
         type: boolean
         name: switch
 
-  # === Configuration selects ===
-  - entity: select
-    name: Backlight
+  - entity: light
+    translation_key: backlight
     category: config
-    icon: "mdi:brightness-6"
     dps:
       - id: 103
         type: string
-        name: option
+        name: brightness
         mapping:
           - dps_val: max_light
-            value: Bright
+            value: 255
           - dps_val: micro_light
-            value: Dim
+            value: 128
           - dps_val: close
-            value: "Off"
+            value: 0
 
   - entity: select
     name: Calibration
