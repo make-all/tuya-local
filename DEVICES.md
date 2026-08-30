@@ -667,6 +667,7 @@
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher, AB791 range hood
 - Fiesta DK-1G smart kettle
+- FRE1L4 water chiller
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
 - Hauslane IN-R110 range hood

@@ -952,3 +952,4 @@ Further device support has been made with the assistance of users. Please consid
 - [deex-ohv](https://github.com/deex-ohv) for contributing support for Belko ProLift 1200N garage door opener.
 - [x409no1](https://github.com/x409no1) for contributing support for Trevi InnovAqua pool heat pump.
 - [denismilanovic](https://github.com/denismilanovic) for contributing support for Breville BAD358 dehumidifier.
+- [klobuczek](https://github.com/klobuczek) for contributing support for FRE1L4 water chiller.
