@@ -210,6 +210,7 @@
 - Sibrape CBC-Pool BP heat pump
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
+- Trevi InnovAqua variable speed pool heat pump
 - Turbro 75000 btu pool heat pump
 - Varminpool pool heatpump
 - Varpoolfaye 5kW pool heat pump

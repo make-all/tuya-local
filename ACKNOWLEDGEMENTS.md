@@ -950,3 +950,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mschmiedel](https://github.com/mschmiedel) for contributing support for Kältebringer KBO series air conditioner.
 - [Koty97](https://github.com/Koty97) for contributing support for Tesla Smart pet sofa.
 - [deex-ohv](https://github.com/deex-ohv) for contributing support for Belko ProLift 1200N garage door opener.
+- [x409no1](https://github.com/x409no1) for contributing support for Trevi InnovAqua pool heat pump.
