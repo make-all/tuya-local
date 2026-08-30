@@ -6,9 +6,7 @@ products:
 # Mapping validated on Trevi InnovAqua variable speed over local protocol 3.5.
 # The Celsius setpoint (dp2) and inlet water temp (dp3) drive the climate.
 # The device also exposes an integer Fahrenheit setpoint (dp25) and inlet
-# water temperature (dp26), provided as separate number and sensor entities.
-# A Fahrenheit climate (dp25/dp26) was tried, but tuya-local does not create
-# the climate entity for it on this device, so Celsius is used for climate.
+# water temperature (dp26).
 entities:
   - entity: climate
     translation_key: pool_heatpump
@@ -19,22 +17,30 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:hvac-off"
-            icon_priority: 1
           - dps_val: true
             value: "heat"
-            icon: "mdi:hot-tub"
-            icon_priority: 3
       - id: 2
         name: temperature
         type: integer
-        unit: C
         range:
           min: 8
           max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 46
+                  max: 104
       - id: 3
         name: current_temperature
         type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_cur_f
       - id: 4
         name: preset_mode
         type: string
@@ -47,27 +53,23 @@ entities:
             value: quiet_heat
           - dps_val: cool
             value: smart_cool
-  - entity: sensor
-    name: Water temperature
-    category: diagnostic
-    dps:
       - id: 26
-        name: sensor
+        name: temp_cur_f
         type: integer
-        unit: F
-        class: measurement
-  - entity: number
-    name: Set temperature
-    category: config
-    icon: "mdi:thermometer"
-    dps:
       - id: 25
-        name: value
+        name: temp_set_f
         type: integer
-        unit: F
         range:
           min: 46
           max: 104
+      - id: 17
+        name: temperature_unit
+        type: string
+        optional: true
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: select
     translation_key: temperature_unit
     category: config
