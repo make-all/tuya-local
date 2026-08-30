@@ -943,3 +943,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Tweebloesem](https://github.com/Tweebloesem) for contributing support for Clean Air Optima CA-707 dehumidifier.
 - [RamonJardim](https://github.com/RamonJardim) for contributing support for Liwokit backlit dimmer switch.
 - [elcarabo](https://github.com/elcarabo) for contributing support for Breville AllRounder purifier heater.
+- [locoscientist](https://github.com/locoscientist) for contributing improvements to Korex AX-WF306N kettle.
