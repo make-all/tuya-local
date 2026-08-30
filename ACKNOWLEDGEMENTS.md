@@ -951,3 +951,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Koty97](https://github.com/Koty97) for contributing support for Tesla Smart pet sofa.
 - [deex-ohv](https://github.com/deex-ohv) for contributing support for Belko ProLift 1200N garage door opener.
 - [x409no1](https://github.com/x409no1) for contributing support for Trevi InnovAqua pool heat pump.
+- [denismilanovic](https://github.com/denismilanovic) for contributing support for Breville BAD358 dehumidifier.

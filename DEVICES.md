@@ -548,6 +548,7 @@
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
 - Belair Baltic Irradio 20L dehumidifier
+- Breville BAD358 All Climate 2-in-1 dehumidifier
 - Cecotec BigDry 4000 dehumidifier
 - Clean Air Optima CA-702 and CA-707 dehumidifiers
 - Cleverio AD100 dehumidifier
