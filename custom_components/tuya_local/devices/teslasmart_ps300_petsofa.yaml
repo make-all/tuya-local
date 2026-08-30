@@ -1,5 +1,4 @@
-name: Tesla Smart Pet Sofa PS300
-
+name: Pet sofa
 products:
   - id: 13oghytketwcoz1z
     manufacturer: Tesla
@@ -7,7 +6,7 @@ products:
 
 entities:
   - entity: climate
-    icon: mdi:sofa
+    icon: "mdi:sofa"
     name: Pet sofa
     dps:
       - id: 1
@@ -18,15 +17,13 @@ entities:
             value: "heat_cool"
           - dps_val: false
             value: "off"
-
       - id: 8
         name: temperature
         type: integer
-        unit: "C"
+        unit: C
         range:
           min: 20
           max: 38
-
       - id: 16
         name: current_temperature
         type: integer
@@ -41,17 +38,16 @@ entities:
             value: heating
           - dps_val: 3
             value: cooling
-
       - id: 7
         name: preset_mode
         type: string
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
+            value: manual
           - dps_val: smart
-            value: Smart
+            value: smart
 
   - entity: sensor
     translation_key: ambient_temperature
@@ -62,18 +58,20 @@ entities:
         name: sensor
         unit: "C"
 
-  - entity: sensor
-    name: Fault
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 22
-        type: integer
+        type: bitfield
         name: sensor
-
-  - entity: sensor
-    name: Push state
-    category: diagnostic
-    dps:
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
       - id: 105
         type: integer
-        name: sensor
+        name: push_state
