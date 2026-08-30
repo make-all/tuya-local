@@ -63,23 +63,13 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-        mapping:
-          - scale: 10
-  - entity: sensor
-    name: Filter days
+    translation_key: filter_life
+    class: duration
     dps:
       - id: 101
         type: integer
         name: sensor
-        unit: days
-        class: measurement
+        unit: d
   - entity: select
     name: Oscillation
     dps:
@@ -136,27 +126,32 @@ entities:
         type: boolean
         name: lock
   - entity: switch
-    name: All lights
+    translation_key: sleep 
     category: config
     dps:
       - id: 11
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
-    name: Button sound
+    translation_key: keytone
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
-  - entity: switch
+  - entity: light
     name: Humidity light
     category: config
     dps:
       - id: 105
         type: boolean
         name: switch
-  - entity: switch
+  - entity: light
     name: Tank light
     category: config
     dps:
@@ -164,7 +159,7 @@ entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Tank present
+    translation_key: tank_full
     dps:
       - id: 108
         type: boolean
