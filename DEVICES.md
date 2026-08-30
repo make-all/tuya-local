@@ -1282,6 +1282,7 @@ port and password.
 - Sobralik pet fountain
 - TA-FD-BL6 camera pet feeder
 - Tesla Smart fish and pet feeders
+- Tesla Smart pet sofa
 - Ti Pro25 cat litter box
 - Tonepie T1PRO cat litter box
 - Tonepie T1 Pro MAX cat litter box
