@@ -148,6 +148,7 @@
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
+- Kältebringer KBO series air conditioner
 - Kibernetik 12K portable split air conditioner
 - Klarstein Iceblock Ecosmart, MetroBreeze New York, Pure Blizzard air conditioners
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
