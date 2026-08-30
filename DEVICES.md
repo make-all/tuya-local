@@ -563,7 +563,7 @@
 - Goldair GPDH340, GPDH420 dehumidifiers
 - Gologi GO021 dehumidifier
 - Greenmigo Alpha Q25 dehumidifier
-- Hiniso dehumidifier
+- Hiniso RM10S and other dehumidifiers
 - Honeywell TP(30/50/70) dehumidifiers
 - HTW HTWD020A4 dehumidifier
 - Hyundai Sahara dehumidifier

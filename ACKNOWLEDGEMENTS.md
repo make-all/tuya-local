@@ -946,3 +946,4 @@ Further device support has been made with the assistance of users. Please consid
 - [locoscientist](https://github.com/locoscientist) for contributing support for iPettie FW54 pet feeder and improvements to Korex AX-WF306N kettle.
 - [acenuke](https://github.com/acenuke) for contributing support for Ivation 50PT dehumidifier.
 - [exean](https://github.com/exean) for contributing support for Curry Smarter W7pro shutter switch.
+- [malhar-c](https://github.com/malhar-c) for contributing support for Hiniso RM10S dehumidifier.
