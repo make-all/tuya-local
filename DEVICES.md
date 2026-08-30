@@ -1036,6 +1036,7 @@ of device.
 - Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blind controller
+- Belko ProLift 1200N garage door opener
 - Benexmart blind motor
 - BobYun Tech gatePro gate opener
 - CCB-11 blind controller
