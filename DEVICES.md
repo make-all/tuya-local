@@ -569,6 +569,7 @@
 - Hyundai Sahara dehumidifier
 - Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL, Eva Ion Pro, Rise Pro dehumidifiers
+- Ivation 50PT dehumidifier
 - JJPro JPD01, JPD02 dehumidifers
 - Juro-Pro 2006 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier

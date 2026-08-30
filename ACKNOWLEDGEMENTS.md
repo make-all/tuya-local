@@ -944,3 +944,4 @@ Further device support has been made with the assistance of users. Please consid
 - [RamonJardim](https://github.com/RamonJardim) for contributing support for Liwokit backlit dimmer switch.
 - [elcarabo](https://github.com/elcarabo) for contributing support for Breville AllRounder purifier heater.
 - [locoscientist](https://github.com/locoscientist) for contributing support for iPettie FW54 pet feeder and improvements to Korex AX-WF306N kettle.
+- [acenuke](https://github.com/acenuke) for contributing support for Ivation 50PT dehumidifier.
