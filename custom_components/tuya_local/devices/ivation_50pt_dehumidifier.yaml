@@ -6,6 +6,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_key: extended
     dps:
       - id: 1
         type: boolean
@@ -29,7 +30,6 @@ entities:
             value: continuous
 
   - entity: fan
-    name: Fan
     dps:
       - id: 1
         type: boolean
@@ -45,7 +45,6 @@ entities:
 
   - entity: binary_sensor
     translation_key: tank_full
-    category: diagnostic
     class: problem
     dps:
       - id: 110
@@ -54,7 +53,6 @@ entities:
 
   - entity: binary_sensor
     translation_key: defrost
-    category: diagnostic
     dps:
       - id: 111
         type: boolean
@@ -105,7 +103,6 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Timer remaining
     translation_key: time_remaining
     class: duration
     category: diagnostic
@@ -116,7 +113,8 @@ entities:
         unit: min
 
   - entity: sensor
-    name: Actual fan speed
+    name: Fan status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -125,12 +123,12 @@ entities:
         name: sensor
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: "off"
           - dps_val: "1"
-            value: "Ultra-Low"
+            value: sleep"
           - dps_val: "2"
-            value: "Low"
+            value: low
           - dps_val: "3"
-            value: "Medium"
+            value: normal
           - dps_val: "4"
-            value: "High"
+            value: high
