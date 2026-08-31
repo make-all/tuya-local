@@ -416,6 +416,7 @@
 - Hoenofly Smart Amari ceiling fan with light
 - Hoenofly Smart Wood low profile ceiling fan with lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
+- Holtop CFA-500t Energy Recovery Ventilation system
 - Hombli 6-speed ceiling fan with RGBCW light
 - HomCom 6-speed tower fan
 - Homebase 12" oscillating fan
