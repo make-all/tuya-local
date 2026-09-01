@@ -174,7 +174,7 @@ to use an entity for that (typically switch, number or select).
 
 *Optional, default false.*
 
-A boolean setting yo mark attributes as containing potentially sensitive
+A boolean setting to mark attributes as containing potentially sensitive
 data.  Setting this to true will result in the data being redacted in
 device diagnostics output.
 
