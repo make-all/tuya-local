@@ -1,0 +1,236 @@
+name: Dehumidifier
+products:
+  - id: 36sgz5ez8f4kaap7
+    manufacturer: Anslut
+    model: Dehumidifier 20L
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Continuities
+            value: continuous
+          - dps_val: Auto
+            value: auto
+          - dps_val: Sleep
+            value: sleep
+      - id: 6
+        type: integer
+        name: current_humidity
+      - id: 102
+        type: integer
+        name: client_id
+      - id: 104
+        type: integer
+        name: equipment_type
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+  - entity: binary_sensor
+    translation_key: tank_full
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Filter cleaning
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Temperature error
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Low temperature
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: High temperature
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Low humidity
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Coil freeze/defrost
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 64
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Motor fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 128
+            value: true
+          - value: false
+  # These are advertised by the cloud data model but omitted from
+  # full local polls.
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 24
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: button
+    name: Runtime reset
+    class: restart
+    category: config
+    dps:
+      - id: 28
+        type: boolean
+        optional: true
+        name: button
