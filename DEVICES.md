@@ -1240,7 +1240,6 @@ port and password.
 - Frienhund ACF180W-A dual camera pet feeder
 - Fukumaru AF01-W pet feeder
 - FurPipi PF05 pet feeder
-- Geeni WP005 pet treat camera
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
 - Happy Paws CoreBox litter box

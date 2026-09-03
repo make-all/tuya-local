@@ -954,4 +954,3 @@ Further device support has been made with the assistance of users. Please consid
 - [denismilanovic](https://github.com/denismilanovic) for contributing support for Breville BAD358 dehumidifier.
 - [klobuczek](https://github.com/klobuczek) for contributing support for FRE1L4 water chiller.
 - [gergely-sallai](https://github.com/gergely-sallai) for contributing support for Holtop CDA-500t ERV.
-- [k----n](https://github.com/k----n) for contributing support for Geeni WP005 pet treat camera.
