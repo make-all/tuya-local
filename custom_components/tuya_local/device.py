@@ -227,6 +227,7 @@ class TuyaLocalDevice(object):
         self._children.clear()
         self._force_dps.clear()
         if self._refresh_task:
+            self._temporary_poll = True
             self._api.set_socketPersistent(False)
             if self._api.parent:
                 self._api.parent.set_socketPersistent(False)
@@ -309,6 +310,7 @@ class TuyaLocalDevice(object):
         finally:
             # Ensure the persistent connection is closed when the loop exits
             # and device appears as unavailable
+            self._temporary_poll = True
             self._api.set_socketPersistent(False)
             if self._api.parent:
                 self._api.parent.set_socketPersistent(False)
@@ -468,6 +470,7 @@ class TuyaLocalDevice(object):
             await asyncio.sleep(5 if force_backoff else 0.1)
 
         # Close the persistent connection when exiting the loop
+        self._temporary_poll = True
         self._api.set_socketPersistent(False)
         if self._api.parent:
             self._api.parent.set_socketPersistent(False)
@@ -719,6 +722,7 @@ class TuyaLocalDevice(object):
                     connections,
                 )
                 # Ensure we have a fresh connection for the next attempt
+                self._temporary_poll = True
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
