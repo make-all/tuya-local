@@ -1,0 +1,80 @@
+name: Dry contact switch
+products:
+  - id: tyh5ryj3jfi3hkgv
+    manufacturer: Avatto
+    model: WSM16-DC-1
+entities:
+  - entity: switch
+    class: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 17
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 18
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 19
+        type: string
+        optional: true
+        name: value
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 47
+        type: string
+        name: option
+        mapping:
+          - dps_val: flip
+            value: Flip
+          - dps_val: sync
+            value: Synchronized
+          - dps_val: button
+            value: Button

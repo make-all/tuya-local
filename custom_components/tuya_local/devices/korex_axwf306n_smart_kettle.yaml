@@ -204,3 +204,59 @@ entities:
       - id: 103
         type: boolean
         name: keep_warm
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - constraint: keep_warm
+            conditions:
+              - dps_val: true
+                value_redirect: warm_preset
+                mapping:
+                  - dps_val: "0"
+                    value: infant_formula
+                  - dps_val: "1"
+                    value: water
+                  - dps_val: "2"
+                    value: honey_water
+                  - dps_val: "3"
+                    value: white_tea
+                  - dps_val: "4"
+                    value: green_tea
+                  - dps_val: "5"
+                    value: oolong_tea
+                  - dps_val: "6"
+                    value: coffee
+                  - dps_val: "7"
+                    value: boil
+              - dps_val: false
+                mapping:
+                  - dps_val: "0"
+                    value: infant_formula
+                  - dps_val: "1"
+                    value: water
+                  - dps_val: "2"
+                    value: honey_water
+                  - dps_val: "3"
+                    value: white_tea
+                  - dps_val: "4"
+                    value: green_tea
+                  - dps_val: "5"
+                    value: oolong_tea
+                  - dps_val: "6"
+                    value: coffee
+                  - dps_val: "7"
+                    value: boil
+      - id: 107
+        type: string
+        name: warm_preset
+        optional: true
+        hidden: true
+      - id: 103
+        type: boolean
+        name: keep_warm
+        hidden: true

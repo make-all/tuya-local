@@ -82,16 +82,43 @@ def redact_dps(device: TuyaLocalDevice, dps: dict[str, Any]) -> dict[str, Any]:
 
 def redact_entity(
     device: TuyaLocalDevice,
-    entity_id: str,
+    entity_unique_id: str | None,
     state_dict: dict[str, Any],
 ) -> dict[str, Any]:
-    sensitive = []
+    """Redact any sensitive dps from an entity's state.
+
+    Sensitive dps the entity publishes as extra attributes are redacted by
+    name. A sensitive dp consumed by the platform itself, such as a text
+    entity's `value`, is reported as the state instead, so the state is
+    redacted only when it actually carries that dp's value - blanking it
+    unconditionally would discard useful states such as a camera's
+    `recording`, whose sensitive `snapshot` dp is never the state.
+    """
+    names = []
+    values = []
     for entity in device._children:
-        if entity._config.config_id == entity_id:
-            for dp in entity._config.dps():
-                if dp.sensitive:
-                    sensitive.append(dp.name)
-    return {k: (REDACTED if k in sensitive else v) for (k, v) in state_dict.items()}
+        if entity._config.unique_id(device.unique_id) != entity_unique_id:
+            continue
+        for dp in entity._config.dps():
+            if not dp.sensitive:
+                continue
+            names.append(dp.name)
+            value = dp.get_value(device)
+            if value is not None:
+                values.append(str(value))
+
+    if not names:
+        return state_dict
+
+    redacted = dict(state_dict)
+    if isinstance(redacted.get("attributes"), dict):
+        redacted["attributes"] = {
+            k: (REDACTED if k in names else v)
+            for (k, v) in redacted["attributes"].items()
+        }
+    if "state" in redacted and str(redacted["state"]) in values:
+        redacted["state"] = REDACTED
+    return redacted
 
 
 @callback
@@ -142,7 +169,7 @@ def _async_device_as_dict(
             if state:
                 state_dict = redact_entity(
                     device,
-                    entity_entry.entity_id,
+                    entity_entry.unique_id,
                     state.as_dict(),
                 )
 

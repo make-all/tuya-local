@@ -942,3 +942,15 @@ Further device support has been made with the assistance of users. Please consid
 - [mabrews](https://github.com/mabrews) for contributing support for Modern Flames Landscape Pro Slim fireplace.
 - [Tweebloesem](https://github.com/Tweebloesem) for contributing support for Clean Air Optima CA-707 dehumidifier.
 - [RamonJardim](https://github.com/RamonJardim) for contributing support for Liwokit backlit dimmer switch.
+- [elcarabo](https://github.com/elcarabo) for contributing support for Breville AllRounder purifier heater.
+- [locoscientist](https://github.com/locoscientist) for contributing support for iPettie FW54 pet feeder and improvements to Korex AX-WF306N kettle.
+- [acenuke](https://github.com/acenuke) for contributing support for Ivation 50PT dehumidifier.
+- [exean](https://github.com/exean) for contributing support for Curry Smarter W7pro shutter switch.
+- [malhar-c](https://github.com/malhar-c) for contributing support for Hiniso RM10S dehumidifier.
+- [mschmiedel](https://github.com/mschmiedel) for contributing support for Kältebringer KBO series air conditioner.
+- [Koty97](https://github.com/Koty97) for contributing support for Tesla Smart pet sofa.
+- [deex-ohv](https://github.com/deex-ohv) for contributing support for Belko ProLift 1200N garage door opener.
+- [x409no1](https://github.com/x409no1) for contributing support for Trevi InnovAqua pool heat pump.
+- [denismilanovic](https://github.com/denismilanovic) for contributing support for Breville BAD358 dehumidifier.
+- [klobuczek](https://github.com/klobuczek) for contributing support for FRE1L4 water chiller.
+- [gergely-sallai](https://github.com/gergely-sallai) for contributing support for Holtop CDA-500t ERV.

@@ -1,0 +1,116 @@
+name: Control panel
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Ekaza
+#     model: MiniPad
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: media_player
+    class: speaker
+    dps:
+      - id: 80
+        type: integer
+        name: volume
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 100
+      - id: 82
+        type: boolean
+        optional: true
+        name: play
+      - id: 83
+        type: string
+        optional: true
+        name: source
+        mapping:
+          - dps_val: smart_speaker
+            value: Smart speaker
+          - dps_val: bluetooth
+            value: Bluetooth
+      - id: 85
+        type: boolean
+        optional: true
+        name: prev
+      - id: 86
+        type: boolean
+        optional: true
+        name: next
+      - id: 87
+        type: string
+        optional: true
+        name: shuffle
+        mapping:
+          - dps_val: random
+            value: true
+          - dps_val: order
+            value: false
+          - value: false
+            hidden: true
+      - id: 87
+        type: string
+        optional: true
+        name: repeat
+        mapping:
+          - dps_val: repeat_all
+            value: all
+          - dps_val: repeat_one
+            value: one
+          - dps_val: order
+            value: "off"
+          - value: "off"
+            hidden: true
+  - entity: switch
+    name: Microphone
+    category: config
+    dps:
+      - id: 81
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Bluetooth
+    icon: "mdi:bluetooth"
+    category: config
+    dps:
+      - id: 84
+        type: boolean
+        name: switch
+  - entity: text
+    name: Alarm clock
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 88
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Alert
+    category: config
+    icon: "mdi:message-alert"
+    hidden: true
+    dps:
+      - id: 89
+        type: string
+        optional: true
+        name: value
+# dps 90-99 are related to Alexa pairing, and not exposed here
