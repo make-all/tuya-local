@@ -39,7 +39,7 @@ entities:
 
   # Corriente de fuga
   - entity: sensor
-    name: Leakage current
+    translation_key: leakage_current
     class: current
     category: diagnostic
     dps:
@@ -119,7 +119,6 @@ entities:
   # Potencia Aparente Fase A (bytes 13-15 del DP 6)
   - entity: sensor
     name: Apparent power
-    class: apparent_power
     category: diagnostic
     dps:
       - id: 6
