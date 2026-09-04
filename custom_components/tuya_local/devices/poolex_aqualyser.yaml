@@ -1,0 +1,514 @@
+name: Salt chlorinator
+products:
+  - id: uabbsm8ioqunhgos
+    manufacturer: Poolex
+    model: Aqualyser Multi
+    model_id: B3CR
+
+entities:
+  # Main power switch (dp 101)
+  - entity: switch
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+
+  # Chlorination output level - reported (dp 102, read-only)
+  - entity: sensor
+    name: Output
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  # Pool volume setting (dp 103)
+  - entity: number
+    name: Pool volume
+    category: config
+    icon: "mdi:pool"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: m³
+        range:
+          min: 5
+          max: 200
+        mapping:
+          - step: 5
+
+  # Chlorination duration (dp 104)
+  - entity: number
+    name: Chlorination time
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 24
+
+  # Polarity reversal interval (dp 105)
+  - entity: number
+    name: Reverse interval
+    category: config
+    icon: "mdi:swap-vertical"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 2
+          max: 8
+        mapping:
+          - step: 2
+
+  # Boost mode (dp 106)
+  - entity: switch
+    name: Boost
+    icon: "mdi:car-turbocharger"
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+
+  # Chlorination output level - setting (dp 107)
+  - entity: number
+    name: Output level
+    category: config
+    icon: "mdi:signal"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 20
+          max: 100
+        mapping:
+          - step: 20
+
+  # Salinity sensor (dp 108, read-only, scale 1 = divide by 10)
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: g/L
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # Salt dosage required (dp 109, read-only)
+  - entity: sensor
+    name: Salt dosage
+    icon: "mdi:shaker-outline"
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+
+  # Message fault bitmap (dp 110, read-only, 14-bit bitmap)
+  - entity: binary_sensor
+    name: Message
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        name: fault_code
+
+  # Water temperature (dp 111, read-only)
+  - entity: sensor
+    class: temperature
+    icon: "mdi:pool-thermometer"
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  # Low salt alert enable (dp 112)
+  - entity: switch
+    name: Low salt alert
+    icon: "mdi:alert-outline"
+    category: config
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+
+  # Message notification switch (dp 113, read-only)
+  - entity: binary_sensor
+    name: Notification
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+
+  # ORP sensor (dp 115, read-only)
+  - entity: sensor
+    name: ORP
+    class: voltage
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+
+  # ORP threshold setting (dp 116)
+  - entity: number
+    name: ORP threshold
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: mV
+        range:
+          min: 400
+          max: 800
+        mapping:
+          - step: 10
+
+  # pH sensor (dp 117, read-only, scale 1 = divide by 10)
+  - entity: sensor
+    class: ph
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # pH threshold setting (dp 118, scale 1 = divide by 10)
+  - entity: number
+    class: ph
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        range:
+          min: 68
+          max: 76
+        mapping:
+          - scale: 10
+
+  # Operating mode (dp 119)
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: option
+        mapping:
+          - dps_val: ORP
+            value: ORP
+          - dps_val: TIME
+            value: Time
+          - dps_val: FLOW
+            value: Flow
+
+  # Current status (dp 120, read-only)
+  # dp 120 (status_show) is defined in the Tuya data model but is not
+  # currently reported by the device firmware. Disabled by default.
+  - entity: sensor
+    name: Status
+    class: enum
+    hidden: true
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: Chlorination
+            value: Chlorination
+          - dps_val: Suspend
+            value: Suspend
+          - dps_val: ReversePole
+            value: Reverse pole
+          - dps_val: BOOST
+            value: Boost
+
+  # Energy consumption (dp 121, read-only)
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+
+  # Pump status (dp 122, read-only)
+  - entity: sensor
+    name: Pump status
+    category: diagnostic
+    icon: "mdi:pump"
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        class: measurement
+
+  # Error fault bitmap (dp 123, read-only, 5-bit bitmap)
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 123
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 123
+        type: bitfield
+        name: fault_code
+
+  # Water flow switch status (dp 127, read-only)
+  - entity: binary_sensor
+    name: Water flow
+    class: running
+    category: diagnostic
+    dps:
+      - id: 127
+        type: boolean
+        name: sensor
+
+  # Time mode runtime (dp 128, read-only)
+  - entity: sensor
+    name: Time mode runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+
+  # Time mode total (dp 129, read-only)
+  - entity: sensor
+    name: Time mode total
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+
+  # pH alert indicator (dp 130, read-only)
+  - entity: binary_sensor
+    name: pH alert
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 130
+        type: boolean
+        name: sensor
+
+  # ORP alert indicator (dp 131, read-only)
+  - entity: binary_sensor
+    name: ORP alert
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor
+
+  # Salt alert indicator (dp 132, read-only)
+  - entity: binary_sensor
+    translation_key: salt
+    category: diagnostic
+    dps:
+      - id: 132
+        type: boolean
+        name: sensor
+
+  # Pump runtime (dp 134)
+  - entity: number
+    name: Pump runtime
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 120
+        mapping:
+          - step: 15
+
+  # Pump interval time (dp 135)
+  - entity: number
+    name: Pump interval
+    category: config
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 135
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  # Pump linked switch (dp 136)
+  - entity: switch
+    name: Pump linked
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 136
+        name: switch
+        type: boolean
+
+  # Timer 1 start hour (dp 137)
+  - entity: number
+    name: Timer 1 start
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  # Timer 1 end hour (dp 139)
+  - entity: number
+    name: Timer 1 end
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  # Timer 1 enable (dp 141)
+  - entity: switch
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 141
+        name: switch
+        type: boolean
+
+  # Timer 2 start hour (dp 142)
+  - entity: number
+    name: Timer 2 start
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  # Timer 2 end hour (dp 144)
+  - entity: number
+    name: Timer 2 end
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 144
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  # Timer 2 enable (dp 146)
+  - entity: switch
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 146
+        name: switch
+        type: boolean
+
+  # Timer 3 start hour (dp 147)
+  - entity: number
+    name: Timer 3 start
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 147
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  # Timer 3 end hour (dp 149)
+  - entity: number
+    name: Timer 3 end
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 149
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  # Timer 3 enable (dp 151)
+  - entity: switch
+    name: Timer 3
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 151
+        name: switch
+        type: boolean
