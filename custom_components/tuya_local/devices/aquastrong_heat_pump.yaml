@@ -1,0 +1,213 @@
+name: Aquastrong Heat Pump
+products:
+  - id: g9m7honkxjweukvt
+    manufacturer: Aquastrong
+    model: Heat Pump
+entities:
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: make_cold
+            value: cool
+          - dps_val: make_hot
+            value: heat
+          - dps_val: auto
+            value: auto
+  - entity: binary_sensor
+    name: Running
+    class: running
+    dps:
+      - id: 1
+        name: sensor
+        type: boolean
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: make_cold
+                value: cool
+              - dps_val: make_hot
+                value: heat
+              - dps_val: auto
+                value: auto
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 4
+        name: temperature
+        type: integer
+        unit: "F"
+        range:
+          min: 5
+          max: 105
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: ECO
+            value: eco
+          - dps_val: Normal
+            value: normal
+          - dps_val: "Boost"
+            value: boost
+      - id: 21
+        name: current_temperature
+        type: integer
+      - id: 27
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+            constraint: work_mode
+            conditions:
+              - dps_val: make_cold
+                value: cooling
+  - entity: sensor
+    name: EEV opening
+    category: diagnostic
+    dps:
+      - id: 14
+        name: sensor
+        type: integer
+        unit: steps
+        class: measurement
+  - entity: sensor
+    name: Current
+    class: current
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Compressor frequency
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Inlet temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 22
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
+  - entity: sensor
+    name: Discharge temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
+  - entity: binary_sensor
+    name: Backflow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 31
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    translation_key: defrost
+    dps:
+      - id: 33
+        name: sensor
+        type: boolean
+  - entity: sensor
+    name: High pressure
+    category: diagnostic
+    class: pressure
+    dps:
+      - id: 35
+        name: sensor
+        type: integer
+        unit: psi
+        class: measurement
+  - entity: sensor
+    name: Indoor coil temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 37
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
+  - entity: sensor
+    name: Fan motor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 40
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Suction temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 41
+        name: sensor
+        type: integer
+        unit: "F"
+        class: measurement
