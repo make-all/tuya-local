@@ -588,6 +588,7 @@
 - Point PODH20 dehumidifier
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
+- Pro Breeze PB-D-18W-WF 12L dehumidifier
 - Qlima D720, D812, D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
