@@ -7,6 +7,10 @@ products:
 # The Celsius setpoint (dp2) and inlet water temp (dp3) drive the climate.
 # The device also exposes an integer Fahrenheit setpoint (dp25) and inlet
 # water temperature (dp26).
+# dp25/dp26 are additionally exposed as separate number/sensor entities: HA
+# converts climate values to the system unit, so on a Celsius install the
+# native Fahrenheit reading (as shown by the device and its app) is otherwise
+# lost to rounding.
 entities:
   - entity: climate
     translation_key: pool_heatpump
@@ -70,6 +74,27 @@ entities:
           - dps_val: f
             value: F
           - value: C
+  - entity: sensor
+    name: Water temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+  - entity: number
+    name: Set temperature
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 25
+        name: value
+        type: integer
+        unit: F
+        range:
+          min: 46
+          max: 104
   - entity: select
     translation_key: temperature_unit
     category: config
