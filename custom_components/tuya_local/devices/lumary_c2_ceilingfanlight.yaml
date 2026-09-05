@@ -11,6 +11,20 @@ entities:
       - id: 20
         type: boolean
         name: switch
+        mapping:
+          - dps_val: false
+            value: false
+          - dps_val: true
+            constraint: master_power
+            conditions:
+              - dps_val: false
+                value: false
+              - dps_val: true
+                value: true
+      - id: 119
+        type: boolean
+        name: master_power
+        hidden: true
       - id: 21
         name: color_mode
         type: string
