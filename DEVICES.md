@@ -705,7 +705,7 @@
 - Aulifants SMES200 energy monitoring breaker switch
 - Avidsen Soria Karst-400 and MI-400 solar inverters
 - CBI Astute smart controller breaker switch
-- CNC YCB9ZF-100W 1P circuit breaker
+- CNC YCB9ZF-100W and YCB9NZF-40AP 1P circuit breakers
 - Compteur digital electric (single phase)
 - CT-1203 dual clamp meter
 - Dcenta dual clamp meter
