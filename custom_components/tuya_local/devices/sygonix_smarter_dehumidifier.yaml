@@ -3,6 +3,9 @@ products:
   - id: 4xcjyqplnfenhplh
     manufacturer: Sygonix
     model: Smarter
+  - id: 36sgz5ez8f4kaap7
+    manufacturer: Anslut
+    model: Dehumidifier 20L
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -32,11 +35,6 @@ entities:
       - id: 6
         type: integer
         name: current_humidity
-      # This doesn't actually have an ionizer, but having the dp
-      # will aid in detection
-      - id: 10
-        type: boolean
-        name: ionizer
       - id: 102
         type: integer
         name: model_code
@@ -237,3 +235,11 @@ entities:
       - id: 28
         type: boolean
         name: button
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    hidden: true  # dp present but not functional for Sygonix device
+    dps:
+      - id: 10
+        type: boolean
+        name: ionizer
