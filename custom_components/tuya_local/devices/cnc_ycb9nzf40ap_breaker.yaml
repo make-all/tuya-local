@@ -1,4 +1,4 @@
-name: Smart Circuit Breaker
+name: Circuit breaker
 products:
   - id: fku7giyi3t9denll
     manufacturer: CNC
@@ -6,7 +6,7 @@ products:
 entities:
   # Interruptor principal
   - entity: switch
-    icon: "mdi:fuse"
+    translation_key: breaker
     dps:
       - id: 16
         type: boolean
@@ -52,10 +52,6 @@ entities:
   # Voltaje Fase A (bytes 2-3 del DP 6)
   - entity: sensor
     class: voltage
-    category: diagnostic
-    translation_key: voltage_x
-    translation_placeholders:
-      x: A
     dps:
       - id: 6
         type: base64
@@ -70,10 +66,6 @@ entities:
   # Corriente Fase A (bytes 4-6 del DP 6)
   - entity: sensor
     class: current
-    category: diagnostic
-    translation_key: current_x
-    translation_placeholders:
-      x: A
     dps:
       - id: 6
         type: base64
@@ -88,10 +80,6 @@ entities:
   # Potencia Activa Fase A (bytes 7-9 del DP 6)
   - entity: sensor
     class: power
-    category: diagnostic
-    translation_key: power_x
-    translation_placeholders:
-      x: A
     dps:
       - id: 6
         type: base64
@@ -103,13 +91,13 @@ entities:
 
   # Potencia Reactiva Fase A (bytes 10-12 del DP 6)
   - entity: sensor
-    name: Reactive power
+    class: reactive_power
     category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
-        unit: kVar
+        unit: kvar
         class: measurement
         optional: true
         mask: "00000000000000000000FFFFFF0000000000"
@@ -118,7 +106,7 @@ entities:
 
   # Potencia Aparente Fase A (bytes 13-15 del DP 6)
   - entity: sensor
-    name: Apparent power
+    class: apparent_power
     category: diagnostic
     dps:
       - id: 6
