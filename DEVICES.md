@@ -363,6 +363,7 @@
 - Amico 52" ceiling fan with light
 - Anderic UC7235T4 ceiling fan receiver
 - Anko HEGSM40 fan
+- Anwo Brezza ceiling fan
 - Arida Venti 160 small through-wall heat-recovery ventilation fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
 - Arlec Grid Connect smart ceiling fan (with and without light)
