@@ -1,0 +1,44 @@
+name: Ceiling fan
+products:
+  - id: t2wk7ze0aiafakw2
+    manufacturer: Anwo
+    model: Brezza
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: cancel
+          - dps_val: 60
+            value: "1h"
+          - dps_val: 240
+            value: "4h"
