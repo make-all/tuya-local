@@ -1,0 +1,44 @@
+name: Bidirectional clamp meter
+products:
+  - id: ze8faryrxr0glqnn
+    model: PJ2101A
+entities:
+  - entity: sensor
+    class: power
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -1
+      - id: 102
+        type: string
+        optional: true
+        name: direction
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100

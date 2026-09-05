@@ -731,6 +731,7 @@
 - PC321-TY 3 phase power clamp meter
 - PC473 3-phase energy monitor
 - PJ-1103, PJ-1103A, PJ-1103C power clamp meters
+- PJ2101A single phase bidirectional power clamp meter
 - PowBay JGQW01-63 energy monitoring circuit breaker
 - PZIOT E01 energy meter
 - SG600MD solar inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
