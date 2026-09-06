@@ -1,5 +1,8 @@
 """Test the config parser"""
 
+import gc
+import warnings
+
 import pytest
 import voluptuous as vol
 from fuzzywuzzy import fuzz
@@ -338,6 +341,18 @@ def test_can_find_config_files():
         found = True
         break
     assert found
+
+
+def test_available_configs_closes_scandir_handle():
+    """Test that the scandir handle is closed when the generator is dropped."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        configs = available_configs()
+        next(configs)
+        del configs
+        gc.collect()
+
+    assert not [w for w in caught if issubclass(w.category, ResourceWarning)]
 
 
 def dp_match(condition, accounted, unaccounted, known, required=False):
