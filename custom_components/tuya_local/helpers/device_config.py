@@ -1180,9 +1180,10 @@ def available_configs():
     """List the available config files."""
     _CONFIG_DIR = dirname(config_dir.__file__)
 
-    for direntry in scandir(_CONFIG_DIR):
-        if direntry.is_file() and fnmatch(direntry.name, "*.yaml"):
-            yield direntry.name
+    with scandir(_CONFIG_DIR) as entries:
+        for direntry in entries:
+            if direntry.is_file() and fnmatch(direntry.name, "*.yaml"):
+                yield direntry.name
 
 
 def possible_matches(dps, product_ids=None):
