@@ -107,6 +107,8 @@ entities:
               # Unfortunately we cannot tell what Auto is doing
               - dps_val: Auto
                 value_redirect: work_mode_action
+              - dps_val: null
+                value_redirect: work_mode_action
           - dps_val: Defrosting
             value: defrosting
           - dps_val: Standby
@@ -143,6 +145,8 @@ entities:
               - dps_val: [Cooling_Powerful, Cooling_Smart, Cooling_Silent]
                 value_redirect: set_cold_temp
               - dps_val: Auto
+                value_redirect: set_auto_temp
+              - dps_val: null
                 value_redirect: set_auto_temp
       - id: 101
         type: integer
