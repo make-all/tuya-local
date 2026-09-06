@@ -86,22 +86,18 @@ entities:
             value: sleep
           - dps_val: select_room
             value: selecting_room
-          - dps_val: seek_dust_bucket
-            value: seek_dust_bucket
+          - dps_val: in_trouble
+            value: error
+          - dps_val: mopping
+            value: mopping
           - dps_val: collecting_dust
             value: collecting_dust
           - dps_val: self_clean
             value: self_clean
-          - dps_val: mapping
-            value: mapping
-          - dps_val: mapping_done
-            value: mapping_done
       - id: 9
         type: string
         name: fan_speed
         mapping:
-          - dps_val: closed
-            value: "Off"
           - dps_val: gentle
             value: Low
           - dps_val: normal
@@ -156,10 +152,10 @@ entities:
         type: base64
         name: voice_data
         optional: true
-      # Unidentified datapoint, reports 0 on this model
+      # Unseen message notifications (bitmap, 30 slots)
       - id: 104
-        type: integer
-        name: unknown_104
+        type: bitfield
+        name: msg_unseen
         optional: true
   - entity: switch
     name: Charge
@@ -346,8 +342,6 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: closed
-            value: "off"
           - dps_val: low
             value: low
           - dps_val: middle
@@ -398,9 +392,8 @@ entities:
         type: boolean
         name: switch
         optional: true
-  - entity: switch
-    name: Edge cleaning
-    icon: "mdi:wall"
+  - entity: light
+    name: Light
     category: config
     dps:
       - id: 101
@@ -418,44 +411,16 @@ entities:
         mapping:
           - dps_val: chinese_simplified
             value: chinese
-          - dps_val: chinese_traditional
-            value: chinese_traditional
           - dps_val: english
             value: english
-          - dps_val: german
-            value: german
-          - dps_val: french
-            value: french
-          - dps_val: russian
-            value: russian
-          - dps_val: spanish
-            value: spanish
-          - dps_val: korean
-            value: korean
-          - dps_val: latin
-            value: latin
-          - dps_val: portuguese
-            value: portuguese
-          - dps_val: japanese
-            value: japanese
-          - dps_val: italian
-            value: italian
-          - dps_val: turkey
-            value: turkish
-          - dps_val: thai
-            value: thai
-          - dps_val: bulgarian
-            value: bulgarian
-          - dps_val: poland
-            value: polish
-          - dps_val: romanian
-            value: romanian
           - dps_val: czech
             value: czech
+          - dps_val: german
+            value: german
+          - dps_val: hungarian
+            value: hungarian
           - dps_val: slovak
             value: slovak
-          - dps_val: dutch
-            value: dutch
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -470,6 +435,7 @@ entities:
       - id: 28
         type: bitfield
         name: fault_code
+      # Bit labels taken from the device data model
       - id: 28
         type: bitfield
         name: description
@@ -490,3 +456,25 @@ entities:
             value: land_check
           - dps_val: 64
             value: collision
+          - dps_val: 128
+            value: dust_box2
+          - dps_val: 256
+            value: lidar_sensor
+          - dps_val: 512
+            value: wheel_dangle
+          - dps_val: 1024
+            value: sidewall_sensor
+          - dps_val: 2048
+            value: robot_tilt
+          - dps_val: 4096
+            value: blower
+          - dps_val: 8192
+            value: internal
+          - dps_val: 16384
+            value: forbidden_area
+          - dps_val: 32768
+            value: battery
+          - dps_val: 65536
+            value: stuck_in
+          - dps_val: 131072
+            value: water_tank
