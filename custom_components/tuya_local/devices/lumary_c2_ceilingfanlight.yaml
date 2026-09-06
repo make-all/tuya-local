@@ -11,20 +11,9 @@ entities:
       - id: 20
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: false
-          - dps_val: true
-            constraint: master_power
-            conditions:
-              - dps_val: false
-                value: false
-              - dps_val: true
-                value: true
       - id: 119
         type: boolean
-        name: master_power
-        hidden: true
+        name: available
       - id: 21
         name: color_mode
         type: string
@@ -144,6 +133,9 @@ entities:
   - entity: fan
     translation_only_key: fan_with_presets
     dps:
+      - id: 119
+        type: boolean
+        name: available
       - id: 101
         type: boolean
         name: switch
@@ -192,6 +184,9 @@ entities:
   - entity: light
     translation_key: nightlight
     dps:
+      - id: 119
+        type: boolean
+        name: available
       - id: 143
         type: boolean
         name: switch
@@ -199,6 +194,9 @@ entities:
     name: White
     category: config
     dps:
+      - id: 119
+        type: boolean
+        name: available
       - id: 107
         type: boolean
         name: switch
@@ -222,6 +220,9 @@ entities:
     name: Color
     category: config
     dps:
+      - id: 119
+        type: boolean
+        name: available
       - id: 108
         type: boolean
         name: switch
