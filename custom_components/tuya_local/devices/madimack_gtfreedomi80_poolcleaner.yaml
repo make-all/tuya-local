@@ -2,7 +2,7 @@ name: Pool cleaning robot
 
 products:
   - id: 7up9kxk6vx0e7pcm
-  - manufacturer: Madimack
+    manufacturer: Madimack
     model: GT Freedom i80
 
 entities:
@@ -32,15 +32,15 @@ entities:
     category: diagnostic
     dps:
       - id: 107
-        type: integer
+        type: string
         name: sensor
         unit: "%"
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: 33
-          - dps_val: 1
+          - dps_val: "1"
             value: 67
-          - dps_val: 2
+          - dps_val: "2"
             value: 100
 
   - entity: number
