@@ -4,7 +4,9 @@ products:
   - id: gynthidZEhTUCoMN
     manufacturer: Clean Air Optima
     model: CA-707 Smart
-
+  - id: 8ouns2qnxozm1qqp
+    manufacturer: Clean Air Optima
+    model: CA-707 Smart 2023 V2
 entities:
   #
   # Main
@@ -97,6 +99,23 @@ entities:
   #
   # Timer
   #
+  - entity: switch
+    name: Timer
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+      - id: 101
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   # Note: according to the official Tuya DP spec, this value should
   # reflect the actual remaining timer duration when read, and
   # (re)start the timer when written. In practice, this device's
@@ -211,3 +230,21 @@ entities:
       - id: 105
         name: sensor
         type: boolean
+        optional: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: lock
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
