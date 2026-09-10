@@ -1,0 +1,180 @@
+name: Floodlight camera
+products:
+  - id: w8uuhywphjjcwosc
+    manufacturer: LEDVANCE
+    model: SMART+ Floodlight Camera
+entities:
+  - entity: light
+    name: Floodlight
+    dps:
+      - id: 138
+        type: boolean
+        name: switch
+      - id: 158
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 1
+          max: 100
+  - entity: switch
+    name: Siren
+    category: config
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Siren 2
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Camera privacy
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: flip_image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: watermark
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Status LED
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    class: enum
+    translation_key: sd_status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: 7
+            value: missing
+          - dps_val: null
+            value: missing
+            hidden: true
+      - id: 109
+        type: string
+        name: capacity
+        optional: true
+  - entity: button
+    name: SD format
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+        persist: false
+      - id: 117
+        type: integer
+        name: status
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 0
+            value: Formatted
+          - dps_val: 100
+            value: Formatted
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: No SD card
+          - dps_val: 2003
+            value: Card error
+  - entity: switch
+    translation_key: camera_record
+    category: config
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    translation_key: recording_mode
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: event
+          - dps_val: "2"
+            value: continuous
+  - entity: sensor
+    name: PIR lux threshold
+    category: diagnostic
+    dps:
+      - id: 231
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+        optional: true
+  - entity: text
+    name: PIR configuration
+    category: config
+    dps:
+      - id: 240
+        type: string
+        name: value
+        optional: true
