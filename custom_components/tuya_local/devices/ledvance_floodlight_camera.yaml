@@ -75,8 +75,8 @@ entities:
           - dps_val: null
             value: false
             hidden: true
-  - entity: switch
-    name: Status LED
+  - entity: light
+    translation_key: indicator
     category: config
     dps:
       - id: 101
@@ -118,12 +118,10 @@ entities:
         type: boolean
         name: button
         optional: true
-        persist: false
       - id: 117
         type: integer
         name: status
         optional: true
-        persist: false
         mapping:
           - dps_val: 0
             value: Formatted
@@ -158,13 +156,15 @@ entities:
             value: event
           - dps_val: "2"
             value: continuous
-  - entity: sensor
+  - entity: number
     name: PIR lux threshold
-    category: diagnostic
+    category: config
     dps:
       - id: 231
         type: integer
-        name: sensor
+        name: value
         unit: lx
-        class: measurement
+        range:
+          min: 0
+          max: 500
         optional: true
