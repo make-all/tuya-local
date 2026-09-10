@@ -1,9 +1,8 @@
 name: PTZ floodlight camera
 products:
   - id: derumwjnpzfopvn0
-    manufacturer: LEDVANCE
-    model: Wifi SMART+ WALL CAMERA CONTROL
-    model_id: "4099854474972"
+    manufacturer: Ledvance
+    model: WiFi Smart+ wall camera control
 entities:
   - entity: light
     name: Floodlight
@@ -186,8 +185,8 @@ entities:
           - dps_val: null
             value: false
             hidden: true
-  - entity: switch
-    name: Status LED
+  - entity: light
+    translation_key: indicator
     category: config
     dps:
       - id: 101
