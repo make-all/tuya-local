@@ -80,24 +80,26 @@ entities:
           - dps_val: 5
             value: missing
           - dps_val: null
-            value: missing
+            value: normal
+            hidden: true
       - id: 109
         type: string
         optional: true
         name: capacity
   - entity: button
-    name: Memory card format
+    name: SD format
     icon: "mdi:micro-sd"
     category: config
     dps:
       - id: 111
         type: boolean
         optional: true
+        persist: false
         name: button
       - id: 117
         type: integer
         optional: true
-        name: format_state
+        name: state
         mapping:
           - dps_val: -2000
             value: Formatting
@@ -181,8 +183,6 @@ entities:
         optional: true
         name: event
         mapping:
-          - dps_val: null
-            value: null
           - dps_val: motion
             value: motion
           - dps_val: human
