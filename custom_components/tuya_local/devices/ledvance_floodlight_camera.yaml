@@ -156,15 +156,12 @@ entities:
             value: event
           - dps_val: "2"
             value: continuous
-  - entity: number
-    name: PIR lux threshold
-    category: config
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
     dps:
       - id: 231
         type: integer
-        name: value
+        name: sensor
         unit: lx
-        range:
-          min: 0
-          max: 500
         optional: true
