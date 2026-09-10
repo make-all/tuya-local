@@ -96,6 +96,16 @@ def redact_entity(
     """
     names = []
     values = []
+    redacted = dict(state_dict)
+    # Context is not useful information
+    redacted.pop("context", None)
+    # Redact entity_picture in case it is sensitive
+    if "entity_picture" in redacted.get("attributes"):
+        redacted["attributes"] = {
+            **redacted["attributes"],
+            "entity_picture": REDACTED,
+        }
+
     for entity in device._children:
         if entity._config.unique_id(device.unique_id) != entity_unique_id:
             continue
@@ -108,9 +118,8 @@ def redact_entity(
                 values.append(str(value))
 
     if not names:
-        return state_dict
+        return redacted
 
-    redacted = dict(state_dict)
     if isinstance(redacted.get("attributes"), dict):
         redacted["attributes"] = {
             k: (REDACTED if k in names else v)
@@ -172,15 +181,6 @@ def _async_device_as_dict(
                     entity_entry.unique_id,
                     state.as_dict(),
                 )
-
-                # Redact entity_picture in case it is sensitive
-                if "entity_picture" in state_dict["attributes"]:
-                    state_dict["attributes"] = {
-                        **state_dict["attributes"],
-                        "entity_picture": REDACTED,
-                    }
-                # Context is not useful information
-                state_dict.pop("context", None)
 
             data["home_assistant"]["entities"].append(
                 {
