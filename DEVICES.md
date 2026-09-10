@@ -1188,6 +1188,7 @@ port and password.
 - HomeMate PTZ indoor camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
+- Ledvance floodlight camera with and without PTZ
 - LSC Smart Connect dual band outdoor camera
 - LSC Smart Connect Outdoor PTZ camera
 - LSC Smart Connect PTZ camera
