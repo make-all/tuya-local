@@ -959,3 +959,4 @@ Further device support has been made with the assistance of users. Please consid
 - [giraudsa](https://github.com/giraudsa) for contributing support for PJ2101A clamp meter.
 - [petermcg151](https://github.com/petermcg151) for contributing support for Madimack GT Freedom i80 pool cleaner.
 - [mcdax](https://github.com/mcdax) for contributing support for Ledvance floodlight camera and PTZ camera.
+- [k----n](https://github.com/k----n) for contributing support for Geeni WP005 pet treat camera.
