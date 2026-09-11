@@ -1,0 +1,168 @@
+name: Temperature Switch
+entities:
+  - entity: switch
+    name: Relay
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Countdown
+    category: config
+    mode: box
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - scale: 60
+
+  - entity: select
+    name: Mode
+    dps:
+      - id: 8
+        type: string
+        name: option
+        mapping:
+          - dps_val: colding
+            value: cooling
+          - dps_val: hot
+            value: heating
+
+  - entity: switch
+    name: Autowork
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Unit
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+
+  - entity: number
+    name: Target (°F)
+    class: temperature
+    mode: box
+    hidden: true
+    dps:
+      - id: 21
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: 320
+          max: 1940
+        mapping:
+          - scale: 10
+            step: 5
+
+  - entity: number
+    name: Target
+    class: temperature
+    mode: box
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -200
+          max: 900
+        mapping:
+          - scale: 10
+            step: 5
+
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Current temperature (°F)
+    class: temperature
+    hidden: true
+    dps:
+      - id: 28
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Margin
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 29
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 10
+          max: 90
+        mapping:
+          - scale: 10
+            step: 5
+
+  - entity: number
+    name: Calibration
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        range:
+          min: -18
+          max: 18
+        mapping:
+          - scale: 2
+            step: 1
+
+  - entity: switch
+    name: Switch delay
+    category: config
+    dps:
+      - id: 56
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Delay timer
+    category: config
+    mode: box
+    dps:
+      - id: 55
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 10
