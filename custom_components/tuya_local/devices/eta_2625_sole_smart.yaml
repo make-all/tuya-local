@@ -80,9 +80,12 @@ entities:
             value: heating
 
 
+  # The device only accepts turning this on over the local
+  # protocol - turning it off is ignored and works only from
+  # the vendor app or the panel. It controls the display
+  # backlight rather than any heating behaviour.
   - entity: switch
-    name: Night mode
-    icon: "mdi:weather-night"
+    translation_key: night_mode
     category: config
     dps:
       - id: 103
@@ -169,8 +172,7 @@ entities:
 
   # Weekly temperature program, opaque raw data.
   - entity: text
-    name: Weekly program
-    icon: "mdi:calendar-clock"
+    translation_key: schedule
     category: config
     hidden: true
     dps:
