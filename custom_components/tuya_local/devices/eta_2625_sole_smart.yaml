@@ -1,4 +1,4 @@
-name: ETA 2625 Sole Smart
+name: Panel heater
 
 products:
   - id: gshakqhah24xdssy
@@ -24,6 +24,7 @@ products:
 
 entities:
   - entity: climate
+    translation_key: heater
     dps:
       - id: 1
         type: boolean
@@ -78,13 +79,9 @@ entities:
           - dps_val: working
             value: heating
 
-      - id: 21
-        type: bitfield
-        name: error
-        hidden: true
 
   - entity: switch
-    translation_key: night_mode
+    name: Night mode
     icon: "mdi:weather-night"
     category: config
     dps:
