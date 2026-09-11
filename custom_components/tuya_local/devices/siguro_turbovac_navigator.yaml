@@ -1,0 +1,479 @@
+name: Robot vacuum
+
+products:
+  - id: 6ewsmyude3artjun
+    manufacturer: Siguro
+    model: TURBOVac Navigator
+    model_id: SGR-RV-M300B
+
+# Based on abir_x9_vacuum.yaml. Entities whose datapoints this
+# model does not report have been removed:
+#   dp 27 (resume cleaning), 45 (carpet boost), 48 (y-mopping),
+#   102 (spiral cleaning), 103 (square spiral), 40 (mop installed)
+# Reset buttons (dp 18/20/22/24) are kept - they are write-only
+# and never appear in the status payload.
+
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: activate
+        mapping:
+          # start/resume → DP1=true
+          - dps_val: true
+            value: true
+          # pause → DP1=false, DP2=true
+          - dps_val: false
+            value: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+      - id: 2
+        type: boolean
+        name: pause
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+            constraint: activate
+            # workaround to have the standard stop command
+            conditions:
+              - dps_val: false
+                value: stop
+          - dps_val: goto_charge
+            value: return_to_base
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: select_room
+            value: select_room
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart
+          - dps_val: zone_clean
+            value: zone
+          - dps_val: part_clean
+            value: partial
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located_spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: select_room
+            value: selecting_room
+          - dps_val: in_trouble
+            value: error
+          - dps_val: mopping
+            value: mopping
+          - dps_val: collecting_dust
+            value: collecting_dust
+          - dps_val: self_clean
+            value: self_clean
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: Low
+          - dps_val: normal
+            value: Medium
+          - dps_val: strong
+            value: High
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+          - dps_val: exit
+            value: exit
+      - id: 28
+        type: bitfield
+        name: error
+        hidden: true
+      # Raw protocol DPs surfaced as attributes (opaque; reserved/diagnostic).
+      # path_data (14) is "reserved, not yet used" per the data model, so it is
+      # kept as a read attribute rather than a writable control.
+      - id: 14
+        type: base64
+        name: path_data
+        optional: true
+      - id: 32
+        type: base64
+        name: device_timer
+        optional: true
+      - id: 33
+        type: base64
+        name: disturb_time_set
+        optional: true
+      - id: 34
+        type: base64
+        name: device_info
+        optional: true
+      - id: 35
+        type: base64
+        name: voice_data
+        optional: true
+      # Unseen message notifications (bitmap, 30 slots)
+      - id: 104
+        type: bitfield
+        name: msg_unseen
+        optional: true
+  - entity: switch
+    name: Charge
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+        optional: true
+
+  # DP15 can be used with base64 commands.
+  # Useful for reverse engineered commands of specific features.
+  # e.g. clean a specific room
+  - entity: text
+    name: Command
+    icon: "mdi:console-line"
+    category: config
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true
+  - entity: select
+    name: Fetch request
+    icon: "mdi:message-question"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: get_map
+            value: Map
+          - dps_val: get_path
+            value: Path
+          - dps_val: get_both
+            value: Both
+  - entity: sensor
+    name: Cleaning time
+    icon: "mdi:progress-clock"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Edge brush lifetime
+    icon: "mdi:broom"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rolling brush lifetime
+    icon: "mdi:broom"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    translation_key: filter_life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rag lifetime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: h
+        optional: true
+  - entity: sensor
+    name: Total cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Total cleaning times
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Total cleaning time
+    icon: "mdi:history"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset rag life
+    class: restart
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: select
+    translation_key: cleaning_mode
+    category: config
+    dps:
+      - id: 41
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: only_sweep
+            value: sweep
+          - dps_val: only_mop
+            value: mop
+          - dps_val: both_work
+            value: sweep_and_mop
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Custom room
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+        optional: true
+  - entity: light
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+          - dps_val: czech
+            value: czech
+          - dps_val: german
+            value: german
+          - dps_val: hungarian
+            value: hungarian
+          - dps_val: slovak
+            value: slovak
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+      # Bit labels taken from the device data model
+      - id: 28
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: edge_brush
+          - dps_val: 2
+            value: main_brush
+          - dps_val: 4
+            value: left_wheel
+          - dps_val: 8
+            value: right_wheel
+          - dps_val: 16
+            value: dust_box
+          - dps_val: 32
+            value: land_check
+          - dps_val: 64
+            value: collision
+          - dps_val: 128
+            value: dust_box2
+          - dps_val: 256
+            value: lidar_sensor
+          - dps_val: 512
+            value: wheel_dangle
+          - dps_val: 1024
+            value: sidewall_sensor
+          - dps_val: 2048
+            value: robot_tilt
+          - dps_val: 4096
+            value: blower
+          - dps_val: 8192
+            value: internal
+          - dps_val: 16384
+            value: forbidden_area
+          - dps_val: 32768
+            value: battery
+          - dps_val: 65536
+            value: stuck_in
+          - dps_val: 131072
+            value: water_tank
