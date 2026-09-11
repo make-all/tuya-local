@@ -2,8 +2,10 @@ name: Circuit breaker
 products:
   - id: f1q6h4xhddjnopxu
     manufacturer: Tongou
-    model: 40A Wi-Fi Smart Reclosing RCBO
-    model_id: TOSMR1-40JWT
+    model: TOSMR1-40JWT
+  - id: lwwp2co94r3fbbxw
+    manufacturer: Tongou
+    model: TOSMR1A-40JWTR
 entities:
   - entity: sensor
     class: energy
@@ -65,6 +67,7 @@ entities:
     dps:
       - id: 15
         type: integer
+        optional: true
         name: sensor
         unit: mA
         class: measurement
