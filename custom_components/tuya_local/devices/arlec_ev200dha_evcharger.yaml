@@ -9,7 +9,7 @@ entities:
     icon: "mdi:ev-station"
     class: enum
     dps:
-      - id: 3  # work_state
+      - id: 3 # work_state
         type: string
         name: sensor
         mapping:
@@ -29,13 +29,16 @@ entities:
             value: charged
           - dps_val: charger_fault
             value: fault
-      - id: 23  # system_version
+      - id: 22 # meter_id
+        type: string
+        name: meter_id
+      - id: 23 # system_version
         type: string
         name: system_version
   - entity: sensor
     class: energy
     dps:
-      - id: 1  # forward_energy_total
+      - id: 1 # forward_energy_total
         type: integer
         optional: true
         name: sensor
@@ -44,12 +47,12 @@ entities:
         mapping:
           - scale: 100
   - entity: number
-    name: Max current
+    name: Charging current
     category: config
     class: current
     icon: "mdi:ev-plug-type2"
     dps:
-      - id: 4  # charge_cur_set
+      - id: 4 # charge_cur_set
         type: integer
         name: value
         unit: A
@@ -57,10 +60,12 @@ entities:
           min: 6
           max: 32
   - entity: sensor
-    name: L1 voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L1
     class: voltage
     dps:
-      - id: 6  # phase_a
+      - id: 6 # phase_a
         type: base64
         name: sensor
         class: measurement
@@ -70,10 +75,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: L1 current
+    translation_key: current_x
+    translation_placeholders:
+      x: L1
     class: current
     dps:
-      - id: 6  # phase_a
+      - id: 6 # phase_a
         type: base64
         name: sensor
         optional: true
@@ -83,10 +90,12 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L1 power
+    translation_key: power_x
+    translation_placeholders:
+      x: L1
     class: power
     dps:
-      - id: 6  # phase_a
+      - id: 6 # phase_a
         type: base64
         name: sensor
         optional: true
@@ -96,10 +105,12 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L2 voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L2
     class: voltage
     dps:
-      - id: 7  # phase_b
+      - id: 7 # phase_b
         type: base64
         name: sensor
         optional: true
@@ -109,10 +120,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: L2 current
+    translation_key: current_x
+    translation_placeholders:
+      x: L2
     class: current
     dps:
-      - id: 7  # phase_b
+      - id: 7 # phase_b
         type: base64
         name: sensor
         optional: true
@@ -122,10 +135,12 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L2 power
+    translation_key: power_x
+    translation_placeholders:
+      x: L2
     class: power
     dps:
-      - id: 7  # phase_b
+      - id: 7 # phase_b
         type: base64
         name: sensor
         optional: true
@@ -135,10 +150,12 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L3 voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L3
     class: voltage
     dps:
-      - id: 8  # phase_c
+      - id: 8 # phase_c
         type: base64
         name: sensor
         optional: true
@@ -148,10 +165,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: L3 current
+    translation_key: current_x
+    translation_placeholders:
+      x: L3
     class: current
     dps:
-      - id: 8  # phase_c
+      - id: 8 # phase_c
         type: base64
         name: sensor
         optional: true
@@ -161,10 +180,12 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L3 power
+    translation_key: power_x
+    translation_placeholders:
+      x: L3
     class: power
     dps:
-      - id: 8  # phase_c
+      - id: 8 # phase_c
         type: base64
         name: sensor
         optional: true
@@ -176,38 +197,35 @@ entities:
   - entity: sensor
     class: power
     dps:
-      - id: 9  # power_total
+      - id: 9 # power_total
         type: integer
         name: sensor
         unit: kW
         class: measurement
         mapping:
           - scale: 1000
-  - entity: sensor
-    name: Single phase power
-    class: power
-    category: diagnostic
-    dps:
-      - id: 5  # sigle_phase_power (sic - typo in Tuya's own dp code)
+      - id: 5 # sigle_phase_power (sic - typo in Tuya's own dp code).
+        # Duplicates power_total whenever charging single-phase (and reads
+        # 0 otherwise), so exposed as an attribute here instead of a
+        # separate entity.
         type: integer
-        name: sensor
         optional: true
+        name: single_phase_power
         unit: kW
-        class: measurement
         mapping:
           - scale: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
-      - id: 10  # fault
+      - id: 10 # fault
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
-      - id: 10  # fault
+      - id: 10 # fault
         type: bitfield
         name: fault_code
   - entity: sensor
@@ -216,7 +234,7 @@ entities:
     class: enum
     translation_key: status
     dps:
-      - id: 13  # connection_state
+      - id: 13 # connection_state
         type: string
         name: sensor
         mapping:
@@ -238,7 +256,7 @@ entities:
     translation_key: charging_mode
     category: config
     dps:
-      - id: 14  # work_mode
+      - id: 14 # work_mode
         type: string
         optional: true
         name: option
@@ -256,13 +274,13 @@ entities:
   - entity: switch
     icon: "mdi:ev-station"
     dps:
-      - id: 18  # switch
+      - id: 18 # switch
         type: boolean
         name: switch
   - entity: sensor
     class: temperature
     dps:
-      - id: 24  # temp_current
+      - id: 24 # temp_current
         type: integer
         name: sensor
         unit: C
@@ -271,25 +289,17 @@ entities:
     name: Session energy
     class: energy
     dps:
-      - id: 25  # charge_energy_once
+      - id: 25 # charge_energy_once
         type: integer
         optional: true
         name: sensor
         unit: Wh
-  - entity: sensor
-    name: Meter ID
-    category: diagnostic
-    dps:
-      - id: 22  # meter_id
-        type: string
-        optional: true
-        name: sensor
   - entity: switch
     name: Dynamic load management
     category: config
     icon: "mdi:transmission-tower"
     dps:
-      - id: 101  # dlm_switch
+      - id: 101 # dlm_switch
         type: boolean
         optional: true
         name: switch
@@ -299,7 +309,7 @@ entities:
     class: current
     icon: "mdi:home-lightning-bolt"
     dps:
-      - id: 102  # home_max_current
+      - id: 102 # home_max_current
         type: integer
         optional: true
         name: value
@@ -312,8 +322,8 @@ entities:
     category: diagnostic
     icon: "mdi:solar-power"
     dps:
-      - id: 103  # solar_mode - enum, but full option set is unconfirmed, so
-                 # exposed read-only rather than guessing at a select mapping
+      - id: 103 # solar_mode - enum, but full option set is unconfirmed, so
+        # exposed read-only rather than guessing at a select mapping
         type: string
         optional: true
         name: sensor
@@ -323,7 +333,7 @@ entities:
     class: current
     icon: "mdi:solar-power"
     dps:
-      - id: 104  # solar_current_from_grid
+      - id: 104 # solar_current_from_grid
         type: integer
         optional: true
         name: value
@@ -337,7 +347,7 @@ entities:
     class: duration
     icon: "mdi:timer-sand"
     dps:
-      - id: 105  # solar_stable_time
+      - id: 105 # solar_stable_time
         type: integer
         optional: true
         name: value
