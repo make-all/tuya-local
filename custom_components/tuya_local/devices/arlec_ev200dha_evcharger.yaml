@@ -1,0 +1,362 @@
+name: EV charger
+products:
+  - id: svufayckw5hozqbz
+    manufacturer: Arlec / Deta
+    model: EV200D-HA
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3 # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 22 # meter_id
+        type: string
+        name: meter_id
+      - id: 23 # system_version
+        type: string
+        name: system_version
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1  # forward_energy_total
+        type: integer
+        optional: true
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Charging current
+    category: config
+    class: current
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 4  # charge_cur_set
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 32
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L1
+    class: voltage
+    dps:
+      - id: 6  # phase_a
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: L1
+    class: current
+    dps:
+      - id: 6  # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        class: measurement
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: L1
+    class: power
+    dps:
+      - id: 6  # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        class: measurement
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L2
+    class: voltage
+    dps:
+      - id: 7  # phase_b
+        type: base64
+        name: sensor
+        optional: true
+        class: measurement
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: L2
+    class: current
+    dps:
+      - id: 7  # phase_b
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: L2
+    class: power
+    dps:
+      - id: 7  # phase_b
+        type: base64
+        name: sensor
+        optional: true
+        class: measurement
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L3
+    class: voltage
+    dps:
+      - id: 8  # phase_c
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: L3
+    class: current
+    dps:
+      - id: 8  # phase_c
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: L3
+    class: power
+    dps:
+      - id: 8  # phase_c
+        type: base64
+        name: sensor
+        optional: true
+        class: measurement
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    dps:
+      - id: 9  # power_total
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 5  # sigle_phase_power (sic - typo in Tuya's own dp code).
+        # Duplicates power_total whenever charging single-phase (and reads
+        # 0 otherwise), so exposed as an attribute here instead of a
+        # separate entity.
+        type: integer
+        optional: true
+        name: single_phase_power
+        unit: kW
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10  # fault
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10  # fault
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Connection
+    icon: "mdi:ev-plug-type2"
+    class: enum
+    translation_key: status
+    dps:
+      - id: 13  # connection_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: standby
+          - dps_val: controlpi_12v_pwm
+            value: Communication initialising
+          - dps_val: controlpi_9v
+            value: Vehicle detected
+          - dps_val: controlpi_9v_pwm
+            value: Vehicle connected
+          - dps_val: controlpi_6v
+            value: Ready to charge
+          - dps_val: controlpi_6v_pwm
+            value: charging
+          - dps_val: controlpi_error
+            value: fault
+  - entity: select
+    translation_key: charging_mode
+    category: config
+    dps:
+      - id: 14  # work_mode
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+          - dps_val: charge_energy
+            value: fixed_charge
+          - dps_val: charge_schedule
+            value: scheduled_charge
+          - dps_val: charge_delay
+            value: delayed_charge
+          - dps_val: charge_pct
+            value: charge_to_percent
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18  # switch
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 24  # temp_current
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Session energy
+    class: energy
+    dps:
+      - id: 25  # charge_energy_once
+        type: integer
+        optional: true
+        name: sensor
+        unit: Wh
+  - entity: switch
+    name: Dynamic load management
+    category: config
+    icon: "mdi:transmission-tower"
+    dps:
+      - id: 101  # dlm_switch
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Home max current
+    category: config
+    class: current
+    icon: "mdi:home-lightning-bolt"
+    dps:
+      - id: 102  # home_max_current
+        type: integer
+        optional: true
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 600
+  - entity: select
+    name: Solar mode
+    category: config
+    icon: "mdi:solar-power"
+    dps:
+      - id: 103  # solar_mode - full range confirmed via Tuya Query Things
+        # Data Model API: {"type":"enum","range":["Disable","ECO"]}
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Disable
+            value: disable
+          - dps_val: ECO
+            value: eco
+  - entity: number
+    name: Solar current from grid
+    category: config
+    class: current
+    icon: "mdi:solar-power"
+    dps:
+      - id: 104  # solar_current_from_grid
+        type: integer
+        optional: true
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 32
+  - entity: number
+    name: Solar stable time
+    category: config
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 105  # solar_stable_time
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 3600
