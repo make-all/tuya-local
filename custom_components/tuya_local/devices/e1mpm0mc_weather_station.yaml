@@ -1,0 +1,126 @@
+name: Nedis WIFIWEST500WT Weather station
+products:
+  - id: d3cxdxqogwqvlwax
+    manufacturer: Nedis
+    model: WIFIWEST500WT
+
+entities:
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Outdoor humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Pressure
+    class: atmospheric_pressure
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "hPa"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Wind speed (avg)
+    class: wind_speed
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "km/h"
+
+  - entity: sensor
+    name: Wind gust
+    class: wind_speed
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "km/h"
+
+  - entity: sensor
+    name: Wind direction
+    icon: "mdi:compass"
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Rain last hour
+    class: precipitation
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "mm"
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Rain today
+    class: precipitation
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "mm"
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Comfort
+    icon: "mdi:human-male"
+    dps:
+      - id: 126
+        type: string
+        name: sensor
