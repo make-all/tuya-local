@@ -1,0 +1,251 @@
+name: W'eau Hybrid Spa Heat Pump
+products:
+  - id: jfkhwagcv1zjcnjm
+    manufacturer: W'eau
+    model: Hybrid Spa Heat Pump 5.2kW
+
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    icon: mdi:heat-pump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat
+                value: heat
+              - dps_val: h_powerful
+                value: heat
+                hidden: true
+              - dps_val: h_silent
+                value: heat
+                hidden: true
+              - dps_val: cool
+                value: cool
+              - dps_val: c_powerful
+                value: cool
+                hidden: true
+              - dps_val: c_silent
+                value: cool
+                hidden: true
+              - dps_val: auto
+                value: auto
+
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 45
+
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat
+            value: smart_heat
+          - dps_val: h_powerful
+            value: quick_heat
+          - dps_val: h_silent
+            value: quiet_heat
+          - dps_val: cool
+            value: smart_cool
+          - dps_val: c_powerful
+            value: quick_cool
+          - dps_val: c_silent
+            value: quiet_cool
+          - dps_val: auto
+            value: auto
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+      - id: 21
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - value: fault
+
+  - entity: sensor
+    name: Water inlet temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: Water outlet temperature
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: Heating coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: Cooling coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: EEV steps
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        optional: true
+        unit: step
+
+  - entity: sensor
+    name: Reserved steps
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        optional: true
+        unit: step
+
+  - entity: sensor
+    name: Compressor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+
+  - entity: sensor
+    name: Heat sink temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+
+  - entity: sensor
+    name: DC bus voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        optional: true
+        unit: Hz
+
+  - entity: sensor
+    name: DC fan speed
+    category: diagnostic
+    icon: mdi:fan
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        optional: true
+        unit: rpm
+
+  - entity: sensor
+    name: PCB version
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        optional: true
