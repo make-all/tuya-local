@@ -961,4 +961,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mcdax](https://github.com/mcdax) for contributing support for Ledvance floodlight camera and PTZ camera.
 - [k----n](https://github.com/k----n) for contributing support for Geeni WP005 pet treat camera.
 - [kbinish-ship-it](https://github.com/kbinish-ship-it) for contributing support for Arlec/Deta EV200D-HA EV charger.
-- [placekmilan](https://github.com/placekmilan) for contributing support for Siguro TurboVac Navigator vacuum.
+- [placekmilan](https://github.com/placekmilan) for contributing support for Siguro TurboVac Navigator vacuum ETA 2625 Sole Smart heater.
