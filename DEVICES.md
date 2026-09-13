@@ -414,6 +414,7 @@
 - Globe ceiling fans with RGBCW lights (with and without presets)
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
+- Hinkley Chisel 52" ceiling fan
 - Hiper T3 bladeless fan
 - Hoenofly Smart Amari ceiling fan with light
 - Hoenofly Smart Wood low profile ceiling fan with lights
