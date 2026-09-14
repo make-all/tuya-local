@@ -77,6 +77,12 @@ entities:
       - id: 107
         name: has_boost
         type: boolean
+        hidden: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic
