@@ -1424,6 +1424,7 @@ port and password.
 - Pinjia PJ3101A presence sensor
 - PlantsIO Ivy and Ivy Gen2 smart planters
 - PNI Sofe House Smart Gas 300 alarm
+- Poolex Neolyser salt chlorinator
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
