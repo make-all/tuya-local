@@ -1,0 +1,315 @@
+name: Bewaesserungscomputer (4 Zonen)
+products:
+  - id: TODO_PRODUCT_ID
+    manufacturer: Shrivee
+    model: Bewaesserung Nebenanschluss (4 Ventile)
+entities:
+  - entity: valve
+    name: Ventil 1
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+
+  - entity: valve
+    name: Ventil 2
+    class: water
+    dps:
+      - id: 2
+        type: boolean
+        name: valve
+
+  - entity: valve
+    name: Ventil 3
+    class: water
+    dps:
+      - id: 3
+        type: boolean
+        name: valve
+
+  - entity: valve
+    name: Ventil 4
+    class: water
+    dps:
+      - id: 4
+        type: boolean
+        name: valve
+
+  - entity: number
+    name: Timer Ventil 1
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+
+  - entity: number
+    name: Timer Ventil 2
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+
+  - entity: number
+    name: Timer Ventil 3
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+
+  - entity: number
+    name: Timer Ventil 4
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+
+  - entity: sensor
+    name: Wetterverzoegerung verbleibend
+    category: diagnostic
+    icon: "mdi:weather-cloudy-clock"
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: h
+
+  - entity: switch
+    name: Intelligente Wetterverzoegerung
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 43
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Wetter
+    class: enum
+    icon: "mdi:weather-partly-cloudy"
+    category: diagnostic
+    dps:
+      - id: 44
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: sunny
+            value: "Sonnig"
+            icon: "mdi:weather-sunny"
+          - dps_val: cloudy
+            value: "Bewoelkt"
+            icon: "mdi:weather-cloudy"
+          - dps_val: rainy
+            value: "Regnerisch"
+            icon: "mdi:weather-rainy"
+          - dps_val: snowy
+            value: "Schnee"
+            icon: "mdi:weather-snowy"
+          - dps_val: null
+            icon: "mdi:weather-sunny-off"
+            hidden: true
+
+  - entity: select
+    name: Wetterverzoegerung
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 45
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Aus"
+          - dps_val: "1"
+            value: "1 Tag"
+          - dps_val: "2"
+            value: "2 Tage"
+          - dps_val: "3"
+            value: "3 Tage"
+          - dps_val: "4"
+            value: "4 Tage"
+          - dps_val: "5"
+            value: "5 Tage"
+          - dps_val: "6"
+            value: "6 Tage"
+          - dps_val: "7"
+            value: "7 Tage"
+
+  - entity: sensor
+    name: Batterie
+    class: battery
+    dps:
+      - id: 47
+        type: integer
+        name: sensor
+        unit: '%'
+        precision: 0
+        mapping:
+          - dps_val: 0
+            value: 0
+          - dps_val: 1
+            value: 20
+          - dps_val: 2
+            value: 40
+          - dps_val: 3
+            value: 60
+          - dps_val: 4
+            value: 80
+          - dps_val: 5
+            value: 100
+
+  - entity: sensor
+    name: Signalstaerke
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: dBm
+
+  - entity: sensor
+    name: Ventil 1 Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 119
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: "Leerlauf"
+          - dps_val: manual
+            value: "Manuell"
+          - dps_val: spray
+            value: "Bewaessert"
+          - dps_val: timing
+            value: "Geplant"
+
+  - entity: sensor
+    name: Ventil 2 Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: "Leerlauf"
+          - dps_val: manual
+            value: "Manuell"
+          - dps_val: spray
+            value: "Bewaessert"
+          - dps_val: timing
+            value: "Geplant"
+
+  - entity: sensor
+    name: Ventil 3 Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 121
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: "Leerlauf"
+          - dps_val: manual
+            value: "Manuell"
+          - dps_val: spray
+            value: "Bewaessert"
+          - dps_val: timing
+            value: "Geplant"
+
+  - entity: sensor
+    name: Ventil 4 Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 122
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: "Leerlauf"
+          - dps_val: manual
+            value: "Manuell"
+          - dps_val: spray
+            value: "Bewaessert"
+          - dps_val: timing
+            value: "Geplant"
+
+  - entity: sensor
+    name: Ventil 1 letzte Laufzeit
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    name: Ventil 2 letzte Laufzeit
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    name: Ventil 3 letzte Laufzeit
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    name: Ventil 4 letzte Laufzeit
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    name: Firmware-Update-Status
+    icon: "mdi:update"
+    category: diagnostic
+    dps:
+      - id: 123
+        type: string
+        name: sensor
