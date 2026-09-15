@@ -24,7 +24,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000000000000000000000000000000000000000000000000000000000000001
+          010000000000000000000000000000000000000000000000000000000000
         name: sensor
   - entity: binary_sensor
     class: battery
@@ -38,15 +38,15 @@ entities:
           - dps_val: null
             constraint: battery_state
             conditions:
-              - dps_val: 2
+              - dps_val: low
                 value: true
-              - dps_val: [0, 1, 3]
+              - dps_val: [normal, full, charging]
                 value: false
       - id: 102
         type: base64
         optional: true
         mask: >-
-          0000000000000000000000000000000000000000000000000000000000000700
+          000700000000000000000000000000000000000000000000000000000000
         name: battery_state
         mapping:
           - dps_val: 0
@@ -67,7 +67,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000000000000000000000000000000000000000000000000000000000000700
+          000700000000000000000000000000000000000000000000000000000000
         name: sensor
         mapping:
           - dps_val: 3
@@ -81,7 +81,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000000000000000000000000000000000000000000000000000000000FF0000
+          0000FF000000000000000000000000000000000000000000000000000000
         name: sensor
         unit: "%"
         class: measurement
@@ -94,7 +94,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000000000000000000000000000000000000000000000000000000001000000
+          000000010000000000000000000000000000000000000000000000000000
         name: sensor
   - entity: sensor
     name: Total compartments
@@ -105,7 +105,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          000000000000000000000000000000000000000000000000000000FF00000000
+          00000000FF00000000000000000000000000000000000000000000000000
         name: sensor
   - entity: sensor
     name: Loaded compartments
@@ -116,7 +116,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000000000000000000000000000000000000000000000000000FF0000000000
+          0000000000FF000000000000000000000000000000000000000000000000
         name: sensor
         class: measurement
   - entity: sensor
@@ -128,7 +128,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          00000000000000000000000000000000000000000000000000FF000000000000
+          000000000000FF0000000000000000000000000000000000000000000000
         name: sensor
         class: measurement
   - entity: sensor
@@ -140,7 +140,7 @@ entities:
         type: base64
         optional: true
         mask: >-
-          000000000000000000000000000000000000000000000000FF00000000000000
+          00000000000000FF00000000000000000000000000000000000000000000
         name: sensor
         class: measurement
   - entity: event
@@ -785,3 +785,246 @@ entities:
           - dps_val: 2
             value: false
           - value: null
+  - entity: sensor
+    name: Alarm 1 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000000000000FF0000000000000000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 2 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000000000000000FF00000000000000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 3 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "0000000000000000000000000000000000000000000000FF000000000000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 4 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000000000000000000FF0000000000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 5 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000000000000000000000FF00000000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 6 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "0000000000000000000000000000000000000000000000000000FF000000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 7 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000000000000000000000000FF0000"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 8 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000000000000000000000000000FF00"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
+  - entity: sensor
+    name: Alarm 9 status
+    class: enum
+    icon: "mdi:alarm"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: "0000000000000000000000000000000000000000000000000000000000FF"
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: none
+          - dps_val: 1
+            value: waiting
+          - dps_val: 2
+            value: overdue
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken_on_time
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_after_missing
