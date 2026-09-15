@@ -3,6 +3,9 @@ products:
   - id: kcy0x4pi
     manufacturer: Dongguan Lianyou
     model: LY1678-2
+  - id: stp9bwdi1zmd5mkr
+    manufacturer: RSH Tech
+    model: MC20-WiFi
 entities:
   - entity: cover
     class: curtain
@@ -31,6 +34,14 @@ entities:
       - id: 7
         name: learning_state
         type: string
+      - id: 4
+        type: string
+        optional: true
+        name: unknown_4
+      - id: 108
+        type: base64
+        optional: true
+        name: unknown_108
   - entity: select
     category: config
     name: Closed position
