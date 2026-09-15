@@ -1138,7 +1138,8 @@ of device.
 ### Locks
 
 Note: Locks that are battery powered and do not use a hub are unlikely to
-work reliably, even if listed below.
+work reliably, even if listed below. Inclusion in this list is not a
+recommendation, some of these locks are INSECURE, use at your own risk.
 
 - BSTUOKEY access control keypad
 - Hornbill Y4 Smart lock
@@ -1149,6 +1150,7 @@ work reliably, even if listed below.
 - Sboard III mini Weigand access control interface
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
+- Wafu WF012 door lock
 
 ### Sirens
 
