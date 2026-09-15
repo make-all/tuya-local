@@ -624,6 +624,7 @@
 - Eberg HUMI H03G1 humidifier
 - Eta Noble humidifier
 - Flymoon Top Fill 5L Cool Mist humidifier
+- Haoqi HQ 001 humidifier
 - Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea and Humea Grande humidifiers
