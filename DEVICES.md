@@ -1072,7 +1072,7 @@ of device.
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
 - LoraTap QCSC420W double curtain switch
-- LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
+- LoraTap SC500W-V1, SC411WSC-EU curtain switches
 - LS830-TY curtain
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - M515 curtain motor
