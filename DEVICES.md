@@ -1143,6 +1143,7 @@ Note: Locks that are battery powered and do not use a hub are unlikely to
 work reliably, even if listed below. Inclusion in this list is not a
 recommendation, some of these locks are INSECURE, use at your own risk.
 
+- AFTO Smart EZ lock
 - BSTUOKEY access control keypad
 - Hornbill Y4 Smart lock
 - Lucking HF06 smart lock
