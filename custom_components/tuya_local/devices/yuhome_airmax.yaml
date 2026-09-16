@@ -1,8 +1,8 @@
-name: Yuhome Air Max Laundry Rack
-products:
-  - id: bf4c3d31c3e5ce3438llrc
-    manufacturer: YU HOME
-    model: Air Max
+name: Laundry rack
+# products:
+#   - id: UNKNOWN
+#     manufacturer: YU HOME
+#     model: Air Max
 entities:
   - entity: switch
     dps:
@@ -49,7 +49,6 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Disinfection
     translation_key: uv_sterilization
     dps:
       - id: 5
@@ -70,7 +69,8 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Disinfection timer set
+    name: Disinfection timer
+    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -78,9 +78,10 @@ entities:
         name: option
         mapping:
           - dps_val: 30min
-            value: 30min
+            value: 30m
   - entity: select
-    name: Hot dry timer set
+    name: Hot dry timer
+    translation_key: timer
     category: config
     dps:
       - id: 21
@@ -92,7 +93,8 @@ entities:
           - dps_val: 6h
             value: 6h
   - entity: select
-    name: Wind dry timer set
+    name: Wind dry timer
+    translation_key: timer
     category: config
     dps:
       - id: 20
@@ -131,7 +133,6 @@ entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -139,10 +140,12 @@ entities:
         type: bitfield
         name: sensor
         mapping:
-          - mask: 1
-            name: fault1
-          - mask: 2
-            name: fault2
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Voice command
     category: config
