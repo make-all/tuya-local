@@ -7,6 +7,9 @@ products:
   - id: 8ouns2qnxozm1qqp
     manufacturer: Clean Air Optima
     model: CA-707 Smart 2023 V2
+  - id: g1xw9ns5vqu943uj
+    manufacturer: Breville
+    model: LAD708
 entities:
   #
   # Main
@@ -242,6 +245,41 @@ entities:
         name: lock
       - id: 7
         type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Filter
+    class: problem
+    hidden: unavailable
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: sensor
+      - id: 106
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    translation_key: filter_life
+    class: duration
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: h
+      - id: 107
+        type: integer
         optional: true
         name: available
         mapping:
