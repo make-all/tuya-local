@@ -28,14 +28,16 @@ entities:
         range:
           min: 0
           max: 100
+        mapping:
+          - invert: true
       - id: 9
         type: string
         name: action
         mapping:
           - dps_val: up
-            value: closing
-          - dps_val: down
             value: opening
+          - dps_val: down
+            value: closing
           - dps_val: stop
             value: idle
           - value: null
@@ -46,14 +48,26 @@ entities:
         name: switch
       - id: 102
         type: string
+        optional: true
+        name: dual_led_model
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 102
+        type: string
+        optional: true
         name: effect
         mapping:
           - dps_val: Warm_White
             value: Warm white
+            available: dual_led_model
           - dps_val: Cool_White
             value: Cool white
+            available: dual_led_model
           - dps_val: Dual_White
             value: Dual white
+            available: dual_led_model
   - entity: switch
     translation_key: uv_sterilization
     dps:
@@ -86,9 +100,11 @@ entities:
     name: Disinfection timer
     translation_key: timer
     category: config
+    hidden: unavailable
     dps:
       - id: 10
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: cancel
@@ -117,13 +133,23 @@ entities:
             value: "11h"
           - dps_val: "12h"
             value: "12h"
+      - id: 10
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     name: Hot dry timer
     translation_key: timer
     category: config
+    hidden: unavailable
     dps:
       - id: 11
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: cancel
@@ -152,13 +178,23 @@ entities:
             value: "11h"
           - dps_val: "12h"
             value: "12h"
+      - id: 11
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     name: Wind dry timer
     translation_key: timer
     category: config
+    hidden: unavailable
     dps:
       - id: 13
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: cancel
@@ -187,36 +223,71 @@ entities:
             value: "11h"
           - dps_val: "12h"
             value: "12h"
+      - id: 13
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Hot dry remaining
     class: duration
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 15
         type: integer
         optional: true
         name: sensor
         unit: min
+      - id: 15
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Wind dry remaining
     class: duration
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 16
         type: integer
         optional: true
         name: sensor
         unit: min
+      - id: 16
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Disinfection remaining
     class: duration
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 17
         type: integer
         optional: true
         name: sensor
         unit: min
+      - id: 17
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -231,3 +302,120 @@ entities:
       - id: 18
         type: bitfield
         name: fault_code
+  - entity: select
+    name: Disinfection time
+    translation_key: timer
+    category: config
+    hidden: true
+    dps:
+      - id: 19
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 30min
+            value: 30m
+  - entity: select
+    name: Hot dry time
+    translation_key: timer
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 21
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 6h
+            value: 6h
+      - id: 21
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Wind dry time
+    translation_key: timer
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 20
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 6h
+            value: 6h
+      - id: 20
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+
+  - entity: sensor
+    name: Hot dry end
+    class: duration
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 25
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+      - id: 25
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Wind dry end
+    class: duration
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 24
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+      - id: 24
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Disinfection end
+    class: duration
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 23
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+      - id: 23
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
