@@ -163,7 +163,7 @@ def _async_device_as_dict(
         }
 
         hass_entities = er.async_entries_for_device(
-            entity_registry,
+            er.async_get(hass),
             device_id=device_entry.id,
             include_disabled_entities=True,
         )
