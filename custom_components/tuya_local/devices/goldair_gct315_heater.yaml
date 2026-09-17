@@ -1,0 +1,80 @@
+name: Heater
+products:
+  - id: 8eapmvhb79pcxx7x
+    manufacturer: Goldair
+    model: GCT315/GCT425
+    name: 2000W ceramic tower heater
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 45
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        # dp 4 selects whether the heat level on dp 5 is chosen by the user or
+        # by the appliance. Auto is therefore not a value of dp 5, and setting
+        # it must write dp 4 alone - sending a level in the same message drops
+        # the appliance straight back to normal.
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: normal
+            constraint: heat_level
+            conditions:
+              - dps_val: level_0
+                value: fan_only
+              - dps_val: level_1
+                value: low
+              - dps_val: level_2
+                value: high
+      - id: 5
+        type: string
+        name: heat_level
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: horizontal
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
