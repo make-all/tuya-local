@@ -8,7 +8,6 @@ from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
 from tinytuya import __version__ as tinytuya_version
@@ -32,17 +31,17 @@ async def async_get_config_entry_diagnostics(
 
 
 async def async_get_device_diagnostics(
-    hass: HomeAssistant, entry: ConfigEntry, device: DeviceEntry
+    hass: HomeAssistant, entry: ConfigEntry, device_entry: DeviceEntry
 ) -> dict[str, Any]:
     """Return diagnostics for a device entry."""
-    return _async_get_diagnostics(hass, entry, device)
+    return _async_get_diagnostics(hass, entry, device_entry)
 
 
 @callback
 def _async_get_diagnostics(
     hass: HomeAssistant,
     entry: ConfigEntry,
-    device: DeviceEntry | None = None,
+    device_entry: DeviceEntry | None = None,
 ) -> dict[str, Any]:
     """Return diagnostics for a tuya-local config entry."""
     hass_data = hass.data[DOMAIN][get_device_id(entry.data)]
@@ -63,9 +62,8 @@ def _async_get_diagnostics(
 
     # The DeviceEntry also has interesting looking data, but this
     # integration does not publish anything to it other than some hardcoded
-    # values that don't change between devices. Instead get the live data
-    # from the running hass.
-    data |= _async_device_as_dict(hass, hass_data["device"])
+    # values that don't change between devices. Augment it with runtime info
+    data |= _async_device_as_dict(hass, hass_data["device"], device_entry)
 
     return data
 
@@ -132,7 +130,9 @@ def redact_entity(
 
 @callback
 def _async_device_as_dict(
-    hass: HomeAssistant, device: TuyaLocalDevice
+    hass: HomeAssistant,
+    device: TuyaLocalDevice,
+    device_entry: DeviceEntry | None = None,
 ) -> dict[str, Any]:
     """Represent a Tuya Local device as a dictionary."""
 
@@ -153,23 +153,18 @@ def _async_device_as_dict(
         "force_dps": device._force_dps,
     }
 
-    device_registry = dr.async_get(hass)
-    entity_registry = er.async_get(hass)
-    hass_device = device_registry.async_get_device(
-        identifiers={(DOMAIN, device.unique_id)}
-    )
-    if hass_device:
+    if device_entry:
         data["home_assistant"] = {
-            "name": hass_device.name,
-            "name_by_user": hass_device.name_by_user,
-            "disabled": hass_device.disabled,
-            "disabled_by": hass_device.disabled_by,
+            "name": device_entry.name,
+            "name_by_user": device_entry.name_by_user,
+            "disabled": device_entry.disabled,
+            "disabled_by": device_entry.disabled_by,
             "entities": [],
         }
 
         hass_entities = er.async_entries_for_device(
             entity_registry,
-            device_id=hass_device.id,
+            device_id=device_entry.id,
             include_disabled_entities=True,
         )
         for entity_entry in hass_entities:
