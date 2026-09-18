@@ -1,0 +1,504 @@
+# Grillfuerst Smart Grill Independence 530 / 530E
+#
+# The 530 and 530E differ only in the grate material (cast iron vs stainless
+# steel); electronics, firmware and Tuya thing model are identical.
+#
+# All datapoints are vendor specific (101-132), the device does not use a
+# standard Tuya instruction set. DP ids and ranges were taken from the thing
+# model in the Tuya IoT platform (abilityId == dp id).
+#
+# The grill has five cooking modes, each with its own setpoint dp:
+#   D  direct grilling   dp 110, 200-360 C
+#   I  indirect grilling dp 111, 120-200 C
+#   L  low & slow        dp 112,  95-115 C
+#   S  step mode         dp 113, level 1-5 (not a temperature)
+#   M  manual grilling   no setpoint, burners are controlled by hand
+# The climate entity redirects the target temperature to the dp matching the
+# currently selected mode, and rejects it in the two modes that have none.
+#
+# Most dps are marked optional so the device still matches when it is powered
+# off and not reporting every value at the time it is added.
+
+name: Gas grill
+products:
+  - id: eo4tfylu1iue4ytt
+    manufacturer: Grillfürst
+    model: Independence 530
+
+entities:
+  # --- Main entity: cook chamber ------------------------------------------
+  - entity: climate
+    dps:
+      - id: 131
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+
+      - id: 101
+        type: integer
+        name: current_temperature
+        unit: C
+
+      - id: 114
+        type: integer
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: "D - Direct grilling"
+          - dps_val: 1
+            value: "S - Step mode"
+          - dps_val: 2
+            value: "M - Manual grilling"
+          - dps_val: 3
+            value: "L - Low & slow"
+          - dps_val: 4
+            value: "I - Indirect grilling"
+
+      # Target temperature. The dp used depends on the selected mode, so the
+      # default (mode D) is redirected to the mode specific dps below.
+      # Step mode and manual mode have no target temperature.
+      - id: 110
+        type: integer
+        name: temperature
+        unit: C
+        optional: true
+        range:
+          min: 200
+          max: 360
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: 4
+                value_redirect: temp_indirect
+                range:
+                  min: 120
+                  max: 200
+              - dps_val: 3
+                value_redirect: temp_low_slow
+                range:
+                  min: 95
+                  max: 115
+              - dps_val: 1
+                invalid: true
+              - dps_val: 2
+                invalid: true
+
+      - id: 111
+        type: integer
+        name: temp_indirect
+        hidden: true
+        optional: true
+
+      - id: 112
+        type: integer
+        name: temp_low_slow
+        hidden: true
+        optional: true
+
+  # --- Meat probes --------------------------------------------------------
+  - entity: sensor
+    class: temperature
+    name: Probe 1 temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        optional: true
+
+  - entity: sensor
+    class: temperature
+    name: Probe 2 temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        optional: true
+
+  - entity: sensor
+    class: temperature
+    name: Probe 3 temperature
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        optional: true
+
+  - entity: sensor
+    class: temperature
+    name: Probe 4 temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        optional: true
+
+  # Target core temperature per probe. The grill alerts when it is reached.
+  - entity: number
+    class: temperature
+    name: Probe 1 target
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 0
+          max: 200
+
+  - entity: number
+    class: temperature
+    name: Probe 2 target
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 0
+          max: 200
+
+  - entity: number
+    class: temperature
+    name: Probe 3 target
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 0
+          max: 200
+
+  - entity: number
+    class: temperature
+    name: Probe 4 target
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 0
+          max: 200
+
+  # --- Step mode level ----------------------------------------------------
+  # Step mode has no temperature setpoint, only a burner level, so it is not
+  # part of the climate entity.
+  - entity: number
+    name: Step mode level
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 5
+
+  # --- Mode setpoints -----------------------------------------------------
+  # Redundant with the climate entity's target temperature, but useful to read
+  # or preset a mode that is not currently active. Disabled by default.
+  - entity: number
+    class: temperature
+    category: config
+    name: Direct mode setpoint
+    hidden: true
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 200
+          max: 360
+
+  - entity: number
+    class: temperature
+    category: config
+    name: Indirect mode setpoint
+    hidden: true
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 120
+          max: 200
+
+  - entity: number
+    class: temperature
+    category: config
+    name: Low and slow setpoint
+    hidden: true
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 95
+          max: 115
+
+  # --- Built in gas bottle scale ------------------------------------------
+  # Net gas left in the bottle, calculated by the grill from the measured
+  # gross weight minus the configured tare weight.
+  - entity: sensor
+    class: weight
+    name: Gas remaining
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 10
+
+  # Gross weight actually on the scale (gas plus empty bottle).
+  - entity: sensor
+    class: weight
+    name: Cylinder weight
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 10
+
+  # Bar graph step 1-7 shown on the grill display.
+  - entity: sensor
+    category: diagnostic
+    name: Gas level
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+        optional: true
+
+  # Nominal gas fill of the bottle in use, needed for the level calculation.
+  - entity: number
+    class: weight
+    category: config
+    name: Cylinder gas capacity
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: kg
+        optional: true
+        range:
+          min: 30
+          max: 120
+        mapping:
+          - scale: 10
+            step: 5
+
+  # Empty weight of the bottle in use (tare).
+  - entity: number
+    class: weight
+    category: config
+    name: Cylinder tare weight
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: kg
+        optional: true
+        range:
+          min: 40
+          max: 150
+        mapping:
+          - scale: 10
+
+  # --- Kitchen timer ------------------------------------------------------
+  # Writable to set the duration, and counts down in whole minutes while
+  # running, so the same dp also reports the time remaining.
+  - entity: number
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 779
+
+  # The three timer keys of the grill panel. Dp value 3 is the idle state the
+  # device reports itself and is not sent by any button.
+  # Start doubles as resume after a pause; stop clears the timer to zero and
+  # ends it (labelled "stop" on the grill's own display).
+  - entity: button
+    name: Timer start
+    dps:
+      - id: 126
+        type: integer
+        name: button
+        optional: true
+        mapping:
+          - dps_val: 2
+            value: true
+
+  # Halts the countdown, the remaining time is kept. Resume with Timer start.
+  - entity: button
+    name: Timer pause
+    dps:
+      - id: 126
+        type: integer
+        name: button
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: true
+
+  - entity: button
+    name: Timer stop
+    dps:
+      - id: 126
+        type: integer
+        name: button
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: true
+
+  # Goes on when the timer expires. Cleared by the acknowledge button below,
+  # or from the grill panel.
+  - entity: binary_sensor
+    name: Timer expired
+    dps:
+      - id: 125
+        type: boolean
+        name: sensor
+        optional: true
+
+  - entity: button
+    name: Timer dismiss
+    dps:
+      - id: 125
+        type: boolean
+        name: button
+        optional: true
+        mapping:
+          - dps_val: false
+            value: true
+
+  # --- Lighting and sound -------------------------------------------------
+  - entity: switch
+    class: switch
+    name: Cook chamber
+    dps:
+      - id: 129
+        type: boolean
+        name: switch
+        optional: true
+
+  # Projects the brand logo onto the floor in front of the grill.
+  - entity: switch
+    class: switch
+    name: Logo projector
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: switch
+    category: config
+    name: Buzzer
+    dps:
+      - id: 130
+        type: boolean
+        name: switch
+        optional: true
+
+  # --- Illuminated control knob -------------------------------------------
+  - entity: select
+    category: config
+    name: Knob light mode
+    dps:
+      - id: 116
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: "Random"
+          - dps_val: 2
+            value: "Chamber temp"
+          - dps_val: 3
+            value: "Fixed"
+          - dps_val: 4
+            value: "Core temp"
+
+  - entity: select
+    category: config
+    name: Knob light colour
+    dps:
+      - id: 118
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: red
+            value: "Red"
+          - dps_val: orange
+            value: "Orange"
+          - dps_val: yellow
+            value: "Yellow"
+          - dps_val: yellow_green
+            value: "Yellow-green"
+          - dps_val: green
+            value: "Green"
+          - dps_val: light_green
+            value: "Cyan"
+          - dps_val: light_blue
+            value: "Light-blue"
+          - dps_val: deep_blue
+            value: "Deep-blue"
+          - dps_val: purple
+            value: "Purple"
+          - dps_val: pink
+            value: "Pink"
+
+  # --- Diagnostics --------------------------------------------------------
+  # Allows the MCU to push status updates. Should stay on; exposed for
+  # troubleshooting only.
+  - entity: switch
+    category: config
+    name: Allow device upload
+    hidden: true
+    dps:
+      - id: 132
+        type: boolean
+        name: switch
+        optional: true
