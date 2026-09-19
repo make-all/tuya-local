@@ -55,14 +55,26 @@ entities:
         class: measurement
 
   - entity: sensor
+    class: pm10
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: ugm2
+        class: measurement
+
+  - entity: sensor
     translation_key: filter_life
     category: diagnostic
-    class: duration
     dps:
-      - id: 105
+      - id: 104
         name: sensor
         type: integer
-        unit: h
+        unit: "%"
+      - id: 105
+        name: hours_used
+        type: integer
 
   # -------------------------------------------------------
   # Timer
