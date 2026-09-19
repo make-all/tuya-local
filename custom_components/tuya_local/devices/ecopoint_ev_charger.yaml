@@ -71,8 +71,6 @@ entities:
         range:
           min: 6
           max: 80
-        mapping:
-          - scale: 10
   - entity: sensor
     class: power
     category: diagnostic
@@ -318,6 +316,8 @@ entities:
         optional: true
         class: measurement
         unit: kWh
+        mapping:
+          - scale: 100
   - entity: switch
     icon: "mdi:ev-station"
     dps:
