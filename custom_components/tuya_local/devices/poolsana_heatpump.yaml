@@ -8,28 +8,28 @@ products:
     model: 9kW
     name: Lyfco 9kW Pool Heat Pump
 entities:
-  - entity: switch
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-
   - entity: climate
     translation_key: pool_heatpump
     dps:
       - id: 1
         type: boolean
-        name: available
-      - id: 2
-        type: string
         name: hvac_mode
         mapping:
-          - dps_val: Cooling
-            value: cool
-          - dps_val: Heating
-            value: heat
-          - dps_val: Auto
-            value: heat_cool
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Cooling
+                value: cool
+              - dps_val: Heating
+                value: heat
+              - dps_val: Auto
+                value: heat_cool
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
       - id: 4
         type: integer
         name: temperature
@@ -72,7 +72,6 @@ entities:
     dps:
       - id: 25
         type: integer
-        optional: true
         name: sensor
         unit: "°C"
         class: measurement
