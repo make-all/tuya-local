@@ -1373,6 +1373,7 @@ port and password.
 - Bresser Smart Thermo-hygrometer
 - BW salt pool chlorinator
 - BWT Energy Saver pool pump controller
+- CallToU Caregiver Pager call button
 - Chtoocy MC82 refrigerator thermometer
 - CO2-Box air quality monitor
 - CO2v1 carbon dioxide sensor
