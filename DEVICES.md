@@ -1439,6 +1439,7 @@ port and password.
 - QTFV3-3 air quality monitor
 - Raddy PT-3 and PT-5 pool thermometers
 - RainPoint TTV103FRF water timer
+- Rovynel 8-in-1 pool monitor
 - RQ400A gas alarm
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
