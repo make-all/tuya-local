@@ -798,6 +798,7 @@
 - Oscal PowerMax 2400 Pro and 6000 portable power stations
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
+- Smart EV Chargers 10A EV charger
 - SRNE SE Series lithium battery
 - Suntree SPG3 EV charger
 - Tary TA-AC380/22 EV charger
