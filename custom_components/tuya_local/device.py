@@ -5,7 +5,6 @@ API for Tuya Local devices.
 import asyncio
 import logging
 from asyncio.exceptions import CancelledError
-from threading import Lock
 from time import time
 
 import tinytuya
