@@ -24,7 +24,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          010000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000001
+        endianness: little
         name: sensor
   - entity: binary_sensor
     class: battery
@@ -46,7 +47,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          000700000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000700
+        endianness: little
         name: battery_state
         mapping:
           - dps_val: 0
@@ -67,7 +69,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          000700000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000700
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 3
@@ -81,7 +84,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000FF000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000FF0000
+        endianness: little
         name: sensor
         unit: "%"
         class: measurement
@@ -94,7 +98,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          000000010000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000001000000
+        endianness: little
         name: sensor
   - entity: sensor
     name: Total compartments
@@ -105,7 +110,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          00000000FF00000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000000000000FF00000000
+        endianness: little
         name: sensor
   - entity: sensor
     name: Loaded compartments
@@ -116,7 +122,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          0000000000FF000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000FF0000000000
+        endianness: little
         name: sensor
         class: measurement
   - entity: sensor
@@ -128,7 +135,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          000000000000FF0000000000000000000000000000000000000000000000
+          00000000000000000000000000000000000000000000000000FF000000000000
+        endianness: little
         name: sensor
         class: measurement
   - entity: sensor
@@ -140,7 +148,8 @@ entities:
         type: base64
         optional: true
         mask: >-
-          00000000000000FF00000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000000FF00000000000000
+        endianness: little
         name: sensor
         class: measurement
   - entity: event
@@ -793,7 +802,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "000000000000000000000000000000000000000000FF0000000000000000"
+        mask: "00000000000000000000FF000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -820,7 +830,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "00000000000000000000000000000000000000000000FF00000000000000"
+        mask: "000000000000000000FF00000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -847,7 +858,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "0000000000000000000000000000000000000000000000FF000000000000"
+        mask: "0000000000000000FF0000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -874,7 +886,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "000000000000000000000000000000000000000000000000FF0000000000"
+        mask: "00000000000000FF000000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -901,7 +914,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "00000000000000000000000000000000000000000000000000FF00000000"
+        mask: "000000000000FF00000000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -928,7 +942,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "0000000000000000000000000000000000000000000000000000FF000000"
+        mask: "0000000000FF0000000000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -955,7 +970,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "000000000000000000000000000000000000000000000000000000FF0000"
+        mask: "00000000FF000000000000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -982,7 +998,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "00000000000000000000000000000000000000000000000000000000FF00"
+        mask: "000000FF00000000000000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
@@ -1009,7 +1026,8 @@ entities:
       - id: 102
         type: base64
         optional: true
-        mask: "0000000000000000000000000000000000000000000000000000000000FF"
+        mask: "0000FF0000000000000000000000000000000000000000000000000000000000"
+        endianness: little
         name: sensor
         mapping:
           - dps_val: 0
