@@ -1414,6 +1414,7 @@ port and password.
 - Konlen/Rockson WF96L water level controller
 - Madimack InverChlor pool salt and mineral chlorinator
 - Madimack InverFlow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
+- Majestic 12/50 salt chlorinator
 - Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - ME201W level sensor
