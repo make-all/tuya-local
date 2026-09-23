@@ -496,9 +496,11 @@ can be used to specify the element that `conditions` applies to. `constraint` ca
 
 ### `conditions`
 
-*Optional, usually paired with `constraint.`*
+*Optional, usually paired with `constraint`.*
 
 Conditions defines a list of rules that are applied based on the `constraint` attribute. The contents are the same as Mapping Rules, but `dps_val` applies to the attribute specified by `constraint`, and also can be a list of values to match as well rather than a single value. All others act on the current attribute as they would in the mapping. Although conditions are specified within a mapping, they can also contain a `mapping` of their own to override that mapping. These nested mappings are limited to simple `dps_val` to `value` substitutions, as more complex rules would quickly become too complex to manage.
+
+Note that when dealing with `hex` and `base64` constraints, the resolved HA value is compared with the `dps_val` in the condition, as it is usually desirable to apply masks etc on binary packed values. For other types, the raw dps value received from the device is compared.
 
 When setting a dp which has conditions attached, the behaviour is slightly different depending on whether the constraint dp is readonly or not.
 
