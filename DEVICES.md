@@ -995,8 +995,8 @@ of device.
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
 - LSC Smart Connect CCT+RGB, RGB/IC+CCT/IC, Neon, Party led strips
-- LSC Smart Connect garden spotlights
-- LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
+- LSC Smart Connect garden spotlights and floor lamp
+- LSC Smart Connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lumary D1 6 inch retrofit downlight (independent RGB ring and CCT centre)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
