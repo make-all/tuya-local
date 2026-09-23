@@ -36,7 +36,7 @@ PRODUCT_SCHEMA = vol.Schema(
 )
 CONDMAP_SCHEMA = vol.Schema(
     {
-        vol.Optional("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
+        vol.Optional("dps_val"): vol.Maybe(vol.Any(str, int, bool, list, float)),
         vol.Optional("value"): vol.Maybe(vol.Any(str, int, bool, float)),
         vol.Optional("value_redirect"): str,
         vol.Optional("value_mirror"): str,
