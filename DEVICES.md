@@ -1468,6 +1468,7 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
+- Troxlly TP chlorine generator
 - TS100 water quality controller
 - TX-E gas sensor/alarm
 - Vevor YT60307 weather station
