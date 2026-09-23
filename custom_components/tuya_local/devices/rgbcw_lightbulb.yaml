@@ -65,6 +65,9 @@ products:
     manufacturer: Niceboy
     model: ION SmartBulb RGB E27
     model_id: E157
+  - id: iiwnhv4jk3u3tfcv
+    manufacturer: Neuro-sama
+    model: Lava lamp
 entities:
   - entity: light
     dps:
@@ -270,6 +273,16 @@ entities:
     hidden: true
     dps:
       - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-standby"
+    hidden: true
+    dps:
+      - id: 33
         type: base64
         optional: true
         name: value
