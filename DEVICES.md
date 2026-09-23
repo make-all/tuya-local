@@ -795,7 +795,7 @@
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
 - Olight Ostation 2 battery charging station
-- Oscal PowerMax 2400 Pro and 6000 portable power stations
+- Oscal PowerMax 1800SE, 2400 Pro and 6000 portable power stations
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - Smart EV Chargers 10A EV charger

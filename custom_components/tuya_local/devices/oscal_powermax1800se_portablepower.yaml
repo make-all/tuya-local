@@ -1,8 +1,8 @@
 name: Portable power station
 products:
-  - id: 8fges9jxy2ovdwxn
+  - id: sgjrplhxfruooz9t
     manufacturer: Oscal
-    model: PowerMax 2400 Pro
+    model: PowerMax 1800SE
 entities:
   - entity: sensor
     class: battery
@@ -14,7 +14,6 @@ entities:
         class: measurement
       - id: 112
         type: integer
-        optional: true
         name: power_packs
   - entity: switch
     name: AC power
@@ -25,6 +24,16 @@ entities:
       - id: 102
         type: string
         name: sw_version
+      - id: 146
+        type: string
+        name: inverter_version
+      - id: 147
+        type: string
+        name: bms_version
+      - id: 148
+        type: string
+        optional: true
+        name: mppt_version
   - entity: switch
     name: DC power
     dps:
@@ -295,10 +304,10 @@ entities:
         name: value
         unit: W
         range:
-          min: 50
+          min: 200
           max: 800
         mapping:
-          - step: 50
+          - step: 200
   - entity: sensor
     name: Pack 1
     class: battery
@@ -335,6 +344,17 @@ entities:
         name: sensor
         unit: W
         class: measurement
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1439
   - entity: sensor
     name: Pack 2
     class: battery
@@ -375,7 +395,7 @@ entities:
         unit: W
         class: measurement
   - entity: number
-    name: AC charging limit
+    name: Slow charge rate
     icon: "mdi:battery-charging-90"
     category: config
     class: power
@@ -386,7 +406,7 @@ entities:
         unit: W
         range:
           min: 100
-          max: 1400
+          max: 800
         mapping:
           - step: 100
   - entity: sensor
@@ -562,89 +582,37 @@ entities:
           - dps_val: "24hour"
             value: "24h"
   - entity: time
-    name: Primary feed-in start
+    name: Grid connection time
     category: config
     icon: "mdi:clock-start"
     dps:
+      - id: 142
+        type: integer
+        optional: true
+        name: hour
+        range:
+          min: 0
+          max: 23
       - id: 143
         type: integer
         optional: true
-        name: hour
+        name: minute
         range:
           min: 0
-          max: 23
+          max: 59
+  - entity: time
+    name: Grid disconnection time
+    category: config
+    icon: "mdi:clock-end"
+    dps:
       - id: 144
         type: integer
         optional: true
-        name: minute
+        name: hour
         range:
           min: 0
-          max: 59
-  - entity: time
-    name: Primary feed-in end
-    category: config
-    icon: "mdi:clock-end"
-    dps:
+          max: 23
       - id: 145
-        type: integer
-        optional: true
-        name: hour
-        range:
-          min: 0
-          max: 23
-      - id: 146
-        type: integer
-        optional: true
-        name: minute
-        range:
-          min: 0
-          max: 59
-  - entity: number
-    name: Secondary feed-in limit
-    category: config
-    dps:
-      - id: 147
-        type: integer
-        optional: true
-        name: value
-        unit: W
-        range:
-          min: 50
-          max: 800
-        mapping:
-          - step: 50
-  - entity: time
-    name: Secondary feed-in start
-    category: config
-    icon: "mdi:clock-start"
-    dps:
-      - id: 148
-        type: integer
-        optional: true
-        name: hour
-        range:
-          min: 0
-          max: 23
-      - id: 149
-        type: integer
-        optional: true
-        name: minute
-        range:
-          min: 0
-          max: 59
-  - entity: time
-    name: Secondary feed-in end
-    category: config
-    icon: "mdi:clock-end"
-    dps:
-      - id: 150
-        type: integer
-        optional: true
-        name: hour
-        range:
-          min: 0
-          max: 23
-      - id: 151
         type: integer
         optional: true
         name: minute
