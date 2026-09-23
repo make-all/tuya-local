@@ -1,0 +1,365 @@
+name: Air conditioner
+products:
+  - id: ce7qqw1tuudhos3q
+    manufacturer: Carrier-Midea
+    model: Ester Edge FXi
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+                available: heating_model
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+                available: heating_model
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 17
+          max: 30
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+          - dps_val: "4"
+            value: auto
+      - id: 101
+        type: boolean
+        optional: true
+        name: temperature_unit
+        mapping:
+          - dps_val: false
+            value: F
+          - value: C
+      - id: 103
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: boost
+          - dps_val: false
+            constraint: eco
+            conditions:
+              - dps_val: false
+                value: comfort
+              - dps_val: true
+                value: eco
+      - id: 104
+        type: boolean
+        name: eco
+        hidden: true
+      - id: 109
+        type: integer
+        name: current_temperature
+      - id: 111
+        type: string
+        name: heating_model
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+      - id: 114
+        type: string
+        optional: true
+        name: swing_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+      - id: 115
+        type: string
+        optional: true
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+      - id: 120
+        type: bitfield
+        name: fault_code_2
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: true
+            value: celsius
+          - dps_val: false
+            value: fahrenheit
+  - entity: button
+    name: Clear energy
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: button
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: lock
+      - id: 105
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Health
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: switch
+      - id: 107
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: sound
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 108
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
+    name: "On timer"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Mildew protection
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: switch
+      - id: 116
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Emergency heat
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 117
+        type: boolean
+        optional: true
+        name: switch
+      - id: 117
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Auto clean
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: switch
+      - id: 118
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
+    name: "Off timer"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: select
+    name: Flexi cool
+    icon: "mdi:snowflake"
+    category: config
+    dps:
+      - id: 121
+        type: string
+        name: option
+        mapping:
+          - dps_val: FC1
+            value: "1"
+          - dps_val: FC2
+            value: "2"
+          - dps_val: FC3
+            value: "3"
+          - dps_val: FC4
+            value: "4"
+          - dps_val: FC5
+            value: "5"
+          - dps_val: FC0
+            value: "0"
+  - entity: switch
+    name: Follow me
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Self clean
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Step
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Xled
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Plasma
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 126
+        type: boolean
+        optional: true
+        name: switch
+      - id: 126
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

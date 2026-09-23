@@ -115,6 +115,7 @@
 - Be Cool BC14KL2101F
 - Beltax BAC-1009 air conditioner
 - Brokton BRST12 air conditioner
+- Carrier-Midea Ester Edge FXi split air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
 - Chigo air conditioner
