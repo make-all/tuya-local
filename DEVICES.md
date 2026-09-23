@@ -261,6 +261,7 @@
 - Oekoboiler RS series heat pump water heater
 - Omni X Duplex water heater
 - Powerworld PW030, PW040, PW060, PWS58330, PWS58410 air+water heat pumps
+- Rheem EHG water heater
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Shuangri SR223 solar water heating controller
