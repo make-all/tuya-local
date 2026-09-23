@@ -634,6 +634,7 @@
 - Miro Q-Tower humidifier
 - OGACFO LFHM055 humidifier
 - RZTK Aqua Pro humidifier
+- SoleusAir AHU-2000L3 humidifier
 - Stadler Form Eva, Karl, Karl Big, Noah humidifiers
 - Tesla Smart humidifier
 - Venta AH510 Original Connect humidifier
