@@ -963,3 +963,5 @@ Further device support has been made with the assistance of users. Please consid
 - [kbinish-ship-it](https://github.com/kbinish-ship-it) for contributing support for Arlec/Deta EV200D-HA EV charger.
 - [placekmilan](https://github.com/placekmilan) for contributing support for Siguro TurboVac Navigator vacuum ETA 2625 Sole Smart heater.
 - [MartinNuc](https://github.com/MartinNuc) for contributing improvements to Nedis Pill Dispenser.
+- [leashjay](https://github.com/leashjay) for improvements to diagnostics redacting and contributing support for Goldair GCT315/425 ceramic tower heater.
+

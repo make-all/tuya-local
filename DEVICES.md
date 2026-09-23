@@ -43,7 +43,7 @@
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 and Wall Designheat 2000 heaters
 - Eurom Sani 400,600,800 heaters
-- Goldair GPPH, GCPV, GECO, GPOC and PH-ET heaters
+- Goldair GPPH, GCPV, GCT, GECO, GPOC and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
 - Heatstrip Elegance outdoor heater
