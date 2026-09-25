@@ -344,66 +344,65 @@ class TuyaLocalDevice(object):
             error_count = self._api_working_protocol_failures
             force_backoff = False
             try:
-                async with self._api_lock:
-                    last_cache = self._cached_state.get("updated_at", 0)
-                    now = time()
-                    full_poll = False
-                    if (persist == self.should_poll) or (
-                        persist and (self._api.socket is None)
-                    ):
-                        # use persistent connections after initial communication
-                        # has been established.  Until then, we need to rotate
-                        # the protocol version, which seems to require a fresh
-                        # connection.
-                        persist = not self.should_poll
-                        _LOGGER.debug(
-                            "%s persistant connection set to %s", self.name, persist
-                        )
-                        self._api.set_socketPersistent(persist)
-                        if self._api.parent:
-                            self._api.parent.set_socketPersistent(persist)
-                        self._last_full_poll = 0  # ensure we start with a full poll
+                last_cache = self._cached_state.get("updated_at", 0)
+                now = time()
+                full_poll = False
+                if (persist == self.should_poll) or (
+                    persist and (self._api.socket is None)
+                ):
+                    # use persistent connections after initial communication
+                    # has been established.  Until then, we need to rotate
+                    # the protocol version, which seems to require a fresh
+                    # connection.
+                    persist = not self.should_poll
+                    _LOGGER.debug(
+                        "%s persistant connection set to %s", self.name, persist
+                    )
+                    self._api.set_socketPersistent(persist)
+                    if self._api.parent:
+                        self._api.parent.set_socketPersistent(persist)
+                    self._last_full_poll = 0  # ensure we start with a full poll
 
-                    needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
-                    if now - last_cache > self._CACHE_TIMEOUT or (
-                        persist and needs_full_poll
+                needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
+                if now - last_cache > self._CACHE_TIMEOUT or (
+                    persist and needs_full_poll
+                ):
+                    if (
+                        self._force_dps
+                        and not dps_updated
+                        and self._api_protocol_working
                     ):
-                        if (
-                            self._force_dps
-                            and not dps_updated
-                            and self._api_protocol_working
-                        ):
-                            poll = await self._retry_on_failed_connection(
-                                lambda: self._api.updatedps(self._force_dps),
-                                f"Failed to update device dps for {self.name}",
-                            )
-                            dps_updated = True
-                        else:
-                            poll = await self._retry_on_failed_connection(
-                                lambda: self._api.status(),
-                                f"Failed to fetch device status for {self.name}",
-                            )
-                            dps_updated = False
-                            full_poll = True
-                        self._last_full_poll = now
-                        last_heartbeat = now  # reset heartbeat timer on full poll
-                    elif persist:
-                        if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
-                            await self._hass.async_add_executor_job(
-                                self._api.heartbeat,
-                                True,
-                            )
-                            last_heartbeat = now
-                        poll = await self._hass.async_add_executor_job(
-                            self._api.receive,
+                        poll = await self._retry_on_failed_connection(
+                            lambda: self._api.updatedps(self._force_dps),
+                            f"Failed to update device dps for {self.name}",
                         )
-                        # Ignore Payload error 904, as 3.4 protocol devices seem to return
-                        # this when there is no new data, instead of just returning nothing.
-                        if poll and "Err" in poll and poll["Err"] == "904":
-                            poll = None
+                        dps_updated = True
                     else:
-                        force_backoff = True
+                        poll = await self._retry_on_failed_connection(
+                            lambda: self._api.status(),
+                            f"Failed to fetch device status for {self.name}",
+                        )
+                        dps_updated = False
+                        full_poll = True
+                    self._last_full_poll = now
+                    last_heartbeat = now  # reset heartbeat timer on full poll
+                elif persist:
+                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
+                        await self._hass.async_add_executor_job(
+                            self._api.heartbeat,
+                            True,
+                        )
+                        last_heartbeat = now
+                    poll = await self._hass.async_add_executor_job(
+                        self._api.receive,
+                    )
+                    # Ignore Payload error 904, as 3.4 protocol devices seem to return
+                    # this when there is no new data, instead of just returning nothing.
+                    if poll and "Err" in poll and poll["Err"] == "904":
                         poll = None
+                else:
+                    force_backoff = True
+                    poll = None
 
                 if poll:
                     if "Err" in poll:
@@ -562,8 +561,7 @@ class TuyaLocalDevice(object):
         self._last_full_poll = 0
 
     def _refresh_cached_state(self):
-        async with self._api_lock:
-            new_state = self._api.status()
+        new_state = self._api.status()
         if new_state:
             if "Err" not in new_state:
                 self._cached_state = self._cached_state | new_state.get("dps", {})
@@ -659,10 +657,9 @@ class TuyaLocalDevice(object):
         )
 
     def _set_values(self, properties):
-        async with self._api_lock:
-            self._api.set_multiple_values(properties, nowait=True)
-            now = time()
-            self._last_connection = now
+        self._api.set_multiple_values(properties, nowait=True)
+        now = time()
+        self._last_connection = now
         pending_updates = self._get_pending_updates()
         for key in properties.keys():
             pending_updates[key]["updated_at"] = now
@@ -690,7 +687,8 @@ class TuyaLocalDevice(object):
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
-                    retval = await self._hass.async_add_executor_job(func)
+                    async with self._api_lock:
+                        retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
                         last_err_code = retval.get("Err")
                         last_err_msg = retval.get("Error")
