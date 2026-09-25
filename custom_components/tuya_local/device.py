@@ -532,11 +532,10 @@ class TuyaLocalDevice(object):
     async def async_refresh(self):
         _LOGGER.debug("Refreshing device state for %s", self.name)
         if not self._running:
-            async with self._api_lock:
-                await self._retry_on_failed_connection(
-                    lambda: self._refresh_cached_state(),
-                    f"Failed to refresh device state for {self.name}.",
-                )
+            await self._retry_on_failed_connection(
+                lambda: self._refresh_cached_state(),
+                f"Failed to refresh device state for {self.name}.",
+            )
 
     def get_property(self, dps_id):
         cached_state = self._get_cached_state()
@@ -563,7 +562,8 @@ class TuyaLocalDevice(object):
         self._last_full_poll = 0
 
     def _refresh_cached_state(self):
-        new_state = self._api.status()
+        async with self._api_lock:
+            new_state = self._api.status()
         if new_state:
             if "Err" not in new_state:
                 self._cached_state = self._cached_state | new_state.get("dps", {})
@@ -645,24 +645,24 @@ class TuyaLocalDevice(object):
         await self._send_pending_updates()
 
     async def _send_pending_updates(self):
-        async with self._api_lock:
-            pending_properties = self._get_unsent_properties()
+        pending_properties = self._get_unsent_properties()
 
-            _LOGGER.debug(
-                "%s sending dps update: %s",
-                self.name,
-                log_json(pending_properties),
-            )
+        _LOGGER.debug(
+            "%s sending dps update: %s",
+            self.name,
+            log_json(pending_properties),
+        )
 
-            await self._retry_on_failed_connection(
-                lambda: self._set_values(pending_properties),
-                "Failed to update device state.",
-            )
+        await self._retry_on_failed_connection(
+            lambda: self._set_values(pending_properties),
+            "Failed to update device state.",
+        )
 
     def _set_values(self, properties):
-        self._api.set_multiple_values(properties, nowait=True)
-        now = time()
-        self._last_connection = now
+        async with self._api_lock:
+            self._api.set_multiple_values(properties, nowait=True)
+            now = time()
+            self._last_connection = now
         pending_updates = self._get_pending_updates()
         for key in properties.keys():
             pending_updates[key]["updated_at"] = now
