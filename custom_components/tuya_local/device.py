@@ -343,8 +343,8 @@ class TuyaLocalDevice(object):
         while self._running:
             error_count = self._api_working_protocol_failures
             force_backoff = False
-            async with self._api_lock:
-                try:
+            try:
+                async with self._api_lock:
                     last_cache = self._cached_state.get("updated_at", 0)
                     now = time()
                     full_poll = False
@@ -405,63 +405,63 @@ class TuyaLocalDevice(object):
                         force_backoff = True
                         poll = None
 
-                    if poll:
-                        if "Err" in poll:
-                            # Limit disconnects to the errors that are caused low level
-                            # communication problems
-                            if poll["Err"] in {"901", "902", "905", "906", "914"}:
-                                force_backoff = True
-                                persist = False
-                                self._api.set_socketPersistent(False)
-                                if self._api.parent:
-                                    self._api.parent.set_socketPersistent(False)
-                            # increment the error count if not done already
-                            if error_count == self._api_working_protocol_failures:
-                                self._api_working_protocol_failures += 1
-                            if self._api_working_protocol_failures == 1:
-                                _LOGGER.warning(
-                                    "%s error reading: %s", self.name, poll["Error"]
-                                )
-                            else:
-                                _LOGGER.debug(
-                                    "%s error reading: %s", self.name, poll["Error"]
-                                )
-                            if "Payload" in poll and poll["Payload"]:
-                                _LOGGER.debug(
-                                    "%s err payload: %s",
-                                    self.name,
-                                    poll["Payload"],
-                                )
+                if poll:
+                    if "Err" in poll:
+                        # Limit disconnects to the errors that are caused low level
+                        # communication problems
+                        if poll["Err"] in {"901", "902", "905", "906", "914"}:
+                            force_backoff = True
+                            persist = False
+                            self._api.set_socketPersistent(False)
+                            if self._api.parent:
+                                self._api.parent.set_socketPersistent(False)
+                        # increment the error count if not done already
+                        if error_count == self._api_working_protocol_failures:
+                            self._api_working_protocol_failures += 1
+                        if self._api_working_protocol_failures == 1:
+                            _LOGGER.warning(
+                                "%s error reading: %s", self.name, poll["Error"]
+                            )
                         else:
-                            if "dps" in poll:
-                                poll = poll["dps"]
-                            if isinstance(poll, dict):
-                                poll["full_poll"] = full_poll
-                                yield poll
+                            _LOGGER.debug(
+                                "%s error reading: %s", self.name, poll["Error"]
+                            )
+                        if "Payload" in poll and poll["Payload"]:
+                            _LOGGER.debug(
+                                "%s err payload: %s",
+                                self.name,
+                                poll["Payload"],
+                            )
+                    else:
+                        if "dps" in poll:
+                            poll = poll["dps"]
+                        if isinstance(poll, dict):
+                            poll["full_poll"] = full_poll
+                            yield poll
 
-                except CancelledError:
-                    self._running = False
-                    # Close the persistent connection when exiting the loop
-                    persist = False
-                    _LOGGER.debug("%s receive loop interrupted", self.name)
-                    self._api.set_socketPersistent(False)
-                    if self._api.parent:
-                        self._api.parent.set_socketPersistent(False)
-                    raise
-                except Exception as t:
-                    _LOGGER.exception(
-                        "%s receive loop error %s:%s",
-                        self.name,
-                        type(t).__name__,
-                        t,
-                    )
-                    persist = False
-                    self._api.set_socketPersistent(False)
-                    if self._api.parent:
-                        self._api.parent.set_socketPersistent(False)
-                    force_backoff = True
+            except CancelledError:
+                self._running = False
+                # Close the persistent connection when exiting the loop
+                persist = False
+                _LOGGER.debug("%s receive loop interrupted", self.name)
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
+                raise
+            except Exception as t:
+                _LOGGER.exception(
+                    "%s receive loop error %s:%s",
+                    self.name,
+                    type(t).__name__,
+                    t,
+                )
+                persist = False
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
+                force_backoff = True
 
-            if not self.has_returned_state:
+            if not self.has_returned_state or self._api.socket is None:
                 force_backoff = True
             await asyncio.sleep(5 if force_backoff else 0.1)
 
