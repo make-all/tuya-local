@@ -1,0 +1,513 @@
+name: Breathing radar
+products:
+  - id: ammxeuwjrvo3rjyd
+    model: MG2-6HW
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    icon: "mdi:account"
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - dps_val: presence
+            value: true
+  - entity: sensor
+    name: Motion
+    class: enum
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 126
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: peaceful
+            value: Peaceful
+          - dps_val: motion
+            value: Motion
+  - entity: sensor
+    name: Heart rate
+    icon: "mdi:heart-pulse"
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: bpm
+        class: measurement
+        range:
+          min: 0
+          max: 120
+  - entity: sensor
+    name: Breath rate
+    icon: "mdi:lungs"
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: bpm
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: cm
+        class: measurement
+        range:
+          min: 0
+          max: 200
+  - entity: sensor
+    name: Body motion
+    icon: "mdi:human"
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Respiratory signal
+    class: enum
+    icon: "mdi:lungs"
+    dps:
+      - id: 121
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: normal
+            value: Normal
+          - dps_val: high
+            value: High
+          - dps_val: low
+            value: Low
+  - entity: sensor
+    name: In bed
+    class: enum
+    icon: "mdi:bed"
+    dps:
+      - id: 133
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: in_bed
+            value: In bed
+          - dps_val: out_of_bed
+            value: Out of bed
+  - entity: sensor
+    name: Sleep state
+    class: enum
+    icon: "mdi:sleep"
+    dps:
+      - id: 134
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: awake
+            value: Awake
+          - dps_val: light_sleep
+            value: Light sleep
+          - dps_val: deep_sleep
+            value: Deep sleep
+  - entity: sensor
+    name: Sleep score
+    icon: "mdi:star"
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Position warning
+    class: enum
+    icon: "mdi:alert"
+    dps:
+      - id: 128
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: normal
+            value: Normal
+          - dps_val: deviate
+            value: Deviated
+  - entity: sensor
+    name: Sleep grade
+    class: enum
+    icon: "mdi:star-check"
+    dps:
+      - id: 157
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: good
+            value: Good
+          - dps_val: ordinary
+            value: Ordinary
+          - dps_val: bad
+            value: Bad
+  - entity: switch
+    name: Heart rate reporting
+    category: config
+    icon: "mdi:heart-pulse"
+    dps:
+      - id: 130
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Breath reporting
+    category: config
+    icon: "mdi:lungs"
+    dps:
+      - id: 131
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep reporting
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 132
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Detection mode
+    category: config
+    icon: "mdi:radar"
+    dps:
+      - id: 153
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Struggle detection
+    category: config
+    icon: "mdi:alert"
+    dps:
+      - id: 155
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Nobody timer
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 158
+        type: boolean
+        name: switch
+  - entity: number
+    name: Nobody timeout
+    category: config
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 30
+          max: 180
+        mapping:
+          - step: 10
+  - entity: sensor
+    name: Struggle state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 156
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: normal
+            value: Normal
+          - dps_val: bad
+            value: Bad
+  - entity: sensor
+    name: Nobody timer state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 159
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: normal
+            value: Normal
+          - dps_val: abnormal
+            value: Abnormal
+  - entity: sensor
+    name: Sleep analysis
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 154
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: time_short
+            value: Too short
+          - dps_val: time_long
+            value: Too long
+          - dps_val: nobody_long
+            value: Nobody for long
+  - entity: sensor
+    name: Awake time
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    name: Light sleep time
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    name: Deep sleep time
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    name: 10 min average breath
+    category: diagnostic
+    icon: "mdi:lungs"
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        unit: bpm
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: 10 min average heart rate
+    category: diagnostic
+    icon: "mdi:heart-pulse"
+    dps:
+      - id: 140
+        type: integer
+        name: sensor
+        unit: bpm
+        class: measurement
+        range:
+          min: 0
+          max: 150
+  - entity: sensor
+    name: 10 min turn overs
+    category: diagnostic
+    dps:
+      - id: 141
+        type: integer
+        name: sensor
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: 10 min large motion
+    category: diagnostic
+    dps:
+      - id: 142
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: 10 min small motion
+    category: diagnostic
+    dps:
+      - id: 143
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Total sleep time
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 144
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+        range:
+          min: 0
+          max: 65535
+  - entity: sensor
+    name: Awake ratio
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Light sleep ratio
+    category: diagnostic
+    dps:
+      - id: 146
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Deep sleep ratio
+    category: diagnostic
+    dps:
+      - id: 147
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Out of bed ratio
+    category: diagnostic
+    dps:
+      - id: 148
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Out of bed count
+    category: diagnostic
+    dps:
+      - id: 149
+        type: integer
+        name: sensor
+        class: measurement
+        range:
+          min: 0
+          max: 10
+  - entity: sensor
+    name: Turn overs
+    category: diagnostic
+    dps:
+      - id: 150
+        type: integer
+        name: sensor
+        class: measurement
+        range:
+          min: 0
+          max: 40
+  - entity: sensor
+    name: Average breath
+    category: diagnostic
+    icon: "mdi:lungs"
+    dps:
+      - id: 151
+        type: integer
+        name: sensor
+        unit: bpm
+        class: measurement
+        range:
+          min: 0
+          max: 30
+  - entity: sensor
+    name: Average heart rate
+    category: diagnostic
+    icon: "mdi:heart-pulse"
+    dps:
+      - id: 152
+        type: integer
+        name: sensor
+        unit: bpm
+        class: measurement
+        range:
+          min: 0
+          max: 150
+  - entity: sensor
+    name: Hardware version
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Firmware version
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Radar id
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
