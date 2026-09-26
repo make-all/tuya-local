@@ -340,6 +340,7 @@ class TuyaLocalDevice(object):
             self._api.parent.set_socketPersistent(persist)
 
         last_heartbeat = self._cached_state.get("updated_at", 0)
+        wifi_api = self._api.parent or self._api
         while self._running:
             error_count = self._api_working_protocol_failures
             force_backoff = False
@@ -348,7 +349,7 @@ class TuyaLocalDevice(object):
                 now = time()
                 full_poll = False
                 if (persist == self.should_poll) or (
-                    persist and (self._api.socket is None)
+                    persist and (wifi_api.socket is None)
                 ):
                     # use persistent connections after initial communication
                     # has been established.  Until then, we need to rotate
@@ -460,7 +461,8 @@ class TuyaLocalDevice(object):
                     self._api.parent.set_socketPersistent(False)
                 force_backoff = True
 
-            if not self.has_returned_state or self._api.socket is None:
+            socket = self._api.parent.socket if self._api.parent else self._api.socket
+            if not self.has_returned_state or wifi_api.socket is None:
                 force_backoff = True
             await asyncio.sleep(5 if force_backoff else 0.1)
 
