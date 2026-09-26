@@ -461,7 +461,6 @@ class TuyaLocalDevice(object):
                     self._api.parent.set_socketPersistent(False)
                 force_backoff = True
 
-            socket = self._api.parent.socket if self._api.parent else self._api.socket
             if not self.has_returned_state or wifi_api.socket is None:
                 force_backoff = True
             await asyncio.sleep(5 if force_backoff else 0.1)
