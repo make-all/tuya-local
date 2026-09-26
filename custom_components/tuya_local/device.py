@@ -156,7 +156,7 @@ class TuyaLocalDevice(object):
         # we can overlay onto the state while we wait for the board to update
         # its switches.
         self._FAKE_IT_TIMEOUT = 5
-        self._CACHE_TIMEOUT = 30
+        self._POLLING_INTERVAL = 30
         self._HEARTBEAT_INTERVAL = 5
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
@@ -364,8 +364,8 @@ class TuyaLocalDevice(object):
                         self._api.parent.set_socketPersistent(persist)
                     self._last_full_poll = 0  # ensure we start with a full poll
 
-                needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
-                if now - last_cache > self._CACHE_TIMEOUT or (
+                needs_full_poll = now - self._last_full_poll > self._POLLING_INTERVAL
+                if now - last_cache > self._POLLING_INTERVAL or (
                     persist and needs_full_poll
                 ):
                     if (
