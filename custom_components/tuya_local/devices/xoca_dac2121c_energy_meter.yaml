@@ -3,6 +3,9 @@ products:
   - id: opdhepy0p7eyeurz
     manufacturer: Xoca
     model: DAC-2121C BI
+  - id: kvnopv9brskkod3i
+    manufacturer: Xoca
+    model: DAC-7321C BI
 entities:
   - entity: switch
     icon: "mdi:fuse"
@@ -10,15 +13,6 @@ entities:
       - id: 16
         name: switch
         type: boolean
-      - id: 6
-        name: phase_a
-        type: base64
-        optional: true
-        force: true
-      - id: 17
-        name: alarm_set_2
-        type: string
-        optional: true
       - id: 18
         type: string
         name: meter_id
@@ -50,6 +44,7 @@ entities:
   - entity: sensor
     class: voltage
     category: diagnostic
+    deprecated: sensor.voltage_a  # 2026-09-26
     dps:
       - id: 6
         optional: true
@@ -63,6 +58,40 @@ entities:
           - scale: 10
   - entity: sensor
     class: current
+    deprecated: sensor.current_a  # 2026-09-26
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         optional: true
@@ -76,6 +105,9 @@ entities:
           - scale: 1000
   - entity: sensor
     class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         optional: true
@@ -87,6 +119,179 @@ entities:
         class: measurement
         mapping:
           - scale: 1000
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    hidden: true  # not supported on single phase devices
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    hidden: true  # not supported on single phase devices
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    hidden: true  # not supported on single phase devices
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    hidden: true  # not supported on single phase devices
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    hidden: true  # not supported on single phase devices
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    hidden: true  # not supported on single phase devices
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        optional: true
+        type: integer
+        unit: kW
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: text
+    name: Monthly energy
+    category: config
+    icon: "mdi:home-lightning-bolt-outline"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Daily energy
+    category: config
+    icon: "mdi:home-lightning-bolt-outline"
+    hidden: true
+    dps:
+      - id: 4
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Calendar rollover settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm settings
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 17
+        type: base64
+        optional: true
+        name: value
   - entity: sensor
     # Night zone
     name: Tariff 1
@@ -141,3 +346,11 @@ entities:
         force: true
         mapping:
           - scale: 100
+  - entity: button
+    name: Clear events
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
