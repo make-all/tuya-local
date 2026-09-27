@@ -1,0 +1,262 @@
+name: MPPT Solar Charge Controller HM1.0
+products:
+  - id: j9agfawwrn4bcgwo
+    manufacturer: Tuya
+    model: HM1.0
+entities:
+  # =====================================================================
+  # 1. ТЕЛЕМЕТРІЯ АКУМУЛЯТОРА ТА СТРУМУ ЗАРЯДКИ (Base64 DP 105)
+  # =====================================================================
+  - entity: sensor
+    name: BAT Voltage
+    class: voltage
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: BAT Charge Current
+    class: current
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: A
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Battery Capacity
+    class: battery
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: "%"
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
+
+  # =====================================================================
+  # 2. ТЕЛЕМЕТРІЯ СОНЯЧНИХ ПАНЕЛЕЙ (Base64 DP 104)
+  # =====================================================================
+  - entity: sensor
+    name: PV Voltage
+    class: voltage
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: PV Current
+    class: current
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: A
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: PV Power
+    class: power
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: W
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
+
+  # =====================================================================
+  # 3. ПРЯМІ СЕНСОРИ ТЕЛЕМЕТРІЇ
+  # =====================================================================
+  - entity: sensor
+    name: BAT Power
+    class: power
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: MPPT Temperature
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: °C
+        class: measurement
+
+  # =====================================================================
+  # 4. ЕНЕРГЕТИЧНА СТАТИСТИКА
+  # =====================================================================
+  - entity: sensor
+    name: Daily Energy
+    class: energy
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Total Energy
+    class: energy
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # =====================================================================
+  # 5. КЕРУВАННЯ ТА НАЛАШТУВАННЯ
+  # =====================================================================
+  - entity: switch
+    name: Load Switch
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Bulk Charging Voltage
+    class: voltage
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: V
+        min: 400
+        max: 600
+        step: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Float Charging Voltage
+    class: voltage
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: V
+        min: 400
+        max: 560
+        step: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Restore Voltage
+    class: voltage
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: V
+        min: 400
+        max: 600
+        step: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: BAT Low Voltage Protection
+    class: voltage
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: V
+        min: 400
+        max: 600
+        step: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Charging Current Limit
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: "%"
+        min: 0
+        max: 100
+        step: 1
+
+  - entity: number
+    name: Load Mode
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: h
+        min: 0
+        max: 24
+        step: 1
+
+  - entity: switch
+    name: Load Schedule
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+
+  # =====================================================================
+  # 6. ДІАГНОСТИЧНА ІНФОРМАЦІЯ
+  # =====================================================================
+  - entity: sensor
+    name: Battery Type
+    category: diagnostic
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Device Model
+    category: diagnostic
+    dps:
+      - id: 118
+        type: string
+        name: sensor
