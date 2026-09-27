@@ -675,6 +675,7 @@
 - Casdon KG1 inline water dispenser
 - Casdon TD Pro 2, TD Pro 3 and T2E ovens
 - Cecofry 5500 Connected air fryer
+- EA dual zone car fridge
 - Etna VW644MC dishwasher, AB791 range hood
 - Fiesta DK-1G smart kettle
 - FRE1L4 water chiller
@@ -1404,7 +1405,7 @@ port and password.
 - HRT AS90 temperature and humidity alarm
 - HX-002-Z human presence sensor
 - iHseno ZTU human presence sensor
-- idoo Smart Bloom 8 hydroponic system
+- idoo Smart Bloom 8 and 12Pods Smart Garden hydroponic systems
 - Immax Neo Lite 7-in-1 weather station
 - Inkbird IAQM-129-W air quality monitor
 - Inkbird PTH-9CW air quality monitor

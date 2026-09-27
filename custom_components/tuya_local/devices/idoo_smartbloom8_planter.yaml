@@ -4,6 +4,8 @@ products:
     manufacturer: idoo
     model: Smart Bloom 8
     model_id: ID-IG307S
+  - id: ryz4hecmvrgg2wha
+    model: 12Pods Smart Garden
 entities:
   - entity: switch
     dps:
@@ -83,6 +85,15 @@ entities:
           max: 1440
         mapping:
           - step: 10
+  - entity: switch
+    name: Fan
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: switch
   - entity: switch
     translation_key: sleep
     category: config
