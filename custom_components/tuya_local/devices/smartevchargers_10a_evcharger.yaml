@@ -1,0 +1,251 @@
+name: EV charger
+products:
+  - id: gz7brfamdlvyagvt
+    manufacturer: Smart EV Chargers
+    model: 10A Type 1/2
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 13
+        type: string
+        name: connection
+      - id: 22
+        type: string
+        name: meter_id
+  - entity: number
+    name: Charging current
+    category: config
+    class: current
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 80
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    translation_key: charging_mode
+    category: config
+    dps:
+      - id: 14
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+            available: full_control
+          - dps_val: charge_pct
+            value: charge_to_percent
+            available: full_control
+          - dps_val: charge_energy
+            value: fixed_charge
+            available: full_control
+          - dps_val: charge_schedule
+            value: scheduled_charge
+            available: full_control
+          - dps_val: charge_delay
+            value: delayed_charge
+            available: full_control
+          - dps_val: null
+            constraint: alt
+            conditions:
+              - dps_val: charge_now
+                value: immediate
+                available: limited_control
+                value_redirect: alt
+              - dps_val: charge_schedule
+                value: scheduled_charge
+                value_redirect: limited_control
+      - id: 101
+        type: string
+        optional: true
+        name: alt
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+          - dps_val: charge_schedule
+            value: scheduled_charge
+      - id: 14
+        type: string
+        optional: true
+        name: full_control
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 14
+        type: string
+        optional: true
+        name: limited_control
+        mapping:
+          - dps_val: null
+            value: true
+          - value: false
+  - entity: switch
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 19
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Last charge
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: button
+    name: Refresh
+    category: config
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
+  - entity: number
+    name: Delay timer
+    translation_key: timer
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 28
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 10
+      - id: 14
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: text
+    name: Config
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value

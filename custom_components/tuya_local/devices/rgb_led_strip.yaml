@@ -18,6 +18,9 @@ products:
     manufacturer: Serene
     model: ColorPlus
     name: Aquarium light
+  - id: iiwnhv4jk3u3tfcv
+    manufacturer: Neuro-sama
+    model: Lava lamp
 entities:
   - entity: light
     dps:
@@ -195,3 +198,107 @@ entities:
           - dps_val: "0866660200d7033402440000000066660200c603e801f400000000\
               666602011702b2023a00000000"
             value: "Aquarium deepwater"
+  - entity: switch
+    translation_key: do_not_disturb
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value_redirect: remote_sw
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: remote_sw
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+      # Remote switch has same function but reversed logic
+      - id: 41
+        type: boolean
+        optional: true
+        name: remote_sw
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: hex
+        optional: true
+        name: value
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 28
+        type: hex
+        optional: true
+        name: value
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:bug"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Rhythm
+    category: config
+    icon: "mdi:metronome"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep
+    category: config
+    icon: "mdi:bed-clock"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-standby"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value

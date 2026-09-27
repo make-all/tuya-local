@@ -62,7 +62,7 @@ CONDMAP_SCHEMA = vol.Schema(
 )
 COND_SCHEMA = CONDMAP_SCHEMA.extend(
     {
-        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
+        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list, float)),
         vol.Optional("mapping"): [CONDMAP_SCHEMA],
     }
 )
