@@ -43,7 +43,7 @@
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 and Wall Designheat 2000 heaters
 - Eurom Sani 400,600,800 heaters
-- Goldair GPPH, GCPV, GECO, GPOC and PH-ET heaters
+- Goldair GPPH, GCPV, GCT, GECO, GPOC and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
 - Heatstrip Elegance outdoor heater
@@ -115,6 +115,7 @@
 - Be Cool BC14KL2101F
 - Beltax BAC-1009 air conditioner
 - Brokton BRST12 air conditioner
+- Carrier-Midea Ester Edge FXi split air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
 - Chigo air conditioner
@@ -260,6 +261,7 @@
 - Oekoboiler RS series heat pump water heater
 - Omni X Duplex water heater
 - Powerworld PW030, PW040, PW060, PWS58330, PWS58410 air+water heat pumps
+- Rheem EHG water heater
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Shuangri SR223 solar water heating controller
@@ -633,6 +635,7 @@
 - Miro Q-Tower humidifier
 - OGACFO LFHM055 humidifier
 - RZTK Aqua Pro humidifier
+- SoleusAir AHU-2000L3 humidifier
 - Stadler Form Eva, Karl, Karl Big, Noah humidifiers
 - Tesla Smart humidifier
 - Venta AH510 Original Connect humidifier
@@ -726,6 +729,7 @@
 - ERZ04C smart meter
 - Gaqqee KWS-302-WF energy meter
 - Geonav HISB80A energy meter
+- Geya GYRC-ZN03 circuit breaker
 - GTS8-40 2P simple circuit breaker
 - Ketotek KTEM06pro energy meter
 - MatSee Plus bidirectional two channel clamp meter (multiple variants)
@@ -794,9 +798,10 @@
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
 - Olight Ostation 2 battery charging station
-- Oscal PowerMax 2400 Pro and 6000 portable power stations
+- Oscal PowerMax 1800SE, 2400 Pro and 6000 portable power stations
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
+- Smart EV Chargers 10A EV charger
 - SRNE SE Series lithium battery
 - Suntree SPG3 EV charger
 - Tary TA-AC380/22 EV charger
@@ -992,8 +997,8 @@ of device.
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
 - LSC Smart Connect CCT+RGB, RGB/IC+CCT/IC, Neon, Party led strips
-- LSC Smart Connect garden spotlights
-- LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
+- LSC Smart Connect garden spotlights and floor lamp
+- LSC Smart Connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lumary D1 6 inch retrofit downlight (independent RGB ring and CCT centre)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
@@ -1371,6 +1376,7 @@ port and password.
 - Bresser Smart Thermo-hygrometer
 - BW salt pool chlorinator
 - BWT Energy Saver pool pump controller
+- CallToU Caregiver Pager call button
 - Chtoocy MC82 refrigerator thermometer
 - CO2-Box air quality monitor
 - CO2v1 carbon dioxide sensor
@@ -1384,7 +1390,7 @@ port and password.
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - EM3395TY-2 weather station
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
-- EPT ultrasonic 3m tank level sensor
+- EPT ultrasonic 3m and TLC2404LS-WL 8m tank level sensor
 - Eureka ERK-S62 adjustable desk
 - Goldair Platinum SleepSmart electric blanket
 - GratKit filament dryer
@@ -1411,6 +1417,7 @@ port and password.
 - Konlen/Rockson WF96L water level controller
 - Madimack InverChlor pool salt and mineral chlorinator
 - Madimack InverFlow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
+- Majestic 12/50 salt chlorinator
 - Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - ME201W level sensor
@@ -1438,6 +1445,7 @@ port and password.
 - QTFV3-3 air quality monitor
 - Raddy PT-3 and PT-5 pool thermometers
 - RainPoint TTV103FRF water timer
+- Rovynel 8-in-1 pool monitor
 - RQ400A gas alarm
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
@@ -1463,6 +1471,7 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
+- Troxlly TP chlorine generator
 - TS100 water quality controller
 - TX-E gas sensor/alarm
 - Vevor YT60307 weather station
