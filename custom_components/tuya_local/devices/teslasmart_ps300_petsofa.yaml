@@ -59,8 +59,8 @@ entities:
         unit: "C"
 
   # The fault datapoint reports 1 when there is NO fault, so 1 has
-  # to be treated as healthy. 2 is a cooler plate fault, 4 is a fan
-  # fault and 6 is both.
+  # to be treated as healthy. 2 is a cooler plate fault and 4 is a
+  # fan fault.
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -87,8 +87,6 @@ entities:
             value: cooler_fault
           - dps_val: 4
             value: fan_fault
-          - dps_val: 6
-            value: cooler_and_fan_fault
       - id: 105
         type: integer
         name: push_state
