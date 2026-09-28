@@ -675,6 +675,7 @@
 - Casdon KG1 inline water dispenser
 - Casdon TD Pro 2, TD Pro 3 and T2E ovens
 - Cecofry 5500 Connected air fryer
+- EA dual zone car fridge
 - Etna VW644MC dishwasher, AB791 range hood
 - Fiesta DK-1G smart kettle
 - FRE1L4 water chiller
