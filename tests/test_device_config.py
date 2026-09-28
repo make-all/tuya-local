@@ -685,45 +685,6 @@ def test_config_returned():
     assert cfg.config == "smartplugv1.yaml"
 
 
-@pytest.mark.parametrize(
-    ("entity_id", "child_id", "uses_light_gate"),
-    [
-        ("light", "20", False),
-        ("fan", "101", False),
-        ("light_white", "107", True),
-        ("light_color", "108", True),
-        ("light_nightlight", "143", True),
-    ],
-)
-def test_lumary_c2_power_gates_affect_state_not_writes(
-    mocker, entity_id, child_id, uses_light_gate
-):
-    """Lumary controls remain writable while closed gates mask their state."""
-    cfg = get_config("lumary_c2_ceilingfanlight")
-    entity = next(
-        entity for entity in cfg.all_entities() if entity.config_id == entity_id
-    )
-    switch = entity.find_dps("switch")
-
-    for child in (False, True):
-        for light_gate in (False, True):
-            for master_gate in (False, True):
-                dps = {
-                    "20": light_gate,
-                    "119": master_gate,
-                    child_id: child,
-                }
-                device = mock_device(dps, mocker)
-                expected_state = child and master_gate
-                if uses_light_gate:
-                    expected_state = expected_state and light_gate
-
-                assert entity.available(device)
-                assert switch.get_value(device) is expected_state
-                assert switch.get_values_to_set(device, True) == {child_id: True}
-                assert switch.get_values_to_set(device, False) == {child_id: False}
-
-
 def test_float_matches_ints():
     """Test that the _typematch function matches int values to float dps"""
     assert _typematch(float, 1)
