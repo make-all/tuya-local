@@ -39,9 +39,6 @@ entities:
         name: sensor
         unit: bpm
         class: measurement
-        range:
-          min: 0
-          max: 120
   - entity: sensor
     name: Breath rate
     icon: "mdi:lungs"
@@ -51,9 +48,6 @@ entities:
         name: sensor
         unit: bpm
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     class: distance
     dps:
@@ -62,9 +56,6 @@ entities:
         name: sensor
         unit: cm
         class: measurement
-        range:
-          min: 0
-          max: 200
   - entity: sensor
     name: Body motion
     icon: "mdi:human"
@@ -73,9 +64,6 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Respiratory signal
     class: enum
@@ -93,9 +81,9 @@ entities:
             value: High
           - dps_val: low
             value: Low
-  - entity: sensor
+  - entity: binary_sensor
     name: In bed
-    class: enum
+    class: occupancy
     icon: "mdi:bed"
     dps:
       - id: 133
@@ -103,11 +91,11 @@ entities:
         name: sensor
         mapping:
           - dps_val: none
-            value: "None"
+            value: null
           - dps_val: in_bed
-            value: In bed
+            value: true
           - dps_val: out_of_bed
-            value: Out of bed
+            value: false
   - entity: sensor
     name: Sleep state
     class: enum
@@ -133,9 +121,6 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Position warning
     class: enum
@@ -210,7 +195,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Nobody timer
+    name: Unoccupied timer
     category: config
     icon: "mdi:timer-outline"
     dps:
@@ -218,8 +203,9 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Nobody timeout
+    name: Unoccupied time
     category: config
+    class: duration
     icon: "mdi:timer-cog"
     dps:
       - id: 160
@@ -248,7 +234,7 @@ entities:
           - dps_val: bad
             value: Bad
   - entity: sensor
-    name: Nobody timer state
+    name: Unoccupied timer state
     class: enum
     category: diagnostic
     dps:
@@ -290,9 +276,6 @@ entities:
         name: sensor
         unit: min
         class: measurement
-        range:
-          min: 0
-          max: 1440
   - entity: sensor
     name: Light sleep time
     category: diagnostic
@@ -303,9 +286,6 @@ entities:
         name: sensor
         unit: min
         class: measurement
-        range:
-          min: 0
-          max: 1440
   - entity: sensor
     name: Deep sleep time
     category: diagnostic
@@ -316,11 +296,8 @@ entities:
         name: sensor
         unit: min
         class: measurement
-        range:
-          min: 0
-          max: 1440
   - entity: sensor
-    name: 10 min average breath
+    name: Average breath 10 min
     category: diagnostic
     icon: "mdi:lungs"
     dps:
@@ -329,11 +306,8 @@ entities:
         name: sensor
         unit: bpm
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
-    name: 10 min average heart rate
+    name: Average heart rate 10 min
     category: diagnostic
     icon: "mdi:heart-pulse"
     dps:
@@ -342,22 +316,16 @@ entities:
         name: sensor
         unit: bpm
         class: measurement
-        range:
-          min: 0
-          max: 150
   - entity: sensor
-    name: 10 min turn overs
+    name: Turn overs 10 min
     category: diagnostic
     dps:
       - id: 141
         type: integer
         name: sensor
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
-    name: 10 min large motion
+    name: Large motion 10 min
     category: diagnostic
     dps:
       - id: 142
@@ -365,11 +333,8 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
-    name: 10 min small motion
+    name: Small motion 10 min
     category: diagnostic
     dps:
       - id: 143
@@ -377,9 +342,6 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Total sleep time
     category: diagnostic
@@ -390,9 +352,6 @@ entities:
         name: sensor
         unit: min
         class: measurement
-        range:
-          min: 0
-          max: 65535
   - entity: sensor
     name: Awake ratio
     category: diagnostic
@@ -402,9 +361,6 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Light sleep ratio
     category: diagnostic
@@ -414,9 +370,6 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Deep sleep ratio
     category: diagnostic
@@ -426,9 +379,6 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Out of bed ratio
     category: diagnostic
@@ -438,9 +388,6 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Out of bed count
     category: diagnostic
@@ -449,9 +396,6 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        range:
-          min: 0
-          max: 10
   - entity: sensor
     name: Turn overs
     category: diagnostic
@@ -460,9 +404,6 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        range:
-          min: 0
-          max: 40
   - entity: sensor
     name: Average breath
     category: diagnostic
@@ -473,9 +414,6 @@ entities:
         name: sensor
         unit: bpm
         class: measurement
-        range:
-          min: 0
-          max: 30
   - entity: sensor
     name: Average heart rate
     category: diagnostic
@@ -486,9 +424,6 @@ entities:
         name: sensor
         unit: bpm
         class: measurement
-        range:
-          min: 0
-          max: 150
   - entity: sensor
     name: Hardware version
     category: diagnostic
