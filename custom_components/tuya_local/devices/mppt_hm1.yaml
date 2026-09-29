@@ -154,14 +154,14 @@ entities:
     name: Bulk Charging Voltage
     class: voltage
     category: config
+    min: 40
+    max: 60
+    step: 0.1
     dps:
       - id: 117
         type: integer
         name: value
         unit: V
-        min: 400
-        max: 600
-        step: 1
         mapping:
           - scale: 10
 
@@ -169,14 +169,14 @@ entities:
     name: Float Charging Voltage
     class: voltage
     category: config
+    min: 40
+    max: 56
+    step: 0.1
     dps:
       - id: 11
         type: integer
         name: value
         unit: V
-        min: 400
-        max: 560
-        step: 1
         mapping:
           - scale: 10
 
@@ -184,14 +184,14 @@ entities:
     name: Restore Voltage
     class: voltage
     category: config
+    min: 40
+    max: 60
+    step: 0.1
     dps:
       - id: 110
         type: integer
         name: value
         unit: V
-        min: 400
-        max: 600
-        step: 1
         mapping:
           - scale: 10
 
@@ -199,40 +199,40 @@ entities:
     name: BAT Low Voltage Protection
     class: voltage
     category: config
+    min: 40
+    max: 60
+    step: 0.1
     dps:
       - id: 12
         type: integer
         name: value
         unit: V
-        min: 400
-        max: 600
-        step: 1
         mapping:
           - scale: 10
 
   - entity: number
     name: Charging Current Limit
     category: config
+    min: 0
+    max: 100
+    step: 1
     dps:
       - id: 114
         type: integer
         name: value
         unit: "%"
-        min: 0
-        max: 100
-        step: 1
 
   - entity: number
     name: Load Mode
     category: config
+    min: 0
+    max: 24
+    step: 1
     dps:
       - id: 113
         type: integer
         name: value
         unit: h
-        min: 0
-        max: 24
-        step: 1
 
   - entity: switch
     name: Load Schedule
