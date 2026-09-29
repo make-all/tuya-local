@@ -238,6 +238,7 @@ entities:
     dps:
       - id: 107
         type: string
+        optional: true
         name: value
   - entity: text
     translation_key: schedule
@@ -247,6 +248,7 @@ entities:
     dps:
       - id: 109
         type: string
+        optional: true
         name: value
   - entity: binary_sensor
     name: Ventilation
@@ -290,6 +292,7 @@ entities:
     dps:
       - id: 112
         type: boolean
+        optional: true
         name: sensor
   - entity: sensor
     name: Outdoor temperature
@@ -368,6 +371,7 @@ entities:
     dps:
       - id: 123
         type: string
+        optional: true
         name: switch
         mapping:
           - dps_val: "0"
@@ -411,6 +415,7 @@ entities:
     dps:
       - id: 127
         type: integer
+        optional: true
         name: sensor
         unit: kWh
         class: total
@@ -418,9 +423,11 @@ entities:
           - scale: 100
       - id: 128
         type: unixtime
+        optional: true
         name: last_reset
       - id: 129
         type: unixtime
+        optional: true
         name: sample_time
   - entity: number
     name: Clear energy from
@@ -503,6 +510,7 @@ entities:
     dps:
       - id: 136
         type: string
+        optional: true
         name: value
   - entity: select
     name: Vertical swing

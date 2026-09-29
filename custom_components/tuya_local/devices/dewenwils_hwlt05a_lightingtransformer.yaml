@@ -1,0 +1,106 @@
+name: Triple light
+products:
+  - id: fozet5sa92afpioq
+    manufacturer: Dewenwils
+    model: HWLT05A
+entities:
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: light
+    name: Light 2
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: light
+    name: Light 3
+    dps:
+      - id: 3
+        name: switch
+        type: boolean
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    hidden: true  # documented as add_ele, which usually have unusable behaviour
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 102
+        type: bitfield
+        name: fault_code
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 209
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    icon: "mdi:island"
+    category: config
+    hidden: true
+    dps:
+      - id: 210
+        type: base64
+        optional: true
+        name: value

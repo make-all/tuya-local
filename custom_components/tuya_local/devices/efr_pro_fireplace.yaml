@@ -2,6 +2,9 @@ name: Fireplace
 products:
   - id: m0chyz1cdsaltkmd
     model: EF-R Pro
+  - id: 72a2jkpe9sqxjbih
+    manufacturer: Xaralyn
+    model: BI-R
 entities:
   - entity: climate
     icon: "mdi:fireplace"
@@ -191,11 +194,15 @@ entities:
     dps:
       - id: 23
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 23
         type: bitfield
+        optional: true
         name: fault_code

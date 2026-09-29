@@ -113,11 +113,6 @@ entities:
         name: pcb_version
         optional: true
 
-  # DP15 is a legacy duplicate of the water inlet temperature (same
-  # physical sensor as DP3 and DP101). On most other Tuya pool heat
-  # pumps DP15 is the fault bitmap, but on this firmware fault moved
-  # to DP21 and DP15 was repurposed. Use DP101 as the authoritative
-  # inlet sensor.
   - entity: sensor
     name: Pool temperature
     class: temperature
@@ -133,7 +128,7 @@ entities:
 
   # Query list mapping from the Smart Life app screenshots:
   - entity: sensor
-    name: Water inlet temperature
+    translation_key: inlet_temperature
     class: temperature
     category: diagnostic
     dps:
@@ -145,7 +140,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Water outlet temperature
+    translation_key: outlet_temperature
     class: temperature
     category: diagnostic
     dps:

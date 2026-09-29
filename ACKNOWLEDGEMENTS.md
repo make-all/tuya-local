@@ -958,3 +958,10 @@ Further device support has been made with the assistance of users. Please consid
 - [blackjid](https://github.com/blackjid) for contributing support for Anwo Brezza ceiling fan.
 - [giraudsa](https://github.com/giraudsa) for contributing support for PJ2101A clamp meter.
 - [petermcg151](https://github.com/petermcg151) for contributing support for Madimack GT Freedom i80 pool cleaner.
+- [mcdax](https://github.com/mcdax) for contributing support for Ledvance floodlight camera and PTZ camera.
+- [k----n](https://github.com/k----n) for contributing support for Geeni WP005 pet treat camera.
+- [kbinish-ship-it](https://github.com/kbinish-ship-it) for contributing support for Arlec/Deta EV200D-HA EV charger.
+- [placekmilan](https://github.com/placekmilan) for contributing support for Siguro TurboVac Navigator vacuum ETA 2625 Sole Smart heater.
+- [MartinNuc](https://github.com/MartinNuc) for contributing improvements to Nedis Pill Dispenser.
+- [leashjay](https://github.com/leashjay) for improvements to diagnostics redacting and contributing support for Goldair GCT315/425 ceramic tower heater.
+

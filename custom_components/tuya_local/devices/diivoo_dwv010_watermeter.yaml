@@ -1,4 +1,5 @@
 name: Dual water timer
+legacy_type: diivoo_dwv010
 products:
   - id: r6ya07uz
     manufacturer: Diivoo
@@ -32,12 +33,11 @@ entities:
       - id: 112
         type: integer
         name: sensor
-        unit: l
+        unit: L
         class: total_increasing
       - id: 6
         type: integer
         name: daily
-        unit: l
   - entity: sensor
     class: battery
     dps:

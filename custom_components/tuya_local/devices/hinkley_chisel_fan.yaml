@@ -1,0 +1,107 @@
+name: Ceiling fan
+products:
+  - id: 37lcucdaax1u9r6l
+    manufacturer: Hinkley
+    model: Chisel 52 inch
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: soft_breeze
+            value: nature
+          - dps_val: gusty_breeze
+            value: strong
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        name: direction
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 67
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 67
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: number
+    name: Remote controls limit
+    category: config
+    icon: "mdi:remote"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: controllers
+        range:
+          min: 1
+          max: 255
+  - entity: text
+    name: Remote control ID
+    category: config
+    icon: "mdi:remote"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    name: Remote learning state
+    icon: "mdi:remote"
+    category: config
+    hidden: true
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: learn_st_done
+            value: done
+          - dps_val: learn_st_learning
+            value: learn
+          - dps_val: learn_st_successful
+            value: success
+          - dps_val: learn_st_failed
+            value: failure
+  - entity: text
+    name: Delete remote
+    category: config
+    icon: "mdi:remote-off"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
