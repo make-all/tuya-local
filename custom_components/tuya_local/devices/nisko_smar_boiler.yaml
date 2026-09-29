@@ -1,0 +1,67 @@
+name: Nisko Smart Boiler
+products:
+  - id: pjjcybgnxzitkacu
+    name: Nisko Smart Boiler
+entities:
+  - entity: switch
+    name: Boiler
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: number
+    name: Set Boiler Timer
+    icon: mdi:timer-cog-outline
+    mode: box
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+          step: 1
+        persist: true
+  - entity: sensor
+    name: Remaining Time
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    category: diagnostic
+    name: Power
+    device_class: power
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    category: diagnostic
+    name: Voltage
+    device_class: voltage
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        precision: 1
+        mapping:
+          - scale: 10
+        unit: V
+  - entity: sensor
+    category: diagnostic
+    name: Current
+    device_class: current
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        precision: 2
+        mapping:
+          - scale: 1000
+        unit: A
