@@ -22,6 +22,34 @@ entities:
             value: medium
           - dps_val: high
             value: high
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        optional: true
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: mild
+            value: moderate
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
   - entity: light
     category: config
     dps:
@@ -35,6 +63,14 @@ entities:
       - id: 6
         name: switch
         type: boolean
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+        optional: true
   - entity: sensor
     translation_key: filter_life
     category: diagnostic
@@ -59,3 +95,28 @@ entities:
             value: "2h"
           - dps_val: "4h"
             value: "4h"
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code
