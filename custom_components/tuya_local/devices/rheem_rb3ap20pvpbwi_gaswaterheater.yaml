@@ -1,0 +1,174 @@
+# Rheem Premium Wi-Fi Connect Black, 20 L/min, LPG (Brazil)
+name: Gas water heater
+products:
+  - id: dmz0vvqevyyzjaxy
+    manufacturer: Rheem
+    model: RB3AP20PVPBWI
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: gas
+      - id: 9
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 35
+          max: 65
+      - id: 10
+        type: integer
+        name: current_temperature
+        unit: C
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: warm
+          - dps_val: "off"
+            value: "off"
+  - entity: sensor
+    # Safety mode set from the app (baby = kid, pet = pet), which also sets
+    # a fixed temperature. Only reported after a mode has been selected.
+    name: Safety mode
+    icon: "mdi:shield-account"
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor
+    # Usage timer: the heater shuts off after 60 minutes of continuous use
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: volume_flow_rate
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Session runtime
+    class: duration
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Gas consumption rate
+    icon: "mdi:fire"
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: kg/h
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    translation_key: inlet_temperature
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    # Both 108 and 110 increase by 1 per minute of use. They were identical
+    # during testing, the difference between them is unknown.
+    name: Total runtime
+    class: duration
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: min
+        class: total_increasing
+  - entity: sensor
+    name: Runtime counter
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: min
+        class: total_increasing
+  - entity: sensor
+    # Delta report: sent every 10 L while hot water flows, plus the remainder
+    # when the tap closes, then back to 0 about a minute later. The Tuya app
+    # sums these for its water history. A utility_meter with delta_values
+    # gives a running total.
+    name: Water usage report
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: L
+  - entity: sensor
+    # Delta report in 0.01 kg, sent when the burner stops. The Tuya app sums
+    # these for its gas history.
+    name: Gas usage report
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: kg
+        mapping:
+          - scale: 100
+  - entity: sensor
+    # Echo of the timer setting sent from the app, in minutes. Resets to 0.
+    name: Timer setting
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
