@@ -74,7 +74,7 @@ def get_device_unique_id(entry: ConfigEntry):
     )
 
 
-def cleanup_failed_device(hass: HomeAssistant, device_id: str):
+async def cleanup_failed_device(hass: HomeAssistant, device_id: str):
     """Drop cached device objects left behind by failed setup."""
     domain_data = hass.data.get(DOMAIN, {})
     stale = domain_data.pop(device_id, None)
@@ -83,9 +83,10 @@ def cleanup_failed_device(hass: HomeAssistant, device_id: str):
 
     api = stale.get("tuyadevice")
     if api:
-        api.set_socketPersistent(False)
-        if api.parent:
-            api.parent.set_socketPersistent(False)
+        async with stale["tuyadevicelock"]:
+            api.set_socketPersistent(False)
+            if api.parent:
+                api.parent.set_socketPersistent(False)
 
 
 async def async_migrate_entry(hass, entry: ConfigEntry):
@@ -1103,11 +1104,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         await device.async_refresh()
 
     except Exception as e:
-        cleanup_failed_device(hass, device_id)
+        await cleanup_failed_device(hass, device_id)
         raise ConfigEntryNotReady("tuya-local device not ready") from e
 
     if not device.has_returned_state:
-        cleanup_failed_device(hass, device_id)
+        await cleanup_failed_device(hass, device_id)
         raise ConfigEntryNotReady("tuya-local device offline")
 
     device_conf = await hass.async_add_executor_job(

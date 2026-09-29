@@ -1,0 +1,42 @@
+name: Door lock
+products:
+  - id: hhxgpozj
+    name: Smart Lock
+    manufacturer: Yamiry
+    model: YR05
+  - id: 6xjvratw
+    name: Smart Lock
+    manufacturer: Yamiry
+    model: YR02
+entities:
+  - entity: lock
+    dps:
+      - id: 46
+        type: boolean
+        name: lock
+        optional: true
+      - id: 47
+        type: boolean
+        name: lock_state
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 71
+        type: string
+        name: authenticated_ble_unlock
+        optional: true
+        persist: false
+        sensitive: true
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100

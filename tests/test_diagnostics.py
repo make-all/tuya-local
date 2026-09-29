@@ -8,6 +8,7 @@ from homeassistant.const import CONF_HOST
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
+    CONF_BLE_UNLOCK_CHECK,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_PROTOCOL_VERSION,
@@ -197,3 +198,34 @@ def test_unrelated_entity_state_is_untouched():
     state = {"entity_id": "lock.other", "state": "locked", "attributes": {}}
 
     assert redact_entity(m_device, "some-other-unique-id", state) == state
+
+
+@pytest.mark.asyncio
+async def test_ble_unlock_check_diagnostic_redaction(hass):
+    """Test configured BLE unlock source is redacted."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        data={
+            CONF_DEVICE_ID: "test_device",
+            CONF_LOCAL_KEY: "test_key",
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_HOST: "auto",
+            CONF_TYPE: "",
+            CONF_BLE_UNLOCK_CHECK: "old_secret",
+        },
+        options={
+            CONF_BLE_UNLOCK_CHECK: "new_secret",
+        },
+    )
+    m_device = Mock()
+    m_device._api_protocol_version_index = 0
+    m_device._children = []
+    m_device._cached_state = {"1": "Test"}
+    m_device._pending_updates = {}
+    hass.data[DOMAIN] = {"test_device": {"device": m_device}}
+
+    diag = await async_get_device_diagnostics(hass, entry, m_device)
+
+    assert diag[CONF_BLE_UNLOCK_CHECK] is REDACTED
+    assert "old_secret" not in str(diag)
+    assert "new_secret" not in str(diag)

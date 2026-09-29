@@ -262,6 +262,7 @@ KNOWN_DPS = {
             "unlock_app",
             "unlock_key",
             "unlock_ble",
+            "authenticated_ble_unlock",
             "jammed",
         ],
     },
@@ -627,6 +628,41 @@ def test_configs_can_be_matched():
             assert dp not in optional, (
                 f"\n::error file={fname},line=1::Optional dp {dp} is required in {cfg}"
             )
+
+
+def test_yamiry_yr05_lock_profile(mocker):
+    """Test the Yamiry YR05/YR02 lock profile's confirmed gateway DPs."""
+    cfg = get_config("yamiry_yr05_lock")
+    entities = list(cfg.all_entities())
+
+    assert cfg.matches_product("hhxgpozj")
+    assert cfg.matches_product("6xjvratw")
+    assert cfg.product_display_entries(["hhxgpozj"]) == [("Yamiry", "YR05")]
+    assert cfg.product_display_entries(["6xjvratw"]) == [("Yamiry", "YR02")]
+    assert cfg.matches({"8": 53}, ["6xjvratw"])
+    assert cfg.matches({"8": 53}, [])
+
+    lock = next(entity for entity in entities if entity.entity == "lock")
+    lock_dp = lock.find_dps("lock")
+    assert lock_dp.id == "46"
+    assert lock_dp.optional
+
+    lock_state = lock.find_dps("lock_state")
+    assert lock_state.id == "47"
+    assert lock_state.optional
+    assert lock_state.get_value(mock_device({"47": False}, mocker)) is True
+    assert lock_state.get_value(mock_device({"47": True}, mocker)) is False
+
+    authenticated_unlock = lock.find_dps("authenticated_ble_unlock")
+    assert authenticated_unlock.id == "71"
+    assert authenticated_unlock.optional
+    assert not authenticated_unlock.persist
+    assert authenticated_unlock.sensitive
+
+    battery = next(entity for entity in entities if entity.device_class == "battery")
+    battery_dp = battery.find_dps("sensor")
+    assert battery_dp.id == "8"
+    assert battery_dp.range(mock_device({"8": 50}, mocker)) == (0, 100)
 
 
 # Most of the device_config functionality is exercised during testing of

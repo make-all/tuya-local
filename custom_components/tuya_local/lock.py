@@ -3,11 +3,13 @@ Setup for different kinds of Tuya lock devices
 """
 
 import logging
-from base64 import b64encode
+from base64 import b64decode, b64encode
+from binascii import Error as BinasciiError
 from secrets import randbelow
 from time import time
 
 from homeassistant.components.lock import LockEntity, LockEntityFeature
+from homeassistant.exceptions import HomeAssistantError
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
@@ -91,6 +93,9 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._code_unlock_dp = dps_map.pop("code_unlock", None)
         self._set_code_dp = dps_map.pop("set_unlock_code", None)
+        self._authenticated_ble_unlock_dp = dps_map.pop(
+            "authenticated_ble_unlock", None
+        )
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
         self._approve_intercom_dp = dps_map.pop("approve_intercom", None)
         self._jam_dp = dps_map.pop("jammed", None)
@@ -213,7 +218,14 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
 
     async def async_unlock(self, **kwargs):
         """Unlock the lock."""
-        if self._lock_dp and not self._lock_dp.readonly:
+        if self._authenticated_ble_unlock_dp:
+            ble_unlock_check = self._device.ble_unlock_check
+            if not ble_unlock_check:
+                raise HomeAssistantError("BLE unlock check required")
+            msg = self.build_ble_unlock_msg(ble_unlock_check)
+            _LOGGER.info("%s unlocking with authenticated BLE", self._config.config_id)
+            await self._authenticated_ble_unlock_dp.async_set_value(self._device, msg)
+        elif self._lock_dp and not self._lock_dp.readonly:
             _LOGGER.info("%s unlocking", self._config.config_id)
             await self._lock_dp.async_set_value(self._device, False)
         elif self._code_unlock_dp and self._set_code_dp:
@@ -269,6 +281,27 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         msg += code.encode("ascii")
         msg += source.to_bytes(2, "big")
         # msg += b"\x00"  # ordinary user (0x01 is admin)
+        return b64encode(msg).decode("utf-8")
+
+    def build_ble_unlock_msg(self, ble_unlock_check, timestamp=None):
+        """Generate the authenticated BLE unlock message."""
+        try:
+            source = b64decode(ble_unlock_check, validate=True)
+        except BinasciiError, TypeError, ValueError:
+            raise HomeAssistantError("BLE unlock check must be valid base64") from None
+        if len(source) != 19:
+            raise HomeAssistantError("BLE unlock check must decode to 19 bytes")
+        if timestamp is None:
+            timestamp = int(time())
+
+        msg = bytearray()
+        msg += source[2:4]
+        msg += source[0:2]
+        msg += source[4:12]
+        msg.append(0x01)
+        msg += int(timestamp).to_bytes(4, "big")
+        msg.append(0x00)
+        msg.append(0x01)
         return b64encode(msg).decode("utf-8")
 
     def build_code_set_msg(self, code):

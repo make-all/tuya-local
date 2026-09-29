@@ -4,9 +4,15 @@ from time import time
 
 import pytest
 
-# from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
-from custom_components.tuya_local.const import CONF_DEVICE_ID, DOMAIN
-from custom_components.tuya_local.device import TuyaLocalDevice, async_delete_device
+from custom_components.tuya_local.const import (
+    CONF_DEVICE_ID,
+    DOMAIN,
+)
+from custom_components.tuya_local.device import (
+    TuyaLocalDevice,
+    async_delete_device,
+)
+from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
 
 from .const import EUROM_600_HEATER_PAYLOAD
 
@@ -339,6 +345,51 @@ async def test_set_property_immediately_stores_pending_updates(subject):
     subject._cached_state = {"1": True}
     await subject.async_set_property("1", False)
     assert not subject.get_property("1")
+
+
+@pytest.mark.asyncio
+async def test_sensitive_dps_are_redacted_from_device_debug_logs(
+    subject, mock_api, mocker, caplog
+):
+    sensitive_value = "generated-dp71-secret"
+    entity = mocker.Mock()
+    entity._config = TuyaEntityConfig(
+        mocker.Mock(),
+        {
+            "entity": "lock",
+            "dps": [
+                {
+                    "id": 8,
+                    "type": "integer",
+                    "name": "battery",
+                },
+                {
+                    "id": 71,
+                    "type": "string",
+                    "name": "authenticated_ble_unlock",
+                    "sensitive": True,
+                },
+            ],
+        },
+    )
+    subject._children = [entity]
+    mock_api().status.return_value = {"dps": {"8": 88, "71": sensitive_value}}
+    subject._retry_on_failed_connection = mocker.AsyncMock()
+
+    with caplog.at_level(logging.DEBUG, logger="custom_components.tuya_local.device"):
+        subject._refresh_cached_state()
+        subject._add_properties_to_pending_updates({"8": 89, "71": sensitive_value})
+        await subject._send_pending_updates()
+
+    assert "refreshed device state" in caplog.text
+    assert "new state (incl pending)" in caplog.text
+    assert "new pending updates" in caplog.text
+    assert "sending dps update" in caplog.text
+    assert sensitive_value not in caplog.text
+    assert '"71": "**REDACTED**"' in caplog.text
+    assert '"value": "**REDACTED**"' in caplog.text
+    assert '"8": 88' in caplog.text
+    assert '"8": 89' in caplog.text
 
 
 @pytest.mark.asyncio
@@ -683,14 +734,14 @@ async def test_async_receive(subject, mock_api, mocker):
     mock_api().set_socketPersistent.assert_called_once_with(False)
 
 
-def test_should_poll(subject):
+async def test_should_poll(subject):
     subject._cached_state = {"1": "sample", "updated_at": time()}
     subject._poll_only = False
     subject._temporary_poll = False
 
     # Test temporary poll via pause/resume
     assert not subject.should_poll
-    subject.pause()
+    await subject.pause()
     assert subject.should_poll
     subject.resume()
     assert not subject.should_poll

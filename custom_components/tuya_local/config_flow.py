@@ -22,12 +22,16 @@ from homeassistant.helpers.selector import (
     SelectSelector,
     SelectSelectorConfig,
     SelectSelectorMode,
+    TextSelector,
+    TextSelectorConfig,
+    TextSelectorType,
 )
 
 from . import DOMAIN
 from .cloud import Cloud
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_BLE_UNLOCK_CHECK,
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
@@ -49,6 +53,25 @@ DEVICE_DETAILS_URL = (
     "https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md"
     "#finding-your-device-id-and-local-key"
 )
+AUTHENTICATED_BLE_UNLOCK_DP = "authenticated_ble_unlock"
+
+
+def config_uses_authenticated_ble_unlock(config):
+    """Return whether a device config declares authenticated BLE unlock."""
+    return any(
+        dp.name == AUTHENTICATED_BLE_UNLOCK_DP
+        for entity in config.all_entities()
+        for dp in entity.dps()
+    )
+
+
+def ble_unlock_check_selector():
+    """Return the password-style selector for BLE unlock source material."""
+    return TextSelector(
+        TextSelectorConfig(
+            type=TextSelectorType.PASSWORD,
+        )
+    )
 
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
@@ -595,6 +618,8 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         if self.__discovered_device and self.__discovered_device.get("name"):
             default_name = self.__discovered_device["name"]
         schema = {vol.Required(CONF_NAME, default=default_name): str}
+        if config_uses_authenticated_ble_unlock(config):
+            schema[vol.Required(CONF_BLE_UNLOCK_CHECK)] = ble_unlock_check_selector()
 
         return self.async_show_form(
             step_id="choose_entities",
@@ -622,11 +647,20 @@ class OptionsFlowHandler(OptionsFlow):
         """Manage the options."""
         errors = {}
         config = {**self.config_entry.data, **self.config_entry.options}
+        cfg = await self.hass.async_add_executor_job(
+            get_config,
+            config[CONF_TYPE],
+        )
+        if cfg is None:
+            return self.async_abort(reason="not_supported")
+        uses_authenticated_ble_unlock = config_uses_authenticated_ble_unlock(cfg)
 
         if user_input is not None:
             proto = user_input.get(CONF_PROTOCOL_VERSION)
             if proto != "auto":
                 user_input[CONF_PROTOCOL_VERSION] = float(proto)
+            if not uses_authenticated_ble_unlock:
+                user_input.pop(CONF_BLE_UNLOCK_CHECK, None)
             config = {**config, **user_input}
             device = await async_test_connection(config, self.hass)
             if device:
@@ -648,12 +682,13 @@ class OptionsFlowHandler(OptionsFlow):
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,
         }
-        cfg = await self.hass.async_add_executor_job(
-            get_config,
-            config[CONF_TYPE],
-        )
-        if cfg is None:
-            return self.async_abort(reason="not_supported")
+        if uses_authenticated_ble_unlock:
+            schema[
+                vol.Required(
+                    CONF_BLE_UNLOCK_CHECK,
+                    default=config.get(CONF_BLE_UNLOCK_CHECK, ""),
+                )
+            ] = ble_unlock_check_selector()
 
         return self.async_show_form(
             step_id="user",
@@ -685,7 +720,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
     existing = domain_data.get(get_device_id(config)) if domain_data else None
     if existing and existing.get("device"):
         _LOGGER.info("Pausing existing device to test new connection parameters")
-        existing["device"].pause()
+        await existing["device"].pause()
         await asyncio.sleep(5)
 
     retval = None
@@ -709,6 +744,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
             except Exception as e:
                 _LOGGER.debug("Protocol %s test failed with %s %s", proto, type(e), e)
             if device is not None:
+                # Each Test device owns a separate parent; its refresh has finished.
                 device._api.set_socketPersistent(False)
                 if device._api.parent:
                     device._api.parent.set_socketPersistent(False)

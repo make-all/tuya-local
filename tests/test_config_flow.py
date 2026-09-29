@@ -8,6 +8,7 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.selector import TextSelector, TextSelectorType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
@@ -19,6 +20,7 @@ from custom_components.tuya_local import (
     get_device_unique_id,
 )
 from custom_components.tuya_local.const import (
+    CONF_BLE_UNLOCK_CHECK,
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
@@ -30,6 +32,45 @@ from custom_components.tuya_local.const import (
 
 # Designed to contain "special" characters that users constantly suspect.
 TESTKEY = ")<jO<@)'P1|kR$Kd"
+TEST_BLE_UNLOCK_CHECK = "AQIDBAUGBwgJCgsMAQIDBAAB"
+
+
+class FakeDp:
+    def __init__(self, name):
+        self.name = name
+
+
+class FakeEntity:
+    def __init__(self, dp_names):
+        self._dp_names = dp_names
+
+    def dps(self):
+        for name in self._dp_names:
+            yield FakeDp(name)
+
+
+class FakeDeviceConfig:
+    name = "Door lock"
+
+    def __init__(self, dp_names):
+        self._dp_names = dp_names
+
+    def all_entities(self):
+        yield FakeEntity(self._dp_names)
+
+
+def get_schema_field(schema, key):
+    for marker, field in schema.schema.items():
+        if getattr(marker, "schema", marker) == key:
+            return field
+    return None
+
+
+def get_selector_type(selector):
+    config = selector.config
+    if isinstance(config, dict):
+        return config.get("type")
+    return getattr(config, "type", None)
 
 
 @pytest.fixture(autouse=True)
@@ -448,7 +489,7 @@ async def test_async_test_connection_valid(hass, mocker):
     )
     mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = True
-    mock_instance.pause = mocker.MagicMock()
+    mock_instance.pause = mocker.AsyncMock()
     mock_instance.resume = mocker.MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"deviceid": {"device": mock_instance}}
@@ -463,7 +504,7 @@ async def test_async_test_connection_valid(hass, mocker):
         hass,
     )
     assert device == mock_instance
-    mock_instance.pause.assert_called_once()
+    mock_instance.pause.assert_awaited_once()
     mock_instance.resume.assert_called_once()
 
 
@@ -475,7 +516,7 @@ async def test_async_test_connection_for_subdevice_valid(hass, mocker):
     )
     mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = True
-    mock_instance.pause = mocker.MagicMock()
+    mock_instance.pause = mocker.AsyncMock()
     mock_instance.resume = mocker.MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"deviceid/subdeviceid": {"device": mock_instance}}
@@ -491,7 +532,7 @@ async def test_async_test_connection_for_subdevice_valid(hass, mocker):
         hass,
     )
     assert device == mock_instance
-    mock_instance.pause.assert_called_once()
+    mock_instance.pause.assert_awaited_once()
     mock_instance.resume.assert_called_once()
 
 
@@ -730,6 +771,87 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup, moc
 
 
 @pytest.mark.asyncio
+async def test_flow_choose_entities_requests_ble_unlock_check_for_auth_profile(
+    hass, bypass_setup, mocker
+):
+    """Test authenticated BLE unlock profiles request the BLE unlock check."""
+    mocker.patch.dict(
+        config_flow.ConfigFlowHandler.data,
+        {
+            CONF_DEVICE_ID: "deviceid",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_HOST: "hostname",
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_TYPE: "yamiry_yr05_lock",
+            CONF_DEVICE_CID: None,
+        },
+    )
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.get_config",
+        return_value=FakeDeviceConfig(["authenticated_ble_unlock"]),
+    )
+
+    flow = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "choose_entities"}
+    )
+    field = get_schema_field(flow["data_schema"], CONF_BLE_UNLOCK_CHECK)
+
+    assert isinstance(field, TextSelector)
+    assert get_selector_type(field) == TextSelectorType.PASSWORD
+    with pytest.raises(vol.MultipleInvalid):
+        flow["data_schema"]({CONF_NAME: "test"})
+
+    result = await hass.config_entries.flow.async_configure(
+        flow["flow_id"],
+        user_input={
+            CONF_NAME: "test",
+            CONF_BLE_UNLOCK_CHECK: TEST_BLE_UNLOCK_CHECK,
+        },
+    )
+
+    assert result["type"] == FlowResultType.CREATE_ENTRY
+    assert result["data"][CONF_BLE_UNLOCK_CHECK] == TEST_BLE_UNLOCK_CHECK
+
+
+@pytest.mark.asyncio
+async def test_flow_choose_entities_does_not_request_ble_unlock_check_for_others(
+    hass, mocker
+):
+    """Test unrelated profiles do not request the BLE unlock check."""
+    mocker.patch.dict(
+        config_flow.ConfigFlowHandler.data,
+        {
+            CONF_DEVICE_ID: "deviceid",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_HOST: "hostname",
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_TYPE: "smartplugv1",
+            CONF_DEVICE_CID: None,
+        },
+    )
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.get_config",
+        return_value=FakeDeviceConfig(["switch"]),
+    )
+
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "choose_entities"}
+    )
+
+    assert get_schema_field(result["data_schema"], CONF_BLE_UNLOCK_CHECK) is None
+    assert result["data_schema"]({CONF_NAME: "test"})
+    with pytest.raises(vol.MultipleInvalid):
+        result["data_schema"](
+            {
+                CONF_NAME: "test",
+                CONF_BLE_UNLOCK_CHECK: TEST_BLE_UNLOCK_CHECK,
+            }
+        )
+
+
+@pytest.mark.asyncio
 async def test_options_flow_init(hass, bypass_data_fetch):
     """Test config flow options."""
     config_entry = MockConfigEntry(
@@ -813,6 +935,71 @@ async def test_options_flow_modifies_config(hass, bypass_setup, mocker):
     assert "create_entry" == result["type"]
     assert "" == result["title"]
     assert expected == result["data"]
+
+
+@pytest.mark.asyncio
+async def test_options_flow_updates_ble_unlock_check(hass, bypass_setup, mocker):
+    """Test options flow updates configured BLE unlock check."""
+    mock_device = mocker.MagicMock()
+    test_connection = mocker.patch(
+        "custom_components.tuya_local.config_flow.async_test_connection",
+        return_value=mock_device,
+    )
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.get_config",
+        return_value=FakeDeviceConfig(["authenticated_ble_unlock"]),
+    )
+
+    config_entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=13,
+        unique_id="uniqueid",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_NAME: "test",
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_TYPE: "yamiry_yr05_lock",
+            CONF_DEVICE_CID: "",
+            CONF_BLE_UNLOCK_CHECK: "old_check",
+        },
+    )
+    config_entry.add_to_hass(hass)
+
+    assert await hass.config_entries.async_setup(config_entry.entry_id)
+    await hass.async_block_till_done()
+    form = await hass.config_entries.options.async_init(config_entry.entry_id)
+    field = get_schema_field(form["data_schema"], CONF_BLE_UNLOCK_CHECK)
+
+    assert isinstance(field, TextSelector)
+    assert get_selector_type(field) == TextSelectorType.PASSWORD
+
+    result = await hass.config_entries.options.async_configure(
+        form["flow_id"],
+        user_input={
+            CONF_HOST: "new_hostname",
+            CONF_LOCAL_KEY: "new_key",
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: "3.4",
+            CONF_BLE_UNLOCK_CHECK: TEST_BLE_UNLOCK_CHECK,
+        },
+    )
+
+    expected = {
+        CONF_HOST: "new_hostname",
+        CONF_LOCAL_KEY: "new_key",
+        CONF_POLL_ONLY: False,
+        CONF_PROTOCOL_VERSION: 3.4,
+        CONF_BLE_UNLOCK_CHECK: TEST_BLE_UNLOCK_CHECK,
+    }
+    assert "create_entry" == result["type"]
+    assert "" == result["title"]
+    assert expected == result["data"]
+    assert test_connection.await_args.args[0][CONF_BLE_UNLOCK_CHECK] == (
+        TEST_BLE_UNLOCK_CHECK
+    )
 
 
 @pytest.mark.asyncio

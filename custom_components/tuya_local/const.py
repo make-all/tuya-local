@@ -4,6 +4,7 @@ DATA_DISCOVERY = "discovery"
 
 CONF_DEVICE_ID = "device_id"
 CONF_LOCAL_KEY = "local_key"
+CONF_BLE_UNLOCK_CHECK = "ble_unlock_check"
 CONF_TYPE = "type"
 CONF_MANUFACTURER = "manufacturer"
 CONF_MODEL = "model"
