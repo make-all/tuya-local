@@ -3,8 +3,8 @@ Setup for different kinds of Tuya light devices
 """
 
 import logging
-from struct import pack, unpack
 from struct import error as StructError
+from struct import pack, unpack
 
 import homeassistant.util.color as color_util
 from homeassistant.components.light import (
