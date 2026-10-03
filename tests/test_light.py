@@ -361,7 +361,7 @@ async def test_is_off_when_off_by_brightness():
 
 
 @pytest.mark.parametrize(
-    ("rawtype", "invalid_values", "valid_value"),
+    ("rawtype", "invalid_value", "valid_value"),
     [
         ("hex", "ff  00", "ff0000"),
         ("base64", "a", "/wAA"),
