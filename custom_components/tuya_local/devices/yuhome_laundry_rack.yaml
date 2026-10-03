@@ -3,6 +3,9 @@ products:
   - id: ttawi9yohqflpt4a
     manufacturer: YU HOME
     model: Yu Turbo
+  - id: 9yqs0oycooefxxwz
+    manufacturer: YU HOME
+    model: Yu Prime
 entities:
   - entity: switch
     dps:
@@ -25,6 +28,14 @@ entities:
       - id: 3
         type: integer
         name: position
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        type: integer
+        name: current_position
         range:
           min: 0
           max: 100
@@ -70,32 +81,72 @@ entities:
             available: dual_led_model
   - entity: switch
     translation_key: uv_sterilization
+    hidden: unavailable
     dps:
       - id: 5
         type: boolean
+        optional: true
         name: switch
+      - id: 5
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Wind dry
     icon: "mdi:weather-windy"
+    hidden: unavailable
     dps:
       - id: 6
         type: boolean
+        optional: true
         name: switch
+      - id: 6
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Hot dry
     icon: "mdi:heat-wave"
+    hidden: unavailable
     dps:
       - id: 7
         type: boolean
+        optional: true
         name: switch
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Voice control
     icon: "mdi:microphone"
     category: config
+    hidden: unavailable
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: switch
+      - id: 104
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     name: Disinfection timer
     translation_key: timer
@@ -302,6 +353,14 @@ entities:
       - id: 18
         type: bitfield
         name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 2
+            value: Obstacle
   - entity: select
     name: Disinfection time
     translation_key: timer
