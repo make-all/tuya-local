@@ -1,0 +1,410 @@
+name: Robot vacuum
+products:
+  - id: gbgjradjqq2k6aal
+    manufacturer: Tuvio
+    model: TR06HLCB
+entities:
+  - entity: vacuum
+    dps:
+      - id: 5
+        name: status
+        type: string
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: sleep
+            value: standby
+          - dps_val: pos_arrived
+            value: standby
+          - dps_val: mapping_done
+            value: standby
+          - dps_val: charging
+            value: docked
+          - dps_val: charge_done
+            value: docked
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: fault
+            value: error
+          - dps_val: smart
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: select_room
+            value: cleaning
+          - dps_val: mapping
+            value: cleaning
+          - dps_val: fast_map
+            value: cleaning
+      - id: 4
+        name: command
+        type: string
+        optional: true
+        mapping:
+          - dps_val: start
+            value: start
+            value_redirect: activation_command
+          - dps_val: stop
+            value: stop
+            value_redirect: activation_command
+          - dps_val: pause
+            value: pause
+            value_redirect: pause_command
+          - dps_val: return_to_base
+            value: return_to_base
+            value_redirect: dock_command
+      - id: 1
+        name: activation_command
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: start
+          - dps_val: false
+            value: stop
+      - id: 2
+        name: pause_command
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pause
+      - id: 3
+        name: dock_command
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: return_to_base
+      - id: 11
+        name: locate
+        type: boolean
+        optional: true
+      - id: 9
+        name: fan_speed
+        type: string
+        mapping:
+          - dps_val: gentle
+            value: Low
+          - dps_val: normal
+            value: Normal
+          - dps_val: strong
+            value: High
+          - dps_val: max
+            value: Max
+      - id: 28
+        name: error
+        type: bitfield
+        hidden: true
+  - entity: sensor
+    class: duration
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    class: area
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        name: sensor
+        type: integer
+        unit: '%'
+  - entity: sensor
+    name: Side brush remaining
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: '%'
+        mapping:
+          - scale: 90
+    category: diagnostic
+  - entity: sensor
+    name: Main brush remaining
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: '%'
+        mapping:
+          - scale: 180
+    category: diagnostic
+  - entity: sensor
+    name: Filter remaining
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: '%'
+        mapping:
+          - scale: 90
+    category: diagnostic
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 28
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        name: fault_code
+        type: bitfield
+  - entity: switch
+    category: config
+    translation_key: do_not_disturb
+    dps:
+      - id: 25
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Resume after charging
+    dps:
+      - id: 27
+        name: switch
+        type: boolean
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 106
+        name: lock
+        type: boolean
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 122
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Thorough cleaning
+    dps:
+      - id: 129
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Corner cleaning
+    dps:
+      - id: 130
+        name: switch
+        type: boolean
+  - entity: select
+    category: config
+    translation_key: mopping
+    dps:
+      - id: 10
+        name: option
+        type: string
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: select
+    category: config
+    name: Collision detection
+    dps:
+      - id: 107
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: Enabled
+          - dps_val: '2'
+            value: Disabled
+  - entity: select
+    category: config
+    name: Carpet mode
+    dps:
+      - id: 108
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: Recognize
+          - dps_val: '2'
+            value: Ignore
+          - dps_val: '3'
+            value: Avoid
+  - entity: select
+    category: config
+    name: Mop washing
+    dps:
+      - id: 109
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: Disabled
+          - dps_val: '2'
+            value: Enabled
+  - entity: select
+    category: config
+    name: Mop wash interval
+    dps:
+      - id: 110
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: 10 minutes
+          - dps_val: '2'
+            value: 15 minutes
+          - dps_val: '3'
+            value: 20 minutes
+  - entity: select
+    category: config
+    translation_key: cleaning_mode
+    dps:
+      - id: 111
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: sweep
+          - dps_val: '2'
+            value: mop
+          - dps_val: '3'
+            value: sweep_then_mop
+          - dps_val: '4'
+            value: sweep_and_mop
+  - entity: select
+    category: config
+    name: Self cleaning
+    dps:
+      - id: 124
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: Disabled
+          - dps_val: '2'
+            value: Rare
+          - dps_val: '3'
+            value: Frequent
+  - entity: select
+    category: config
+    name: Cleaning depth
+    dps:
+      - id: 128
+        name: option
+        type: string
+        mapping:
+          - dps_val: '1'
+            value: Standard
+          - dps_val: '2'
+            value: Deep
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 7
+  - entity: number
+    category: config
+    name: Drying duration
+    dps:
+      - id: 123
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 60
+          max: 240
+        mapping:
+          - step: 60
+  - entity: button
+    category: config
+    name: Reset side brush
+    dps:
+      - id: 18
+        name: button
+        type: boolean
+        optional: true
+  - entity: button
+    category: config
+    name: Reset main brush
+    dps:
+      - id: 20
+        name: button
+        type: boolean
+        optional: true
+  - entity: button
+    category: config
+    translation_key: filter_reset
+    dps:
+      - id: 22
+        name: button
+        type: boolean
+        optional: true
+  - entity: button
+    category: config
+    name: Wash mop
+    dps:
+      - id: 112
+        name: button
+        type: string
+        optional: true
+        mapping:
+          - dps_val: '3'
+            value: true
+  - entity: button
+    category: config
+    name: Dry mop
+    dps:
+      - id: 112
+        name: button
+        type: string
+        optional: true
+        mapping:
+          - dps_val: '4'
+            value: true
+  - entity: button
+    category: config
+    name: Empty dust
+    dps:
+      - id: 112
+        name: button
+        type: string
+        optional: true
+        mapping:
+          - dps_val: '5'
+            value: true
+  - entity: button
+    category: config
+    name: Clean water tank
+    dps:
+      - id: 112
+        name: button
+        type: string
+        optional: true
+        mapping:
+          - dps_val: '6'
+            value: true
