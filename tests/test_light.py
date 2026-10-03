@@ -395,6 +395,7 @@ async def test_rgbhsv_invalid_colour_does_not_break_state_or_turn_on(
 
     assert light.hs_color == (0.0, 100.0)
     for invalid_value in invalid_values:
+        dps["1"] = True
         dps["2"] = invalid_value
         assert light.hs_color is None
         assert light.is_on is True
