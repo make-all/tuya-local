@@ -96,6 +96,7 @@ DP_SCHEMA = vol.Schema(
                 "unixtime",
                 "json",
                 "utf16b64",
+                "float",
             ]
         ),
         vol.Required("name"): str,
@@ -125,6 +126,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("mask"): str,
         vol.Optional("endianness"): vol.In(["little"]),
         vol.Optional("mask_signed"): True,
+        vol.Optional("json_path"): str,
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -848,6 +850,130 @@ def test_setting_masked_hex(mocker):
     mock_device.get_property.return_value = "babe"
     cfg = TuyaDpsConfig(mock_entity, mock_config)
     assert cfg.get_values_to_set(mock_device, 0xCA) == {"1": "cabe"}
+
+
+def test_getting_value_with_json_path_object(mocker):
+    """Test that get_value extracts a named field from a json dp."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "string",
+        "json_path": "info.fv",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = '{"info": {"fv": "2.9.3", "r": "Type B"}}'
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) == "2.9.3"
+
+
+def test_getting_value_with_json_path_array_index(mocker):
+    """Test that get_value extracts an indexed item from a json dp array."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "integer",
+        "json_path": "L1.0",
+        "mapping": [{"scale": 10}],
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = '{"L1": [2270, 120, 27]}'
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) == 227.0
+
+
+def test_getting_value_with_json_path_missing(mocker):
+    """Test that get_value returns None when the json_path is not found."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "integer",
+        "json_path": "L2.0",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = '{"L1": [2270, 120, 27]}'
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) is None
+
+
+def test_getting_value_with_json_path_invalid_json(mocker):
+    """Test that get_value returns None when the dp is not valid json."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "integer",
+        "json_path": "L1.0",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "not json"
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) is None
+
+
+def test_dp_with_key_is_readonly(mocker):
+    """Test that a dp with a json_path is automatically read only."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "integer",
+        "json_path": "L1.0",
+    }
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.readonly is True
+
+
+def test_match_type_without_json_path(mocker):
+    """Test that match_type is the same as type when there is no json_path."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {"id": "1", "name": "test", "type": "integer"}
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.match_type is int
+
+
+def test_match_type_with_json_path(mocker):
+    """Test that match_type is str for a dp using json_path, since the
+    raw value on the wire is always the underlying json string, not the
+    type of the value extracted from it."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "integer",
+        "json_path": "L1.0",
+    }
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.match_type is str
+
+
+def test_dewall_evcharger_matches_with_json_path_dps():
+    """Test that dewall_evcharger still matches a real device payload even
+    though several of its dps extract values via json_path out of other
+    json-string dps (102 and 106) rather than being that type themselves."""
+    cfg = get_config("dewall_evcharger")
+    dps = {
+        "101": 101,
+        "102": (
+            '{"L1":[2290,0,0],"L2":[2290,0,0],"L3":[2290,0,0],'
+            '"t":240,"p":0,"d":0,"e":0}'
+        ),
+        "106": (
+            '{"r":"Type B, AC 30mA + DC 6mA","fv":"2.9.3","cp":"12.5",'
+            '"t":"20","e":"73"}'
+        ),
+        "107": "[6, 8, 10, 13, 16]",
+        "150": 11,
+        "151": '{"m":0,"dt":0,"ss":"00:00","se":"08:00"}',
+        "152": 16,
+        "155": False,
+        "156": False,
+        "157": 1,
+        "188": False,
+    }
+    assert cfg.matches(dps, None)
 
 
 def test_getting_masked_b64_with_special_case_mapping(mocker):
