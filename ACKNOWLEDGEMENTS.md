@@ -965,3 +965,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MartinNuc](https://github.com/MartinNuc) for contributing improvements to Nedis Pill Dispenser.
 - [leashjay](https://github.com/leashjay) for improvements to diagnostics redacting and contributing support for Goldair GCT315/425 ceramic tower heater.
 - [ftsachev](https://github.com/ftsachev) for contributing improvements to EARU DPN circuit breaker.
+- [jellybob](https://github.com/jellybob) for contributing improvements to Ecostrad iQ Ceramic V2 radiator.
