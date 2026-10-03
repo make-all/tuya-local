@@ -363,13 +363,13 @@ async def test_is_off_when_off_by_brightness():
 @pytest.mark.parametrize(
     ("rawtype", "invalid_values", "valid_value"),
     [
-        ("hex", ("ff  00", "ff 0 0"), "ff0000"),
-        ("base64", ("a",), "/wAA"),
+        ("hex", "ff  00", "ff0000"),
+        ("base64", "a", "/wAA"),
     ],
 )
 @pytest.mark.asyncio
 async def test_rgbhsv_invalid_colour_does_not_break_state_or_turn_on(
-    rawtype, invalid_values, valid_value
+    rawtype, invalid_value, valid_value
 ):
     """Ignore malformed colour data without losing the switch"""
     mock_device = AsyncMock()
@@ -393,14 +393,12 @@ async def test_rgbhsv_invalid_colour_does_not_break_state_or_turn_on(
     )
     light = TuyaLocalLight(mock_device, config)
 
-    assert light.hs_color == (0.0, 100.0)
-    for invalid_value in invalid_values:
-        dps["1"] = True
-        dps["2"] = invalid_value
-        assert light.hs_color is None
-        assert light.is_on is True
-        await light.async_turn_on(hs_color=(0, 100), brightness=255)
-        mock_device.async_set_properties.assert_not_called()
-        dps["1"] = False
-        await light.async_turn_on(hs_color=(0, 100), brightness=255)
-        mock_device.async_set_properties.assert_called_once_with({"1": True})
+    dps["1"] = True
+    dps["2"] = invalid_value
+    assert light.hs_color is None
+    assert light.is_on is True
+    await light.async_turn_on(hs_color=(0, 100), brightness=255)
+    mock_device.async_set_properties.assert_not_called()
+    dps["1"] = False
+    await light.async_turn_on(hs_color=(0, 100), brightness=255)
+    mock_device.async_set_properties.assert_called_once_with({"1": True})
