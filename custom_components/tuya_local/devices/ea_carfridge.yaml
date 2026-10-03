@@ -1,0 +1,154 @@
+name: Car fridge
+products:
+  - id: iyqhndov8rdzqrlq
+    manufacturer: EA
+    model: Dual zone car fridge
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: mode
+    icon: "mdi:snowflake"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: ECO
+            value: Eco
+          - dps_val: MAX
+            value: Max
+  - entity: select
+    name: Battery protection
+    icon: "mdi:car-battery"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: L
+            value: Low
+          - dps_val: M
+            value: Medium
+          - dps_val: H
+            value: High
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      # only reported when a fault is raised or cleared
+      - id: 106
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: switch
+    name: Zone A
+    icon: "mdi:fridge-top"
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone B
+    icon: "mdi:fridge-bottom"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  # The device has separate Celsius (112-116) and Fahrenheit (117-121) dps, and
+  # only updates the set matching its display unit (dp 105). The device this was
+  # made from is set to Fahrenheit, so the Fahrenheit set is used here.
+  - entity: sensor
+    name: Zone A temperature
+    class: temperature
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Zone B temperature
+    class: temperature
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: number
+    name: Zone A target
+    class: temperature
+    icon: "mdi:thermometer"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -4
+          max: 68
+  - entity: number
+    name: Zone B target
+    class: temperature
+    icon: "mdi:thermometer"
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -4
+          max: 68
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
