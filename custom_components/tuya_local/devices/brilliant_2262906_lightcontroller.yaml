@@ -22,6 +22,9 @@ entities:
             value: Scene
           - dps_val: music
             value: Music
+            # Smart Life drives music mode from the phone microphone; setting
+            # the mode locally has no visible effect.
+            hidden: true
       - id: 22
         type: integer
         name: brightness
@@ -47,12 +50,6 @@ entities:
             range:
               min: 0
               max: 1000
-      # The cloud model uses raw scene data on DP36, not hex scenes on DP25.
-      # Keep its payload as an attribute until the format is known.
-      - id: 36
-        type: base64
-        name: scene_data
-        optional: true
   - entity: light
     name: White
     dps:
@@ -165,10 +162,61 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: switch
-    translation_key: do_not_disturb
+  - entity: select
+    translation_key: initial_state
     category: config
     dps:
       - id: 34
         type: boolean
-        name: switch
+        name: option
+        mapping:
+          - dps_val: true
+            value: "off"
+          - dps_val: false
+            value: "on"
+  - entity: select
+    translation_key: scene
+    dps:
+      # DP36 is raw in the cloud model, but the device API exposes the
+      # payload as a base64 string. Selecting a payload makes the controller
+      # switch DP21 to scene mode automatically.
+      - id: 36
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "AAABAQENDgAAyAAA"
+            value: night
+          - dps_val: "AAEBAQENDgAD6AAA"
+            value: reading
+          - dps_val: "AAIBAQENDgAD6AAA"
+            value: working
+          - dps_val: "AAMBAQENDgAB9AAA"
+            value: leisure
+          - dps_val: "AAQAAAECA0ZGAgB4A+gD6EZGAgB4A+gACg=="
+            value: prairie
+          - dps_val: "AAUAAAEGA0ZGAQAAA+gD6EZGAQB4A+gD6EZGAQDwA+gD6EZGAQA9A+gD6\
+              EZGAQCuA+gD6EZGAQETA+gACg=="
+            value: fun
+          - dps_val: "AAYAAAEDA0ZGAQAAA+gD6EZGAQB4A+gD6EZGAQDwA+gD6A=="
+            value: dazzle
+          - dps_val: "AAcAAAEDA0ZGAgAAA+gD6EZGAgB4A+gD6EZGAgDwA+gD6EZGAgA9A+gD6\
+              EZGAgCuA+gD6EZGAgETA+gACg=="
+            value: colorful
+          - dps_val: "ABQAAAEDA0ZGAgCuA+gD6EZGAgC0ASwD6EZGAgC0ADID6A=="
+            value: blue_sky
+          - dps_val: "AB0AAAEDA0ZGAQAAA+gD6EZGAQDwA+gD6EZGAgB4A+gD6EZGAgA9A+gD6\
+              A=="
+            value: mediterranean
+          - dps_val: "ACAAAAEGA2RkAQA9A+gD6GRkAQB4A+gD6FpaAQETA+gD6FpaAQCuA+gD6\
+              GRkAQAyAfQD6GRkAQAAA+gD6A=="
+            value: birthday
+          - dps_val: "ACIAAAEGA1paAQDwA+gD6FpaAQA9A+gD6EZGAQAAA+gD6FpaAQCuA+gD6\
+              FpaAQETA+gD6EZGAQB4A+gD6A=="
+            value: christmas
+          - dps_val: "ADIBAQEODQAAyAEGA0ZGAgAAA+gD6EZGAgB4A+gD6EZGAgDwA+gD6EZGA\
+              gA9A+gD6EZGAgCuA+gD6EZGAgETA+gD6A=="
+            value: streamer
+          - dps_val: "ADMBAQEODQAB9AEGA0ZGAQAAA+gD6EZGAQB4A+gD6EZGAQDwA+gD6EZGA\
+              QA9A+gD6EZGAQCuA+gD6EZGAQETA+gD6A=="
+            value: entertainment
