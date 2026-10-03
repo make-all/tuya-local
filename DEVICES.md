@@ -313,6 +313,7 @@
 - Ettroit LN4102 thermostat
 - Eurom WiFi thermostat
 - Euroster 4040 Smart thermostat
+- EZAIoT Lite socket thermostat
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Fercofloor FT2C10V fan coil thermostat

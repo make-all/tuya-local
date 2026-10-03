@@ -1,0 +1,483 @@
+# Unmodelled dps: 101-107 hold the weekly schedule of prg mode, one base64
+# blob per weekday - a day index, then six periods of hour, minute and a big
+# endian 16 bit temperature in tenths. That is 84 values with no schedule
+# entity type to put them in, so prg mode is selectable here but edited in
+# the vendor app. 116 is a boolean of unknown purpose, 119-124 are counters,
+# a build date and an opaque token.
+name: Socket thermostat
+products:
+  - id: lzfux5zela3cbpnd
+    manufacturer: ezAIoT
+    model: Lite
+entities:
+  # A socket with an external temperature probe. dp 45 is the system power,
+  # independent of dp 110, which picks one of five modes: heat, cool, prg (a
+  # weekly schedule), cycle (a timed on/off cycle) and plug (a plain socket).
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 45
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: heat
+                value: heat
+              - dps_val: cool
+                value: cool
+              # prg, cycle and plug report off: none regulate to the setpoint
+              # this entity holds. prg follows the schedule in dp 101-107, and
+              # dp 108 decides whether it heats or cools.
+              - dps_val:
+                  - prg
+                  - cycle
+                  - plug
+                value: "off"
+      - id: 110
+        type: string
+        name: mode
+        hidden: true
+      - id: 114
+        type: integer
+        name: hvac_action
+        mapping:
+          - dps_val: 0
+            value: idle
+          - dps_val: 1
+            constraint: mode
+            conditions:
+              - dps_val: heat
+                value: heating
+              - dps_val: cool
+                value: cooling
+              # Every mode needs a condition: conditions has no catch-all,
+              # and an unmatched one falls through to the raw 1.
+              - dps_val:
+                  - prg
+                  - cycle
+                  - plug
+                value: "off"
+      # The device reports its unit in lower case, which the ASCII unit map
+      # does not know, so it is mapped here.
+      - id: 125
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 126
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 135
+        type: integer
+        name: temperature
+        unit: C
+        # The app sets heat and cool in half degrees, the alarm limits in
+        # whole ones, calibration and hysteresis in tenths.
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: -500
+          max: 3000
+      - id: 127
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 130
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+
+  # Built on dp 45 like the climate entity, so "Off" writes dp 45 alone while
+  # any mode writes dp 110 and dp 45 together. It also reaches cycle and plug,
+  # which have no fitting hvac_mode, so there is no separate master switch.
+  - entity: select
+    translation_key: mode
+    dps:
+      - id: 45
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: heat
+                value: Heat
+              - dps_val: cool
+                value: Cool
+              - dps_val: prg
+                value: Program
+              - dps_val: cycle
+                value: Cycle timer
+              - dps_val: plug
+                value: Socket
+      - id: 110
+        type: string
+        name: mode
+        hidden: true
+
+  # Only meaningful in plug mode, where the socket is switched directly.
+  - entity: switch
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      # Plug mode and system on: dp 1 keeps reporting on with the system off.
+      # Only one dp can drive availability, so the mode rides along as a
+      # constraint, which again has no catch-all.
+      - id: 45
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: false
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: plug
+                value: true
+              - dps_val:
+                  - heat
+                  - cool
+                  - prg
+                  - cycle
+                value: false
+      - id: 110
+        type: string
+        name: mode
+        hidden: true
+
+  # Switch-off delay for the socket, in plug mode.
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        # Seconds on the wire. The app stops at 60 minutes, but the dp takes
+        # any value in between - 420 and 1380 were accepted unchanged. 0 is
+        # off, which the app presents as a separate toggle.
+        mapping:
+          - scale: 60
+            step: 60
+        range:
+          min: 0
+          max: 3600
+      - id: 110
+        type: string
+        name: available
+        mapping:
+          - dps_val: plug
+            value: true
+          - value: false
+
+  # dp 109 packs the cycle timer into eight bytes: two big endian 32 bit
+  # values in seconds, on time then off time. The app enters both as hours
+  # 0-9 plus minutes 0-59, hence the ceiling. force is needed because the
+  # device leaves every base64 dp out of its status reports; one request on
+  # the first entity covers both.
+  - entity: number
+    name: Cycle on time
+    category: config
+    icon: "mdi:timer-play"
+    dps:
+      - id: 109
+        type: base64
+        name: value
+        optional: true
+        force: true
+        mask: "FFFFFFFF00000000"
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+        range:
+          min: 0
+          max: 35940
+      - id: 110
+        type: string
+        name: available
+        mapping:
+          - dps_val: cycle
+            value: true
+          - value: false
+
+  - entity: number
+    name: Cycle off time
+    category: config
+    icon: "mdi:timer-pause"
+    dps:
+      - id: 109
+        type: base64
+        name: value
+        optional: true
+        mask: "00000000FFFFFFFF"
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+        range:
+          min: 0
+          max: 35940
+      - id: 110
+        type: string
+        name: available
+        mapping:
+          - dps_val: cycle
+            value: true
+          - value: false
+
+  # Configures prg and nothing else. heat_pump_mode is borrowed for its
+  # translated states, hence the explicit name: this is not a heat pump, but
+  # the key already renders heat and cool in every language.
+  - entity: select
+    name: Program mode
+    translation_key: heat_pump_mode
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: heat
+            value: heat
+          - dps_val: cool
+            value: cool
+      - id: 110
+        type: string
+        name: available
+        mapping:
+          - dps_val: prg
+            value: true
+          - value: false
+
+  # Not redundant with hvac_action: that reports off in prg, cycle and plug
+  # mode, where the relay still switches.
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Cooling delay
+    category: config
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 133
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: number
+    name: Cooling delay time
+    category: config
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 10
+
+  - entity: switch
+    name: High temperature alarm
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: number
+    name: High temperature alarm
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: -500
+          max: 3000
+
+  - entity: switch
+    name: Low temperature alarm
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 131
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: number
+    name: Low temperature alarm
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: -500
+          max: 3000
+
+  - entity: number
+    name: Temperature hysteresis
+    class: temperature_delta
+    category: config
+    mode: "box"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: 1
+          max: 300
+
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 136
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -150
+          max: 150
+
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: brightness
+        optional: true
+        mapping:
+          - dps_val: Low
+            value: 85
+          - dps_val: Middle
+            value: 170
+          - dps_val: High
+            value: 255
+
+  # The generic timer key is borrowed for its translated durations; the
+  # device's "never" maps onto continuous.
+  - entity: select
+    name: Display timeout
+    translation_key: timer
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 117
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 15s
+            value: 15s
+          - dps_val: 30s
+            value: 30s
+          - dps_val: 60s
+            value: 1m
+          - dps_val: 120s
+            value: 2m
+          - dps_val: never
+            value: continuous
+
+  - entity: button
+    name: Display on
+    category: config
+    icon: "mdi:monitor"
+    dps:
+      - id: 118
+        type: boolean
+        name: button
+        optional: true
