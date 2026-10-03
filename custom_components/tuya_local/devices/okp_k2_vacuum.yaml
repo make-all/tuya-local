@@ -3,6 +3,9 @@ products:
   - id: 6k8pca2ywenbry2l
     manufacturer: OKP
     model: K2
+  - id: u9f7m5f6arevramo
+    manufacturer: OKP
+    model: K2P
 entities:
   - entity: vacuum
     dps:
@@ -146,6 +149,7 @@ entities:
     dps:
       - id: 102
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -163,3 +167,44 @@ entities:
       - id: 18
         type: bitfield
         name: fault_code
+  - entity: select
+    name: Bump sensitivity
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 111
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Carpet boost
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 112
+        type: boolean
+        optional: true
+        name: switch
+      - id: 112
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

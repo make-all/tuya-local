@@ -194,6 +194,18 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
+    translation_key: leakage_current
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        mask: "0000000000000000FFFF"
+        unit: mA
+        class: measurement
+
+  - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
       x: B
