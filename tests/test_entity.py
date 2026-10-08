@@ -318,3 +318,19 @@ class TestUnitFromAscii:
 
     def test_passthrough_empty(self):
         assert unit_from_ascii("") == ""
+
+    def test_missing_json_does_not_raise(self, mock_device, mock_config):
+        dp = MagicMock()
+        dp.name = "req_json_attr"
+        dp.hidden = False
+        dp.optional = False
+        dp.rawtype = "json"
+        dp.get_value.return_value = None
+        mock_config.dps.return_value = [dp]
+
+        e = DummyEntity()
+        dps = e._init_begin(mock_device, mock_config)
+        e._init_end(dps)
+
+        attrs = e.extra_state_attributes
+        assert True  # The test passes if no exception is raised and we reach this line
