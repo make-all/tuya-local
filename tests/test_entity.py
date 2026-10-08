@@ -332,5 +332,5 @@ class TestUnitFromAscii:
         dps = e._init_begin(mock_device, mock_config)
         e._init_end(dps)
 
-        attrs = e.extra_state_attributes
+        _ = e.extra_state_attributes
         assert True  # The test passes if no exception is raised and we reach this line
