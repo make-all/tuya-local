@@ -1,0 +1,303 @@
+name: Door lock
+# EKAZA EKAV-T229Z Zigbee digital lock (category jtmspro).
+# Observed via Tuya cloud as sub-device (requires hub for local access).
+# DP IDs follow Tuya Zigbee residential lock standard; product_id not yet known.
+products:
+  - id: ekaza_ekavt229z
+    manufacturer: EKAZA
+    model: EKAV-T229Z
+    model_id: EKAV-T229Z
+entities:
+  - entity: lock
+    dps:
+      # Unlock history / method reports (standard Zigbee residential lock)
+      - id: 1
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      - id: 2
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      - id: 3
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      - id: 4
+        type: integer
+        name: unlock_dynamic_pwd
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      - id: 5
+        type: integer
+        name: unlock_card
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      # Door closed/open status from geomagnetic / sensors
+      - id: 47
+        type: string
+        name: open
+        optional: true
+        readonly: true
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
+          - dps_val: unknown
+            value: null
+            hidden: true
+      # Motor locked state (true = bolt locked)
+      - id: 57
+        type: boolean
+        name: lock_state
+        optional: true
+      # Double-lock / reverse-lock (true = double locked from inside)
+      - id: 12
+        type: boolean
+        name: lock
+        optional: true
+      # Remote unlock result
+      - id: 22
+        type: boolean
+        name: remote_result
+        optional: true
+        persist: false
+      # Remote unlock history (member / method id)
+      - id: 41
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      # Password-free remote unlock (Zigbee residential lock: DP 49)
+      - id: 49
+        type: base64
+        name: code_unlock
+        optional: true
+        sensitive: true
+      # Voice remote unlock history
+      - id: 62
+        type: integer
+        name: unlock_voice
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 999
+      # Offline password unlock report
+      - id: 32
+        type: string
+        name: unlock_offline_pwd
+        optional: true
+        persist: false
+        sensitive: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: binary_sensor
+    name: Double locked
+    class: lock
+    category: diagnostic
+    dps:
+      - id: 12
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Door
+    class: door
+    category: diagnostic
+    dps:
+      - id: 8
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Motor locked
+    class: lock
+    category: diagnostic
+    dps:
+      - id: 57
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: event
+    name: Alert
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: event
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: defense
+            value: defense
+          - dps_val: wrong_unlock
+            value: wrong_unlock
+  - entity: event
+    name: Hijack
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 35
+        type: boolean
+        name: event
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: true
+            value: hijack
+          - dps_val: false
+            value: null
+  - entity: event
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 14
+        type: boolean
+        name: event
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null
+  - entity: select
+    name: Doorbell song
+    icon: "mdi:bell-ring"
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: ding_0
+            value: Ding 0
+          - dps_val: ding_1
+            value: Ding 1
+          - dps_val: ding_2
+            value: Ding 2
+          - dps_val: ding_3
+            value: Ding 3
+          - dps_val: ding_4
+            value: Ding 4
+          - dps_val: ding_5
+            value: Ding 5
+          - dps_val: ding_6
+            value: Ding 6
+          - dps_val: ding_7
+            value: Ding 7
+          - dps_val: ding_8
+            value: Ding 8
+          - dps_val: ding_9
+            value: Ding 9
+          # Some firmwares use numeric chime ids instead
+          - dps_val: "1"
+            value: Chime 1
+          - dps_val: "2"
+            value: Chime 2
+          - dps_val: "3"
+            value: Chime 3
+          - dps_val: "4"
+            value: Chime 4
+          - dps_val: "5"
+            value: Chime 5
+          - dps_val: "6"
+            value: Chime 6
+          - dps_val: "7"
+            value: Chime 7
+          - dps_val: "8"
+            value: Chime 8
+          - dps_val: "9"
+            value: Chime 9
+  - entity: text
+    name: Remote unlock set key
+    category: config
+    icon: "mdi:key-variant"
+    hidden: true
+    dps:
+      - id: 48
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 55
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
