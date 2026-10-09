@@ -33,9 +33,6 @@ entities:
             value: paused
           - dps_val: STOP
             value: charged
-      - id: 102
-        type: json
-        name: metrics
       - id: 103
         type: string
         optional: true
@@ -52,6 +49,253 @@ entities:
         type: integer
         optional: true
         name: product_variant
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L1
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: V
+        json_path: L1.0
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: L1
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: A
+        json_path: L1.1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: L1
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: kW
+        json_path: L1.2
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L2
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: V
+        json_path: L2.0
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: L2
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: A
+        json_path: L2.1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: L2
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: kW
+        json_path: L2.2
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L3
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: V
+        json_path: L3.0
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: L3
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: A
+        json_path: L3.1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: L3
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: kW
+        json_path: L3.2
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: kW
+        json_path: p
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: C
+        json_path: t
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Charging session duration
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        unit: min
+        json_path: d
+        mapping:
+          - scale: 600
+  - entity: sensor
+    name: Charging session energy
+    class: energy
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: total_increasing
+        unit: kWh
+        json_path: e
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: CP voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 106
+        type: float
+        name: sensor
+        optional: true
+        class: measurement
+        unit: V
+        precision: 1
+        json_path: cp
+  - entity: sensor
+    name: Total energy charged
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        optional: true
+        class: total_increasing
+        unit: kWh
+        json_path: e
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Charging sessions
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        optional: true
+        class: total_increasing
+        precision: 0
+        json_path: t
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Firmware version
+    icon: "mdi:chip"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        optional: true
+        json_path: fv
+  - entity: sensor
+    name: Protection type
+    icon: "mdi:shield-check"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        optional: true
+        json_path: r
   - entity: button
     name: Charge
     icon: "mdi:ev-station"
