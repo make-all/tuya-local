@@ -313,8 +313,7 @@
 - Ettroit LN4102 thermostat
 - Eurom WiFi thermostat
 - Euroster 4040 Smart thermostat
-- EZAIoT R9Lite thermostat
-- EZAIoT thermostat smartplug
+- EZAIoT thermostat smartplugs (including Lite and R9Lite models)
 - Fercofloor FT2C10V fan coil thermostat
 - Garza Aspen and (unknown model) thermostats
 - HaoLeSi Mini thermostat
