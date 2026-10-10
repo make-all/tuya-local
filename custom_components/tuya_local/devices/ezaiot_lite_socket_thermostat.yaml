@@ -37,6 +37,7 @@ entities:
                   - cycle
                   - plug
                 value: "off"
+                hidden: true
       - id: 110
         type: string
         name: mode
@@ -54,15 +55,11 @@ entities:
                 value: heating
               - dps_val: cool
                 value: cooling
-              # Every mode needs a condition: conditions has no catch-all,
-              # and an unmatched one falls through to the raw 1.
               - dps_val:
                   - prg
                   - cycle
                   - plug
                 value: "off"
-      # The device reports its unit in lower case, which the ASCII unit map
-      # does not know, so it is mapped here.
       - id: 125
         type: string
         name: temperature_unit
@@ -80,8 +77,6 @@ entities:
         type: integer
         name: temperature
         unit: C
-        # The app sets heat and cool in half degrees, the alarm limits in
-        # whole ones, calibration and hysteresis in tenths.
         mapping:
           - scale: 10
             step: 5
