@@ -1,0 +1,157 @@
+name: Radar switch
+products:
+  - id: k2xfhfqsqbqvbbig
+    manufacturer: HQL
+    model: Smart Radar Switch
+    model_id: DS-123
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+
+  - entity: number
+    name: Presence delay
+    class: duration
+    category: config
+    icon: "mdi:motion-sensor-off"
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 86400
+
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 25
+
+  - entity: switch
+    name: Motion alarm
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "off"
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  # Enable Turn-On when Occupied (DP 107)
+  - entity: button
+    name: Enable turn on when occupied
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 107
+        type: base64
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "D3+AAAAXOwAAAAA="
+            value: true
+
+  # Disable Turn-On when Occupied (DP 107)
+  - entity: button
+    name: Disable turn on when occupied
+    category: config
+    icon: "mdi:motion-sensor-off"
+    dps:
+      - id: 107
+        type: base64
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "Dn+AAAAXOwAAAAA="
+            value: true
+
+  # Enable Turn-Off when Unoccupied (DP 108)
+  - entity: button
+    name: Enable turn off when unoccupied
+    category: config
+    icon: "mdi:motion-sensor-off"
+    dps:
+      - id: 108
+        type: base64
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "D3+AAAAXOwAAAAA="
+            value: true
+
+  # Disable Turn-Off when Unoccupied (DP 108)
+  - entity: button
+    name: Disable turn off when unoccupied
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 108
+        type: base64
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "Dn+AAAAXOwAAAAA="
+            value: true
