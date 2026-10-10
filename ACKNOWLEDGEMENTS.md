@@ -967,3 +967,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ftsachev](https://github.com/ftsachev) for contributing improvements to EARU DPN circuit breaker.
 - [jellybob](https://github.com/jellybob) for contributing improvements to Ecostrad iQ Ceramic V2 radiator.
 - [rmschots](https://github.com/rmschots) for contributing Yu Prime support to Yu Home laundry rack.
+- [brickronny](https://github.com/brickronny) for contributing support for EZAIoT Lite socket thermostat.
