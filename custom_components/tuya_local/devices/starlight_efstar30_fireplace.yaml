@@ -16,23 +16,21 @@ entities:
       - id: 3
         name: current_temperature
         type: integer
-      - id: 5
-        type: string
+      - id: 107
+        type: boolean
         name: hvac_mode
         mapping:
-          - dps_val: H0
-            value: "Off"
-          - dps_val: H1
-            value: heat
-            hidden: true
-          - dps_val: H2
+          - dps_val: true
+            value: "off"
+          - dps_val: false
             value: heat
       - id: 5
         type: string
         name: preset_mode
         mapping:
           - dps_val: H0
-            value: "off"
+            value: none
+            hidden: true
           - dps_val: H1
             value: low
           - dps_val: H2
@@ -82,14 +80,6 @@ entities:
             value: "2"
           - dps_val: "3"
             value: "3"
-  - entity: switch
-    name: Flame only
-    icon: "mdi:fire"
-    category: config
-    dps:
-      - id: 107
-        type: boolean
-        name: switch
   - entity: number
     translation_key: volume
     category: config
