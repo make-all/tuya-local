@@ -14,3 +14,4 @@ GPPH_HEATER_PAYLOAD = {
 }
 EUROM_600_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18, "6": 0}
 KOGAN_HEATER_PAYLOAD = {"2": 30, "3": 25, "4": "Low", "6": True, "7": True, "8": 0}
+THE_UNCLOG_PAYLOAD = {"1": False, "101": "3_days", "102": True, "103": "15"}
