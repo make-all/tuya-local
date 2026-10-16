@@ -42,36 +42,14 @@ entities:
             hidden: true
           - dps_val: H1
             value: low
-            constraint: hvac_mode
-            conditions:
-              - dps_val: false
-                value: low
           - dps_val: H2
             value: high
-            constraint: hvac_mode
-            conditions:
-              - dps_val: false
-                value: high
   - entity: light
     translation_key: flame
     dps:
       - id: 1
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: false
-          - dps_val: true
-            constraint: flame_only
-            conditions:
-              - dps_val: true
-                value: true
-              - dps_val: false
-                value: true
-      - id: 107
-        type: boolean
-        name: flame_only
-        hidden: true
       - id: 101
         name: effect
         type: string
