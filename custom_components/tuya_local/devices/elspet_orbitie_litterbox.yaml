@@ -23,6 +23,8 @@ entities:
             value: sleep
           - dps_val: UV
             value: sterilizing
+          - dps_val: cat_inside
+            value: occupied
   - entity: button
     name: Manual clean
     category: config
@@ -167,4 +169,12 @@ entities:
     dps:
       - id: 115
         type: boolean
+        name: button
+  - entity: button
+    name: Weight reset
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
         name: button
