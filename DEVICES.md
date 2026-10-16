@@ -93,6 +93,7 @@
 - Sichler ZX-7655/ZX-7656 hybrid infrared convection heater
 - SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
+- Starlight EF-STAR30 electric fireplace
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
 - Tecxerllon 1500W panel heater
