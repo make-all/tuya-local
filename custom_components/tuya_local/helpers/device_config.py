@@ -2,6 +2,7 @@
 Config parser for Tuya Local devices.
 """
 
+import json
 import logging
 from base64 import b64decode, b64encode
 from collections.abc import Sequence
@@ -157,7 +158,7 @@ class TuyaDeviceConfig:
         incorrect_type_dps = [
             dp
             for dp in self._get_all_dps()
-            if dp.id in dps.keys() and not _typematch(dp.type, dps[dp.id])
+            if dp.id in dps.keys() and not _typematch(dp.match_type, dps[dp.id])
         ]
         if len(incorrect_type_dps) > 0:
             _LOGGER.debug(
@@ -205,7 +206,7 @@ class TuyaDeviceConfig:
         all_dp = keys + matched
         for d in entity.dps():
             if (d.id not in all_dp and not d.optional and not product_match) or (
-                d.id in all_dp and not _typematch(d.type, dps[d.id])
+                d.id in all_dp and not _typematch(d.match_type, dps[d.id])
             ):
                 return False
             if d.id in keys:
@@ -423,6 +424,14 @@ class TuyaDpsConfig:
         return types.get(t)
 
     @property
+    def match_type(self):
+        """The type to use when matching this dp against a device's raw
+        reported value. For dps using `json_path`, the raw value on the
+        wire is always the underlying json string, not the extracted
+        value's own type."""
+        return str if self._config.get("json_path") else self.type
+
+    @property
     def rawtype(self):
         return self._config["type"]
 
@@ -483,11 +492,50 @@ class TuyaDpsConfig:
         endianness = self._config.get("endianness", "big")
         return endianness
 
+    @property
+    def json_path(self):
+        return self._config.get("json_path")
+
+    def _dps_value(self, device):
+        """Return the raw value of this dp, extracting a sub-field via
+        `json_path` from a JSON-encoded dp value if configured."""
+        raw = device.get_property(self.id)
+        json_path = self.json_path
+        if json_path is None or raw is None:
+            return raw
+        if not isinstance(raw, str):
+            _LOGGER.warning(
+                "%s: cannot extract json_path %s from non-string dp %s value",
+                self.name,
+                json_path,
+                self.id,
+            )
+            return None
+        try:
+            value = json.loads(raw)
+        except TypeError, ValueError:
+            _LOGGER.warning("%s: dp %s is not valid json", self.name, self.id)
+            return None
+        for part in json_path.split("."):
+            if isinstance(value, list):
+                try:
+                    idx = int(part)
+                except ValueError:
+                    idx = -1
+                if idx < 0 or idx >= len(value):
+                    return None
+                value = value[idx]
+            elif isinstance(value, dict) and part in value:
+                value = value[part]
+            else:
+                return None
+        return value
+
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask
         # Get raw value directly avoiding accidental scaling by decoded_value()
-        raw_from_device = device.get_property(self.id)
+        raw_from_device = self._dps_value(device)
         bytevalue = self.decode_value(raw_from_device, device)
 
         if mask and isinstance(bytevalue, bytes):
@@ -513,7 +561,7 @@ class TuyaDpsConfig:
             return self._map_from_dps(raw_from_device, device)
 
     def decoded_value(self, device):
-        v = self._map_from_dps(device.get_property(self.id), device)
+        v = self._map_from_dps(self._dps_value(device), device)
         return self.decode_value(v, device)
 
     def decode_value(self, v, device):
@@ -662,7 +710,7 @@ class TuyaDpsConfig:
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
         scale = self.scale(device) if scaled else 1
-        mapping = self._find_map_for_dps(device.get_property(self.id), device)
+        mapping = self._find_map_for_dps(self._dps_value(device), device)
         r = self._config.get("range")
         if mapping:
             r = mapping.get("range", r)
@@ -682,7 +730,7 @@ class TuyaDpsConfig:
 
     def scale(self, device):
         scale = 1
-        mapping = self._find_map_for_dps(device.get_property(self.id), device)
+        mapping = self._find_map_for_dps(self._dps_value(device), device)
         if mapping:
             scale = mapping.get("scale", 1)
             cond = self._active_condition(mapping, device)
@@ -706,7 +754,7 @@ class TuyaDpsConfig:
     def step(self, device, scaled=True):
         step = 1
         scale = self.scale(device) if scaled else 1
-        mapping = self._find_map_for_dps(device.get_property(self.id), device)
+        mapping = self._find_map_for_dps(self._dps_value(device), device)
         if mapping:
             step = mapping.get("step", 1)
 
@@ -724,7 +772,7 @@ class TuyaDpsConfig:
 
     @property
     def readonly(self):
-        return self._config.get("readonly", False)
+        return self._config.get("readonly", False) or self.json_path is not None
 
     def invalid_for(self, value, device):
         mapping = self._find_map_for_value(value, device)
@@ -1162,7 +1210,7 @@ class TuyaDpsConfig:
         return dps_map
 
     def icon_rule(self, device):
-        mapping = self._find_map_for_dps(device.get_property(self.id), device)
+        mapping = self._find_map_for_dps(self._dps_value(device), device)
         icon = None
         priority = 100
         if mapping:

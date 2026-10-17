@@ -227,6 +227,11 @@
                                     "enum": ["big", "little"],
                                     "description": "The endianness of masked data in the base64 or hex DP. Default is 'big', so only 'little' needs to be explicitly specified."
                                 },
+                                "json_path": {
+                                    "type": "string",
+                                    "pattern": "^[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*$",
+                                    "description": "A dot-separated path used to extract a single value from a DP whose raw value is a JSON-encoded object or array (e.g. 'L1.0' for the first item of the L1 array, or 'info.fv' for the fv field of the info object). This is not a full JSONPath implementation - only plain field names and numeric array indices are supported. The dp type should be set to the type of the extracted value, not 'json'. DPs using this are automatically read-only."
+                                },
                                 "unit": {
                                     "type": "string",
                                     "description": "The unit of measurement for a sensor DP (e.g., °C, %, W). Some units can use ASCII replacements like C for °C, F for °F, and ugm3 for μg/m³ to simplify input and avoid accidental incorrect Unicode character usage."

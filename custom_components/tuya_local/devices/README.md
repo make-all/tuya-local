@@ -157,7 +157,7 @@ The type of data returned by the Tuya API. Can be one of the following:
  - **unixtime** is a special case of integer, where the device uses a unix timestamp (seconds since 1970-01-01 00:00), which is converted to a datetime for Home Assistant
  - **base64** is a special case of string, where binary data is base64 encoded. Platforms that use this type will need special handling to make sense of the data.
  - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
- - **json** is a special case of string, where multiple data points are encoded in json format in the string. Platforms that use this type will need special handling to make sense of the data.
+ - **json** is a special case of string, where multiple data points are encoded in json format in the string. Individual fields can be extracted from it into other dps using the `json_path` field below.
  - **utf16b64** is a special case of string, where a UTF-16 string is base64 encoded. This will be decoded into a UTF-8 string so it is readable in Home Assistant.
  - **float** can contain floating point numbers. No known devices use this, but it is supported if needed.
 
@@ -308,6 +308,12 @@ For base64 and hex types, this specifies the endianess of the data and mask. Cou
 *Optional, default=false*
 
 For base64 and hex types, set this to true if you need to extract a signed integer from the masked field.
+
+### `json_path`
+
+*Optional.*
+
+For a dp whose underlying raw value (typically from another dp of `json` type sharing the same `id`) is a JSON-encoded object or array, this extracts a single value from it using a dot-separated path, eg `L1.0` for the first item of an `L1` array, or `info.fv` for the `fv` field of an `info` object. This is not a full JSONPath implementation - only plain dot-separated field names and numeric array indices are supported, no wildcards, filters or slices. The `type` of the dp should be set to the type of the extracted value (not `json`). Dps using `json_path` are automatically read-only, since only the whole underlying value could be written back, not the individual field.
 
 ## Mapping Rules
 
