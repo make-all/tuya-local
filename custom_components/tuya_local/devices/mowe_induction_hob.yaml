@@ -91,7 +91,8 @@ entities:
         name: sensor
         unit: h
         type: integer
-        scale: 0.01
+        mapping:
+          - scale: 0.01
         range:
           min: 0
           max: 99999
@@ -103,7 +104,8 @@ entities:
         name: sensor
         unit: kWh
         type: integer
-        scale: 0.01
+        mapping:
+          - scale: 0.01
         range:
           min: 0
           max: 99999
