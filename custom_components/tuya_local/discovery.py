@@ -202,12 +202,12 @@ class TuyaLANRediscovery:
 
             for gwid, info in by_gwid.items():
                 entry = configured.get(gwid)
-                if entry is not None:
-                    # Skip sub-devices for now, the WiFi reported product id is for the hub
-                    if not entry.data.get(CONF_DEVICE_CID):
-                        await self._check_product(entry, info.get("productKey"))
-                else:
+                if entry is None:
                     self._discover_new(gwid, info)
+                # elif not entry.data.get(CONF_DEVICE_CID):
+                #     # Skip sub-devices for now, the WiFi reported product id is for the hub
+                #     await self._check_product(entry, info.get("productKey"))
+
         finally:
             self._scanning = False
 
