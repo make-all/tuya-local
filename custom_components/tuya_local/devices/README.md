@@ -28,9 +28,7 @@ recommended that listings are created for both.
 In addition to the id, the `manufacturer`, `model` and `model_id` (if
 the model has both a name and a more code like id) can be listed here.
 In future the intention is to display these in the Device info panel
-for the device. The `name` can also be overridden here with a more
-specific name to be used in future in place of the generic name at the
-top of the config.
+for the device.
 
 ### `entities`
 
