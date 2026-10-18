@@ -1,0 +1,218 @@
+name: Petree Cube v2 litter box
+products:
+  - id: a61zcm0zx1nnmv8o
+    manufacturer: Petree
+    model: Cube v2
+entities:
+  - entity: switch
+    name: Automatic cleaning
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Cleaning delay
+    category: config
+    class: duration
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+
+  - entity: sensor
+    name: Uses today
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: times
+
+  - entity: switch
+    name: Sleep mode
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Sleep start time
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1435
+
+  - entity: number
+    name: Sleep end time
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1435
+
+  - entity: light
+    name: Ambient light
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: binary_sensor
+    name: Notification
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: notification_code
+        optional: true
+      - id: 21
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: No notification
+          - dps_val: 1
+            value: Waste drawer full
+          - dps_val: 2
+            value: Excessive cleaning cycles
+          - dps_val: 4
+            value: Cleaning
+          - dps_val: 8
+            value: No weight detected
+
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: No fault
+          - dps_val: 1
+            value: Motor fault
+          - dps_val: 2
+            value: Program fault
+          - dps_val: 4
+            value: G-sensor fault
+
+  - entity: sensor
+    name: Operating status
+    category: diagnostic
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Motor current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+
+  - entity: switch
+    name: Child lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Emptying status
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+
+  - entity: switch
+    name: Beep
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Cleaning status
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Last event
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+
+  - entity: switch
+    name: Indicator
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Weight unit
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: switch
+    name: Deodorizer box
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
