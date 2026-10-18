@@ -359,7 +359,7 @@ class TestHubCategories:
     def test_known_hub_categories(self):
         assert "zigbee" in HUB_CATEGORIES
         assert "wg2" in HUB_CATEGORIES
-        assert "wnykq" in HUB_CATEGORIES
 
     def test_non_hub_category(self):
         assert "dj" not in HUB_CATEGORIES
+        assert "wnykq" not in HUB_CATEGORIES

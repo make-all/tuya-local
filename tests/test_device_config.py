@@ -28,7 +28,6 @@ PRODUCT_SCHEMA = vol.Schema(
         # Bluetooth and Zigbee devices have 8 character product ids
         # WiFi devices have 16 character product ids
         vol.Required("id"): vol.All(str, vol.Length(min=8, max=16)),
-        vol.Optional("name"): str,
         vol.Optional("manufacturer"): str,
         vol.Optional("model"): str,
         vol.Optional("model_id"): str,
@@ -62,7 +61,7 @@ CONDMAP_SCHEMA = vol.Schema(
 )
 COND_SCHEMA = CONDMAP_SCHEMA.extend(
     {
-        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
+        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list, float)),
         vol.Optional("mapping"): [CONDMAP_SCHEMA],
     }
 )

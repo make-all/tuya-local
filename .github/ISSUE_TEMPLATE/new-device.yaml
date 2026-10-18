@@ -48,7 +48,7 @@ body:
     attributes:
       label: DPS information
       description: |
-        Preferred data is QueryThingsDataModel API result from iot.tuya.com (under Cloud / API Explorer / Device Control)
+        Preferred data is QueryThingsDataModel API result from iot.tuya.com (under Cloud / API Explorer / Device Control). **Please do not pass the data through filters, translations or reformatters**, original data ensures that no information is lost and a consistent format allows developers to format the data themselves to be most convenient for them.
         If you do not have access to iot.tuya.com, but have other ways of obtaining dps information, the minimum info required is the numeric dp id, name/description, data type, and for settable dps, the range for numeric values, and the list of possible values for enum values. If you cannot obtain this info, there is no way for us to support you, as only owners of devices have access to the data about them.
       render: text
     validations:

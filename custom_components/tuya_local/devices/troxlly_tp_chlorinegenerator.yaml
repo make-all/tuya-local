@@ -1,0 +1,333 @@
+name: Chlorine generator
+products:
+  - id: jmuj45qjrngvc7ao
+    manufacturer: Troxlly
+    model: TP
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Boost
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Winter
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Chlorine output
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 5
+  - entity: select
+    name: Run time
+    translation_key: timer
+    category: config
+    hidden: true  # marked as unused, not in log
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "4H"
+            value: "4h"
+          - dps_val: "8H"
+            value: "8h"
+          - dps_val: "12H"
+            value: "12h"
+          - dps_val: "24H"
+            value: "24h"
+  - entity: select
+    name: Polarity switch time
+    translation_key: timer
+    category: config
+    # marked as unused, but showing in log
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: "4H"
+            value: "4h"
+          - dps_val: "8H"
+            value: "8h"
+          - dps_val: "12H"
+            value: "12h"
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
+  - entity: switch
+    name: Salinity
+    category: config
+    hidden: true  # marked as unused, not in log
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Flow
+    category: config
+    hidden: true  # marked as unused, not in log
+    dps:
+      - id: 110
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 108
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 112
+        type: integer
+        name: fault_code
+      - id: 134
+        type: integer
+        name: version_num
+      - id: 139
+        type: string
+        name: version
+  - entity: binary_sensor
+    name: Flow
+    class: running
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: number
+    name: Cleaning reminder
+    category: config
+    class: duration
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 10000
+  - entity: sensor
+    name: Salinity
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+      - id: 131
+        type: string
+        optional: true
+        name: status
+  - entity: binary_sensor
+    name: Chlorine generation
+    class: running
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: VEE
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: VP
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: VN
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: R
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Dim
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: h
+      - id: 124
+        type: integer
+        optional: true
+        name: minute  # documented as unused and not logged
+      - id: 125
+        type: integer
+        optional: true
+        name: second  # documented as unused and not logged
+  - entity: sensor
+    translation_key: time_remaining
+    name: Polarity flip in
+    class: duration
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: "i100%"
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+      - id: 128
+        type: integer
+        name: i50  # documented as unused but logged
+      - id: 127
+        type: integer
+        optional: true
+        name: i25  # documented as unused and not logged
+      - id: 130
+        type: integer
+        optional: true
+        name: r_percent
+  - entity: number
+    name: Pool size
+    category: config
+    class: volume_storage
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1000000
+        mapping:
+          - step: 100
+      - id: 137
+        type: string
+        name: unit
+        mapping:
+          - dps_val: US
+            value: gal
+          - value: L  # dp is documented as gallon, but rest supports metric
+  - entity: sensor
+    name: Salt dosage
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: US
+                value_redirect: sensor_lb
+      - id: 137
+        type: string
+        name: unit
+        mapping:
+          - dps_val: US
+            value: lb
+          - value: kg
+      - id: 138
+        type: integer
+        name: sensor_lb
+  - entity: sensor
+    name: Usage
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: h
+  - entity: select
+    name: Unit system
+    category: config
+    dps:
+      - id: 137
+        type: string
+        name: option
+        mapping:
+          - dps_val: US
+            value: US
+          - dps_val: METRIC
+            value: Metric

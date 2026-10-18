@@ -1,0 +1,395 @@
+name: Salt chlorinator
+products:
+  - id: uabbsm8ioqunhgos
+    manufacturer: Majestic
+    model: 12/50
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Output
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    class: volume
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: m³
+        range:
+          min: 5
+          max: 200
+        mapping:
+          - step: 5
+  - entity: number
+    name: Chlorination period
+    category: config
+    class: duration
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 24
+  - entity: number
+    name: Reversal interval
+    category: config
+    icon: "mdi:flip-vertical"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 2
+          max: 8
+        mapping:
+          - step: 2
+  - entity: switch
+    name: Boost
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: number
+    name: Output
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 20
+          max: 100
+        mapping:
+          - step: 20
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: g/L
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Salt dose
+    class: weight
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        name: fault_code
+      - id: 123
+        type: bitfield
+        name: fault_code_2
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    name: Salt needed
+    class: problem
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Notifications
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: ORP
+    class: voltage
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+  - entity: number
+    name: ORP
+    category: config
+    class: voltage
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: mV
+        range:
+          min: 400
+          max: 800
+  - entity: sensor
+    class: ph
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    class: ph
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        range:
+          min: 68
+          max: 76
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: option
+        mapping:
+          - dps_val: ORP
+            value: ORP
+          - dps_val: TIME
+            value: schedule
+          - dps_val: FLOW
+            value: Flow
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 120
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: Chlorination
+            value: working
+          - dps_val: Suspend
+            value: idle
+          - dps_val: ReversePole
+            value: reverse
+          - dps_val: BOOST
+            value: high
+  - entity: sensor
+    class: power
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Pump
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+  - entity: binary_sensor
+    name: Flow
+    class: running
+    category: diagnostic
+    dps:
+      - id: 127
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: h
+      - id: 129
+        type: integer
+        name: total
+  - entity: binary_sensor
+    name: pH change
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 130
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: ORP change
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Salt change
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 132
+        type: boolean
+        name: sensor
+  - entity: number
+    name: Pump runtime
+    category: config
+    class: duration
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 120
+  - entity: number
+    name: Pump run interval
+    category: config
+    class: duration
+    dps:
+      - id: 135
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: switch
+    name: Pump
+    category: config
+    dps:
+      - id: 136
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 1 period 1
+    category: config
+    class: duration
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Timer 1 period 2
+    category: config
+    class: duration
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: switch
+    name: Timer 1
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 2 period 1
+    category: config
+    class: duration
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Timer 2 period 2
+    category: config
+    class: duration
+    dps:
+      - id: 144
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: switch
+    name: Timer 2
+    category: config
+    dps:
+      - id: 146
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 3 period 1
+    category: config
+    class: duration
+    dps:
+      - id: 147
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Timer 3 period 2
+    category: config
+    class: duration
+    dps:
+      - id: 149
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: switch
+    name: Timer 3
+    category: config
+    dps:
+      - id: 151
+        type: boolean
+        name: switch

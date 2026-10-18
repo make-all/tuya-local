@@ -163,10 +163,6 @@ entities:
           - dps_val: "3"
             value: both
             available: hswing_available
-      - id: 134
-        name: work_time
-        type: string
-        optional: true
       - id: 110
         type: bitfield
         name: hswing_available
@@ -699,3 +695,12 @@ entities:
         type: boolean
         optional: true
         name: sensor
+  - entity: sensor
+    name: Work time
+    hidden: true
+    category: diagnostic
+    dps:
+      - id: 134
+        name: sensor
+        type: string
+        optional: true

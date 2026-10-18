@@ -4,6 +4,10 @@ products:
     manufacturer: Rohnson
     model: SmartChef XL2
     model_id: R-2858
+  - id: vcutq3cp9e8clwwv
+    manufacturer: Rohnson
+    model: SmartChef XL
+    model_id: R-2834
 entities:
   - entity: climate
     translation_only_key: oven
@@ -94,10 +98,31 @@ entities:
             value: pizza
           - dps_val: sausage
             value: sausage
+            available: r2858
           - dps_val: chips
             value: fries
           - dps_val: dryfruit
             value: dry_fruit
+            available: r2858
+          - dps_val: custom
+            value: custom
+            available: r2834
+      - id: 110
+        type: boolean
+        optional: true
+        name: r2834
+        mapping:
+          - dps_val: null
+            value: true
+          - value: false
+      - id: 110
+        type: boolean
+        optional: true
+        name: r2858
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Cloud recipe
     category: config
@@ -112,6 +137,17 @@ entities:
         range:
           min: 0
           max: 999999999
+        mapping:
+          - constraint: model
+            conditions:
+              - dps_val: null
+                range:
+                  min: 0
+                  max: 999999
+      - id: 110
+        type: boolean
+        optional: true
+        name: model
   - entity: time
     name: Cooking time
     translation_key: timer
@@ -125,6 +161,17 @@ entities:
         range:
           min: 0
           max: 1440
+        mapping:
+          - constraint: model
+            conditions:
+              - dps_val: null
+                range:
+                  min: 0
+                  max: 60
+      - id: 110
+        type: boolean
+        optional: true
+        name: model
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -204,16 +251,29 @@ entities:
             value: null
           - dps_val: alarm
             value: turn_over
+          - dps_val: alarm_clock
+            value: turn_over
+            hidden: true
           - dps_val: finish_cooking
             value: done
+          - dps_val: stop_cooking
+            value: done
+            hidden: true
   - entity: switch
     name: Tender griller
     icon: "mdi:grill"
     category: config
+    hidden: unavailable
     dps:
-      - id: 1
-        type: boolean
-        name: available
       - id: 110
         type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 110
+        type: boolean
+        optional: true
         name: switch

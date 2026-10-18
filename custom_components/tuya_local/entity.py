@@ -107,7 +107,7 @@ class TuyaLocalEntity:
                 if a.rawtype == "json":
                     try:
                         value = json.loads(value)
-                    except json.JSONDecodeError:
+                    except json.JSONDecodeError, TypeError:
                         if value is not None:
                             _LOGGER.warning(
                                 "Failed to decode JSON for attribute %s: %s",

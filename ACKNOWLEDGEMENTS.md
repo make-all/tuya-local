@@ -962,3 +962,10 @@ Further device support has been made with the assistance of users. Please consid
 - [k----n](https://github.com/k----n) for contributing support for Geeni WP005 pet treat camera.
 - [kbinish-ship-it](https://github.com/kbinish-ship-it) for contributing support for Arlec/Deta EV200D-HA EV charger.
 - [placekmilan](https://github.com/placekmilan) for contributing support for Siguro TurboVac Navigator vacuum ETA 2625 Sole Smart heater.
+- [MartinNuc](https://github.com/MartinNuc) for contributing improvements to Nedis Pill Dispenser.
+- [leashjay](https://github.com/leashjay) for improvements to diagnostics redacting and contributing support for Goldair GCT315/425 ceramic tower heater.
+- [ftsachev](https://github.com/ftsachev) for contributing improvements to EARU DPN circuit breaker.
+- [jellybob](https://github.com/jellybob) for contributing improvements to Ecostrad iQ Ceramic V2 radiator.
+- [rmschots](https://github.com/rmschots) for contributing Yu Prime support to Yu Home laundry rack.
+- [brickronny](https://github.com/brickronny) for contributing support for EZAIoT Lite socket thermostat.
+- [33doodles](https://github.com/33doodles) for contributing support for Starlight EF-STAR30 fireplace.
