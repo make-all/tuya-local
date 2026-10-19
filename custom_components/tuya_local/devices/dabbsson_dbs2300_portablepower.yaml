@@ -1,0 +1,547 @@
+name: Portable power station
+products:
+  - id: hvvsflpzy2kspt23
+    manufacturer: Dabbsson
+    model: DBS2300 Plus
+entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: battery_charging
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: light
+    dps:
+      - id: 102
+        type: string
+        name: brightness
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: dim
+            value: 128
+          - dps_val: bright
+            value: 255
+          - dps_val: sos
+            value: 255
+            hidden: true
+      - id: 102
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: dim
+            value: "off"
+            hidden: true
+          - dps_val: bright
+            value: "off"
+            hidden: true
+          - dps_val: sos
+            value: SOS
+  - entity: sensor
+    name: Solar input
+    class: power
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: AC input
+    class: power
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Pack 1 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: Pack 2 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: binary_sensor
+    name: AC input power
+    class: power
+    dps:
+      - id: 156
+        type: base64
+        optional: true
+        name: sensor
+        mask: "FFFFFFFF0000000000"
+        mapping:
+          - dps_val: 0
+            value: true
+          - value: false
+      - id: 156
+        type: base64
+        optional: true
+        name: available
+        mask: "FF000000000000000000"
+        mapping:
+          - dps_val: 186
+            value: true
+          - value: false
+  - entity: sensor
+    name: AC output
+    class: power
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: switch
+    name: AC output
+    icon: "mdi:power-socket-de"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: DC output
+    class: power
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: switch
+    name: DC output
+    icon: "mdi:car-battery"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: USB output
+    icon: "mdi:usb-port"
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: USB-A1 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: USB-A2 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: USB-A3 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: USB-C1 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: USB-C2 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    name: USB-C3 output
+    class: power
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: select
+    name: Standby time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 120
+        type: string
+        name: option
+        mapping:
+          - dps_val: 30_minutes
+            value: 30m
+          - dps_val: 1_hour
+            value: 1h
+          - dps_val: 2_hours
+            value: 2h
+          - dps_val: 6_hours
+            value: 6h
+          - dps_val: 12_hours
+            value: 12h
+          - dps_val: close_timing
+            value: cancel
+  - entity: select
+    name: Display timeout
+    translation_key: timer
+    category: config
+    dps:
+      - id: 121
+        type: string
+        name: option
+        mapping:
+          - dps_val: 10_seconds
+            value: 10s
+          - dps_val: 30_seconds
+            value: 30s
+          - dps_val: 1_minute
+            value: 1m
+          - dps_val: 5_minutes
+            value: 5m
+          - dps_val: 30_minutes
+            value: 30m
+          - dps_val: close_timing
+            value: cancel
+  - entity: select
+    name: AC standby time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: 2_hours
+            value: 2h
+          - dps_val: 4_hours
+            value: 4h
+          - dps_val: 6_hours
+            value: 6h
+          - dps_val: 12_hours
+            value: 12h
+          - dps_val: 24_hours
+            value: 24h
+          - dps_val: close_timing
+            value: cancel
+  - entity: number
+    name: AC charging limit
+    class: power
+    category: config
+    icon: "mdi:battery-charging-90"
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 200
+          max: 1800
+        mapping:
+          - step: 200
+  - entity: binary_sensor
+    name: Fast charging
+    icon: "mdi:battery-arrow-up"
+    category: diagnostic
+    dps:
+      - id: 124
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Expansion battery
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 125
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: P-Boost
+    icon: "mdi:flash"
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Mode
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 127
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby_mode
+            value: Standby
+          - dps_val: eco_mode
+            value: Eco
+  - entity: switch
+    name: Smart charging
+    icon: "mdi:battery-heart-variant"
+    category: config
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Inverter fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 134
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 134
+        type: bitfield
+        name: fault_code
+      - id: 133
+        type: string
+        name: inverter_version
+      - id: 140
+        type: string
+        name: serial_number
+  - entity: binary_sensor
+    name: PD fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 135
+        type: bitfield
+        name: sensor
+      - id: 135
+        type: bitfield
+        name: fault_code
+      - id: 130
+        type: string
+        name: pd_version
+  - entity: binary_sensor
+    name: Battery fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 136
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 136
+        type: bitfield
+        name: fault_code
+      - id: 137
+        type: bitfield
+        optional: true
+        name: fault_code_2
+      - id: 132
+        type: string
+        name: bms_version
+  - entity: sensor
+    name: Pack 1
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Pack 2
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: AC output voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+        unit: V
+  - entity: text
+    name: Battery protection settings
+    category: config
+    icon: "mdi:battery-heart"
+    hidden: true
+    dps:
+      - id: 119
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    name: Power off
+    category: config
+    dps:
+      - id: 129
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Total output power
+    class: power
+    hidden: true
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: W
+        class: measurement
+      - id: 39
+        type: base64
+        optional: true
+        name: power_data
+      - id: 40
+        type: base64
+        optional: true
+        name: run_state
+      - id: 156
+        type: base64
+        optional: true
+        name: additional_data
+  - entity: sensor
+    name: Total input power
+    class: power
+    hidden: true
+    dps:
+      - id: 131
+        type: integer
+        optional: true
+        name: sensor
+        unit: Wmeasurement
+  - entity: event
+    name: Log
+    hidden: true
+    dps:
+      - id: 141
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: log_event
+      - id: 141
+        type: string
+        optional: true
+        name: message
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 142
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: OTA update time
+    class: duration
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 143
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+  - entity: button
+    name: Heartbeat
+    category: config
+    dps:
+      - id: 144
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Heartbeat
+    dps:
+      - id: 144
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: beat
+          - dps_val: false
+            value: unbeat

@@ -781,6 +781,7 @@
 - AmperePoint Q series EV chargers
 - Arlec/Deta EV200D-HA EV charger
 - Conow CBE2000 Pro solar battery
+- Dabbsson DBS2300 portable power station
 - dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
