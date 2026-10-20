@@ -175,14 +175,18 @@ entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Flow
-    class: problem
+    translation_key: water_flow
     category: diagnostic
     dps:
       - id: 114
         type: boolean
         optional: true
         name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: binary_sensor
     name: Acid
     class: problem
