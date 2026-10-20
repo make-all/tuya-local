@@ -1,4 +1,5 @@
 name: Dehumidifier
+legacy_type: DH-CSK03W_dehumidifier
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -62,13 +63,13 @@ entities:
         optional: true
         mapping:
           - dps_val: "ligth_off"
-            value: "Light Off"
+            value: "off"
           - dps_val: "light_mode1"
-            value: "Light mode 1"
+            value: mode_1
           - dps_val: "light_mode2"
-            value: "Light mode 2"
+            value: mode_2
           - dps_val: "light_mode3"
-            value: "Light mode 3"
+            value: mode_3
   - entity: sensor
     class: temperature
     dps:
