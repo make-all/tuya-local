@@ -20,7 +20,7 @@ entities:
       - id: 6
         type: base64
         optional: true
-        mask: "FFFF000000000000"
+        mask: "0000FFFF0000000000000000000000000000"
         name: sensor
         unit: V
         class: measurement
@@ -32,24 +32,95 @@ entities:
       - id: 6
         type: base64
         optional: true
-        mask: "0000FFFFFF000000"
+        mask: "00000000FFFFFF0000000000000000000000"
         name: sensor
         unit: A
         class: measurement
         mapping:
           - scale: 1000
+            constraint: direction
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000001"
+        name: direction
   - entity: sensor
     class: power
     dps:
       - id: 6
         type: base64
         optional: true
-        mask: "0000000000FFFFFF"
+        mask: "00000000000000FFFFFF0000000000000000"
         name: sensor
         unit: kW
         class: measurement
         mapping:
           - scale: 1000
+            constraint: direction
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000002"
+        name: direction
+  - entity: sensor
+    class: reactive_power
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFFFF0000000000"
+        name: sensor
+        unit: kvar
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: direction
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000004"
+        name: direction
+  - entity: sensor
+    class: apparent_power
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000FFFFFF0000"
+        name: sensor
+        unit: kVA
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power_factor
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000FF00"
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+            constraint: direction
+            conditions:
+              - dps_val: 1
+                scale: -100
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000008"
+        name: direction
   - entity: binary_sensor
     class: problem
     category: diagnostic
