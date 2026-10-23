@@ -1,11 +1,11 @@
-name: Ceiling Fan with Light
+name: Ceiling fan
 products:
   - id: qzr8t7c8qy78bhji
     manufacturer: Lucci
-    model: Aria DC Fan
+    model: Aria DC
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -39,7 +39,7 @@ entities:
           min: 2
           max: 100
   - entity: select
-    name: Fan Timer
+    name: Fan timer
     translation_key: timer
     category: config
     dps:
@@ -58,7 +58,7 @@ entities:
           - dps_val: "8h"
             value: "8h"
   - entity: select
-    name: Light Timer
+    name: Light timer
     translation_key: timer
     category: config
     dps:
