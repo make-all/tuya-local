@@ -142,6 +142,7 @@ entities:
     dps:
       - id: 121
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     name: Program A
@@ -150,10 +151,15 @@ entities:
     dps:
       - id: 122
         type: boolean
+        optional: true
         name: switch
       - id: 121
         type: boolean
+        optional: true
         name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: switch
     name: Program B
     icon: "mdi:timetable"
@@ -161,10 +167,15 @@ entities:
     dps:
       - id: 123
         type: boolean
+        optional: true
         name: switch
       - id: 121
         type: boolean
+        optional: true
         name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: switch
     name: Program C
     icon: "mdi:timetable"
@@ -172,10 +183,15 @@ entities:
     dps:
       - id: 124
         type: boolean
+        optional: true
         name: switch
       - id: 121
         type: boolean
+        optional: true
         name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: switch
     name: Program D
     icon: "mdi:timetable"
@@ -230,6 +246,7 @@ entities:
     dps:
       - id: 126
         type: integer
+        optional: true
         name: value
         unit: d
         range:
@@ -298,3 +315,49 @@ entities:
       - id: 134
         type: base64
         name: technical_info
+  - entity: sensor
+    name: Battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 134
+        type: base64
+        mask: "FF00000000000000000000000000000000000000000000000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Supply voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 134
+        type: base64
+        mask: "FF000000000000000000000000000000000000000000000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 134
+        type: base64
+        mask: "FF0000000000000000000000000000000000000000000000000000"
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 134
+        type: base64
+        mask: "FF00000000000000000000000000000000000000"
+        name: sensor
+        unit: dBm
+        class: measurement
