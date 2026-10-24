@@ -545,6 +545,7 @@
 - TrueLife P3 and P7 air purifiers
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
+- Vibrix PureFlow30 air purifier
 - Vork VK6067AW air purifier
 - Webber AP9750 and APG7800 air purifiers
 
