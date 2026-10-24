@@ -9,6 +9,112 @@ entities:
       - id: 101
         type: boolean
         name: switch
+  # The device has separate Celsius (112-115) and Fahrenheit (117-120) dps, and
+  # only updates the set matching its display unit (dp 105).
+  - entity: climate
+    name: Zone A
+    dps:
+      - id: 105
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: C
+            value: C
+          - dps_val: F
+            value: F
+      - id: 110
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: cool
+          - dps_val: false
+            value: "off"
+      - id: 112
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: current_temperature_f
+      - id: 114
+        type: integer
+        name: temperature
+        range:
+          min: -20
+          max: 20
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: temperature_f
+                range:
+                  min: -4
+                  max: 68
+      - id: 117
+        type: integer
+        name: current_temperature_f
+        hidden: true
+      - id: 119
+        type: integer
+        name: temperature_f
+        hidden: true
+        range:
+          min: -4
+          max: 68
+  - entity: climate
+    name: Zone B
+    dps:
+      - id: 105
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: C
+            value: C
+          - dps_val: F
+            value: F
+      - id: 111
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: cool
+          - dps_val: false
+            value: "off"
+      - id: 113
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: current_temperature_f
+      - id: 115
+        type: integer
+        name: temperature
+        range:
+          min: -20
+          max: 20
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: temperature_f
+                range:
+                  min: -4
+                  max: 68
+      - id: 118
+        type: integer
+        name: current_temperature_f
+        hidden: true
+      - id: 120
+        type: integer
+        name: temperature_f
+        hidden: true
+        range:
+          min: -4
+          max: 68
   - entity: lock
     translation_key: child_lock
     category: config
@@ -74,65 +180,6 @@ entities:
         type: bitfield
         optional: true
         name: fault_code
-  - entity: switch
-    name: Zone A
-    icon: "mdi:fridge-top"
-    dps:
-      - id: 110
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone B
-    icon: "mdi:fridge-bottom"
-    dps:
-      - id: 111
-        type: boolean
-        name: switch
-  # The device has separate Celsius (112-116) and Fahrenheit (117-121) dps, and
-  # only updates the set matching its display unit (dp 105). The device this was
-  # made from is set to Fahrenheit, so the Fahrenheit set is used here.
-  - entity: sensor
-    name: Zone A temperature
-    class: temperature
-    dps:
-      - id: 117
-        type: integer
-        name: sensor
-        unit: F
-        class: measurement
-  - entity: sensor
-    name: Zone B temperature
-    class: temperature
-    dps:
-      - id: 118
-        type: integer
-        name: sensor
-        unit: F
-        class: measurement
-  - entity: number
-    name: Zone A target
-    class: temperature
-    icon: "mdi:thermometer"
-    dps:
-      - id: 119
-        type: integer
-        name: value
-        unit: F
-        range:
-          min: -4
-          max: 68
-  - entity: number
-    name: Zone B target
-    class: temperature
-    icon: "mdi:thermometer"
-    dps:
-      - id: 120
-        type: integer
-        name: value
-        unit: F
-        range:
-          min: -4
-          max: 68
   - entity: sensor
     class: voltage
     category: diagnostic
