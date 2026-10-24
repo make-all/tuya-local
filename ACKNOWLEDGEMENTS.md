@@ -970,3 +970,4 @@ Further device support has been made with the assistance of users. Please consid
 - [brickronny](https://github.com/brickronny) for contributing support for EZAIoT Lite socket thermostat.
 - [33doodles](https://github.com/33doodles) for contributing support for Starlight EF-STAR30 fireplace.
 - [Corza](https://github.com/Corza) for contributing support for Lucci DC ceiling fan with light.
+- [danleongjy](https://github.com/danleongjy) for contributing support for Mowe MW278I induction hob.
