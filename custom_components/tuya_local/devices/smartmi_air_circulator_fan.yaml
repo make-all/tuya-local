@@ -27,11 +27,23 @@ entities:
             value: normal
           - dps_val: nature
             value: nature
-          - dps_val: smart
+          - dps_val: temp
             value: smart
-
-      - id: 3
+      - id: 107
         name: speed
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - dps_val: null
+            value_redirect: lowres_speed
+            range:
+              min: 1
+              max: 4
+      - id: 3
+        name: lowres_speed
         type: integer
         range:
           min: 1
