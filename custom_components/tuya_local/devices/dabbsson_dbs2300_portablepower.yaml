@@ -381,6 +381,12 @@ entities:
       - id: 135
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 32
+            value: false  # undocumented, always seems to be flagged
+          - value: true
       - id: 135
         type: bitfield
         name: fault_code
@@ -488,7 +494,8 @@ entities:
         type: integer
         optional: true
         name: sensor
-        unit: Wmeasurement
+        unit: W
+        class: measurement
   - entity: event
     name: Log
     hidden: true
