@@ -973,3 +973,4 @@ Further device support has been made with the assistance of users. Please consid
 - [danleongjy](https://github.com/danleongjy) for contributing support for Mowe MW278I induction hob.
 - [surfnterd](https://github.com/surfnterd) for contributing support for Pro Breeze PB-D-18W-WF 12L dehumidifier.
 - [ozgurclcc](https://github.com/ozgurclcc) for contributing support for Vibrix PureFlow30 air purifier.
+- [meeowgler](https://github.com/meeowgler) for contributing support for EA dual zone car fridge.
