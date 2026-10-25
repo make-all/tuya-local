@@ -13,15 +13,15 @@ entities:
   # only updates the set matching its display unit (dp 105).
   - entity: climate
     name: Zone A
+    icon: "mdi:fridge-top"
     dps:
       - id: 105
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: C
-            value: C
           - dps_val: F
             value: F
+          - value: C
       - id: 110
         type: boolean
         name: hvac_mode
@@ -65,15 +65,15 @@ entities:
           max: 68
   - entity: climate
     name: Zone B
+    icon: "mdi:fridge-bottom"
     dps:
       - id: 105
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: C
-            value: C
           - dps_val: F
             value: F
+          - value: C
       - id: 111
         type: boolean
         name: hvac_mode
@@ -138,17 +138,18 @@ entities:
     name: Battery protection
     icon: "mdi:car-battery"
     category: config
+    translation_key: mode
     dps:
       - id: 104
         type: string
         name: option
         mapping:
           - dps_val: L
-            value: Low
+            value: low
           - dps_val: M
-            value: Medium
+            value: medium
           - dps_val: H
-            value: High
+            value: high
   - entity: select
     translation_key: temperature_unit
     category: config
