@@ -593,9 +593,7 @@
 - Morris MDB-12160HIW dehumidifier
 - NWT WDH-02EM and WDH-10EN dehumidifiers
 - Point PODH20 dehumidifier
-- Pro Breeze 30L dehumidifier
-- Pro Breeze D-23 dehumidifier
-- Pro Breeze PB-D-18W-WF 12L dehumidifier
+- Pro Breeze 30L, D-23, D-18W dehumidifiers
 - Qlima D720, D812, D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
