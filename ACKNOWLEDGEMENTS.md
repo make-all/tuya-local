@@ -737,7 +737,7 @@ Further device support has been made with the assistance of users. Please consid
 - [goblinmaks](https://github.com/goblinmaks) for contributing support for iPengen GO-E31-32A EV charger.
 - [ivasso](https://github.com/ivasso) for contributing support for Gosund SP6, which was merged into smartplug_usb.yaml.
 - [ScottHansma](https://github.com/ScottHansma) for contributing support for Wine Enthusiast Prestige S beverage center.
-- [decompil3d](https://github.com/decompil3d) for contributing support for Chtoocy MC82 refrigerator thermometer.
+- [decompil3d](https://github.com/decompil3d) for contributing support for Chtoocy MC82 refrigerator thermometer, HQL DS-123 radar switch.
 - [kordek212](https://github.com/kordek212) for contributing support for KKT Kolbe kitchen hood.
 - [bobaoapae](https://github.com/bobaoapae) for contributing support for Veratti V4 3-phase circuit breaker.
 - [alfry82](https://github.com/alfry82) for contributing support for Morento MR5866 air purifier.

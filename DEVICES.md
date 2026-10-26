@@ -1404,6 +1404,7 @@ port and password.
 - Haozee PS10 mmWave presence sensing light switch
 - Holman Helios weather station
 - Houschen anti-fog bathroom mirror with lights
+- HQL DS-123 radar switch
 - HRT AS90 temperature and humidity alarm
 - HX-002-Z human presence sensor
 - iHseno ZTU human presence sensor
