@@ -2,13 +2,9 @@ name: Radar switch
 products:
   - id: k2xfhfqsqbqvbbig
     manufacturer: HQL
-    model: Smart Radar Switch
-    model_id: DS-123
+    model: DS-123
 entities:
   - entity: switch
-    translation_key: switch_x
-    translation_placeholders:
-      x: "1"
     dps:
       - id: 1
         type: boolean
@@ -100,58 +96,21 @@ entities:
         type: boolean
         name: switch
 
-  # Enable Turn-On when Occupied (DP 107)
-  - entity: button
-    name: Enable turn on when occupied
+  - entity: text
+    name: Presence settings
     category: config
-    icon: "mdi:motion-sensor"
+    hidden: true
     dps:
       - id: 107
         type: base64
-        name: button
         optional: true
-        mapping:
-          - dps_val: "D3+AAAAXOwAAAAA="
-            value: true
-
-  # Disable Turn-On when Occupied (DP 107)
-  - entity: button
-    name: Disable turn on when occupied
+        name: value
+  - entity: text
+    name: Absence settings
     category: config
-    icon: "mdi:motion-sensor-off"
-    dps:
-      - id: 107
-        type: base64
-        name: button
-        optional: true
-        mapping:
-          - dps_val: "Dn+AAAAXOwAAAAA="
-            value: true
-
-  # Enable Turn-Off when Unoccupied (DP 108)
-  - entity: button
-    name: Enable turn off when unoccupied
-    category: config
-    icon: "mdi:motion-sensor-off"
+    hidden: true
     dps:
       - id: 108
         type: base64
-        name: button
         optional: true
-        mapping:
-          - dps_val: "D3+AAAAXOwAAAAA="
-            value: true
-
-  # Disable Turn-Off when Unoccupied (DP 108)
-  - entity: button
-    name: Disable turn off when unoccupied
-    category: config
-    icon: "mdi:motion-sensor"
-    dps:
-      - id: 108
-        type: base64
-        name: button
-        optional: true
-        mapping:
-          - dps_val: "Dn+AAAAXOwAAAAA="
-            value: true
+        name: value
