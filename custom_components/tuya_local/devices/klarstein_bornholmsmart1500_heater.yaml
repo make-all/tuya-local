@@ -27,22 +27,14 @@ entities:
         name: current_temperature
       - id: 4
         type: string
-        name: fan_mode
+        name: preset_mode
         mapping:
           - dps_val: low
             value: low
           - dps_val: high
             value: high
           - dps_val: empty
-            value: "off"
-      - id: 5
-        type: boolean
-        name: preset_mode
-        mapping:
-          - dps_val: true
-            value: eco
-          - dps_val: false
-            value: comfort
+            value: away
       - id: 101
         type: boolean
         optional: true
@@ -149,15 +141,37 @@ entities:
   - entity: switch
     translation_key: sleep
     category: config
+    hidden: unavailable  # apparently not supported, missing from log
     dps:
       - id: 102
         optional: true
         type: boolean
         name: switch
+      - id: 102
+        optional: true
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: light
     translation_key: display
     category: config
     dps:
       - id: 104
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: switch
+    name: Eco
+    category: config
+    hidden: true  # apparently not supported despite presence in log
+    dps:
+      - id: 5
         type: boolean
         name: switch
