@@ -1,0 +1,116 @@
+name: Radar switch
+products:
+  - id: k2xfhfqsqbqvbbig
+    manufacturer: HQL
+    model: DS-123
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+
+  - entity: number
+    name: Presence delay
+    class: duration
+    category: config
+    icon: "mdi:motion-sensor-off"
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 86400
+
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 25
+
+  - entity: switch
+    name: Motion alarm
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "off"
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: text
+    name: Presence settings
+    category: config
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Absence settings
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
