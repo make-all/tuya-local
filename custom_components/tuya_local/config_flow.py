@@ -4,7 +4,7 @@ from collections import OrderedDict
 from typing import Any
 
 import tinytuya
-import voluptuous as vol
+import probatio as vol
 from homeassistant.config_entries import (
     CONN_CLASS_LOCAL_PUSH,
     ConfigEntry,

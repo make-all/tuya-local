@@ -4,7 +4,7 @@ import gc
 import warnings
 
 import pytest
-import voluptuous as vol
+import probatio as vol
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 

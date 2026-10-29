@@ -3,7 +3,7 @@
 import asyncio
 import logging
 
-import voluptuous as vol
+import probatio as vol
 from homeassistant.components import infrared
 from homeassistant.components.remote import (
     ATTR_DELAY_SECS,

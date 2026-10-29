@@ -12,7 +12,7 @@ from datetime import timedelta
 from itertools import product
 from typing import Any
 
-import voluptuous as vol
+import probatio as vol
 from homeassistant.components import persistent_notification
 from homeassistant.components.remote import (
     ATTR_ALTERNATIVE,
