@@ -2,8 +2,8 @@
 
 from unittest.mock import AsyncMock
 
-import pytest
 import probatio as vol
+import pytest
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.exceptions import ConfigEntryNotReady

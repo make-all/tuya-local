@@ -3,8 +3,8 @@
 import gc
 import warnings
 
-import pytest
 import probatio as vol
+import pytest
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 

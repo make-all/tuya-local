@@ -3,8 +3,8 @@ import logging
 from collections import OrderedDict
 from typing import Any
 
-import tinytuya
 import probatio as vol
+import tinytuya
 from homeassistant.config_entries import (
     CONN_CLASS_LOCAL_PUSH,
     ConfigEntry,
