@@ -53,7 +53,7 @@ entities:
   # --- TEMPERATURES ---
   - entity: sensor
     class: temperature
-    name: Inlet temperature
+    translation_key: inlet_temperature
     category: diagnostic
     dps:
       - id: 101
@@ -63,7 +63,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Outlet temperature
+    translation_key: outlet_temperature
     category: diagnostic
     dps:
       - id: 102
@@ -83,7 +83,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Exhaust temperature
+    translation_key: exhaust_temperature
     category: diagnostic
     dps:
       - id: 104
@@ -93,7 +93,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Suction temperature
+    translation_key: suction_temperature
     category: diagnostic
     dps:
       - id: 105
@@ -103,7 +103,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Heating coil temperature
+    translation_key: heating_coil_temperature
     category: diagnostic
     dps:
       - id: 106
@@ -113,7 +113,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Cooling coil temperature
+    translation_key: cooling_coil_temperature
     category: diagnostic
     dps:
       - id: 107
@@ -123,7 +123,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Heatsink temperature
+    translation_key: heatsink_temperature
     category: diagnostic
     dps:
       - id: 111
@@ -198,7 +198,7 @@ entities:
         type: integer
         name: sensor
 
-# --- FAULT STATUS ---
+  # --- FAULT STATUS ---
   # Error Code Mapping Reference:
   # E03: Water flow fault          E15: Water inlet temp sensor fault
   # E04: Antifreeze protection     E16: Outdoor coil temp sensor fault
