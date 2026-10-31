@@ -1,0 +1,137 @@
+name: Singer - SNT26-09IV
+products:
+  - id: nn2ooaacswz6uyi0
+    manufacturer: Singer
+    model: SNT26-09IV
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: auto
+              - dps_val: "1"
+                value: cool
+              - dps_val: "2"
+                value: dry
+              - dps_val: "3"
+                value: fan_only
+              - dps_val: "4"
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 1600
+          max: 3100
+        mapping:
+          - scale: 100
+            step: 50
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 100
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+  - entity: switch
+    name: Eco
+    icon: "mdi:leaf"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Light
+    icon: "mdi:lightbulb-on-outline"
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Beep
+    icon: "mdi:volume-high"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Health
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Drying
+    icon: "mdi:water-remove-outline"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: select
+    name: Generator mode
+    icon: "mdi:lightning-bolt-outline"
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: LV1
+          - dps_val: "2"
+            value: LV2
+          - dps_val: "3"
+            value: LV3
+  - entity: select
+    name: Sleep
+    icon: "mdi:weather-night"
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "Standard"
+          - dps_val: "2"
+            value: "The aged"
+          - dps_val: "3"
+            value: "Child"
+  - entity: select
+    name: "Fan Speed"
+    icon: "mdi:fan"
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Auto"
+          - dps_val: "1"
+            value: "Mute"
+          - dps_val: "2"
+            value: "Low Wind"
+          - dps_val: "3"
+            value: "Mid Low Wind"
+          - dps_val: "4"
+            value: "Mid Wind"
+          - dps_val: "5"
+            value: "Mid High Wind"
+          - dps_val: "6"
+            value: "High Wind"
+          - dps_val: "7"
+            value: "Strong Wind"
