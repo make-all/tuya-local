@@ -3,6 +3,9 @@ products:
   - id: wgtkomhkmkvrweel
     manufacturer: eLoad
     model: Gen2
+  - id: jmbob4xuffrogjkd
+    manufacturer: Gen2
+    model: EcoPower 11kW
 entities:
   - entity: sensor
     translation_key: status
@@ -73,6 +76,7 @@ entities:
     dps:
       - id: 14
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: charge_now
@@ -99,7 +103,7 @@ entities:
           - scale: 1000
   - entity: button
     name: Clear energy
-    class: reestart
+    class: restart
     category: config
     dps:
       - id: 16
@@ -111,6 +115,7 @@ entities:
     dps:
       - id: 18
         type: boolean
+        optional: true
         name: switch
   - entity: sensor
     name: Charge
