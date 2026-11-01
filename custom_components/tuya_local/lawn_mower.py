@@ -9,6 +9,7 @@ from homeassistant.components.lawn_mower.const import (
     SERVICE_DOCK,
     SERVICE_PAUSE,
     SERVICE_START_MOWING,
+    SERVICE_STOP,
     LawnMowerActivity,
     LawnMowerEntityFeature,
 )
