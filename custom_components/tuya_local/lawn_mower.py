@@ -56,6 +56,8 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
                 self._attr_supported_features |= LawnMowerEntityFeature.PAUSE
             if SERVICE_DOCK in available_commands:
                 self._attr_supported_features |= LawnMowerEntityFeature.DOCK
+            if SERVICE_STOP in available_commands:
+                self._attr_supported_features |= LawnMowerEntityFeature.STOP
 
     @property
     def activity(self) -> LawnMowerActivity | None:
@@ -79,3 +81,9 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         if self._command_dp:
             _LOGGER.info("%s returning to dock", self._config.config_id)
             await self._command_dp.async_set_value(self._device, SERVICE_DOCK)
+
+    async def async_stop(self):
+        """Stop mowing without returning."""
+        if self._command_dp:
+            _LOGGER.info("%s stopping lawn mowing", self._config.config_id)
+            await self._command_dp.async_set_value(self._device, SERVICE_STOP)

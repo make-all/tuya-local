@@ -15,7 +15,7 @@ entities:
         type: string
         mapping:
           - dps_val: STANDBY
-            value: docked
+            value: idle
           - dps_val: MOWING
             value: mowing
           - dps_val: CHARGING
@@ -23,7 +23,7 @@ entities:
           - dps_val: EMERGENCY
             value: error
           - dps_val: LOCKED
-            value: docked
+            value: idle
           - dps_val: PAUSED
             value: paused
           - dps_val: PARK
@@ -47,22 +47,40 @@ entities:
         mapping:
           - dps_val: StartMowing
             value: start_mowing
+            available: not_paused
           - dps_val: StartFixedMowing
             value: start_mowing
             hidden: true
           - dps_val: PauseWork
             value: pause
           - dps_val: CancelWork
-            value: pause
-            hidden: true
+            value: stop
           - dps_val: ContinueWork
             value: start_mowing
-            hidden: true
+            available: is_paused
           - dps_val: StartReturnStation
             value: dock
           - dps_val: EDGE
             value: start_mowing
             hidden: true
+      - id: 115
+        type: string
+        optional: true
+        name: is_paused
+        hidden: true
+        mapping:
+          - dps_val: PauseWork
+            value: true
+          - value: false
+      - id: 115
+        type: string
+        optional: true
+        name: not_paused
+        hidden: true
+        mapping:
+          - dps_val: PauseWork
+            value: false
+          - value: true
       - id: 101
         name: raw_activity
         type: string
@@ -99,6 +117,7 @@ entities:
             value: true
   - entity: button
     name: Cancel work
+    deprecated: lawn_mower.stop  # 2026-11-01
     icon: "mdi:mower"
     dps:
       - id: 115
