@@ -51,12 +51,12 @@ entities:
             value: 100
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: "°C"
+        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic

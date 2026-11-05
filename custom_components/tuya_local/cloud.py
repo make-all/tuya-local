@@ -40,7 +40,7 @@ HUB_CATEGORIES = [
     "alexa_yywg",  # Gateway with Alexa
     "gywg",  # Industrial gateway
     "cnwg",  # Energy gateway
-    "wnykq",  # Smart IR
+    "wfcon",  # new type of Zigbee gateway
 ]
 
 

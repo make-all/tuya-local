@@ -1,0 +1,344 @@
+name: Sprinkler controller
+products:
+  - id: ajg67sq0tpjxgd40
+    manufacturer: NEO Coolcam
+    model: Smart Sprinkler Controller v1.1
+entities:
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 3
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 4
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "5"
+    dps:
+      - id: 5
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "6"
+    dps:
+      - id: 6
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "7"
+    dps:
+      - id: 7
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "8"
+    dps:
+      - id: 8
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "9"
+    dps:
+      - id: 9
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "10"
+    dps:
+      - id: 10
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "11"
+    dps:
+      - id: 11
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "12"
+    dps:
+      - id: 12
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "13"
+    dps:
+      - id: 101
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "14"
+    dps:
+      - id: 102
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "15"
+    dps:
+      - id: 103
+        type: boolean
+        name: valve
+
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "16"
+    dps:
+      - id: 104
+        type: boolean
+        name: valve
+
+  - entity: select
+    name: Weather delay
+    translation_key: timer
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 38
+        type: string
+        name: value
+        optional: true
+
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 39
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+
+  - entity: switch
+    name: Weather
+    category: config
+    dps:
+      - id: 42
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: button
+    name: Skip
+    dps:
+      - id: 43
+        type: boolean
+        name: button
+        optional: true
+
+  - entity: select
+    name: Irrigation mode
+    icon: "mdi:sprinkler-variant"
+    category: config
+    dps:
+      - id: 44
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: Order1
+            value: Independent valves
+          - dps_val: Order2
+            value: Master valve
+
+  - entity: text
+    name: Irrigation restriction schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 46
+        type: string
+        name: value
+        optional: true
+
+  - entity: sensor
+    name: Countdown valve
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        mask: "FF000000"
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Countdown remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        mask: "00FFFFFF"
+        name: sensor
+        unit: s
+        class: measurement
+        optional: true
+
+  - entity: sensor
+    name: Last used valve
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        mask: "FF000000"
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Last irrigation duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        mask: "00FFFFFF"
+        name: sensor
+        unit: s
+        class: measurement
+        optional: true
+
+  - entity: event
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: normal
+            value: clear
+          - dps_val: alram1
+            value: Valve 1
+          - dps_val: alram2
+            value: Valve 2
+          - dps_val: alram3
+            value: Valve 3
+          - dps_val: alram4
+            value: Valve 4
+          - dps_val: alram5
+            value: Valve 5
+          - dps_val: alram6
+            value: Valve 6
+          - dps_val: alram7
+            value: Valve 7
+          - dps_val: alram8
+            value: Valve 8
+          - dps_val: alram9
+            value: Valve 9
+          - dps_val: alram10
+            value: Valve 10
+          - dps_val: alram11
+            value: Valve 11
+          - dps_val: alram12
+            value: Valve 12
+          - dps_val: alram13
+            value: Valve 13
+          - dps_val: alram14
+            value: Valve 14
+          - dps_val: alram15
+            value: Valve 15
+          - dps_val: alram16
+            value: Valve 16

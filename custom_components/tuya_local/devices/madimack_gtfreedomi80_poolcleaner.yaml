@@ -1,0 +1,57 @@
+name: Pool cleaning robot
+
+products:
+  - id: 7up9kxk6vx0e7pcm
+    manufacturer: Madimack
+    model: GT Freedom i80
+
+entities:
+  - entity: number
+    name: Cleaning duration
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 30
+          max: 480
+
+  - entity: switch
+    name: Wall cleaning
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "0"
+            value: 33
+          - dps_val: "1"
+            value: 67
+          - dps_val: "2"
+            value: 100
+
+  - entity: number
+    name: Repeat interval
+    class: duration
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 168

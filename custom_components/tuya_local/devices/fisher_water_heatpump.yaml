@@ -3,7 +3,6 @@ products:
   - id: 3gabjnrhtblg3ub6
     manufacturer: Fisher
     model: e-HeatR
-    name: Air-water heat pump
 entities:
   - entity: climate
     dps:
@@ -135,7 +134,7 @@ entities:
         type: bitfield
         name: fault_code
   - entity: sensor
-    name: Inlet temperature
+    translation_key: inlet_temperature
     class: temperature
     category: diagnostic
     dps:
@@ -154,7 +153,7 @@ entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Outlet temperature
+    translation_key: outlet_temperature
     class: temperature
     category: diagnostic
     dps:

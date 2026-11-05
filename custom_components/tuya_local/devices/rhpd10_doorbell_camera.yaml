@@ -5,8 +5,7 @@ products:
     model: RH-PD10 3MP peephole camera
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 121
         type: boolean
@@ -119,11 +118,9 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
-    icon: "mdi:micro-sd"
     dps:
       - id: 110
         type: integer
@@ -300,7 +297,7 @@ entities:
         optional: true
         name: switch
   - entity: event
-    name: Push message
+    translation_key: notification
     dps:
       - id: 212
         type: string

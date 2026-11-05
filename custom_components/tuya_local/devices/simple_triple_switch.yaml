@@ -1,4 +1,8 @@
 name: Triple switch
+products:
+  - id: key5ckdnys3pqgec
+    manufacturer: Steren
+    model: SHOME-113
 entities:
   - entity: switch
     translation_key: switch_x
@@ -20,7 +24,107 @@ entities:
     translation_key: switch_x
     translation_placeholders:
       x: "3"
+    hidden: unavailable
     dps:
       - id: 3
         name: switch
         type: boolean
+        optional: true
+      - id: 3
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+      - id: 7
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+      - id: 8
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+      - id: 9
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    translation_key: initial_state
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 14
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+      - id: 14
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

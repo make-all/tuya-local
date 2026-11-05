@@ -10,6 +10,7 @@ entities:
         name: sensor
         type: integer
         unit: "%"
+        class: measurement
   - entity: sensor
     class: temperature
     dps:
@@ -26,7 +27,6 @@ entities:
           - value: C
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 4
         type: integer

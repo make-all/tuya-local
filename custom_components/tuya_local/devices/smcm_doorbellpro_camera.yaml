@@ -6,8 +6,7 @@ products:
     model_id: DDV-207-Pro
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
@@ -80,9 +79,8 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
     dps:
       - id: 110
@@ -187,7 +185,7 @@ entities:
           min: 0
           max: 10
         mapping:
-          - scale: 0.1
+          - scale: 10
   - entity: switch
     name: Motion limit area
     category: config
@@ -240,7 +238,7 @@ entities:
         type: boolean
         name: switch
   - entity: event
-    name: Notification
+    translation_key: notification
     dps:
       - id: 212
         type: string

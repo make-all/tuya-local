@@ -77,6 +77,12 @@ entities:
       - id: 107
         name: has_boost
         type: boolean
+        hidden: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -114,6 +120,7 @@ entities:
       - id: 23
         type: integer
         name: sensor
+        class: measurement
       - id: 6
         name: unit
         type: string
@@ -130,6 +137,7 @@ entities:
       - id: 24
         name: sensor
         type: integer
+        class: measurement
       - id: 6
         name: unit
         type: string
@@ -140,12 +148,13 @@ entities:
             value: C
   - entity: sensor
     category: diagnostic
-    name: Outlet water temperature
+    translation_key: outlet_temperature
     class: temperature
     dps:
       - id: 25
         name: sensor
         type: integer
+        class: measurement
       - id: 6
         name: unit
         type: string
@@ -161,6 +170,7 @@ entities:
       - id: 26
         name: sensor
         type: integer
+        class: measurement
       - id: 6
         name: unit
         type: string
@@ -177,6 +187,7 @@ entities:
       - id: 103
         name: sensor
         type: integer
+        class: measurement
       - id: 6
         name: unit
         type: string
@@ -193,6 +204,7 @@ entities:
       - id: 104
         name: sensor
         type: integer
+        class: measurement
       - id: 6
         name: unit
         type: string
@@ -209,6 +221,7 @@ entities:
       - id: 105
         name: sensor
         type: integer
+        class: measurement
       - id: 6
         name: unit
         type: string

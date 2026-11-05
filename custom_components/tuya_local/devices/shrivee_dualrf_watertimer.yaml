@@ -1,0 +1,282 @@
+name: Dual water timer
+products:
+  - id: zjqxgxxesv29cpkn
+    manufacturer: Shrivee
+entities:
+  - entity: valve
+    translation_key: valve_x
+    translation_placeholders:
+      x: "1"
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+  - entity: valve
+    translation_key: valve_x
+    translation_placeholders:
+      x: "2"
+    class: water
+    dps:
+      - id: 2
+        type: boolean
+        name: valve
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
+    category: config
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
+    category: config
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: sensor
+    name: Weather delay remaining
+    class: duration
+    category: diagnostic
+    icon: "mdi:weather-cloudy-clock"
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: h
+  - entity: switch
+    name: Smart weather delay
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 43
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Weather
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 44
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: sunny
+            value: sunny
+            icon: "mdi:weather-sunny"
+          - dps_val: cloudy
+            value: cloudy
+            icon: "mdi:weather-cloudy"
+          - dps_val: rainy
+            value: rainy
+            icon: "mdi:weather-rainy"
+          - dps_val: snowy
+            value: snowy
+            icon: "mdi:weather-snowy"
+          - dps_val: null
+            icon: "mdi:weather-sunny-off"
+            hidden: true
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-cloudy-clock"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 45
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1"
+            value: "1d"
+          - dps_val: "2"
+            value: "2d"
+          - dps_val: "3"
+            value: "3d"
+          - dps_val: "4"
+            value: "4d"
+          - dps_val: "5"
+            value: "5d"
+          - dps_val: "6"
+            value: "6d"
+          - dps_val: "7"
+            value: "7d"
+  # This variant reports battery as a discrete charge state rather than a
+  # percentage: 6 = 3.05V, 5 = 2.95V, 4 = 2.85V, 3 = 2.75V, 2 = 2.65V,
+  # 1 = 2.60V, 0 = empty. Mapped evenly across the seven states.
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 47
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "6"
+            value: 100
+          - dps_val: "5"
+            value: 83
+          - dps_val: "4"
+            value: 67
+          - dps_val: "3"
+            value: 50
+          - dps_val: "2"
+            value: 33
+          - dps_val: "1"
+            value: 17
+          - dps_val: "0"
+            value: 0
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 53
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 53
+        type: bitfield
+        name: fault_code
+      - id: 53
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: low_battery
+  - entity: binary_sensor
+    name: Valve 1 irrigating
+    class: running
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Valve 2 irrigating
+    class: running
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Signal boost
+    icon: "mdi:signal-variant"
+    category: config
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: dBm
+  - entity: sensor
+    name: Valve 1 state
+    translation_key: status
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 119
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: spray
+            value: working
+          - dps_val: timing
+            value: scheduled
+      - id: 38
+        type: string
+        name: schedule
+        optional: true
+  - entity: sensor
+    name: Valve 2 state
+    translation_key: status
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: spray
+            value: working
+          - dps_val: timing
+            value: scheduled
+      - id: 113
+        type: string
+        name: schedule
+        optional: true
+  - entity: sensor
+    name: Upgrade status
+    class: enum
+    category: diagnostic
+    icon: "mdi:package-down"
+    dps:
+      - id: 123
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: upgrade_complete
+            value: complete
+          - dps_val: upgrade_begin
+            value: in_progress
+  - entity: sensor
+    name: Valve 1 last runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Valve 2 last runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: s

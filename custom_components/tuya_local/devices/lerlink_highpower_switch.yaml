@@ -3,6 +3,8 @@ products:
   - id: rdvedq5bdkio96t1
     manufacturer: LerLink
     model: WBH01
+  - id: key5ckdnys3pqgec
+    model: Water valve
 entities:
   - entity: switch
     dps:
@@ -74,3 +76,20 @@ entities:
         type: string
         optional: true
         name: value
+  - entity: light
+    translation_key: backlight
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 16
+        type: boolean
+        optional: true
+        name: switch
+      - id: 16
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

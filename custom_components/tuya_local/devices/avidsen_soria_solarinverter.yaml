@@ -82,7 +82,6 @@ entities:
           - scale: 1000
   - entity: sensor
     name: PV power
-    category: diagnostic
     class: power
     dps:
       - id: 102
@@ -95,12 +94,12 @@ entities:
   - entity: sensor
     name: PV DC voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 3
         type: base64
         name: sensor
         unit: V
+        class: measurement
         mask: "FFFF00000000"
         optional: true
         mapping:
@@ -108,12 +107,12 @@ entities:
   - entity: sensor
     name: PV DC current
     class: current
-    category: diagnostic
     dps:
       - id: 3
         type: base64
         name: sensor
         unit: A
+        class: measurement
         optional: true
         mask: "0000FFFF0000"
         mapping:
@@ -121,12 +120,12 @@ entities:
   - entity: sensor
     name: PV DC power
     class: power
-    category: diagnostic
     dps:
       - id: 3
         type: base64
         name: sensor
         unit: W
+        class: measurement
         optional: true
         mask: "00000000FFFF"
         mapping:
@@ -134,12 +133,12 @@ entities:
   - entity: sensor
     name: AC voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 7
         type: base64
         name: sensor
         unit: V
+        class: measurement
         optional: true
         mask: "FFFF0000000000000000"
         mapping:
@@ -147,12 +146,12 @@ entities:
   - entity: sensor
     name: AC current
     class: current
-    category: diagnostic
     dps:
       - id: 7
         type: base64
         name: sensor
         unit: A
+        class: measurement
         optional: true
         mask: "0000FFFFFF0000000000"
         mapping:
@@ -160,19 +159,18 @@ entities:
   - entity: sensor
     name: AC active power
     class: power
-    category: diagnostic
     dps:
       - id: 7
         type: base64
         name: sensor
         unit: W
+        class: measurement
         optional: true
         mask: "0000000000FFFFFF0000"
         mapping:
           - scale: 1000
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 18
         name: sensor

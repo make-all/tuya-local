@@ -1,0 +1,486 @@
+name: Salt electrolyzer
+products:
+  - id: ytnag9tyouszxbst
+    manufacturer: Poolex
+    model: Neolyser
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: ORP
+    class: voltage
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+  - entity: number
+    name: Pool size
+    category: config
+    class: volume
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: m2
+        range:
+          min: 5
+          max: 200
+        mapping:
+          - step: 5
+  - entity: switch
+    name: Timer 2
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Polarity reverse time
+    category: config
+    class: duration
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 4
+          max: 12
+        mapping:
+          - step: 4
+  - entity: number
+    name: Pump timer 1-2
+    category: config
+    class: duration
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: Pump timer 2-1
+    category: config
+    class: duration
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: g/L
+        class: measurement
+  - entity: sensor
+    name: Salt dosage
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: error
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        name: fault_code
+      - id: 123
+        type: bitfield
+        name: error
+  - entity: sensor
+    name: Water temperature
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    name: Salt low
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Notifications
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: number
+    name: Pump timer 2-2
+    category: config
+    class: duration
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: Pump timer 3-1
+    category: config
+    class: duration
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: ORP threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: mV
+        range:
+          min: 400
+          max: 800
+        mapping:
+          - step: 10
+  - entity: number
+    name: Pump timer 3-2
+    category: config
+    class: duration
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: switch
+    name: Timer 3
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: C0
+            value: C0
+          - dps_val: P4
+            value: P4
+          - dps_val: P6
+            value: P6
+          - dps_val: P8
+            value: P8
+          - dps_val: b1
+            value: b1
+          - dps_val: b2
+            value: b2
+          - dps_val: b3
+            value: b3
+          - dps_val: ORP
+            value: ORP
+  - entity: button
+    name: Pump off
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: switch
+    name: Pump cycle
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Standby
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: switch
+  - entity: number
+    name: Titanium plate life
+    category: config
+    class: duration
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 20000
+  - entity: binary_sensor
+    name: Titanium plate change
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 126
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: button
+    name: Pump on
+    category: config
+    dps:
+      - id: 127
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Timer 1
+    category: config
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+  - entity: switch
+    name: ORP
+    category: config
+    dps:
+      - id: 129
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: select
+    name: Water pump
+    category: config
+    dps:
+      - id: 130
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: CYCLE
+            value: cycle
+          - dps_val: PUMP
+            value: pump
+  - entity: button
+    name: b1 mode off
+    category: config
+    dps:
+      - id: 131
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: b2 mode off
+    category: config
+    dps:
+      - id: 132
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: b3 mode off
+    category: config
+    dps:
+      - id: 133
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Pump runtime
+    category: config
+    class: duration
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 120
+        mapping:
+          - step: 15
+  - entity: number
+    name: Pump interval
+    category: config
+    class: duration
+    dps:
+      - id: 135
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Pump timer 1-1
+    category: config
+    class: duration
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: time
+    name: Start
+    category: config
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 149
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 45
+        mapping:
+          - step: 15
+  - entity: switch
+    name: Auto cycle
+    category: config
+    dps:
+      - id: 140
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Pool cover
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        name: switch
+  - entity: switch
+    name: C0 mode
+    category: config
+    dps:
+      - id: 142
+        type: boolean
+        name: switch
+  - entity: switch
+    name: P4 mode
+    category: config
+    dps:
+      - id: 143
+        type: boolean
+        name: switch
+  - entity: switch
+    name: P6 mode
+    category: config
+    dps:
+      - id: 144
+        type: boolean
+        name: switch
+  - entity: switch
+    name: P8 mode
+    category: config
+    dps:
+      - id: 145
+        type: boolean
+        name: switch
+  - entity: switch
+    name: B1 mode
+    category: config
+    dps:
+      - id: 146
+        type: boolean
+        name: switch
+  - entity: switch
+    name: B2 mode
+    category: config
+    dps:
+      - id: 147
+        type: boolean
+        name: switch
+  - entity: switch
+    name: B3 mode
+    category: config
+    dps:
+      - id: 148
+        type: boolean
+        name: switch

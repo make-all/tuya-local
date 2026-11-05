@@ -1,0 +1,111 @@
+name: Switchboard with fan
+products:
+  - id: haqyilpinwntqgzj
+    manufacturer: Imagine
+    model: IT31LFW
+
+# Built from real diagnostics dump:
+#   1,2,3   = switch relays (boolean)
+#   9,10,11 = per-switch auto-off timers, seconds (paired with 1,2,3)
+#   101     = fan power (boolean)
+#   102     = fan speed, string enum: off/level_1/level_2/level_3/level_4
+#   103     = fan auto-off timer, seconds
+
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+
+  - entity: fan
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: level_1
+            value: 25
+          - dps_val: level_2
+            value: 50
+          - dps_val: level_3
+            value: 75
+          - dps_val: level_4
+            value: 100
+
+  # --- Optional: auto-off timers, one per switch/fan ---
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+
+  - entity: time
+    category: config
+    name: Fan timer
+    dps:
+      - id: 103
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399

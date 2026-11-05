@@ -6,6 +6,9 @@ products:
     # - id: UNKNOWN
     #   manufacturer: Fairland
     #   model InverterPlus
+  - id: CGJ08iaKlWqKmVuX
+    manufacturer: Fairland
+    model: IPHCR20
 entities:
   - entity: climate
     translation_only_key: pool_heatpump
@@ -78,8 +81,7 @@ entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Water flow
-    class: problem
+    translation_key: water_flow
     category: diagnostic
     dps:
       - id: 115
@@ -87,8 +89,8 @@ entities:
         name: sensor
         mapping:
           - dps_val: 4
-            value: true
-          - value: false
+            value: false
+          - value: true
   - entity: select
     translation_key: temperature_unit
     category: config

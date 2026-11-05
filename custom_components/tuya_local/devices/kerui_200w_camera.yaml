@@ -5,8 +5,7 @@ products:
     model: "200W"
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
@@ -28,7 +27,7 @@ entities:
         optional: true
         name: snapshot
   - entity: event
-    name: Notification
+    translation_key: notification
     dps:
       - id: 212
         type: base64
@@ -144,11 +143,9 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
-    icon: "mdi:micro-sd"
     dps:
       - id: 110
         type: integer

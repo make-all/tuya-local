@@ -1,0 +1,79 @@
+name: Water heat pump
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: electric
+            conditions:
+              - dps_val: true
+                value: electric
+              - dps_val: false
+                value: heat_pump
+              - dps_val: null
+                value: heat_pump
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 60
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 101
+        type: boolean
+        optional: true
+        name: electric
+        hidden: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        optional: true
+        type: boolean
+        name: lock
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: running
+            value: heating
+          - dps_val: defrost
+            value: anti_freeze
+          - dps_val: shutdown
+            value: "off"
+          - dps_val: disinfect
+            value: sterilizing
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        optional: true
+        name: fault_code

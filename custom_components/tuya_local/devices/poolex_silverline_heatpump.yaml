@@ -40,8 +40,7 @@ entities:
           - dps_val: SilentCool
             value: quiet_cool
   - entity: binary_sensor
-    name: Water flow
-    class: problem
+    translation_key: water_flow
     category: diagnostic
     dps:
       - id: 13
@@ -49,8 +48,8 @@ entities:
         name: sensor
         mapping:
           - dps_val: 256
-            value: true
-          - value: false
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic

@@ -1,0 +1,31 @@
+name: Backlit dimmer
+products:
+  - id: g5tdfvf5g4osvagd
+    manufacturer: Liwokit
+    model: "Backlit Dimmer Switch"
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: select
+    category: config
+    translation_key: light_mode
+    dps:
+      - id: 21
+        name: option
+        type: string
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"

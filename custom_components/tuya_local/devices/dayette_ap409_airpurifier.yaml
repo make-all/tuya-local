@@ -1,0 +1,91 @@
+name: Air purifier
+products:
+  - id: rufdceynizoy3e2p
+    manufacturer: Dayette
+    model: AP409
+entities:
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: manual
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: Low
+            value: 25
+          - dps_val: Medium
+            value: 50
+          - dps_val: High
+            value: 75
+          - dps_val: Pet
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 8h
+            value: 8h
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button

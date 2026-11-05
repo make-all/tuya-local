@@ -1,0 +1,207 @@
+name: Irrigation controller
+products:
+  - id: x7hkmeis8yqj6ntj
+    manufacturer: Inkbird
+    model: IIC400
+entities:
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 38
+        type: hex
+        name: value
+  - entity: select
+    name: Irrigation mode
+    icon: "mdi:sprinkler-variant"
+    category: config
+    dps:
+      - id: 44
+        type: string
+        name: option
+        mapping:
+          - dps_val: order
+            value: Sequential
+          - dps_val: together
+            value: Together
+  - entity: text
+    name: Irrigation timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 45
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: mode
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: Manual
+            value: manual
+          - dps_val: Auto
+            value: auto
+  - entity: switch
+    name: Rain sensor
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: number
+    name: Seasonal adjustment
+    category: config
+    icon: "mdi:cogs"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -90
+          max: 100
+        mapping:
+          - step: 10
+  - entity: event
+    name: History report
+    dps:
+      - id: 104
+        type: integer
+        name: event
+        mask: "0000000F"
+        mapping:
+          - dps_val: 1
+            value: start
+          - dps_val: 0
+            value: end
+          - value: null
+      - id: 104
+        type: integer
+        name: time
+        mask: "FFFF0000"
+      - id: 104
+        type: integer
+        name: zone
+        mask: "0000FF00"
+      - id: 104
+        type: integer
+        name: manual
+        mask: "000000F0"
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 1
+    class: running
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        mask: "01"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 2
+    class: running
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        mask: "02"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 3
+    class: running
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        mask: "04"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 4
+    class: running
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        mask: "08"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 1 pending
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        mask: "01"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 2 pending
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        mask: "02"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 3 pending
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        mask: "04"
+        name: sensor
+  - entity: binary_sensor
+    name: Zone 4 pending
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        mask: "08"
+        name: sensor
+  - entity: button
+    name: Cancel timer fault alarm
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: OTA upgrade mode
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: valve
+    class: water
+    dps:
+      - id: 111
+        type: boolean
+        name: valve

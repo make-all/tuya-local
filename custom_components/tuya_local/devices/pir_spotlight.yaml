@@ -5,10 +5,10 @@ products:
     model_id: WFD 3050 P
   - id: 2twfjfhdvygxxqtq
     manufacturer: Nedis
-    name: Outdoor floodlight
+    model: Outdoor floodlight
   - id: key3pw4guvnat9ad
     manufacturer: LSC
-    name: Floodlight with sensor
+    model: Floodlight with sensor
 entities:
   - entity: light
     dps:
@@ -117,25 +117,21 @@ entities:
           min: 1
           max: 480
         unit: min
-        mapping:
-          - scale: 1
-          - dps_val: null
         optional: true
   - entity: number
-    name: Standby bright
+    name: Standby brightness
     category: config
     dps:
       - id: 59
         name: value
         type: integer
+        unit: "%"
+        optional: true
         range:
           min: 0
           max: 1000
-        unit: min
         mapping:
-          - scale: 1
-          - dps_val: null
-        optional: true
+          - scale: 10
   - entity: select
     name: Ambient light sensor
     category: config

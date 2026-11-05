@@ -1,0 +1,75 @@
+name: Three-speed AC controller
+products:
+  - id: p4ykyk6ljdcoktyq
+    manufacturer: Rhino King
+    model: XNW-AC
+  - id: z7acaw0j7l7xg4to
+    manufacturer: Rhino King
+    model: XNW-AC
+entities:
+  - entity: climate
+    translation_key: combo_floor
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+              - dps_val: floor_heat
+                value: heat
+                hidden: true
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: wind
+            value: fan_only
+          - dps_val: cold
+            value: cool
+          - dps_val: hot
+            value: heat
+          - dps_val: floor_heat
+            value: floor_heat
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 150
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 28
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium_low
+          - dps_val: "3"
+            value: medium
+          - dps_val: "4"
+            value: medium_high
+          - dps_val: "5"
+            value: high
+      - id: 34
+        type: integer
+        name: current_humidity

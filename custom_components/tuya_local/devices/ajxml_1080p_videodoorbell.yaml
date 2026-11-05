@@ -20,8 +20,7 @@ entities:
           - dps_val: "2"
             value: high
   - entity: sensor
-    name: SD status
-    translation_key: status
+    translation_key: sd_status
     class: enum
     category: diagnostic
     dps:
@@ -114,8 +113,7 @@ entities:
         optional: true
         name: message
   - entity: event
-    name: Notification
-    icon: "mdi:message"
+    translation_key: notification
     dps:
       - id: 212
         type: string

@@ -213,6 +213,13 @@
                     "off": "OK",
                     "on": "Низкий"
                 }
+            },
+            "water_flow": {
+                "name": "Поток воды",
+                "state": {
+                    "off": "Заблокирован",
+                    "on": "Нормальный"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Вентилятор",
                             "heat": "Теплый воздух",
                             "floor_cool": "Прохладный пол",
-                            "floor_heat": "Теплый пол"
+                            "floor_heat": "Теплый пол",
+                            "air_floor_cool": "Прохладный воздух и пол",
+                            "air_floor_heat": "Теплый воздух и пол"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Программа 2",
                             "program_3": "Программа 3",
                             "standby": "Режим ожидания",
-                            "fan_only": "Вентилятор"
+                            "fan_only": "Вентилятор",
+                            "program": "Программа",
+                            "anti_frost": "Антифриз"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Тревога"
+            },
+            "notification": {
+                "name": "Уведомление"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Авто",
                             "manual": "Ручной",
                             "eco": "Эко",
-                            "anti-condensation": "Антиконденсация",
+                            "anti_condensation": "Антиконденсация",
                             "extractor": "Экстрактор",
                             "heat_recovery": "Тепловосстановление",
                             "timer": "Таймер",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Выкл"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Состояние",
                     "locator": "Локатор",
                     "auto": "Авто",
-                    "flash": "Мигание"
+                    "flash": "Мигание",
+                    "breathe": "Дыхание",
+                    "random": "Случайный",
+                    "color": "Цвет",
+                    "favorite": "Избранное",
+                    "multi_color": "Многоцветный",
+                    "custom": "Пользовательский",
+                    "mode_1": "Режим 1",
+                    "mode_2": "Режим 2",
+                    "mode_3": "Режим 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Отмена",
                     "continuous": "Непрерывный",
+                    "custom": "Пользовательский",
+                    "immediate": "Немедленный",
                     "5s": "5 секунд",
                     "10s": "10 секунд",
                     "15s": "15 секунд",
@@ -860,7 +887,16 @@
                     "4d": "4 дня",
                     "5d": "5 дней",
                     "6d": "6 дней",
-                    "7d": "7 дней"
+                    "7d": "7 дней",
+                    "10d": "10 дней",
+                    "30d": "30 дней",
+                    "60d": "60 дней",
+                    "80d": "80 дней",
+                    "90d": "90 дней",
+                    "100d": "100 дней",
+                    "120d": "120 дней",
+                    "160d": "160 дней",
+                    "365d": "365 дней"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Температура окружающей среды"
             },
+            "inlet_temperature": {
+                "name": "Температура на входе"
+            },
+            "outlet_temperature": {
+                "name": "Температура на выходе"
+            },
             "cleanliness": {
                 "name": "Чистота",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Плохое",
                     "severe": "Серьезн",
                     "danger": "Опасно"
+                }
+            },
+            "sd_status": {
+                "name": "Статус SD-карты",
+                "state": {
+                    "fault": "Ошибка",
+                    "formatting": "Форматирование",
+                    "full": "Полный",
+                    "missing": "Отсутствует",
+                    "normal": "Нормальный",
+                    "unformatted": "Не отформатировано"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Занято",
                     "normal": "Нормально",
                     "low": "Низкий",
+                    "medium": "Средний",
                     "high": "Высокий",
                     "unwashed": "Не помыто",
                     "pre_washing": "Предварительная стирка",
@@ -1247,8 +1301,6 @@
                     "full": "Полный",
                     "empty": "Пустой",
                     "missing": "Отсутствует",
-                    "formatting": "Форматирование",
-                    "unformatted": "Не отформатировано",
                     "failed": "Не удалось",
                     "replying": "Ответ",
                     "playback": "Воспроизведение",
@@ -1369,6 +1421,9 @@
                     "off": "Открыт",
                     "on": "Закрыт"
                 }
+            },
+            "camera_record": {
+                "name": "Запись камеры"
             },
             "do_not_disturb": {
                 "name": "Не беспокоить"

@@ -71,8 +71,6 @@ entities:
         range:
           min: 6
           max: 80
-        mapping:
-          - scale: 10
   - entity: sensor
     class: power
     category: diagnostic
@@ -103,6 +101,7 @@ entities:
     name: Connection
     icon: "mdi:ev-plug-type2"
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 13  # connection_state
@@ -110,7 +109,7 @@ entities:
         name: sensor
         mapping:
           - dps_val: controlpi_12v
-            value: Standby
+            value: standby
           - dps_val: controlpi_12v_pwm
             value: Communication initialising
           - dps_val: controlpi_9v
@@ -120,9 +119,9 @@ entities:
           - dps_val: controlpi_6v
             value: Ready to charge
           - dps_val: controlpi_6v_pwm
-            value: Charging
+            value: charging
           - dps_val: controlpi_error
-            value: Error
+            value: fault
   - entity: select
     translation_key: charging_mode
     category: config
@@ -164,6 +163,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -178,6 +178,7 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -192,6 +193,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -206,6 +208,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -220,6 +223,7 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -234,6 +238,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -248,6 +253,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -262,11 +268,11 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 24
         type: integer
@@ -309,6 +315,9 @@ entities:
         name: sensor
         optional: true
         class: measurement
+        unit: kWh
+        mapping:
+          - scale: 100
   - entity: switch
     icon: "mdi:ev-station"
     dps:
@@ -353,6 +362,7 @@ entities:
         name: sensor
         unit: A
         mask: "FFFF0000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -366,5 +376,6 @@ entities:
         name: sensor
         unit: A
         mask: "0000FFFF"
+        class: measurement
         mapping:
           - scale: 10

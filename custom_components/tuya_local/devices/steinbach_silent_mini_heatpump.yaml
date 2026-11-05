@@ -70,6 +70,7 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 13
         type: string
         name: unit
@@ -86,6 +87,7 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 13
         type: string
         name: unit
@@ -103,6 +105,7 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 13
         type: string
         name: unit
@@ -120,6 +123,7 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 13
         type: string
         name: unit
@@ -146,6 +150,7 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 13
         type: string
         name: unit
@@ -154,7 +159,7 @@ entities:
             value: F
           - value: C
   - entity: sensor
-    name: Outlet temperature
+    translation_key: outlet_temperature
     class: temperature
     category: diagnostic
     hidden: true
@@ -163,6 +168,7 @@ entities:
         type: integer
         optional: true
         name: sensor
+        class: measurement
       - id: 13
         type: string
         name: unit

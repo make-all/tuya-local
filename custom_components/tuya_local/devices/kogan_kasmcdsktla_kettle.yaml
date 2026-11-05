@@ -4,6 +4,9 @@ products:
     manufacturer: Kogan
     model: Double wall 1.7L glass kettle
     model_id: KASMCDSKTLA
+  - id: 7occ66lr74vfznwt
+    manufacturer: Kogan
+    model: GK2009CT
 entities:
   - entity: water_heater
     translation_key: kettle
@@ -61,3 +64,21 @@ entities:
             value: honey_water
           - dps_val: milk_powder
             value: infant_formula
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code

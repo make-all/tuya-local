@@ -213,6 +213,13 @@
                     "off": "充足",
                     "on": "不足"
                 }
+            },
+            "water_flow": {
+                "name": "水流",
+                "state": {
+                    "off": "无水流",
+                    "on": "有水流"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "风扇",
                             "heat": "热风",
                             "floor_cool": "冷地板",
-                            "floor_heat": "热地板"
+                            "floor_heat": "热地板",
+                            "air_floor_cool": "空气冷却",
+                            "air_floor_heat": "空气加热"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "程序2",
                             "program_3": "程序3",
                             "standby": "待机",
-                            "fan_only": "风扇"
+                            "fan_only": "风扇",
+                            "program": "程序",
+                            "anti_frost": "防冻"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "报警"
+            },
+            "notification": {
+                "name": "通知"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "自动",
                             "manual": "手动",
                             "eco": "节能",
-                            "anti-condensation": "防凝结",
+                            "anti_condensation": "防凝结",
                             "extractor": "排气",
                             "heat_recovery": "热回收",
                             "timer": "定时",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "关闭"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "状态",
                     "locator": "定位",
                     "auto": "自动",
-                    "flash": "闪烁"
+                    "flash": "闪烁",
+                    "breathe": "呼吸",
+                    "random": "随机",
+                    "color": "颜色",
+                    "favorite": "最爱",
+                    "multi_color": "多色",
+                    "custom": "自定义",
+                    "mode_1": "模式1",
+                    "mode_2": "模式2",
+                    "mode_3": "模式3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "取消",
                     "continuous": "连续",
+                    "custom": "自定义",
+                    "immediate": "立即",
                     "5s": "5秒",
                     "10s": "10秒",
                     "15s": "15秒",
@@ -860,7 +887,16 @@
                     "4d": "4天",
                     "5d": "5天",
                     "6d": "6天",
-                    "7d": "7天"
+                    "7d": "7天",
+                    "10d": "10天",
+                    "30d": "30天",
+                    "60d": "60天",
+                    "80d": "80天",
+                    "90d": "90天",
+                    "100d": "100天",
+                    "120d": "120天",
+                    "160d": "160天",
+                    "365d": "365天"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "环境温度"
             },
+            "inlet_temperature": {
+                "name": "进水温度"
+            },
+            "outlet_temperature": {
+                "name": "出水温度"
+            },
             "cleanliness": {
                 "name": "烟机洁净度",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "差",
                     "severe": "极差",
                     "danger": "危险"
+                }
+            },
+            "sd_status": {
+                "name": "SD卡状态",
+                "state": {
+                    "fault": "故障",
+                    "formatting": "格式化中",
+                    "full": "已满",
+                    "missing": "缺失",
+                    "normal": "正常",
+                    "unformatted": "未格式化"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "占用",
                     "normal": "正常",
                     "low": "低",
+                    "medium": "中",
                     "high": "高",
                     "unwashed": "未清洗",
                     "pre_washing": "预洗中",
@@ -1247,8 +1301,6 @@
                     "full": "已满",
                     "empty": "已空",
                     "missing": "缺失",
-                    "formatting": "格式化中",
-                    "unformatted": "未格式化",
                     "failed": "失败",
                     "replying": "回复中",
                     "playback": "回放中",
@@ -1369,6 +1421,9 @@
                     "off": "已断开",
                     "on": "已闭合"
                 }
+            },
+            "camera_record": {
+                "name": "摄像机录像"
             },
             "do_not_disturb": {
                 "name": "请勿打扰"

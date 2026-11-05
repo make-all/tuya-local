@@ -12,6 +12,7 @@ entities:
       - id: 3
         name: sensor
         type: integer
+        class: measurement
         unit: "%"
   - entity: sensor
     name: Soil temperature
@@ -32,7 +33,6 @@ entities:
           - value: C
   - entity: sensor
     class: battery
-    category: diagnostic
     dps:
       - id: 14
         type: string

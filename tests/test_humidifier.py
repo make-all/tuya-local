@@ -1,6 +1,6 @@
 """Tests for the humidifier entity."""
 
-from unittest.mock import AsyncMock, Mock
+from unittest.mock import MagicMock, Mock
 
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
@@ -32,7 +32,8 @@ async def test_init_entry(hass):
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
     m_add_entities = Mock()
-    m_device = AsyncMock()
+    m_device = MagicMock()
+    m_device.get_property = Mock(return_value=None)
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}
@@ -61,7 +62,7 @@ async def test_init_entry_fails_if_device_has_no_humidifier(hass):
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
     m_add_entities = Mock()
-    m_device = AsyncMock()
+    m_device = MagicMock()
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}
@@ -89,7 +90,7 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
     m_add_entities = Mock()
-    m_device = AsyncMock()
+    m_device = MagicMock()
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}

@@ -213,6 +213,13 @@
                     "off": "OK",
                     "on": "Bajo"
                 }
+            },
+            "water_flow": {
+                "name": "Flujo de agua",
+                "state": {
+                    "off": "Bloqueado",
+                    "on": "Fluyendo"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Ventilador",
                             "heat": "Calentar aire",
                             "floor_cool": "Piso fresco",
-                            "floor_heat": "Piso caliente"
+                            "floor_heat": "Piso caliente",
+                            "air_floor_cool": "Aire y piso fresco",
+                            "air_floor_heat": "Aire y piso caliente"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Programa 2",
                             "program_3": "Programa 3",
                             "standby": "En espera",
-                            "fan_only": "Solo ventilador"
+                            "fan_only": "Solo ventilador",
+                            "program": "Programa",
+                            "anti_frost": "Anticongelante"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Alarma"
+            },
+            "notification": {
+                "name": "Notificación"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Auto",
                             "manual": "Manual",
                             "eco": "Ecológico",
-                            "anti-condensation": "Anticondensación",
+                            "anti_condensation": "Anticondensación",
                             "extractor": "Extractor",
                             "heat_recovery": "Recuperación de calor",
                             "timer": "Temporizador",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Apagado"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Estado",
                     "locator": "Localizador",
                     "auto": "Auto",
-                    "flash": "Destello"
+                    "flash": "Destello",
+                    "breathe": "Respirar",
+                    "random": "Aleatorio",
+                    "color": "Color",
+                    "favorite": "Favorito",
+                    "multi_color": "Multicolor",
+                    "custom": "Personalizado",
+                    "mode_1": "Modo 1",
+                    "mode_2": "Modo 2",
+                    "mode_3": "Modo 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Cancelar",
                     "continuous": "Continuo",
+                    "custom": "Personalizado",
+                    "immediate": "Inmediato",
                     "5s": "5 segundos",
                     "10s": "10 segundos",
                     "15s": "15 segundos",
@@ -860,7 +887,16 @@
                     "4d": "4 días",
                     "5d": "5 días",
                     "6d": "6 días",
-                    "7d": "7 días"
+                    "7d": "7 días",
+                    "10d": "10 días",
+                    "30d": "30 días",
+                    "60d": "60 días",
+                    "80d": "80 días",
+                    "90d": "90 días",
+                    "100d": "100 días",
+                    "120d": "120 días",
+                    "160d": "160 días",
+                    "365d": "365 días"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Temperatura ambiente"
             },
+            "inlet_temperature": {
+                "name": "Temperatura de entrada"
+            },
+            "outlet_temperature": {
+                "name": "Temperatura de salida"
+            },
             "cleanliness": {
                 "name": "Limpieza",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Malo",
                     "severe": "Severo",
                     "danger": "Peligro"
+                }
+            },
+            "sd_status": {
+                "name": "Estado de la tarjeta SD",
+                "state": {
+                    "fault": "Error",
+                    "formatting": "Formateando",
+                    "full": "Lleno",
+                    "missing": "Faltante",
+                    "normal": "Normal",
+                    "unformatted": "Sin formatear"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Ocupado",
                     "normal": "Normal",
                     "low": "Bajo",
+                    "medium": "Medio",
                     "high": "Alto",
                     "unwashed": "Sin lavar",
                     "pre_washing": "Pre-lavado",
@@ -1247,8 +1301,6 @@
                     "full": "Lleno",
                     "empty": "Vacío",
                     "missing": "Faltante",
-                    "formatting": "Formateando",
-                    "unformatted": "Sin formatear",
                     "failed": "Fallido",
                     "replying": "Respondiendo",
                     "playback": "Reproduciendo",
@@ -1369,6 +1421,9 @@
                     "off": "Abierto",
                     "on": "Cerrado"
                 }
+            },
+            "camera_record": {
+                "name": "Grabación de cámara"
             },
             "do_not_disturb": {
                 "name": "No molestar"

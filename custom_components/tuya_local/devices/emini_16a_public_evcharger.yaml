@@ -57,7 +57,6 @@ entities:
           max: 16
   - entity: sensor  # phase_a -6- raw (voltage, bytes 0-1, 0.1V)
     class: voltage
-    category: diagnostic
     translation_key: voltage_x
     translation_placeholders:
       x: A
@@ -68,11 +67,11 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor  # phase_a -6- raw (current, bytes 2-4, 0.001A)
     class: current
-    category: diagnostic
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -83,11 +82,11 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor  # phase_a -6- raw (power, bytes 5-7, 0.001kW)
     class: power
-    category: diagnostic
     translation_key: power_x
     translation_placeholders:
       x: A

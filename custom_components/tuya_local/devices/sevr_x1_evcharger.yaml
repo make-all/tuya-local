@@ -61,7 +61,6 @@ entities:
   - entity: sensor
     name: Phase A power
     class: power
-    category: diagnostic
     hidden: true
     dps:
       - id: 6
@@ -69,24 +68,24 @@ entities:
         name: sensor
         optional: true
         unit: kW
+        class: measurement
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -94,11 +93,11 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 9
         type: integer
@@ -147,13 +146,14 @@ entities:
     class: enum
     icon: "mdi:ev-plug-type2"
     category: diagnostic
+    translation_key: status
     dps:
       - id: 13
         type: string
         name: sensor
         mapping:
           - dps_val: controlpi_12v
-            value: Standby
+            value: standby
           - dps_val: controlpi_12v_pwm
             value: Communication initialising
           - dps_val: controlpi_9v
@@ -163,9 +163,9 @@ entities:
           - dps_val: controlpi_6v
             value: Ready to charge
           - dps_val: controlpi_6v_pwm
-            value: Charging
+            value: charging
           - dps_val: controlpi_error
-            value: Error
+            value: fault
   - entity: select
     translation_key: charging_mode
     category: config

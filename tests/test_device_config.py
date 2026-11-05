@@ -1,7 +1,10 @@
 """Test the config parser"""
 
+import gc
+import warnings
+
+import probatio as vol
 import pytest
-import voluptuous as vol
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
@@ -25,7 +28,6 @@ PRODUCT_SCHEMA = vol.Schema(
         # Bluetooth and Zigbee devices have 8 character product ids
         # WiFi devices have 16 character product ids
         vol.Required("id"): vol.All(str, vol.Length(min=8, max=16)),
-        vol.Optional("name"): str,
         vol.Optional("manufacturer"): str,
         vol.Optional("model"): str,
         vol.Optional("model_id"): str,
@@ -59,7 +61,7 @@ CONDMAP_SCHEMA = vol.Schema(
 )
 COND_SCHEMA = CONDMAP_SCHEMA.extend(
     {
-        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
+        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list, float)),
         vol.Optional("mapping"): [CONDMAP_SCHEMA],
     }
 )
@@ -142,6 +144,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "lawn_mower",
                 "light",
                 "lock",
+                "media_player",
                 "number",
                 "remote",
                 "select",
@@ -261,6 +264,26 @@ KNOWN_DPS = {
             "jammed",
         ],
     },
+    "media_player": {
+        "required": [],
+        "optional": [
+            "switch",
+            "volume",
+            "mute",
+            "source",
+            "playback_state",
+            "play",
+            "pause",
+            "prev",
+            "next",
+            "stop",
+            "seek_position",
+            "clear_playlist",
+            "shuffle",
+            "repeat",
+            "sound_mode",
+        ],
+    },
     "number": {
         "required": ["value"],
         "optional": ["unit", "minimum", "maximum", "decimal"],
@@ -293,7 +316,7 @@ KNOWN_DPS = {
     },
     "valve": {
         "required": ["valve"],
-        "optional": ["switch"],
+        "optional": ["switch", "current_position"],
     },
     "water_heater": {
         "required": [],
@@ -317,6 +340,18 @@ def test_can_find_config_files():
         found = True
         break
     assert found
+
+
+def test_available_configs_closes_scandir_handle():
+    """Test that the scandir handle is closed when the generator is dropped."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        configs = available_configs()
+        next(configs)
+        del configs
+        gc.collect()
+
+    assert not [w for w in caught if issubclass(w.category, ResourceWarning)]
 
 
 def dp_match(condition, accounted, unaccounted, known, required=False):
@@ -777,10 +812,11 @@ def test_values_with_mirror(mocker):
 
 
 def test_get_device_id():
-    """Test that check if device id is correct"""
+    """Test that child devices are scoped to their gateway."""
     assert "my-device-id" == get_device_id({"device_id": "my-device-id"})
     assert "sub-id" == get_device_id({"device_cid": "sub-id"})
-    assert "s" == get_device_id({"device_id": "d", "device_cid": "s"})
+    assert "d/s" == get_device_id({"device_id": "d", "device_cid": "s"})
+    assert "other/s" == get_device_id({"device_id": "other", "device_cid": "s"})
 
 
 def test_getting_masked_hex(mocker):

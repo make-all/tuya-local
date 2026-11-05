@@ -1,0 +1,126 @@
+name: Presence sensor
+products:
+  - id: kk4rwfwo2qvwq69u
+    model: HX-002-Z
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+  - entity: number
+    name: Sensitivity
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9
+  - entity: number
+    name: Near detection
+    class: distance
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Far detection
+    class: distance
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+  - entity: button
+    name: Self check
+    icon: "mdi:check-circle-outline"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: button
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 65
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 15000
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: living_room
+            value: Living room
+          - dps_val: bathroom
+            value: Bathroom
+          - dps_val: bedroom
+            value: Bedroom
+          - dps_val: sleep_detection
+            value: Sleep detection
+  - entity: sensor
+    class: distance
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: m
+        class: measurement
+        mapping:
+          - scale: 100

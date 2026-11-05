@@ -27,17 +27,18 @@ entities:
     name: Feed state
     icon: "mdi:valve"
     class: enum
+    translation_key: status
     dps:
       - id: 4
         name: sensor
         type: string
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: feeding
-            value: Feeding
+            value: feeding
           - dps_val: done
-            value: Done
+            value: done
   - entity: number
     translation_key: manual_feed
     category: config

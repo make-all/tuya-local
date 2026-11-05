@@ -1,0 +1,39 @@
+name: Garage door
+products:
+  - id: rxjnauytlvlczvcq
+    manufacturer: Belko
+    model: ProLift 1200N
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 101
+        type: boolean
+        name: control
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            constraint: close_btn
+            conditions:
+              - dps_val: true
+                value_redirect: close_btn
+                value: close
+              - dps_val: false
+                value_redirect: stop_btn
+                value: stop
+      - id: 102
+        type: boolean
+        name: close_btn
+        mapping:
+          - dps_val: true
+            value: close
+      - id: 103
+        type: boolean
+        name: stop_btn
+        mapping:
+          - dps_val: true
+            value: stop
+      - id: 104
+        type: integer
+        name: current_position
