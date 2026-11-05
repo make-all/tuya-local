@@ -32,6 +32,11 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     )
 
 
+def _attr(dp):
+    """Return the attribute name for a given datapoint."""
+    return f"_attr_{dp.name}"
+
+
 class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
     """Representation of a Tuya Local media player device."""
 
@@ -279,8 +284,4 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
             if d in self._metadata:
                 setattr(self, _attr(self._metadata[d]), v)
                 if self._metadata[d].name == "media_position":
-                    setattr(self, "_attr_media_position_updated_at", utcnow())
-
-    def _attr(dp):
-        """Return the attribute name for a given datapoint."""
-        return f"_attr_{dp.name}"
+                    self._attr_media_position_updated_at = utcnow()
