@@ -1,0 +1,134 @@
+name: Dehumidifier
+products:
+  - id: gywqtqpgiu74ozok
+    manufacturer: Ivation
+    model: IVADUWIFI50WP
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_key: extended
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 113
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: false
+            value: normal
+          - dps_val: true
+            value: continuous
+
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 6
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 50
+          - dps_val: "3"
+            value: 100
+
+  - entity: binary_sensor
+    translation_key: tank_full
+    class: problem
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    translation_key: defrost
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - default: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: sensor
+    name: Fan status
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 116
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: sleep"
+          - dps_val: "2"
+            value: low
+          - dps_val: "3"
+            value: normal
+          - dps_val: "4"
+            value: high

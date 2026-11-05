@@ -17,6 +17,7 @@ entities:
             conditions:
               - dps_val: auto
                 value: heat_cool
+                available: heat_model
               - dps_val: cold
                 value: cool
               - dps_val: wind
@@ -25,6 +26,7 @@ entities:
                 value: dry
               - dps_val: hot
                 value: heat
+                available: heat_model
       - id: 2
         name: temperature
         type: integer
@@ -75,12 +77,30 @@ entities:
         mapping:
           - dps_val: true
             value: "on"
+            available: swing_enabled
           - dps_val: false
             value: "off"
+      - id: 106
+        type: boolean
+        optional: true
+        name: heat_model
+        mapping:
+          - dps_val: false
+            value: false
+          - value: true
       - id: 108
         type: integer
+        optional: true
         name: temperature_f
         hidden: true
+      - id: 109
+        type: boolean
+        optional: true
+        name: swing_enabled
+        mapping:
+          - dps_val: false
+            value: false
+          - value: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -107,6 +127,7 @@ entities:
       - id: 103
         name: value
         type: integer
+        optional: true
         unit: h
         range:
           min: 0

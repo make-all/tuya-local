@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from time import time
 
 import pytest
@@ -58,6 +59,21 @@ def test_name(subject):
 def test_unique_id(subject, mock_api):
     """Returns the unique ID presented by the API class."""
     assert subject.unique_id is mock_api().id
+
+
+def test_subdevice_unique_id_is_scoped_by_gateway(patched_hass, mock_api):
+    """Returns a gateway-scoped ID for a child device."""
+    subject = TuyaLocalDevice(
+        "Some name",
+        "gateway_id",
+        "some.ip.address",
+        "some_local_key",
+        "3.3",
+        "child_id",
+        patched_hass,
+    )
+
+    assert subject.unique_id == "gateway_id/child_id"
 
 
 def test_device_info(subject, mock_api):
@@ -174,11 +190,22 @@ async def test_api_protocol_version_is_rotated_with_each_failure(
 
     mock_api().set_version.assert_has_calls(
         [
+            mocker.call(3.3),
             mocker.call(3.1),
             mocker.call(3.2),
             mocker.call(3.4),
             mocker.call(3.5),
             mocker.call(3.3),
+            mocker.call(3.4),
+            mocker.call(3.5),
+            mocker.call(3.3),
+            mocker.call(3.1),
+            mocker.call(3.2),
+            mocker.call(3.4),
+            mocker.call(3.5),
+            mocker.call(3.3),
+            mocker.call(3.4),
+            mocker.call(3.5),
             mocker.call(3.3),
             mocker.call(3.1),
         ]
@@ -676,3 +703,56 @@ def test_should_poll(subject):
     # Test initial polling
     subject._cached_state = {}
     assert subject.should_poll
+
+
+@pytest.mark.asyncio
+async def test_refresh_error_reports_device_error_code(subject, mock_api, caplog):
+    """The error code and message returned by the device are logged."""
+    subject._api_protocol_working = False
+    subject._protocol_configured = "3.3"
+    mock_api().status.return_value = {
+        "Error": "Check device key or version",
+        "Err": "914",
+        "Payload": None,
+    }
+
+    with caplog.at_level(logging.ERROR):
+        await subject.async_refresh()
+
+    assert "914" in caplog.text
+    assert "Check device key or version" in caplog.text
+    # 914 is ambiguous, so the possible causes are spelled out
+    assert "power cycled" in caplog.text
+
+
+@pytest.mark.asyncio
+async def test_refresh_error_without_error_code_is_unchanged(subject, mock_api, caplog):
+    """A failure that is not a device error logs the bare message."""
+    subject._api_protocol_working = False
+    subject._protocol_configured = "3.3"
+    mock_api().status.side_effect = Exception("connection refused")
+
+    with caplog.at_level(logging.ERROR):
+        await subject.async_refresh()
+
+    assert "Failed to refresh device state for Some name." in caplog.text
+    assert "Device reported error" not in caplog.text
+
+
+@pytest.mark.asyncio
+async def test_refresh_error_914_stays_quiet_when_rotating_protocols(
+    subject, mock_api, caplog
+):
+    """914 is expected while auto-detecting, so it must not log at error."""
+    subject._api_protocol_working = False
+    subject._protocol_configured = "auto"
+    mock_api().status.return_value = {
+        "Error": "Check device key or version",
+        "Err": "914",
+        "Payload": None,
+    }
+
+    with caplog.at_level(logging.ERROR):
+        await subject.async_refresh()
+
+    assert caplog.text == ""

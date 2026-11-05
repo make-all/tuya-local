@@ -3,6 +3,9 @@ products:
   - id: mgg4xziqqrzuozwv
     manufacturer: Woods
     model: MRD25GW
+  - id: g5nx6i7qxfale9t7
+    manufacturer: Woods
+    model: MRD20GW
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -10,8 +13,6 @@ entities:
       - id: 1
         name: switch
         type: boolean
-      # Target humidity (your device exposes presets "40" and "50")
-      # We map those enum strings to numeric setpoints so HA shows 40%/50%.
       - id: 3
         name: humidity
         type: string
@@ -22,9 +23,15 @@ entities:
           - dps_val: "50"
             value: 50
             step: 10
+          - dps_val: "60"
+            value: 60
+            step: 10
+          - dps_val: "70"
+            value: 70
+            step: 10
         range:
           min: 40
-          max: 50
+          max: 70
       # Fan speed as mode (Low/High)
       - id: 4
         name: mode
@@ -59,6 +66,16 @@ entities:
 
   # Fault / Tank / Error indicator (true if any bit set)
   - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
@@ -67,6 +84,8 @@ entities:
         type: bitfield
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: 16
             value: false
           - value: true
       - id: 19

@@ -53,3 +53,66 @@ entities:
         force: true
         mapping:
           - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 47
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+        optional: true
+        force: true
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        force: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 26
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: over_current
+          - dps_val: 2
+            value: over_voltage
+          - dps_val: 4
+            value: over_power
+          - dps_val: 8
+            value: under_current
+          - dps_val: 16
+            value: under_voltage
+          - dps_val: 32
+            value: under_power
+          - dps_val: 64
+            value: short_circuit
+          - dps_val: 128
+            value: overload
+          - dps_val: 256
+            value: leakage_current
+          - dps_val: 512
+            value: self_test
+          - dps_val: 1024
+            value: high_temperature
+          - dps_val: 2048
+            value: phase_unbalance
+          - dps_val: 4096
+            value: phase_loss

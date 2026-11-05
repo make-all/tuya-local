@@ -213,6 +213,13 @@
                     "off": "Cukup",
                     "on": "Rendah"
                 }
+            },
+            "water_flow": {
+                "name": "Aliran air",
+                "state": {
+                    "off": "Aliran tersumbat",
+                    "on": "Aliran"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Hanya kipas",
                             "heat": "Pemanas udara",
                             "floor_cool": "Pendingin lantai",
-                            "floor_heat": "Pemanas lantai"
+                            "floor_heat": "Pemanas lantai",
+                            "air_floor_cool": "Pendingin udara dan lantai",
+                            "air_floor_heat": "Pemanas udara dan lantai"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Program 2",
                             "program_3": "Program 3",
                             "standby": "Siaga",
-                            "fan_only": "Hanya kipas"
+                            "fan_only": "Hanya kipas",
+                            "program": "Program",
+                            "anti_frost": "Anti beku"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Alarm"
+            },
+            "notification": {
+                "name": "Pemberitahuan"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Otomatis",
                             "manual": "Manual",
                             "eco": "Hemat",
-                            "anti-condensation": "Anti kondensasi",
+                            "anti_condensation": "Anti kondensasi",
                             "extractor": "Ekstraktor",
                             "heat_recovery": "Pemulihan panas",
                             "timer": "Pengatur waktu",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Mati"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Status",
                     "locator": "Penanda",
                     "auto": "Otomatis",
-                    "flash": "Kedip"
+                    "flash": "Kedip",
+                    "breathe": "Napas",
+                    "random": "Acak",
+                    "color": "Warna",
+                    "favorite": "Favorit",
+                    "multi_color": "Multi warna",
+                    "custom": "Kustom",
+                    "mode_1": "Mode 1",
+                    "mode_2": "Mode 2",
+                    "mode_3": "Mode 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Batal",
                     "continuous": "Terus menerus",
+                    "custom": "Kustom",
+                    "immediate": "Segera",
                     "5s": "5 detik",
                     "10s": "10 detik",
                     "15s": "15 detik",
@@ -860,7 +887,16 @@
                     "4d": "4 hari",
                     "5d": "5 hari",
                     "6d": "6 hari",
-                    "7d": "7 hari"
+                    "7d": "7 hari",
+                    "10d": "10 hari",
+                    "30d": "30 hari",
+                    "60d": "60 hari",
+                    "80d": "80 hari",
+                    "90d": "90 hari",
+                    "100d": "100 hari",
+                    "120d": "120 hari",
+                    "160d": "160 hari",
+                    "365d": "365 hari"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Suhu sekitar"
             },
+            "inlet_temperature": {
+                "name": "Suhu masuk"
+            },
+            "outlet_temperature": {
+                "name": "Suhu keluar"
+            },
             "cleanliness": {
                 "name": "Kebersihan",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Buruk",
                     "severe": "Parah",
                     "danger": "Bahaya"
+                }
+            },
+            "sd_status": {
+                "name": "Status SD",
+                "state": {
+                    "fault": "Kesalahan",
+                    "formatting": "Memformat",
+                    "full": "Penuh",
+                    "missing": "Hilang",
+                    "normal": "Normal",
+                    "unformatted": "Belum diformat"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Terisi",
                     "normal": "Normal",
                     "low": "Rendah",
+                    "medium": "Sedang",
                     "high": "Tinggi",
                     "unwashed": "Belum dicuci",
                     "pre_washing": "Pencucian awal",
@@ -1247,8 +1301,6 @@
                     "full": "Penuh",
                     "empty": "Kosong",
                     "missing": "Hilang",
-                    "formatting": "Memformat",
-                    "unformatted": "Belum diformat",
                     "failed": "Gagal",
                     "replying": "Membalas",
                     "playback": "Pemutaran",
@@ -1369,6 +1421,9 @@
                     "on": "Tutup",
                     "off": "Buka"
                 }
+            },
+            "camera_record": {
+                "name": "Rekam kamera"
             },
             "do_not_disturb": {
                 "name": "Jangan ganggu"

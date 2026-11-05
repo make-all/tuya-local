@@ -5,19 +5,17 @@ products:
     model: JS-P162 300W
   - id: o9jlvpqqunankygf
     manufacturer: Fuers
-    model: "5MP"
-    name: Indoor camera
+    model: "5MP indoor"
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
         optional: true
         name: switch
   - entity: event
-    name: Notification
+    translation_key: notification
     dps:
       - id: 212
         type: base64
@@ -136,11 +134,9 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
-    icon: "mdi:micro-sd"
     dps:
       - id: 110
         type: integer

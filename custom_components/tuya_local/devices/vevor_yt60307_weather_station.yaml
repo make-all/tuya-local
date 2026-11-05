@@ -10,10 +10,17 @@ entities:
       - id: 118
         type: integer
         name: sensor
-        unit: C
         class: measurement
         mapping:
           - scale: 10
+      - id: 9
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: sensor
     class: humidity
     dps:
@@ -29,30 +36,57 @@ entities:
       - id: 102
         type: integer
         name: sensor
-        unit: mm
         class: measurement
         mapping:
           - scale: 10
+      - id: 12
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: inch
+            value: in
+          - value: mm
   - entity: sensor
     class: atmospheric_pressure
     dps:
       - id: 121
         type: integer
         name: sensor
-        unit: hPa
         class: measurement
         mapping:
           - scale: 100
+      - id: 11
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: inhg
+            value: inHg
+          - dps_val: mmhg
+            value: mmHg
+          - value: hPa
   - entity: sensor
     class: wind_speed
     dps:
       - id: 112
         type: integer
         name: sensor
-        unit: "km/h"
         class: measurement
         mapping:
           - scale: 10
+      - id: 10
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: mph
+            value: mph
+          - dps_val: mps
+            value: m/s
+          - dps_val: knot
+            value: kn
+          - value: km/h
   - entity: sensor
     name: Wind gust
     class: wind_speed
@@ -60,10 +94,21 @@ entities:
       - id: 132
         type: integer
         name: sensor
-        unit: "km/h"
         class: measurement
         mapping:
           - scale: 10
+      - id: 10
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: mph
+            value: mph
+          - dps_val: mps
+            value: m/s
+          - dps_val: knot
+            value: kn
+          - value: km/h
   - entity: sensor
     class: illuminance
     dps:
@@ -88,10 +133,17 @@ entities:
       - id: 117
         type: integer
         name: sensor
-        unit: C
         class: measurement
         mapping:
           - scale: 10
+      - id: 9
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: sensor
     name: Indoor humidity
     class: humidity
@@ -119,3 +171,398 @@ entities:
         type: base64
         optional: true
         name: raw_data
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Wind speed unit
+    icon: "mdi:wind-power"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: kmph
+            value: km/h
+          - dps_val: mph
+            value: mph
+          - dps_val: mps
+            value: m/s
+          - dps_val: knot
+            value: kn
+  - entity: select
+    name: Atmospheric pressure unit
+    icon: "mdi:gauge"
+    category: config
+    dps:
+      - id: 11
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: hpa
+            value: hPa
+          - dps_val: inhg
+            value: inHg
+          - dps_val: mmhg
+            value: mmHg
+  - entity: select
+    name: Precipitation unit
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mm
+            value: mm
+          - dps_val: inch
+            value: in
+  - entity: select
+    translation_key: time_format
+    category: config
+    dps:
+      - id: 18
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "12h"
+            value: "12_hour"
+          - dps_val: "24h"
+            value: "24_hour"
+  - entity: select
+    name: Illuminance unit
+    icon: "mdi:brightness-4"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: klux
+            value: lx
+          - dps_val: kfc
+            value: kfc (not HA compatible)
+          - dps_val: w_m2
+            value: W/m² (not HA compatible)
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 19
+        name: brightness
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: low
+            value: 85
+          - dps_val: middle
+            value: 170
+          - dps_val: high
+            value: 100
+  - entity: text
+    name: Indoor alerts
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Outdoor alerts
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Channel 1 alerts
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    translation_key: alarm_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+        optional: true
+  - entity: time
+    translation_key: alarm_x_time
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: time
+    translation_key: alarm_x_time
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: text
+    name: Channel 2 alerts
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Channel 3 alerts
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Current channel
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    name: Outdoor sensors
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: online
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Outdoor battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 123
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: low_battery
+            value: true
+          - value: false
+  - entity: select
+    name: Date format
+    icon: "mdi:calendar"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: dd_mm_yyyy
+            value: European (d/m/y)
+          - dps_val: mm_dd_yyyy
+            value: American (m/d/y)
+  - entity: select
+    name: TVOC reading
+    category: config
+    dps:
+      - id: 125
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mg_m3
+            value: Concentration (µg/m³)
+          - dps_val: ppm
+            value: Ratio (ppm)
+  - entity: sensor
+    name: Channel 1 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Channel 1 humidity
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Channel 2 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Channel 2 humidity
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Channel 3 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Channel 3 humidity
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        optional: true
+        name: sensor
+        unit: ugm3
+        class: measurement
+      - id: 125
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: ppm
+            value: false
+          - value: true
+  - entity: sensor
+    class: volatile_organic_compounds_parts
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        optional: true
+        name: sensor
+        unit: ppm
+        class: measurement
+      - id: 125
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: ppm
+            value: true
+          - value: false

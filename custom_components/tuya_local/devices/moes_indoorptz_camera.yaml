@@ -3,11 +3,9 @@ products:
   - id: sy8xnbefqdxbgwti
     manufacturer: Moes
     model: P52
-    name: PTZ indoor security camera
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
@@ -105,10 +103,8 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD card
-    icon: "mdi:micro-sd"
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
     dps:
       - id: 110

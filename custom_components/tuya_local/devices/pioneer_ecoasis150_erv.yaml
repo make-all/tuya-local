@@ -1,0 +1,161 @@
+name: Energy recovery ventilator
+
+products:
+  - id: jqjrmutjj0zfhjzr
+    manufacturer: Pioneer
+    model: ECOasis 150
+
+entities:
+  #################################################################
+  # Controls
+  #################################################################
+
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          # Device firmware reports the truncated value "manua" (confirmed
+          # from the raw Tuya IoT portal JSON), not "manual".
+          - dps_val: manua
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+          - dps_val: "4"
+            value: low
+          - dps_val: "5"
+            value: medium
+          - dps_val: "6"
+            value: high
+
+  - entity: fan
+    name: Supply
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 8
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: string
+        name: available
+        mapping:
+          - dps_val: manua
+            value_redirect: power
+          - value: false
+
+  - entity: fan
+    name: Exhaust
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 8
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: string
+        name: available
+        mapping:
+          - dps_val: manua
+            value_redirect: power
+          - value: false
+
+  #################################################################
+  # Sensors
+  #################################################################
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "µg/m³"
+        class: measurement
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+
+  - entity: sensor
+    class: volatile_organic_compounds_parts
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: ppb
+        class: measurement
+
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+
+  #################################################################
+  # Diagnostics: filter and fault state
+  #################################################################
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+      # Filter status codes 0-3 are undocumented; exposed as a raw
+      # attribute rather than an entity until their meaning is known.
+      - id: 105
+        type: string
+        name: filter_status
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      # Retain the raw fault bitmap for diagnostics.
+      - id: 18
+        type: bitfield
+        name: fault_code

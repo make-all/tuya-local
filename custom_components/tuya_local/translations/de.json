@@ -213,6 +213,13 @@
                     "off": "OK",
                     "on": "Niedrig"
                 }
+            },
+            "water_flow": {
+                "name": "Wasserfluss",
+                "state": {
+                    "off": "Wasser blockiert",
+                    "on": "Wasser fließt"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Ventilator",
                             "heat": "Luft erwärmen",
                             "floor_cool": "Boden kühlen",
-                            "floor_heat": "Boden heizen"
+                            "floor_heat": "Boden heizen",
+                            "air_floor_cool": "Luft und Boden kühlen",
+                            "air_floor_heat": "Luft und Boden heizen"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Programm 2",
                             "program_3": "Programm 3",
                             "standby": "Standby",
-                            "fan_only": "Ventilator"
+                            "fan_only": "Ventilator",
+                            "program": "Programm",
+                            "anti_frost": "Frostschutz"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Alarm"
+            },
+            "notification": {
+                "name": "Benachrichtigung"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Auto",
                             "manual": "Manuell",
                             "eco": "Eco",
-                            "anti-condensation": "Anti-Kondensation",
+                            "anti_condensation": "Anti-Kondensation",
                             "extractor": "Abluft",
                             "heat_recovery": "Wärmerückgewinnung",
                             "timer": "Timer",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Aus"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Zustand",
                     "locator": "Locator",
                     "auto": "Auto",
-                    "flash": "Blitz"
+                    "flash": "Blitz",
+                    "breathe": "Atmen",
+                    "random": "Zufällig",
+                    "color": "Farbe",
+                    "favorite": "Favorit",
+                    "multi_color": "Mehrfarbig",
+                    "custom": "Benutzerdefiniert",
+                    "mode_1": "Modus 1",
+                    "mode_2": "Modus 2",
+                    "mode_3": "Modus 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Abbrechen",
                     "continuous": "Dauerbetrieb",
+                    "custom": "Benutzerdefiniert",
+                    "immediate": "Sofort",
                     "5s": "5 Sekunden",
                     "10s": "10 Sekunden",
                     "15s": "15 Sekunden",
@@ -860,7 +887,16 @@
                     "4d": "4 Tage",
                     "5d": "5 Tage",
                     "6d": "6 Tage",
-                    "7d": "7 Tage"
+                    "7d": "7 Tage",
+                    "10d": "10 Tage",
+                    "30d": "30 Tage",
+                    "60d": "60 Tage",
+                    "80d": "80 Tage",
+                    "90d": "90 Tage",
+                    "100d": "100 Tage",
+                    "120d": "120 Tage",
+                    "160d": "160 Tage",
+                    "365d": "365 Tage"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Umgebungstemperatur"
             },
+            "inlet_temperature": {
+                "name": "Einlasstemperatur"
+            },
+            "outlet_temperature": {
+                "name": "Auslasstemperatur"
+            },
             "cleanliness": {
                 "name": "Sauberkeit",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Schlecht",
                     "severe": "Schwer",
                     "danger": "Gefahr"
+                }
+            },
+            "sd_status": {
+                "name": "SD-Kartenstatus",
+                "state": {
+                    "fault": "Fehlerhaft",
+                    "formatting": "Formatieren",
+                    "full": "Voll",
+                    "missing": "Fehlend",
+                    "normal": "Normal",
+                    "unformatted": "Unformatiert"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Besetzt",
                     "normal": "Normal",
                     "low": "Niedrig",
+                    "medium": "Mittel",
                     "high": "Hoch",
                     "unwashed": "Ungewaschen",
                     "pre_washing": "Vorwäsche",
@@ -1247,8 +1301,6 @@
                     "full": "Voll",
                     "empty": "Leer",
                     "missing": "Fehlend",
-                    "formatting": "Formatieren",
-                    "unformatted": "Unformatiert",
                     "failed": "Fehlgeschlagen",
                     "replying": "Antworten",
                     "playback": "Wiedergabe",
@@ -1369,6 +1421,9 @@
                     "off": "Offen",
                     "on": "Geschlossen"
                 }
+            },
+            "camera_record": {
+                "name": "Kameraaufnahme"
             },
             "do_not_disturb": {
                 "name": "Nicht stören"

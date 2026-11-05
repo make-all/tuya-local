@@ -213,6 +213,13 @@
                     "off": "OK",
                     "on": "Низький"
                 }
+            },
+            "water_flow": {
+                "name": "Потік води",
+                "state": {
+                    "off": "Заблокований",
+                    "on": "Вільний"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Вентилятор",
                             "heat": "Підігріте повітря",
                             "floor_cool": "Прохолодна підлога",
-                            "floor_heat": "Тепла підлога"
+                            "floor_heat": "Тепла підлога",
+                            "air_floor_cool": "Прохолодне повітря та підлога",
+                            "air_floor_heat": "Підігріте повітря та підлога"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Програма 2",
                             "program_3": "Програма 3",
                             "standby": "Режим очікування",
-                            "fan_only": "Вентилятор"
+                            "fan_only": "Вентилятор",
+                            "program": "Програма",
+                            "anti_frost": "Антифриз"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Тривога"
+            },
+            "notification": {
+                "name": "Сповіщення"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Авто",
                             "manual": "Інструкція",
                             "eco": "Еко",
-                            "anti-condensation": "Антиконденсат",
+                            "anti_condensation": "Антиконденсат",
                             "extractor": "Екстрактор",
                             "heat_recovery": "Відновлення тепла",
                             "timer": "Таймер",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Вимк"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Стан",
                     "locator": "Локатор",
                     "auto": "Авто",
-                    "flash": "Спалах"
+                    "flash": "Спалах",
+                    "breathe": "Дихати",
+                    "random": "Випадковий",
+                    "color": "Колір",
+                    "favorite": "Улюблений",
+                    "multi_color": "Багатобарвний",
+                    "custom": "Користувацький",
+                    "mode_1": "Режим 1",
+                    "mode_2": "Режим 2",
+                    "mode_3": "Режим 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Скасувати",
                     "continuous": "Постійний",
+                    "custom": "Користувацький",
+                    "immediate": "Негайно",
                     "5s": "5 секунд",
                     "10s": "10 секунд",
                     "15s": "15 секунд",
@@ -860,7 +887,16 @@
                     "4d": "4 дні",
                     "5d": "5 днів",
                     "6d": "6 днів",
-                    "7d": "7 днів"
+                    "7d": "7 днів",
+                    "10d": "10 днів",
+                    "30d": "30 днів",
+                    "60d": "60 днів",
+                    "80d": "80 днів",
+                    "90d": "90 днів",
+                    "100d": "100 днів",
+                    "120d": "120 днів",
+                    "160d": "160 днів",
+                    "365d": "365 днів"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Температура довкілля"
             },
+            "inlet_temperature": {
+                "name": "Температура на вході"
+            },
+            "outlet_temperature": {
+                "name": "Температура на виході"
+            },
             "cleanliness": {
                 "name": "Чистота",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Погано",
                     "severe": "Важко",
                     "danger": "Небезпечно"
+                }
+            },
+            "sd_status": {
+                "name": "Статус SD",
+                "state": {
+                    "fault": "Помилка",
+                    "formatting": "Форматування",
+                    "full": "Повний",
+                    "missing": "Відсутній",
+                    "normal": "Нормальний",
+                    "unformatted": "Неформатований"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Зайнято",
                     "normal": "Нормально",
                     "low": "Низький",
+                    "medium": "Середній",
                     "high": "Високий",
                     "unwashed": "Не вимито",
                     "pre_washing": "Попереднє миття",
@@ -1247,8 +1301,6 @@
                     "full": "Повний",
                     "empty": "Порожній",
                     "missing": "Відсутній",
-                    "formatting": "Форматування",
-                    "unformatted": "Неформатований",
                     "failed": "Не вдалося",
                     "replying": "Відповідь",
                     "playback": "Відтворення",
@@ -1369,6 +1421,9 @@
                     "off": "Відкрито",
                     "on": "Закрито"
                 }
+            },
+            "camera_record": {
+                "name": "Запис камери"
             },
             "do_not_disturb": {
                 "name": "Не турбувати"

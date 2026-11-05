@@ -213,6 +213,13 @@
                     "off": "اوکے",
                     "on": "کم"
                 }
+            },
+            "water_flow": {
+                "name": "پانی کا بہاؤ",
+                "state": {
+                    "off": "بند",
+                    "on": "آن"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "پنکھا",
                             "heat": "گرم ہوا",
                             "floor_cool": "ٹھنڈا فرش",
-                            "floor_heat": "گرم فرش"
+                            "floor_heat": "گرم فرش",
+                            "air_floor_cool": "ہوا اور فرش ٹھنڈا",
+                            "air_floor_heat": "ہوا اور فرش گرم"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "پروگرام 2",
                             "program_3": "پروگرام 3",
                             "standby": "اسٹینڈ بائی",
-                            "fan_only": "پنکھا"
+                            "fan_only": "پنکھا",
+                            "program": "پروگرام",
+                            "anti_frost": "اینٹی فراسٹ"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "الارم"
+            },
+            "notification": {
+                "name": "اطلاع"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "خود مختار",
                             "manual": "دستی",
                             "eco": "ایکو",
-                            "anti-condensation": "اینٹی کنڈینسیشن",
+                            "anti_condensation": "اینٹی کنڈینسیشن",
                             "extractor": "نکالنے والا",
                             "heat_recovery": "حرارتی بازیابی",
                             "timer": "ٹائمر",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "آف"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "حالت",
                     "locator": "لوکیٹر",
                     "auto": "خود کار",
-                    "flash": "فلیش"
+                    "flash": "فلیش",
+                    "breathe": "سانس لینا",
+                    "random": "بے ترتیب",
+                    "color": "رنگ",
+                    "favorite": "پسندیدہ",
+                    "multi_color": "کئی رنگ",
+                    "custom": "اپنی مرضی",
+                    "mode_1": "موڈ 1",
+                    "mode_2": "موڈ 2",
+                    "mode_3": "موڈ 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "منسوخ کریں",
                     "continuous": "مسلسل",
+                    "custom": "اپنی مرضی",
+                    "immediate": "فوری",
                     "5s": "5 سیکنڈ",
                     "10s": "10 سیکنڈ",
                     "15s": "15 سیکنڈ",
@@ -860,7 +887,16 @@
                     "4d": "4 دن",
                     "5d": "5 دن",
                     "6d": "6 دن",
-                    "7d": "7 دن"
+                    "7d": "7 دن",
+                    "10d": "10 دن",
+                    "30d": "30 دن",
+                    "60d": "60 دن",
+                    "80d": "80 دن",
+                    "90d": "90 دن",
+                    "100d": "100 دن",
+                    "120d": "120 دن",
+                    "160d": "160 دن",
+                    "365d": "365 دن"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "ماحول کا درجہ حرارت"
             },
+            "inlet_temperature": {
+                "name": "انلیٹ درجہ حرارت"
+            },
+            "outlet_temperature": {
+                "name": "آؤٹ لیٹ درجہ حرارت"
+            },
             "cleanliness": {
                 "name": "صفائی",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "خراب",
                     "severe": "شدید",
                     "danger": "خطرہ"
+                }
+            },
+            "sd_status": {
+                "name": "ایس ڈی کارڈ کی حالت",
+                "state": {
+                    "fault": "خراب",
+                    "formatting": "فارمیٹنگ",
+                    "full": "مکمل",
+                    "missing": "غائب",
+                    "normal": "عام",
+                    "unformatted": "غیر شکل بند"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "مصروف",
                     "normal": "عام",
                     "low": "کم",
+                    "medium": "درمیانہ",
                     "high": "زیادہ",
                     "unwashed": "نہ دھویا",
                     "pre_washing": "پری واشنگ",
@@ -1247,8 +1301,6 @@
                     "full": "مکمل",
                     "empty": "خالی",
                     "missing": "غائب",
-                    "formatting": "فارمیٹنگ",
-                    "unformatted": "غیر شکل بند",
                     "failed": "ناکام",
                     "replying": "جواب دے رہا ہے",
                     "playback": "پلے بیک",
@@ -1369,6 +1421,9 @@
                     "off": "کھلا",
                     "on": "بند"
                 }
+            },
+            "camera_record": {
+                "name": "کیمرہ ریکارڈ"
             },
             "do_not_disturb": {
                 "name": "پریشان نہ کریں"

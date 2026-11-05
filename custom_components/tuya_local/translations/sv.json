@@ -213,6 +213,13 @@
                     "off": "OK",
                     "on": "Låg"
                 }
+            },
+            "water_flow": {
+                "name": "Vattenflöde",
+                "state": {
+                    "off": "Blockerat",
+                    "on": "Flöde"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Fläkt",
                             "heat": "Värmeluft",
                             "floor_cool": "Kylgolv",
-                            "floor_heat": "Värmegolv"
+                            "floor_heat": "Värmegolv",
+                            "air_floor_cool": "Kylning luft + golv",
+                            "air_floor_heat": "Värme luft + golv"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Program 2",
                             "program_3": "Program 3",
                             "standby": "Standby",
-                            "fan_only": "Endast fläkt"
+                            "fan_only": "Endast fläkt",
+                            "program": "Program",
+                            "anti_frost": "Antifrost"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Larm"
+            },
+            "notification": {
+                "name": "Meddelande"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Auto",
                             "manual": "Manuell",
                             "eco": "Eko",
-                            "anti-condensation": "Anti-kondens",
+                            "anti_condensation": "Anti-kondens",
                             "extractor": "Fläkt",
                             "heat_recovery": "Värmeåtervinning",
                             "timer": "Timer",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Av"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Läge",
                     "locator": "Lokaliserare",
                     "auto": "Auto",
-                    "flash": "Blinka"
+                    "flash": "Blinka",
+                    "breathe": "Andas",
+                    "random": "Slumpmässig",
+                    "color": "Färg",
+                    "favorite": "Favorit",
+                    "multi_color": "Flerfärg",
+                    "custom": "Anpassad",
+                    "mode_1": "Läge 1",
+                    "mode_2": "Läge 2",
+                    "mode_3": "Läge 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Avbryt",
                     "continuous": "Kontinuerlig",
+                    "custom": "Anpassad",
+                    "immediate": "Omedelbar",
                     "5s": "5 sekunder",
                     "10s": "10 sekunder",
                     "15s": "15 sekunder",
@@ -860,7 +887,16 @@
                     "4d": "4 dagar",
                     "5d": "5 dagar",
                     "6d": "6 dagar",
-                    "7d": "7 dagar"
+                    "7d": "7 dagar",
+                    "10d": "10 dagar",
+                    "30d": "30 dagar",
+                    "60d": "60 dagar",
+                    "80d": "80 dagar",
+                    "90d": "90 dagar",
+                    "100d": "100 dagar",
+                    "120d": "120 dagar",
+                    "160d": "160 dagar",
+                    "365d": "365 dagar"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Omgivningstemperatur"
             },
+            "inlet_temperature": {
+                "name": "Inloppstemperatur"
+            },
+            "outlet_temperature": {
+                "name": "Utgångstemperatur"
+            },
             "cleanliness": {
                 "name": "Renlighet",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Dålig",
                     "severe": "Allvarlig",
                     "danger": "Fara"
+                }
+            },
+            "sd_status": {
+                "name": "SD-kortstatus",
+                "state": {
+                    "fault": "Fel",
+                    "formatting": "Formaterar",
+                    "full": "Full",
+                    "missing": "Saknas",
+                    "normal": "Normal",
+                    "unformatted": "Oformaterad"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Upptagen",
                     "normal": "Normal",
                     "low": "Låg",
+                    "medium": "Medel",
                     "high": "Hög",
                     "unwashed": "Otvättad",
                     "pre_washing": "Förtvätt",
@@ -1247,8 +1301,6 @@
                     "full": "Full",
                     "empty": "Tom",
                     "missing": "Saknas",
-                    "formatting": "Formaterar",
-                    "unformatted": "Oformaterad",
                     "failed": "Misslyckades",
                     "replying": "Svarar",
                     "playback": "Uppspelning",
@@ -1369,6 +1421,9 @@
                     "off": "Öppen",
                     "on": "Stängd"
                 }
+            },
+            "camera_record": {
+                "name": "Kamera inspelning"
             },
             "do_not_disturb": {
                 "name": "Stör ej"

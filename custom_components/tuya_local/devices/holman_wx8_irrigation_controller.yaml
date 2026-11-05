@@ -98,34 +98,34 @@ entities:
   - entity: sensor
     class: voltage
     name: Power supply voltage
-    category: diagnostic
     dps:
       - id: 117
         name: sensor
         type: integer
         unit: "V"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     name: Evie battery voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 119
         name: sensor
         type: integer
         unit: "V"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     name: Battery voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 118
         type: integer
         name: sensor
         unit: "V"
+        class: measurement
         mapping:
           - scale: 10
   - entity: binary_sensor

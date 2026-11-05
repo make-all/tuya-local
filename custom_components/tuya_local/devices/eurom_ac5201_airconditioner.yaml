@@ -1,0 +1,134 @@
+name: Air conditioner
+products:
+  - id: rcxazbtbhr0xs6wj
+    manufacturer: Eurom
+    model: AC 5201
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: caravan_install
+            conditions:
+              - dps_val: Standby
+                value: "off"
+                hidden: true
+              - dps_val: Carvan
+                value: cool
+                available: caravan_install
+              - dps_val: Home
+                value: cool
+                available: non_caravan_install
+      - id: 2
+        type: integer
+        name: current_temperature
+      - id: 5
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 16
+          max: 28
+      - id: 7
+        type: string
+        name: caravan_install
+        hidden: true
+        mapping:
+          - dps_val: Carvan
+            value: true
+          - value: false
+      - id: 7
+        type: string
+        name: non_caravan_install
+        hidden: true
+        mapping:
+          - dps_val: Carvan
+            value: false
+          - value: true
+      - id: 9
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: s
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: select
+    name: Installation
+    category: config
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: Carvan
+            value: Caravan
+          - dps_val: Home
+            value: Home
+          - dps_val: Standby
+            value: Disabled

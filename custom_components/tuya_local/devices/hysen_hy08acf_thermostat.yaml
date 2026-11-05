@@ -133,12 +133,12 @@ entities:
   - entity: sensor
     name: External temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 101
         type: integer
         name: sensor
         unit: C
+        class: measurement
         mapping:
           - scale: 10
   - entity: number

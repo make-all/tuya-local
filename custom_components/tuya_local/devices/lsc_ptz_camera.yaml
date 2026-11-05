@@ -9,10 +9,12 @@ products:
   - id: bwolocfvtdy3w2mk
     manufacturer: Merkury
     model: CW035
+  - id: iq3hpslazezny9k3
+    manufacturer: LSC Smart Connect
+    model: PTZ Camera
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
@@ -130,9 +132,8 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
     dps:
       - id: 110

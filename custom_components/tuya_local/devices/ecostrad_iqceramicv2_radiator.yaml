@@ -2,10 +2,10 @@ name: Radiator
 products:
   - id: g8szwifd3zgozoxt
     manufacturer: Ecostrad
-    name: iQ Ceramic
+    model: iQ Ceramic
   - id: oqqreuepbc0g8lcg
     manufacturer: Ecostrad
-    name: iQ Ceramic
+    model: iQ Ceramic
 entities:
   - entity: climate
     translation_key: heater
@@ -96,7 +96,7 @@ entities:
             value: cancel
             icon: "mdi:window-closed"
           - dps_val: "60"
-            value: "60m"
+            value: "1h"
             icon: "mdi:window-open"
           - dps_val: "90"
             value: "1h30m"
@@ -119,3 +119,38 @@ entities:
             value: "45m"
           - dps_val: "60"
             value: "1h"
+  - entity: sensor
+    class: power
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+        optional: true
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: integer
+        optional: true
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000

@@ -4,8 +4,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from homeassistant.const import (
-    CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     UnitOfArea,
+    UnitOfDensity,
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
@@ -308,7 +308,7 @@ class TestUnitFromAscii:
         assert unit_from_ascii("F") == UnitOfTemperature.FAHRENHEIT.value
 
     def test_micrograms(self):
-        assert unit_from_ascii("ugm3") == CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
+        assert unit_from_ascii("ugm3") == UnitOfDensity.MICROGRAMS_PER_CUBIC_METER.value
 
     def test_square_meters(self):
         assert unit_from_ascii("m2") == UnitOfArea.SQUARE_METERS
@@ -318,3 +318,19 @@ class TestUnitFromAscii:
 
     def test_passthrough_empty(self):
         assert unit_from_ascii("") == ""
+
+    def test_missing_json_does_not_raise(self, mock_device, mock_config):
+        dp = MagicMock()
+        dp.name = "req_json_attr"
+        dp.hidden = False
+        dp.optional = False
+        dp.rawtype = "json"
+        dp.get_value.return_value = None
+        mock_config.dps.return_value = [dp]
+
+        e = DummyEntity()
+        dps = e._init_begin(mock_device, mock_config)
+        e._init_end(dps)
+
+        _ = e.extra_state_attributes
+        assert True  # The test passes if no exception is raised and we reach this line

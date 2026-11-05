@@ -1,0 +1,271 @@
+name: Fireplace
+products:
+  - id: cfv4dkzpputrjgaz
+    manufacturer: Amantii
+    model: TRD Lumina
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 15
+          max: 28
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_set_f
+                range:
+                  min: 58
+                  max: 84
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_cur_f
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+          - dps_val: "0"
+            value: "off"
+      - id: 9
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Heater
+            value: none
+          - dps_val: Low
+            value: low
+          - dps_val: High
+            value: high
+          - dps_val: Auto
+            value: auto
+      - id: 25
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+      - id: 10
+        type: integer
+        name: temp_set_f
+        range:
+          min: 58
+          max: 84
+      - id: 11
+        type: integer
+        name: temp_cur_f
+  - entity: light
+    translation_key: flame
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+      - id: 109
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 111
+        type: boolean
+        name: effect
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: cycle
+  - entity: light
+    translation_key: embers
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+      - id: 18
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 113
+        type: boolean
+        name: effect
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: cycle
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 6
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: 15C_58F
+            value: "15°C / 58°F"
+          - dps_val: 16C_60F
+            value: "16°C / 60°F"
+          - dps_val: 17C_62F
+            value: "17°C / 62°F"
+          - dps_val: 18C_64F
+            value: "18°C / 64°F"
+          - dps_val: 19C_66F
+            value: "19°C / 66°F"
+          - dps_val: 20C_68F
+            value: "20°C / 68°F"
+          - dps_val: 21C_70F
+            value: "21°C / 70°F"
+          - dps_val: 22C_72F
+            value: "22°C / 72°F"
+          - dps_val: 23C_74F
+            value: "23°C / °74F"
+          - dps_val: 24C_76F
+            value: "24°C / 76°F"
+          - dps_val: 25C_78F
+            value: "25°C / 78°F"
+          - dps_val: 26C_80F
+            value: "26°C / 80°F"
+          - dps_val: 27C_82F
+            value: "27°C / 82°F"
+          - dps_val: 28C_84F
+            value: "28°C / 84°F"
+  - entity: switch
+    name: Open window detection
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: light
+    name: Accent
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+      - id: 114
+        type: boolean
+        name: effect
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: cycle
+  - entity: number
+    name: Flame speed
+    category: config
+    icon: "mdi:fire"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 40
+          max: 120
+  - entity: switch
+    name: Flame cycling
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Embers cycling
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 80
+        mapping:
+          - step: 5
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - value: true
+      - id: 116
+        type: string
+        optional: true
+        name: description
+        # Missing from config (and device log)
+        # 106: Flame change (1-240)
+        # 107: Ember change (1-240)
+        # 112: Accent change (1-240)
+        # these may be able to be modelled as color_temp, but I'm not
+        # sure if that would be a good fit. They seem to go through
+        # red-orange-yellow for flame and embers, but I see cyan and
+        # purple in the accent colors in photos.

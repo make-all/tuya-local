@@ -20,9 +20,6 @@ entities:
       - id: 2
         type: integer
         name: current_temperature
-        range:
-          min: 0
-          max: 100
       - id: 4
         type: integer
         name: temperature
@@ -117,6 +114,7 @@ entities:
         name: setting
   - entity: sensor
     class: temperature
+    deprecated: water_heater_kettle.current_temperature  # 2026-07-12
     category: diagnostic
     dps:
       - id: 2

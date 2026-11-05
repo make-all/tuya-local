@@ -1,0 +1,44 @@
+name: Curtain switch
+products:
+  - id: 75zgxageqaovbtgg
+    manufacturer: Loratap
+    model: SC411WSC-EU
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: "on"
+            value: open
+          - dps_val: "off"
+            value: close
+          - dps_val: stop
+            value: stop
+  - entity: switch
+    category: config
+    name: Reverse motor direction
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 2
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "forward"
+            value: false
+          - dps_val: "back"
+            value: true
+  - entity: number
+    name: Travel time
+    category: config
+    class: duration
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120

@@ -86,6 +86,7 @@ entities:
         name: sensor
         optional: true
         unit: kW
+        class: measurement
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
@@ -99,6 +100,7 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
@@ -111,6 +113,7 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
@@ -142,6 +145,7 @@ entities:
   - entity: sensor
     name: Connection state
     class: enum
+    translation_key: status
     icon: "mdi:ev-plug-type2"
     category: diagnostic
     dps:
@@ -150,7 +154,7 @@ entities:
         name: sensor
         mapping:
           - dps_val: controlpi_12v
-            value: Standby
+            value: standby
           - dps_val: controlpi_12v_pwm
             value: Communication initialising
           - dps_val: controlpi_9v
@@ -160,9 +164,9 @@ entities:
           - dps_val: controlpi_6v
             value: Ready to charge
           - dps_val: controlpi_6v_pwm
-            value: Charging
+            value: charging
           - dps_val: controlpi_error
-            value: Error
+            value: fault
   - entity: select
     translation_key: charging_mode
     category: config

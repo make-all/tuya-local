@@ -105,21 +105,6 @@ entities:
         range:
           min: 0
           max: 86399
-  - entity: number
-    translation_key: timer
-    deprecated: time.timer  # 2026-01-20
-    class: duration
-    category: config
-    dps:
-      - id: 4
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     name: Electricity consumption
     category: diagnostic

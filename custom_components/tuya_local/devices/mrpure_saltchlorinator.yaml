@@ -6,6 +6,12 @@ products:
   - id: 5ls2jw49hpczwqng
     manufacturer: Fairland
     model: Mr.Pure
+  - id: 5x5lnhkwee1l1fuu
+    manufacturer: Aquark
+    model: InverClear
+  - id: hkkucfvllhqdatto
+    manufacturer: Aquark
+    model: InverClear Basic
 entities:
   - entity: sensor
     name: Salinity
@@ -18,9 +24,11 @@ entities:
   - entity: sensor
     class: temperature
     icon: "mdi:pool-thermometer"
+    hidden: unavailable
     dps:
       - id: 102
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -32,6 +40,18 @@ entities:
         name: f
         mapping:
           - scale: 10
+      - id: 102
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: f
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
   - entity: switch
     dps:
       - id: 103
@@ -48,26 +68,46 @@ entities:
   - entity: select
     translation_key: temperature_unit
     category: config
+    hidden: unavailable
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: option
         mapping:
           - dps_val: false
             value: celsius
           - dps_val: true
             value: fahrenheit
+      - id: 104
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Chassis temperature
     class: temperature
+    hidden: unavailable
     dps:
       - id: 105
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
         mapping:
           - scale: 10
+      - id: 105
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Electrolysis voltage
     class: voltage
@@ -76,6 +116,7 @@ entities:
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 10
   - entity: switch
@@ -129,22 +170,42 @@ entities:
   - entity: sensor
     name: ORP
     class: voltage
+    hidden: unavailable
     dps:
       - id: 111
         type: integer
+        optional: true
         name: sensor
         unit: mV
         class: measurement
+      - id: 111
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     class: ph
+    hidden: unavailable
     dps:
       - id: 112
         type: integer
+        optional: true
         name: sensor
         unit: pH
         mapping:
           - scale: 10
         class: measurement
+      - id: 112
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Chlorine produced
     dps:
@@ -153,8 +214,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: binary_sensor
-    name: Water flow
-    class: moving
+    translation_key: water_flow
     category: diagnostic
     dps:
       - id: 114
@@ -221,9 +281,11 @@ entities:
     name: Water quality
     translation_key: air_quality
     class: enum
+    hidden: unavailable
     dps:
       - id: 119
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: WAIT
@@ -232,6 +294,14 @@ entities:
             value: good
           - dps_val: GREAT
             value: excellent
+      - id: 119
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Electrolytic chip size
     category: config
@@ -490,3 +560,12 @@ entities:
       - id: 121
         type: boolean
         name: available
+  - entity: sensor
+    name: Chip lifespan
+    class: duration
+    dps:
+      - id: 145
+        type: integer
+        optional: true
+        name: sensor
+        unit: h

@@ -1,0 +1,383 @@
+name: Ambient light
+products:
+  - id: bzovzknpiaaiakl7
+    manufacturer: Pixbee
+    model: Illumi
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+      - id: 2
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: customize_scene
+            value: Custom scene
+          - dps_val: out_scene
+            value: Music scene
+      - id: 6
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value_redirect: alt_brightness
+      - id: 111
+        type: integer
+        name: alt_brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 7
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 5
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: breath
+            value: flash
+          - dps_val: light_on
+            value: "on"
+          - dps_val: light_off
+            value: "off"
+  - entity: media_player
+    class: speaker
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+      - id: 9
+        type: integer
+        name: volume
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 100
+      - id: 18
+        type: boolean
+        name: stop
+      - id: 109
+        type: string
+        name: source
+        mapping:
+          - dps_val: Bubble
+            value: Bubble
+          - dps_val: Ocean
+            value: Ocean
+          - dps_val: Stream
+            value: Stream
+          - dps_val: Fountain
+            value: Fountain
+          - dps_val: Drip
+            value: Drip
+          - dps_val: White_Noise
+            value: White noise
+          - dps_val: Night
+            value: Night
+          - dps_val: Lullaby
+            value: Lullaby
+          - dps_val: Peaceful_Mind
+            value: Peaceful mind
+          - dps_val: Universe
+            value: Universe
+          - dps_val: SCI_FI
+            value: Sci-Fi
+          - dps_val: Alpha_Brainwave
+            value: Alpha brainwave
+          - dps_val: Zen
+            value: Zen
+          - dps_val: Wind
+            value: Wind
+          - dps_val: Rain
+            value: Rain
+          - dps_val: Thunderstorm
+            value: Thunderstorm
+          - dps_val: Campfire
+            value: Campfire
+          - dps_val: Rainforest
+            value: Rainforest
+          - dps_val: Whale
+            value: Whale
+          - dps_val: Cuckoo_Bird
+            value: Cuckoo bird
+          - dps_val: Purring_Cat
+            value: Purring cat
+          - dps_val: Cricket
+            value: Cricket
+          - dps_val: Wolf_Howling
+            value: Wolf howling
+          - dps_val: Hairdryer
+            value: Hairdryer
+          - dps_val: Heartbeat
+            value: Heartbeat
+      - id: 108
+        type: string
+        name: media_genre
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: Ascend
+            value: Ascend
+          - dps_val: Deep_Ocean
+            value: Deep ocean
+          - dps_val: Beach
+            value: Beach
+          - dps_val: Meditation
+            value: Meditiation
+          - dps_val: Rainbow
+            value: Rainbow
+          - dps_val: Fireplace
+            value: Fireplace
+          - dps_val: Breath
+            value: Breathe
+          - dps_val: Joy
+            value: Joy
+  - entity: select
+    name: Custom scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: mode_1
+            value: Custom 1
+          - dps_val: mode_2
+            value: Custom 2
+          - dps_val: mode_3
+            value: Custom 3
+          - dps_val: mode_4
+            value: Custom 4
+          - dps_val: mode_5
+            value: Custom 5
+          - dps_val: mode_6
+            value: Custom 6
+          - dps_val: mode_7
+            value: Custom 7
+          - dps_val: mode_8
+            value: Custom 8
+  - entity: text
+    name: Custom scene
+    category: config
+    translation_key: scene
+    hidden: true
+    dps:
+      - id: 14
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wake up settings
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    translation_key: sleep_settings
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 16
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: snooze
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 19
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: wake_up_1
+            value: Alarm 1
+          - dps_val: wake_up_2
+            value: Alarm 2
+          - dps_val: wake_up_3
+            value: Alarm 3
+          - dps_val: wake_up_4
+            value: Alarm 4
+          - dps_val: sleep_1
+            value: Sleep 1
+          - dps_val: sleep_2
+            value: Sleep 2
+          - dps_val: sleep_3
+            value: Sleep 3
+          - dps_val: sleep_4
+            value: Sleep 4
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: select
+    translation_key: time_format
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: "24h"
+            value: "24_hour"
+          - dps_val: "12h"
+            value: "12_hour"
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+  - entity: button
+    name: Disconnect Bluetooth
+    category: config
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: DIS_BT
+            value: true
+  - entity: binary_sensor
+    name: Bluetooth
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: select
+    name: Music scene
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: Night_Club
+            value: Night club
+          - dps_val: Pulse
+            value: Pulsate
+  - entity: switch
+    name: Focus
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: switch
+        mapping:
+          - dps_val: Start
+            value: true
+          - dps_val: Stop
+            value: false
+  - entity: text
+    name: Focus settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: lock
+  - entity: text
+    name: Set time
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Scene run
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch

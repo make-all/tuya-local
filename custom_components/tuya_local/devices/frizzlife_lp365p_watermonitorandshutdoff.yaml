@@ -3,6 +3,9 @@ products:
   - id: 89tojzdfimssmkuk
     manufacturer: Frizzlife
     model: LP365P
+  - id: db423wsytutyipot
+    manufacturer: Frizzlife
+    model: LP365P
 entities:
   # Valve
   - entity: valve
@@ -326,7 +329,7 @@ entities:
             step: 100
             value_redirect: mode6_val
       - id: 115
-        type: integer
+        type: string
         name: mode4_val
         range:
           min: 0
@@ -405,6 +408,7 @@ entities:
     dps:
       - id: 119
         type: integer
+        optional: true
         name: value
         range:
           min: 0

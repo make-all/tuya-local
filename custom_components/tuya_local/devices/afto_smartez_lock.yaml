@@ -1,0 +1,141 @@
+name: Door lock
+products:
+  - id: cbs0lvyg
+    manufacturer: Afto
+    model: Smart EZ
+entities:
+  - entity: lock
+    dps:
+      - id: 16
+        name: unlock_key
+        type: integer
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 21
+        name: jammed
+        type: string
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - dps_val: tongue_not_out
+            value: true
+          - dps_val: null
+            value: false
+          - value: false
+      - id: 46
+        type: boolean
+        name: lock
+      - id: 47  # Lock motor state
+        name: lock_state
+        type: boolean
+        mapping:
+          - dps_val: true  # Unlocked
+            value: false
+          - dps_val: false  # Locked
+            value: true
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Alert
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: Wrong Finger
+          - dps_val: wrong_password
+            value: Wrong Password
+          - dps_val: wrong_card
+            value: Wrong Card
+          - dps_val: wrong_face
+            value: Wrong Face
+          - dps_val: tongue_bad
+            value: Tongue Bad
+          - dps_val: too_hot
+            value: Too Hot
+          - dps_val: unclosed_time
+            value: Unclosed Time
+          - dps_val: tongue_not_out
+            value: Tongue Not Out
+          - dps_val: pry
+            value: Pry
+          - dps_val: key_in
+            value: Key In
+          - dps_val: low_battery
+            value: Low Battery
+          - dps_val: power_off
+            value: Power Off
+          - dps_val: shock
+            value: Shock
+          - dps_val: defense
+            value: Defense
+          - dps_val: wrong_unlock
+            value: Wrong Unlock
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: number
+    name: Auto lock delay
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 1800
+        unit: s
+  - entity: select
+    name: Lock direction
+    icon: "mdi:lock-reset"
+    category: config
+    dps:
+      - id: 48
+        type: string
+        name: option
+        mapping:
+          - dps_val: clockwise
+            value: Clockwise
+          - dps_val: anticlockwise
+            value: Anti-clockwise
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        optional: true
+        sensitive: true
+        name: value

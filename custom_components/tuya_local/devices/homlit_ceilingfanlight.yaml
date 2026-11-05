@@ -1,0 +1,197 @@
+name: Ceiling fan
+products:
+  - id: atfenlerda169ygw
+    manufacturer: Homlit
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        optional: true
+        mapping:
+          - dps_val: white
+            value: "off"
+          - dps_val: colour
+            value: RGB
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+          - dps_val: null
+            value: "off"
+            hidden: true
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 100
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+  - entity: select
+    name: Color temperature preset
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: daylight
+            value: daylight
+          - dps_val: neutral
+            value: neutral
+          - dps_val: warm
+            value: warm
+  - entity: select
+    name: Music mode
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: mode_1
+            value: Mode 1
+          - dps_val: mode_2
+            value: Mode 2
+          - dps_val: mode_3
+            value: Mode 3
+          - dps_val: mode_4
+            value: Mode 4
+          - dps_val: mode_5
+            value: Mode 5
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: mode_1
+            value: Mode 1
+          - dps_val: mode_2
+            value: Mode 2
+          - dps_val: mode_3
+            value: Mode 3
+          - dps_val: mode_4
+            value: Mode 4
+          - dps_val: mode_5
+            value: Mode 5
+          - dps_val: mode_6
+            value: Mode 6
+          - dps_val: mode_7
+            value: Mode 7
+          - dps_val: mode_8
+            value: Mode 8
+          - dps_val: mode_9
+            value: Mode 9
+          - dps_val: mode_10
+            value: Mode 10
+  - entity: light
+    name: RGB
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000

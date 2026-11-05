@@ -213,6 +213,13 @@
                     "off": "OK",
                     "on": "Alacsony"
                 }
+            },
+            "water_flow": {
+                "name": "Vízáramlás",
+                "state": {
+                    "off": "Blokkolt",
+                    "on": "Normál"
+                }
             }
         },
         "button": {
@@ -310,7 +317,9 @@
                             "fan_only": "Ventilátor",
                             "heat": "Meleg levegő",
                             "floor_cool": "Hűvös padló",
-                            "floor_heat": "Meleg padló"
+                            "floor_heat": "Meleg padló",
+                            "air_floor_cool": "Hűvös levegő és padló",
+                            "air_floor_heat": "Meleg levegő és padló"
                         }
                     }
                 }
@@ -357,7 +366,9 @@
                             "program_2": "Program 2",
                             "program_3": "Program 3",
                             "standby": "Készenlét",
-                            "fan_only": "Ventilátor"
+                            "fan_only": "Ventilátor",
+                            "program": "Programozott",
+                            "anti_frost": "Fagyásgátló"
                         }
                     }
                 }
@@ -409,6 +420,9 @@
         "event": {
             "alarm": {
                 "name": "Riasztás"
+            },
+            "notification": {
+                "name": "Értesítés"
             }
         },
         "humidifier": {
@@ -504,7 +518,7 @@
                             "auto": "Auto",
                             "manual": "Manuális",
                             "eco": "Eco",
-                            "anti-condensation": "Pára mentesítés",
+                            "anti_condensation": "Pára mentesítés",
                             "extractor": "Kivonat",
                             "heat_recovery": "Hővisszanyerés",
                             "timer": "Időzítő",
@@ -674,6 +688,7 @@
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
+                    "hungarian": "Magyar",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
@@ -688,7 +703,8 @@
                     "romanian": "Română",
                     "slovak": "Slovenčina",
                     "thai": "ไทย",
-                    "vietnamese": "Tiếng Việt"
+                    "vietnamese": "Tiếng Việt",
+                    "off": "Ki"
                 }
             },
             "light_mode": {
@@ -699,7 +715,16 @@
                     "state": "Állapot",
                     "locator": "Helymeghatározó",
                     "auto": "Auto",
-                    "flash": "Villogás"
+                    "flash": "Villogás",
+                    "breathe": "Lélegzés",
+                    "random": "Véletlenszerű",
+                    "color": "Szín",
+                    "favorite": "Kedvenc",
+                    "multi_color": "Többszínű",
+                    "custom": "Egyéni",
+                    "mode_1": "Mód 1",
+                    "mode_2": "Mód 2",
+                    "mode_3": "Mód 3"
                 }
             },
             "mopping": {
@@ -788,6 +813,8 @@
                 "state": {
                     "cancel": "Mégse",
                     "continuous": "Folyamatos",
+                    "custom": "Egyéni",
+                    "immediate": "Azonnali",
                     "5s": "5 másodperc",
                     "10s": "10 másodperc",
                     "15s": "15 másodperc",
@@ -860,7 +887,16 @@
                     "4d": "4 nap",
                     "5d": "5 nap",
                     "6d": "6 nap",
-                    "7d": "7 nap"
+                    "7d": "7 nap",
+                    "10d": "10 nap",
+                    "30d": "30 nap",
+                    "60d": "60 nap",
+                    "80d": "80 nap",
+                    "90d": "90 nap",
+                    "100d": "100 nap",
+                    "120d": "120 nap",
+                    "160d": "160 nap",
+                    "365d": "365 nap"
                 }
             },
             "temperature_unit": {
@@ -1150,6 +1186,12 @@
             "ambient_temperature": {
                 "name": "Környezeti hőmérséklet"
             },
+            "inlet_temperature": {
+                "name": "Bemeneti hőmérséklet"
+            },
+            "outlet_temperature": {
+                "name": "Kimeneti hőmérséklet"
+            },
             "cleanliness": {
                 "name": "Tisztaság",
                 "state": {
@@ -1167,6 +1209,17 @@
                     "poor": "Rossz",
                     "severe": "Súlyos",
                     "danger": "Veszély"
+                }
+            },
+            "sd_status": {
+                "name": "SD kártya állapota",
+                "state": {
+                    "fault": "Hiba",
+                    "formatting": "Formázás",
+                    "full": "Teljes",
+                    "missing": "Hiányzik",
+                    "normal": "Normál",
+                    "unformatted": "Nem formázott"
                 }
             },
             "status": {
@@ -1228,6 +1281,7 @@
                     "occupied": "Foglalt",
                     "normal": "Normál",
                     "low": "Alacsony",
+                    "medium": "Közepes",
                     "high": "Magas",
                     "unwashed": "Nem mosott",
                     "pre_washing": "Előmosás",
@@ -1247,8 +1301,6 @@
                     "full": "Teljes",
                     "empty": "Üres",
                     "missing": "Hiányzik",
-                    "formatting": "Formázás",
-                    "unformatted": "Nem formázott",
                     "failed": "Sikertelen",
                     "replying": "Válaszadás",
                     "playback": "Lejátszás",
@@ -1369,6 +1421,9 @@
                     "off": "Nyitott",
                     "on": "Zárt"
                 }
+            },
+            "camera_record": {
+                "name": "Kamera felvétel"
             },
             "do_not_disturb": {
                 "name": "Ne zavarjanak"

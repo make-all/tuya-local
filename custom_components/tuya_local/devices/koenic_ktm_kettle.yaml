@@ -3,10 +3,23 @@ products:
   - id: d9wi3si7ytqma30a
     manufacturer: Koenic
     model: KTM 221723 M
+  - id: h6MjwrnldNTu4kX3
+    manufacturer: ProfiCook
+    model: PC-WKS 1167 G
 entities:
   - entity: water_heater
     translation_key: kettle
     dps:
+      - id: 101
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: "4"
+            value: electric
+          - dps_val: "6"
+            value: "off"
+          - value: electric
+            hidden: true
       - id: 102
         type: integer
         name: temperature

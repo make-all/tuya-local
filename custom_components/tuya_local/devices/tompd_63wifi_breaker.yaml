@@ -50,6 +50,7 @@ entities:
         type: integer
         name: sensor
         unit: kWh
+        class: measurement
         mapping:
           - scale: 10
   - entity: number
@@ -133,7 +134,6 @@ entities:
           max: 500
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -141,11 +141,11 @@ entities:
         optional: true
         unit: V
         mask: "FFFF000000000000"
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -153,11 +153,11 @@ entities:
         optional: true
         unit: A
         mask: "0000FFFFFF000000"
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -165,5 +165,6 @@ entities:
         optional: true
         unit: kW
         mask: "0000000000FFFFFF"
+        class: measurement
         mapping:
           - scale: 1000

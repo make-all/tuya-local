@@ -1,8 +1,8 @@
 name: Dehumidifier
-# products:
-#   - id: UNKNOWN
-#     manufacturer: Qlima
-#     model: D820A
+products:
+  - id: poorkle3ij0aapof
+    manufacturer: Qlima
+    model: D820A
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -55,6 +55,21 @@ entities:
                     value: 67
                   - dps_val: high
                     value: 100
+                  - dps_val: auto
+                    value: null
+                    hidden: true
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
       - id: 8
         type: boolean
         name: oscillate

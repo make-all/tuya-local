@@ -235,7 +235,6 @@ entities:
   - entity: sensor
     name: Total visits
     icon: "mdi:counter"
-    class: measurement
     category: diagnostic
     dps:
       - id: 7
@@ -285,6 +284,7 @@ entities:
         type: integer
         name: sensor
         unit: °C
+        class: measurement
   # Internal humidity level
   - entity: sensor
     class: humidity
@@ -293,6 +293,7 @@ entities:
         type: integer
         name: sensor
         unit: "%"
+        class: measurement
   # Detects if cat is currently in the box
   - entity: binary_sensor
     icon: "mdi:cat"
@@ -308,8 +309,7 @@ entities:
   # Event Notifications
   # Various device status and activity notifications
   - entity: event
-    name: Notification
-    icon: "mdi:bell"
+    translation_key: notification
     dps:
       - id: 21
         type: bitfield

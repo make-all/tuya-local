@@ -58,13 +58,35 @@ entities:
         name: direction
         type: string
         optional: true
-  - entity: sensor
-    translation_key: time_remaining
-    class: duration
-    category: diagnostic
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: time
+    translation_key: timer
+    category: config
     dps:
       - id: 64
         type: integer
         optional: true
-        name: sensor
-        unit: min
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value

@@ -3,10 +3,11 @@ products:
   - id: tftanqr9elztfkdp
     manufacturer: HunterTBK
     model: HF-6602T
+  - id: is5yumkqdhcfxskv
+    model: M18
 entities:
   - entity: switch
-    name: Camera record
-    icon: "mdi:record"
+    translation_key: camera_record
     dps:
       - id: 150
         type: boolean
@@ -111,11 +112,9 @@ entities:
           - dps_val: "2"
             value: "on"
   - entity: sensor
-    name: SD status
     class: enum
-    translation_key: status
+    translation_key: sd_status
     category: diagnostic
-    icon: "mdi:micro-sd"
     dps:
       - id: 110
         type: integer
@@ -345,7 +344,7 @@ entities:
           - dps_val: "1"
             value: Always awake
   - entity: event
-    name: Push message
+    translation_key: notification
     dps:
       - id: 212
         type: string

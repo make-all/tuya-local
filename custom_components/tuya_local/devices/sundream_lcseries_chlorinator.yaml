@@ -48,6 +48,7 @@ entities:
               min: 5
               max: 100
           - step: 50
+            hidden: true  # prevent this from interfering with the redirect
       - id: 105
         type: integer
         optional: true
@@ -164,8 +165,7 @@ entities:
         optional: true
         name: version
   - entity: binary_sensor
-    name: Water flow
-    class: moving
+    translation_key: water_flow
     category: diagnostic
     dps:
       - id: 113

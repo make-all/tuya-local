@@ -285,13 +285,13 @@ entities:
         type: boolean
         name: switch
   - entity: sensor
-    category: config
     class: power
     dps:
       - id: 22
         type: integer
         name: sensor
         unit: W
+        class: measurement
         mapping:
           - scale: 10
   - entity: binary_sensor

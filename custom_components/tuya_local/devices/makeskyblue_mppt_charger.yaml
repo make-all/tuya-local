@@ -8,13 +8,14 @@ entities:
     class: enum
     category: diagnostic
     name: Charge mode
+    translation_key: status
     dps:
       - id: 101
         type: string
         name: sensor
         mapping:
           - dps_val: mode_1
-            value: Standby
+            value: standby
           - dps_val: mode_2
             value: Constant current
           - dps_val: mode_3
@@ -142,7 +143,6 @@ entities:
           min: 0
           max: 1000
   - entity: sensor
-    category: diagnostic
     class: battery
     dps:
       - id: 111
@@ -166,7 +166,6 @@ entities:
           - dps_val: lithium
             value: Lithium
   - entity: sensor
-    category: diagnostic
     class: temperature
     dps:
       - id: 113
@@ -176,6 +175,7 @@ entities:
         range:
           min: -400
           max: 1200
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor

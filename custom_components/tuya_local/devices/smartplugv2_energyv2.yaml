@@ -13,6 +13,12 @@ products:
   - id: dsbptnyuqso0uber
     manufacturer: Aziot
     model: 10A smart plug
+  - id: keyjup78v54myhan
+    manufacturer: GoLogi
+    model: IP44
+  - id: key7mapd9sdpyyf9
+    manufacturer: Blackt Electrotech
+    model: Smart Meter Pro Switch
 entities:
   - entity: switch
     class: outlet
@@ -69,7 +75,6 @@ entities:
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: mA
       - id: 23
         type: integer
@@ -83,7 +88,6 @@ entities:
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: W
         mapping:
           - scale: 10
@@ -99,7 +103,6 @@ entities:
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: V
         mapping:
           - scale: 10
@@ -113,6 +116,7 @@ entities:
     dps:
       - id: 26
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
@@ -120,6 +124,7 @@ entities:
           - value: true
       - id: 26
         type: bitfield
+        optional: true
         name: fault_code
   - entity: select
     category: config

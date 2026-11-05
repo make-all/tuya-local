@@ -6,6 +6,9 @@ products:
   - id: vd6bt2zlpmjmm02o
     manufacturer: Papifeed
     model: 7L camera 202301
+  - id: lcvb9ivikrml5f1v
+    manufacturer: Cat Elite
+    model: Sync
 entities:
   - entity: switch
     translation_key: motion_detection
@@ -112,7 +115,7 @@ entities:
         optional: true
         name: button
   - entity: event
-    name: Notification
+    translation_key: notification
     dps:
       - id: 212
         type: utf16b64

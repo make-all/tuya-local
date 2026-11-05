@@ -1,0 +1,143 @@
+name: Humidifier
+products:
+  - id: z239up9fr3blouy3
+    manufacturer: SoleusAir
+    model: AHU-2000L3
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 23
+        type: string
+        name: speed
+        mapping:
+          - dps_val: level_1
+            value: 20
+          - dps_val: level_2
+            value: 40
+          - dps_val: level_3
+            value: 60
+          - dps_val: level_4
+            value: 80
+          - dps_val: level_5
+            value: 100
+  - entity: humidifier
+    class: humidifier
+    translation_key: extended
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 13
+        type: integer
+        name: humidity
+        range:
+          min: 40
+          max: 80
+        mapping:
+          - step: 5
+      - id: 14
+        type: integer
+        name: current_humidity
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: water_level
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Heat
+    category: config
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Plasma
+    category: config
+    dps:
+      - id: 35
+        type: boolean
+        name: switch

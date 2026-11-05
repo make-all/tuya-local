@@ -3,6 +3,9 @@ products:
   - id: iHRCXog1Au8bh7XG
     manufacturer: eMylo
     model: US-08e3 2 gang+USB wall outlet
+  - id: higlgjzngsrapyev
+    manufacturer: "Nine&One"
+    model: HYS-02-017
 entities:
   - entity: switch
     translation_key: switch_x
@@ -132,6 +135,79 @@ entities:
         name: switch
       - id: 8
         type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Add electricity
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: current
+    hidden: unavailable
+    dps:
+      - id: 18
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 18
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: power
+    hidden: unavailable
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: voltage
+    hidden: unavailable
+    dps:
+      - id: 20
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 20
+        type: integer
         optional: true
         name: available
         mapping:

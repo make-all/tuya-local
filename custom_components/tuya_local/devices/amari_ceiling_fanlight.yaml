@@ -38,23 +38,6 @@ entities:
         range:
           min: 0
           max: 86399
-  - entity: number
-    translation_key: timer
-    deprecated: time.timer  # 2026-01-20
-    category: config
-    dps:
-      - id: 26
-        type: integer
-        optional: true
-        name: value
-        unit: min
-        precision: 0
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: text
     name: Light control
     hidden: true

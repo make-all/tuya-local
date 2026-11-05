@@ -13,10 +13,12 @@ body:
         Thank you for reporting your unsupported device. Please provide as much information as you can. Because the developers are busy, new device requests will be prioritised as follows:
 
           1. Well written pull requests
-          2. Well written issues with warning level logs containing local dps from when adding the device and QueryThingsDataModel API results or equivalent
-          3. AI generated pull requests where the submitter is not responsive in fixing auto-detected issues and making requested changes
-          4. Issues with logs and enough dps info to make a useful config.
+          2. Well written issues with warning level logs containing local dps from when adding the device and QueryThingsDataModel API results in original format
+          3. Issues with logs and enough dps info to make a useful config.
+          4. AI generated pull requests where the submitter is not responsive in fixing auto-detected issues and making requested changes
           5. Issues with logs and a tested config
+
+          Note: with current workload, only the first two priorities are being worked on, and PRs have been temporarily paused due to overloading with level 5 priority requests.
 
   - type: textarea
     id: log
@@ -46,7 +48,7 @@ body:
     attributes:
       label: DPS information
       description: |
-        Preferred data is QueryThingsDataModel API result from iot.tuya.com (under Cloud / API Explorer / Device Control)
+        Preferred data is QueryThingsDataModel API result from iot.tuya.com (under Cloud / API Explorer / Device Control). **Please do not pass the data through filters, translations or reformatters**, original data ensures that no information is lost and a consistent format allows developers to format the data themselves to be most convenient for them.
         If you do not have access to iot.tuya.com, but have other ways of obtaining dps information, the minimum info required is the numeric dp id, name/description, data type, and for settable dps, the range for numeric values, and the list of possible values for enum values. If you cannot obtain this info, there is no way for us to support you, as only owners of devices have access to the data about them.
       render: text
     validations:

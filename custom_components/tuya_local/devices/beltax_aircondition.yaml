@@ -1,8 +1,15 @@
 name: Air conditioner
+legacy_type: monzana_klimaanlage_air_conditioner
 products:
   - id: q1z0isgflmccqzpz
     manufacturer: Beltax
     model: Air Condition-A011_D2
+  - id: 3ofbq4q9ewc8yc4e
+    manufacturer: Medion
+    model: Life P901
+  - id: rcbmbxfhfjka1kap
+    manufacturer: Monzana
+    model: Klimaanlage
 entities:
   - entity: climate
     dps:
@@ -65,31 +72,32 @@ entities:
 
       - id: 19
         type: string
+        optional: true
         name: temperature_unit
         # Device sends "c"/"f"; integration expects "C"/"F" for unit_from_ascii
         mapping:
-          - dps_val: c
-            value: "C"
           - dps_val: f
             value: "F"
+          - value: "C"
 
       - id: 23
         type: integer
+        optional: true
         name: temperature_f
         hidden: true
         range:
           min: 61
           max: 90
-        optional: true
 
       - id: 24
         type: integer
+        optional: true
         name: current_temperature_f
         hidden: true
-        optional: true
 
       - id: 103
         type: string
+        optional: true
         name: heat_supported
         hidden: true
         mapping:
@@ -120,3 +128,24 @@ entities:
       - id: 22
         type: bitfield
         name: fault_code
+      - id: 102
+        type: integer
+        optional: true
+        name: client_id
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 14
+        type: boolean
+        optional: true
+        name: lock
+      - id: 14
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

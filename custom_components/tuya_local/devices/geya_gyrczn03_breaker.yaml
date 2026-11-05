@@ -1,0 +1,233 @@
+name: Circuit breaker
+products:
+  - id: gnb8pdd1sutdaxmc
+    manufacturer: Geya
+    model: GYRC-ZN03
+entities:
+  - entity: switch
+    translation_key: breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: button
+    name: Refresh
+    category: config
+    dps:
+      - id: 35
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: frequency
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overvoltage
+    class: voltage
+    category: config
+    dps:
+      - id: 141
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 250
+          max: 300
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Undervoltage
+    class: voltage
+    category: config
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 160
+          max: 200
+  - entity: number
+    name: Overvoltage delay
+    category: config
+    class: duration
+    dps:
+      - id: 151
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 10
+  - entity: number
+    name: Undervoltage delay
+    category: config
+    class: duration
+    dps:
+      - id: 152
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 10
+  - entity: number
+    name: Phase loss delay
+    category: config
+    class: duration
+    dps:
+      - id: 153
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 10
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
+    category: config
+    dps:
+      - id: 161
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
+    category: config
+    dps:
+      - id: 162
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Phase loss
+    category: config
+    dps:
+      - id: 163
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: switch
+    name: Auto reset
+    category: config
+    dps:
+      - id: 165
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 191
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: RemoteClose
+            value: Closed remotely
+          - dps_val: RemoteLocked
+            value: Opened remotely
+          - dps_val: AutoClose
+            value: Auto closed
+          - dps_val: ManualClose
+            value: Closed manually
+          - dps_val: RestDefault
+            value: resetting
+          - dps_val: ManualOpen
+            value: Opened manually
+          - dps_val: OVolAlarm
+            value: Over voltage alarm
+          - dps_val: UVolAlarm
+            value: Under voltage alarm
+          - dps_val: OVolTrip
+            value: Over voltage tripped
+          - dps_val: UVolTrip
+            value: Under voltage tripped
+          - dps_val: QXAlarm
+            value: Phase loss alarm
+          - dps_val: QXTrip
+            value: Phase loss tripped
+          - dps_val: Normal
+            value: normal
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 192
+        type: boolean
+        optional: true
+        name: button

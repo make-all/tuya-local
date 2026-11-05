@@ -104,7 +104,6 @@ entities:
   - entity: sensor
     name: Surface temperature
     class: temperature
-    category: diagnostic
     icon: "mdi:thermometer-lines"
     dps:
       - id: 105
@@ -112,16 +111,17 @@ entities:
         optional: true
         name: sensor
         unit: C
+        class: measurement
   - entity: sensor
     name: Room temperature
     class: temperature
-    category: diagnostic
     icon: "mdi:home-thermometer-outline"
     dps:
       - id: 3
         type: integer
         name: sensor
         unit: C
+        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic

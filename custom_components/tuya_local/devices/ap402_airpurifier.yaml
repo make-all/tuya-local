@@ -1,0 +1,130 @@
+name: Air purifier
+products:
+  - id: 28rajsdar2as0rhv
+    model: AP402
+entities:
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: manual
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: Low
+            value: 25
+          - dps_val: Medium
+            value: 50
+          - dps_val: High
+            value: 75
+          - dps_val: Turbo
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 8h
+            value: 8h
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code

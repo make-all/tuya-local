@@ -1,0 +1,144 @@
+name: Energy meter
+# products:
+#   - id: TBC - no Tuya cloud product_id available (no cloud link)
+#     manufacturer: Zemismart
+#     model: SPM01-D2TW-ZM
+#     model_id: Metering_1PN_WiFi
+# Note: this firmware batch of the SPM01-D2TW-ZM uses a different dp layout to
+# the one merged into earu_smart_wifi_circuit_breaker_with_energy_monitor.yaml
+# (upstream issue #2219), which expects dp101/dp16/dp6 that this unit never
+# sends. Confirmed live via direct DPS query: dps 1, 9, 19, 23, 32, 50, 102,
+# 103, 104. See also upstream issue #4081, which reports the same dp23
+# reverse-energy shift on the sibling 3-phase SPM02-D2TW.
+entities:
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 19
+        type: string
+        name: meter_id
+        optional: true
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 50
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: short_circuit
+          - dps_val: 2
+            value: surge
+          - dps_val: 4
+            value: overload
+          - dps_val: 8
+            value: earth_leak
+          - dps_val: 16
+            value: temperature_difference
+          - dps_val: 32
+            value: fire
+          - dps_val: 64
+            value: high_power
+          - dps_val: 128
+            value: self_test
+          - dps_val: 256
+            value: over_current
+          - dps_val: 512
+            value: unbalanced
+          - dps_val: 1024
+            value: over_voltage
+          - dps_val: 2048
+            value: under_voltage
+          - dps_val: 4096
+            value: miss_phase
+          - dps_val: 8192
+            value: outage
+          - dps_val: 16384
+            value: magnetism
+          - dps_val: 32768
+            value: credit_low
+          - dps_val: 65536
+            value: credit_expired
