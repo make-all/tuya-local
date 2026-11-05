@@ -9,6 +9,8 @@ from homeassistant.components.media_player import (
     MediaPlayerEntityFeature,
     MediaPlayerState,
 )
+from homeassistant.components.media_player.significant_change import PROP_TO_ATTR
+from homeassistant.util.dt import utcnow
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
@@ -52,6 +54,14 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
         self._shuffle_dp = dps_map.pop("shuffle", None)
         self._repeat_dp = dps_map.pop("repeat", None)
         self._sound_mode_dp = dps_map.pop("sound_mode", None)
+        self._metadata = {}
+        for n, dp in dps_map:
+            if n in PROP_TO_ATTR:
+                self._metadata[dp.id] = dps_map.pop(n)
+
+        for dp in self._metadata.values():
+            dps_map.pop(dp.name, None)
+
         self._init_end(dps_map)
 
         self._support_flags = MediaPlayerEntityFeature(0)
@@ -93,6 +103,7 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
         # MEDIA_ENQUEUE for adding media to the queue
         # SEARCH_MEDIA for searching media on the device
 
+    @property
     def state(self):
         """Return the state of the media player."""
         if self._state_dp:
@@ -107,54 +118,49 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
             return MediaPlayerState.ON
         return None
 
-    def volume_level(self):
-        """Return the volume level of the media player (0..1)."""
-        if self._volume_dp:
-            return self._volume_dp.get_value(self._device)
-        return None
-
+    @property
     def volume_step(self):
         """Return the volume step of the media player."""
         if self._volume_dp:
             return self._volume_dp.step(self._device)
         return None
 
-    def is_volume_muted(self):
-        """Return True if the volume is muted."""
-        if self._mute_dp:
-            return self._mute_dp.get_value(self._device)
-        return None
-
+    @property
     def source(self):
         """Return the current input source of the media player."""
         if self._source_dp:
             return self._source_dp.get_value(self._device)
         return None
 
+    @property
     def source_list(self):
         """Return the list of available input sources of the media player."""
         if self._source_dp:
             return self._source_dp.values(self._device)
         return None
 
+    @property
     def sound_mode(self):
         """Return the current sound mode of the media player."""
         if self._sound_mode_dp:
             return self._sound_mode_dp.get_value(self._device)
         return None
 
+    @property
     def sound_mode_list(self):
         """Return the list of available sound modes of the media player."""
         if self._sound_mode_dp:
             return self._sound_mode_dp.values(self._device)
         return None
 
+    @property
     def shuffle(self):
         """Return the current shuffle state of the media player."""
         if self._shuffle_dp:
             return self._shuffle_dp.get_value(self._device)
         return None
 
+    @property
     def repeat(self):
         """Return the current repeat state of the media player."""
         if self._repeat_dp:
@@ -265,3 +271,16 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
             await self._repeat_dp.async_set_value(self._device, repeat)
         else:
             raise NotImplementedError()
+
+    def on_receive(self, dps, full_poll):
+        """Handle an update from the device."""
+        # Set metadata attributes
+        for d, v in dps:
+            if d in self._metadata:
+                setattr(self, _attr(self._metadata[d]), v)
+                if self._metadata[d].name == "media_position":
+                    setattr(self, "_attr_media_position_updated_at", utcnow())
+
+    def _attr(dp):
+        """Return the attribute name for a given datapoint."""
+        return f"_attr_{dp.name}"

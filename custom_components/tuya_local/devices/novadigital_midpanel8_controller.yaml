@@ -1,0 +1,559 @@
+name: Control panel
+products:
+  - id: o4h9aftufavvqjcm
+    manufacturer: Nova Digital
+    model: MidPanel 8
+entities:
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Device
+    category: config
+    icon: "mdi:devices"
+    hidden: true
+    dps:
+      - id: 2
+        type: string
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: media_player
+    dps:
+      - id: 5
+        type: boolean
+        optional: true
+        name: mute
+      - id: 6
+        type: string
+        name: source
+        optional: true
+        mapping:
+          - dps_val: cloud
+            value: Cloud
+          - dps_val: local
+            value: Local
+          - dps_val: aux
+            value: Aux-In
+          - dps_val: bluetooth
+            value: Bluetooth
+      - id: 7
+        type: json
+        name: playback_info
+      - id: 8
+        type: string
+        optional: true
+        name: shuffle
+        mapping:
+          - dps_val: random
+            value: true
+          - dps_val: order
+            value: false
+          - value: false
+            hidden: true
+      - id: 8
+        type: string
+        optional: true
+        name: repeat
+        mapping:
+          - dps_val: repeat_one
+            value: one
+          - dps_val: repeat_all
+            value: all
+          - dps_val: order
+            value: "off"
+          - value: "off"
+            hidden: true
+      - id: 9
+        type: string
+        optional: true
+        name: sound_mode
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: pop
+            value: Pop
+          - dps_val: opera
+            value: Opera
+          - dps_val: classical
+            value: Classical
+          - dps_val: jazz
+            value: Jazz
+          - dps_val: rock
+            value: Rock
+          - dps_val: folk
+            value: Folk
+          - dps_val: heavy_metal
+            value: Heavy metal
+          - dps_val: hip_hop
+            value: Hip hop
+          - dps_val: wave
+            value: New wave
+      - id: 12
+        type: integer
+        optional: true
+        name: media_position
+      - id: 13
+        type: integer
+        optional: true
+        name: media_duration
+  - entity: number
+    name: Treble
+    icon: "mdi:music-clef-treble"
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Bass
+    icon: "mdi:music-clef-bass"
+    dps:
+      - id: 11
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 17
+        type: boolean
+        name: play
+      - id: 80
+        type: integer
+        name: volume
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 100
+      - id: 82
+        type: boolean
+        optional: true
+        name: pause
+      - id: 85
+        type: boolean
+        optional: true
+        name: prev
+      - id: 86
+        type: boolean
+        optional: true
+        name: next
+  - entity: switch
+    name: Welcome message
+    category: config
+    icon: "mdi:message-arrow-left"
+    dps:
+      - id: 15
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Background music
+    icon: "mdi:music-note"
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Preset
+    icon: "mdi:bookmark-music"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: onlinemusic1
+            value: Cloud 1
+          - dps_val: onlinemusic2
+            value: Cloud 2
+          - dps_val: onlinemusic3
+            value: Cloud 3
+          - dps_val: onlinemusic4
+            value: Cloud 4
+          - dps_val: onlinemusic5
+            value: Cloud 5
+          - dps_val: onlinemusic6
+            value: Cloud 6
+          - dps_val: localmusic1
+            value: Local 1
+          - dps_val: localmusic2
+            value: Local 2
+          - dps_val: localmusic3
+            value: Local 3
+          - dps_val: localmusic4
+            value: Local 4
+          - dps_val: localmusic5
+            value: Local 5
+          - dps_val: localmusic6
+            value: Local 6
+          - dps_val: localmusic7
+            value: Local 7
+          - dps_val: localmusic8
+            value: Local 8
+          - dps_val: localmusic9
+            value: Local 9
+          - dps_val: localmusic10
+            value: Local 10
+          - dps_val: localmusic11
+            value: Local 11
+          - dps_val: localmusic12
+            value: Local 12
+  - entity: text
+    name: Voice settings
+    category: config
+    icon: "mdi:message-settings"
+    hidden: true
+    dps:
+      - id: 75
+        type: json
+        name: value
+  - entity: text
+    name: Alexa client secret
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 76
+        type: string
+        optional: true
+        sensitive: true
+        name: value
+  - entity: select
+    name: Alexa login method
+    icon: "mdi:login"
+    category: config
+    hidden: true
+    dps:
+      - id: 77
+        type: string
+        name: option
+        mapping:
+          - dps_val: login_website
+            value: Web
+          - dps_val: login_app
+            value: App
+      - id: 90
+        type: string
+        name: product
+      - id: 91
+        type: string
+        name: serialnumber
+        sensitive: true
+      - id: 92
+        type: string
+        name: code_challenge
+        sensitive: true
+      - id: 94
+        type: string
+        optional: true
+        name: redirect_url
+      - id: 95
+        type: string
+        optional: true
+        sensitive: true
+        name: client_id
+      - id: 96
+        type: string
+        optional: true
+        name: alexa_status
+      - id: 97
+        type: string
+        name: binding_status
+  - entity: button
+    name: Wake
+    icon: "mdi:sleep-off"
+    dps:
+      - id: 78
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Alexa wakeword language
+    translation_key: language
+    category: config
+    hidden: true
+    dps:
+      - id: 79
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: english_us
+            value: english_us
+          - dps_val: portuguese_br
+            value: portuguese
+          - dps_val: english_au
+            value: english_au
+          - dps_val: french_ca
+            value: french_ca
+          - dps_val: french_fr
+            value: french
+          - dps_val: german_de
+            value: german
+          - dps_val: english_uk
+            value: english
+          - dps_val: english_in
+            value: english_in
+          - dps_val: spanish_es
+            value: spanish
+          - dps_val: spanish_mx
+            value: latin
+          - dps_val: italian_it
+            value: italian
+          - dps_val: japanese_jp
+            value: japanese
+  - entity: switch
+    name: Privacy mode
+    icon: "mdi:microphone-off"
+    category: config
+    dps:
+      - id: 81
+        type: boolean
+        name: switch
+  - entity: select
+    name: Speaker mode
+    icon: "mdi:speaker-message"
+    category: config
+    dps:
+      - id: 83
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: smart_speaker
+            value: Smart speaker
+          - dps_val: bluetooth
+            value: Bluetooth
+  - entity: switch
+    name: Bluetooth
+    category: config
+    icon: "mdi:bluetooth"
+    dps:
+      - id: 84
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Smart speaker playback mode
+    category: config
+    dps:
+      - id: 87
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: random
+            value: Shuffle
+            icon: "mdi:shuffle"
+          - dps_val: order
+            value: Normal
+            icon: "mdi:shuffle-disabled"
+          - dps_val: repeat_all
+            value: Repeat all
+            icon: "mdi:repeat"
+          - dps_val: repeat_one
+            value: Repeat track
+            icon: "mdi:repeat-once"
+  - entity: text
+    name: Alarm clock
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 88
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Reminder
+    category: config
+    icon: "mdi:message-alert"
+    hidden: true
+    dps:
+      - id: 89
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Alexa auth code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 93
+        type: string
+        optional: true
+        sensitive: true
+        name: value
+  - entity: button
+    name: Alexa disconnect
+    category: config
+    icon: "mdi:cloud-remove"
+    hidden: true
+    dps:
+      - id: 98
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Alexa language
+    translation_key: language
+    category: config
+    hidden: true
+    dps:
+      - id: 99
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: english_au
+            value: english_au
+          - dps_val: english_ca
+            value: english_ca
+          - dps_val: english_in
+            value: english_in
+          - dps_val: english_uk
+            value: english
+          - dps_val: english_us
+            value: english_us
+          - dps_val: french_ca
+            value: french_ca
+          - dps_val: french_fr
+            value: french
+          - dps_val: german_de
+            value: german
+          - dps_val: hindi_in
+            value: hindi
+          - dps_val: italian_it
+            value: italian
+          - dps_val: japanese_jp
+            value: japanese
+          - dps_val: portuguese_br
+            value: portuguese
+          - dps_val: spanish_es
+            value: spanish
+          - dps_val: spanish_mx
+            value: latin
+          - dps_val: spanish_us
+            value: spanish_us
+  - entity: remote
+    dps:
+      - id: 201
+        name: send
+        type: string
+        optional: true
+      - id: 202
+        name: receive
+        type: string
+        optional: true
+        persist: false
+  - entity: infrared
+    dps:
+      - id: 201
+        type: string
+        optional: true
+        name: send
+  - entity: number
+    name: Voice volume
+    category: config
+    translation_key: volume
+    dps:
+      - id: 203
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Voice mic
+    icon: "mdi:microphone"
+    category: config
+    dps:
+      - id: 204
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Voice play
+    category: config
+    dps:
+      - id: 205
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:pause-box"
+          - dps_val: true
+            icon: "mdi:play-box"
+  - entity: switch
+    name: Bluetooth playback
+    icon: "mdi:bluetooth-audio"
+    category: config
+    dps:
+      - id: 206
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    name: Notification
+    dps:
+      - id: 212
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: notify
+      - id: 212
+        type: utf16b64
+        optional: true
+        name: message

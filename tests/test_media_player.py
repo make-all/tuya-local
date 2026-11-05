@@ -124,3 +124,31 @@ class TestMediaPlayerState:
 
         # Test that the state is correct when the device is playing
         assert media_player.state == MediaPlayerState.PLAYING
+
+    async def async_test_metadata(self, hass, mocker):
+        """Test media metadata properties."""
+        dps = {"6": "local", "8": "order", "9": "pop", "12": 0, "13": 100}
+        entry = MockConfigEntry(
+            domain=DOMAIN,
+            data={
+                CONF_TYPE: "novadigital_midpanel8_controller",
+                CONF_DEVICE_ID: "dummy",
+                CONF_PROTOCOL_VERSION: "auto",
+            },
+        )
+        m_add_entities = Mock()
+        m_device = mock_device(dps, mocker)
+
+        hass.data[DOMAIN] = {"dummy": {"device": m_device}}
+
+        await async_setup_entry(hass, entry, m_add_entities)
+        media_player = hass.data[DOMAIN]["dummy"]["media_player"]
+        now = hass.helpers.event.dt_util.utcnow()
+        media_player.on_receive({"12": 123, "13": 345})
+        assert media_player.media_position == 123
+        assert (
+            media_player.media_position_updated_at >= now
+            and media_player.media_position_updated_at
+            <= hass.helpers.event.dt_util.utcnow()
+        )
+        assert media_player.media_duration == 345
