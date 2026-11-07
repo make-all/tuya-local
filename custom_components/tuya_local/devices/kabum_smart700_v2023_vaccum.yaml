@@ -57,6 +57,8 @@ entities:
             value: zone
           - dps_val: pose
             value: go_to_position
+          - dps_val: part
+            value: clean_spot
           - dps_val: wallfollow
             value: wall_follow
           - dps_val: selectroom
@@ -99,6 +101,10 @@ entities:
             value: wall_follow
           - dps_val: direction_control
             value: direction_control
+          - dps_val: repositing
+            value: relocating
+          - dps_val: fault
+            value: fault
       - id: 9
         type: string
         name: fan_speed
@@ -120,6 +126,9 @@ entities:
         optional: true
         name: direction_control
         mapping:
+          # firmware enum is spelled "foward"
+          - dps_val: foward
+            value: forward
           - dps_val: forward
             value: forward
           - dps_val: backward
@@ -259,7 +268,7 @@ entities:
       - id: 17
         type: integer
         name: sensor
-        unit: min
+        unit: h
   - entity: button
     name: Edge brush reset
     class: restart
@@ -277,7 +286,7 @@ entities:
       - id: 19
         type: integer
         name: sensor
-        unit: min
+        unit: h
   - entity: button
     name: Roll brush reset
     class: restart
@@ -295,7 +304,7 @@ entities:
       - id: 21
         type: integer
         name: sensor
-        unit: min
+        unit: h
   - entity: button
     translation_key: filter_reset
     category: config
@@ -312,7 +321,7 @@ entities:
       - id: 23
         type: integer
         name: sensor
-        unit: min
+        unit: h
   - entity: button
     name: Mop reset
     class: restart
@@ -334,6 +343,27 @@ entities:
           - dps_val: null
             value: false
             hidden: true
+      # 0x33 frame: AA 00 08 33 tz start_h start_m 00 end_h end_m overnight cs
+      - id: 33
+        type: base64
+        name: start_hour
+        optional: true
+        mask: "FF000000000000"
+      - id: 33
+        type: base64
+        name: start_minute
+        optional: true
+        mask: "FF0000000000"
+      - id: 33
+        type: base64
+        name: end_hour
+        optional: true
+        mask: "FF000000"
+      - id: 33
+        type: base64
+        name: end_minute
+        optional: true
+        mask: "FF0000"
   - entity: number
     translation_key: volume
     category: config
@@ -343,14 +373,8 @@ entities:
         name: value
         range:
           min: 0
-          max: 10
+          max: 100
         unit: "%"
-        mapping:
-          - scale: 0.1
-      - id: 36
-        name: language
-        type: string
-        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -388,7 +412,7 @@ entities:
           - dps_val: 512
             value: collision
           - dps_val: 1024
-            value: dust_box_stuck
+            value: dust_box_missing
           - dps_val: 4096
             value: ground_check_failure
           - dps_val: 32768
@@ -397,3 +421,104 @@ entities:
             value: high_current
           - dps_val: 131072
             value: charge_port_closed
+          - dps_val: 524288
+            value: stuck
+          - dps_val: 1048576
+            value: trapped
+          - dps_val: 2097152
+            value: laser_cover_stuck
+          - dps_val: 4194304
+            value: laser_blocked
+          - dps_val: 8388608
+            value: wall_sensor_blocked
+          - dps_val: 16777216
+            value: virtual_wall_or_no_go_error
+          - dps_val: 33554432
+            value: charging_error
+          - dps_val: 67108864
+            value: picked_up
+  - entity: switch
+    name: Resume after charging
+    icon: "mdi:battery-sync"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Y-shape mopping
+    icon: "mdi:alpha-y-box-outline"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Custom room settings
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: Edge brush remaining
+    icon: "mdi:percent"
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 2
+  - entity: sensor
+    name: Roll brush remaining
+    icon: "mdi:percent"
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 3
+  - entity: sensor
+    name: Filter remaining
+    icon: "mdi:percent"
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 1.2
+  - entity: sensor
+    name: Mop remaining
+    icon: "mdi:percent"
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 1.2
+  - entity: text
+    name: Protocol command
+    icon: "mdi:console"
+    category: config
+    dps:
+      # raw Tuya sweeper protocol frames (AA 00 len cmd data checksum), base64
+      - id: 15
+        type: base64
+        name: value
+        optional: true
