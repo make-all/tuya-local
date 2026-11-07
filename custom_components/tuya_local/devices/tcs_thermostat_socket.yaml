@@ -1,0 +1,319 @@
+name: Thermostat Socket TCS
+entities:
+  # --- INTERRUTTORI PRINCIPALI ---
+  - entity: switch
+    name: Main Power
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Relay Power (Socket)
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 110
+        type: boolean
+        name: lock
+
+  # --- MODALITA' E TEMPERATURE ---
+  - entity: select
+    name: Work Mode
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: heat
+            value: Heating (Caldo)
+          - dps_val: cool
+            value: Cooling (Freddo)
+          - dps_val: cycle
+            value: Cycle Timer
+          - dps_val: prg
+            value: Programmazione (Prg)
+
+  - entity: select
+    name: Secondary Program Mode (DP 108)
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: heat
+            value: Heating
+          - dps_val: cool
+            value: Cooling
+
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Target Temperature
+    class: temperature
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: select
+    name: Temperature Unit
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+
+  # --- CONFIGURAZIONI E CALIBRAZIONE ---
+  - entity: number
+    name: Hysteresis (Difference)
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Temperature Calibration
+    category: config
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Countdown Timer
+    category: config
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: min
+
+  # --- LIMITI E PROTEZIONI ---
+  - entity: switch
+    name: Frost Protection
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Cold Delay Enable
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Cold Delay Time
+    category: config
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+
+  - entity: switch
+    name: Upper Limit / Alarm Enable
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Upper Limit Temp
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Upper Alarm Temp
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: switch
+    name: Lower Limit / Alarm Enable
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Lower Limit Temp
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Lower Alarm Temp
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+
+  # --- IMPOSTAZIONI SCHERMO E SISTEMA ---
+  - entity: switch
+    name: Power Restore State
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Screen On by App
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Screen Brightness
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Screen Timeout
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: sensor
+
+  # --- DIAGNOSTICA AVANZATA ---
+  - entity: binary_sensor
+    name: Stato Relè (In Funzione)
+    class: running
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+
+  - entity: sensor
+    name: Fault Status
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+
+  - entity: sensor
+    name: MFG Model
+    category: diagnostic
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Firmware Build Datetime
+    category: diagnostic
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Time of Relay Changed
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: sensor
+    name: Time of Cool Delay End
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Local System Time
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Air Pressure Index
+    category: diagnostic
+    dps:
+      - id: 121
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: App Features Flag
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
