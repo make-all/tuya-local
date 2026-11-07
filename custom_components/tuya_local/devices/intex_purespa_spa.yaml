@@ -5,7 +5,10 @@ products:
     model: PureSpa
   - id: bksofco59ud7eovz
     manufacturer: Intex
-    model: PureSpa
+    model: PureSpa Salt & Jet
+  - id: m7qtzuouc2cvnekt
+    manufacturer: Intex
+    model: PureSpa Bubble
 entities:
   - entity: water_heater
     dps:
@@ -67,10 +70,20 @@ entities:
         name: switch
   - entity: switch
     translation_key: electrolytic_sterilization
+    hidden: unavailable
     dps:
       - id: 103
         type: boolean
+        optional: true
         name: switch
+      - id: 103
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     translation_key: time_remaining
     class: duration
