@@ -6,7 +6,6 @@ from typing import Any
 import probatio as vol
 import tinytuya
 from homeassistant.config_entries import (
-    CONN_CLASS_LOCAL_PUSH,
     ConfigEntry,
     ConfigFlow,
     OptionsFlow,
@@ -54,7 +53,6 @@ DEVICE_DETAILS_URL = (
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
     MINOR_VERSION = 25
-    CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
 
