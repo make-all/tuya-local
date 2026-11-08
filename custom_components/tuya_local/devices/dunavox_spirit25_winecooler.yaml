@@ -1,0 +1,141 @@
+name: Wine cooler
+products:
+  - id: c6mozff2a2vgacya
+    manufacturer: Dunavox
+    model: Spirit 25
+    model_id: DVS-25.65
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: high_temperature
+          - dps_val: 2
+            value: low_temperature
+          - dps_val: 4
+            value: door_open
+          - dps_val: 8
+            value: sensor_fault
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: std
+            value: Standard
+          - dps_val: eco
+            value: Eco
+          - dps_val: demo
+            value: Demo
+          - dps_val: sab
+            value: Sabbath
+  - entity: light
+    category: config
+    dps:
+      - id: 103
+        name: brightness
+        type: string
+        range:
+          min: 128
+          max: 255
+        mapping:
+          - dps_val: "50"
+            value: 128
+          - dps_val: "75"
+            value: 192
+          - dps_val: "100"
+            value: 255
+      - id: 101
+        name: color_temp
+        type: string
+        mapping:
+          - dps_val: warm_white
+            value: 2700
+          - dps_val: white
+            value: 4000
+          - dps_val: blue
+            value: 6500
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: door_control
+            value: door
+          - dps_val: "24h"
+            value: "24h"
+          - dps_val: "30min"
+            value: "30m"
+          - dps_val: "1min"
+            value: "1m"
+    - entity: number
+      translation_key: top_temperature
+      category: config
+      class: temperature
+      dps:
+        - id: 110
+          type: integer
+          name: value
+          unit: C
+          range:
+            min: 5
+            max: 10
+  - entity: number
+    translation_key: bottom_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 10
+          max: 18
