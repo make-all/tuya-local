@@ -1275,6 +1275,7 @@ port and password.
 - iPettie W5 and FW54 pet feeders
 - Kalado KPF01 pet feeder
 - Kanchou pet fountain
+- Kogan F28W pet feeder
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
 - LSC Smart Connect pet feeder

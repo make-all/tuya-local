@@ -1,0 +1,78 @@
+name: Pet feeder
+products:
+  - id: egvdv8xwknaelsul
+    manufacturer: Kogan
+    model: F28W
+entities:
+  - entity: number
+    translation_key: manual_feed
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 10
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+  - entity: text
+    translation_key: meal_plan
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: string
+        name: value
+  - entity: event
+    name: Feed record
+    dps:
+      - id: 112
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: fed
+      - id: 112
+        type: string
+        optional: true
+        name: record
