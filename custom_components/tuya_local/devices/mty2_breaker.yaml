@@ -1,0 +1,561 @@
+name: Circuit breaker
+products:
+  - id: 4tpaetqac6lap6mv
+    model: MTY2
+entities:
+  - entity: text
+    name: Relays on
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Relays off
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    name: Relay 1
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 2
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 3
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 4
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 5
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 6
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 7
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 64
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Relay 8
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 128
+            value: true
+          - value: false
+  - entity: button
+    name: Refresh
+    category: config
+    dps:
+      - id: 104
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: sensor
+    class: frequency
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "000000000000000000000000FFFF000000000000"
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: duration
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000FFFFFFFF"
+        name: sensor
+        class: measurement
+        unit: min
+  - entity: sensor
+    name: Residual current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: text
+    name: Installation settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+      - id: 140
+        type: base64
+        optional: true
+        name: spec
+  - entity: text
+    name: Alarm settings
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+      - id: 117
+        type: base64
+        optional: true
+        name: status
+  - entity: text
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Cloud timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Loop timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Over current settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Tariff settings
+    category: config
+    icon: "mdi:hand-coin"
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Other settings
+    category: config
+    icon: "mdi:tune"
+    hidden: true
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Split mode
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Nett energy
+    category: diagnostic
+    hidden: true  # not strictly total_increasing, so it cannot be used
+    dps:
+      - id: 120
+        type: integer
+        name: alt
+        mapping:
+          - scale: 100
+      - id: 105
+        type: base64
+        optional: true
+        unit: kWh
+        mask: "FFFFFFFF00000000000000000000000000000000"
+        name: sensor
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed
+    dps:
+      - id: 121
+        type: integer
+        name: alt
+        mapping:
+          - scale: 100
+      - id: 105
+        type: base64
+        optional: true
+        mask: "00000000FFFFFFFF000000000000000000000000"
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+      - id: 105
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000FF00000000"
+        name: status
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced
+    dps:
+      - id: 122
+        type: integer
+        name: alt
+        mapping:
+          - scale: 100
+      - id: 105
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFFFFFF0000000000000000"
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: L1
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: L2
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: L3
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: L1
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: L2
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: L3
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "0000000000000000000000000000FF0000000000"
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 131
+        type: integer
+        name: alt
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L1
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L2
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L3
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: L1
+    class: current
+    category: diagnostic
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: L2
+    class: current
+    category: diagnostic
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: L3
+    class: current
+    category: diagnostic
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: L1
+    class: power
+    category: diagnostic
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: L2
+    class: power
+    category: diagnostic
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: L3
+    class: power
+    category: diagnostic
+    dps:
+      - id: 142
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: button
+    name: Self check
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        optional: true
+        name: button

@@ -737,6 +737,7 @@
 - Ketotek KTEM06pro energy meter
 - MatSee Plus bidirectional two channel clamp meter (multiple variants)
 - Meterk single phase clamp meter
+- MTY2 energy monitoring circuit breaker
 - Ourtop ATMS100133 energy meter
 - Owon PC341 3 in 16 out clamp energy meter
 - Parkside PG/PMW-300 solar inverter
