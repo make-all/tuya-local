@@ -3,12 +3,21 @@ products:
   - id: bwyutsrcsnwf3p5o
     manufacturer: LSC Smart Connect
 entities:
+  - entity: switch
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+
   - entity: light
     icon: mdi:circle
     dps:
       - id: 63
         type: boolean
         name: switch
+      - id: 20
+        type: boolean
+        name: available
       - id: 22
         name: brightness
         type: integer
@@ -33,6 +42,9 @@ entities:
       - id: 54
         type: boolean
         name: switch
+      - id: 20
+        type: boolean
+        name: available
       - id: 24
         name: rgbhsv
         type: hex
