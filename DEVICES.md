@@ -965,6 +965,7 @@ of device.
 - Brilliant Smart PIR outdoor sensor light switch
 - Brizlabs string lights
 - Calex S45 Clear E27 lightbulb
+- Cloudy Bay LFMC815SMWH dual-zone RGB+CCT ceiling light
 - Deltaco LED Strip (SH-LW5M)
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch

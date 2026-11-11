@@ -1,0 +1,290 @@
+name: Ceiling light
+products:
+  - id: maxit67l9kzvshnl
+    manufacturer: Cloudy Bay
+    model: LFMC815SMWH
+entities:
+  - entity: switch
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: std_switch
+        mapping:
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: colour
+                value: false
+      - id: 21
+        name: work_mode
+        type: string
+      - id: 22
+        name: std_brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: std_color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 51
+        type: base64
+        optional: true
+        mask: "000100000000000000000000"
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: std_switch
+      - id: 51
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFF0000"
+        name: brightness
+        mapping:
+          - dps_val: null
+            value_mirror: std_brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 51
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFF"
+        name: color_temp
+        mapping:
+          - dps_val: null
+            value_mirror: std_color_temp
+          - target_range:
+              min: 2700
+              max: 6500
+        range:
+          min: 0
+          max: 1000
+  - entity: light
+    translation_key: color_light
+    dps:
+      - id: 20
+        type: boolean
+        name: std_switch
+        mapping:
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: white
+                value: false
+      - id: 21
+        name: work_mode
+        type: string
+      - id: 24
+        name: std_rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 51
+        type: base64
+        optional: true
+        mask: "000200000000000000000000"
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: std_switch
+      - id: 51
+        type: base64
+        optional: true
+        name: rgbhsv
+        format:
+          - name: sw
+            bytes: 2
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 10
+              max: 1000
+          - name: wb
+            bytes: 2
+          - name: wc
+            bytes: 2
+        mapping:
+          - dps_val: null
+            value_mirror: std_rgbhsv
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:bug"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Circadian lighting
+    category: config
+    icon: "mdi:theme-light-dark"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep settings
+    category: config
+    icon: "mdi:lightbulb-night"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wake settings
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-standby"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Switch gradient
+    category: config
+    icon: "mdi:gradient-horizontal"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 36
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mixed RGB+CCT
+    category: config
+    icon: "mdi:lightbulb-multiple"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Segment dimming
+    category: config
+    icon: "mdi:led-strip"
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 209
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 210
+        type: base64
+        optional: true
+        name: value
