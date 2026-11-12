@@ -18,6 +18,7 @@
 - BVF CP1 heater
 - Caldo Up T fan heater
 - Calex Smart Convector heater
+- Castle Heaters NR series heater
 - Cecotec ReadyWarm 8400 Fan and 2000 Max Box Ceramic heaters
 - Cixi Jemell PTC-1919 PTC heater
 - Cleverio AR10/AR20 panel heaters
