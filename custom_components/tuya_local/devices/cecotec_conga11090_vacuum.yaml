@@ -1,0 +1,340 @@
+# Cecotec Conga 11090 Spin Revolution Home&Wash
+# productId: kazdsquasfw0gmrn
+# DP map confirmed against the device's own LAN status output
+# (Tuya standard sweeper layout, category "sd")
+name: Robot vacuum
+products:
+  - id: kazdsquasfw0gmrn
+    manufacturer: Cecotec
+    model: Conga 11090 Spin Revolution Home&Wash
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: Smart
+          - dps_val: zone
+            value: Zone
+          - dps_val: pose
+            value: Go to position
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: Going to location
+          - dps_val: pos_arrived
+            value: idle
+          - dps_val: pos_unarrive
+            value: idle
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: docked
+          - dps_val: sleep
+            value: idle
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: gentle
+          - dps_val: normal
+            value: normal
+          - dps_val: strong
+            value: strong
+      - id: 11
+        type: boolean
+        optional: true
+        name: locate
+      - id: 12
+        type: string
+        optional: true
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+  - entity: switch
+    name: Charge
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: select
+    name: Water level
+    icon: mdi:water
+    category: config
+    dps:
+      - id: 10
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: button
+    name: Reset map
+    icon: mdi:map-marker-remove
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Edge brush life
+    category: config
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Reset edge brush
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Roll brush life
+    category: config
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 18000
+  - entity: button
+    name: Reset roll brush
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Filter life
+    category: config
+    class: duration
+    dps:
+      - id: 21
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Reset filter
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Mop cloth life
+    category: config
+    class: duration
+    dps:
+      - id: 23
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Reset mop cloth
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Do not disturb
+    icon: mdi:sleep
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Break clean
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      # fault is a bitmap, and the device sends it as a plain integer (0 when
+      # healthy). `base64` expects a string and would not decode it; `bitfield`
+      # is the type that matches, as in the same-generation Gadnic AC800 config.
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+  - entity: number
+    name: Number of cleans
+    icon: mdi:robot-vacuum
+    category: config
+    dps:
+      - id: 37
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 0
+          max: 4
+  - entity: switch
+    name: Auto dust collection
+    icon: mdi:trash-can
+    category: config
+    dps:
+      - id: 38
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Customize mode
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+
+  # Mop presence. This model reports the literal value "installed", and the
+  # same-generation Gadnic AC800 config (opn3uutjlhbeojab) maps the same
+  # datapoint as a mop sensor with exactly that enum.
+  - entity: binary_sensor
+    name: Mop installed
+    icon: mdi:water-plus
+    category: diagnostic
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+
+  # DP 45 and 48 are booleans this unit reports. Their names are inherited from
+  # the same-generation Gadnic AC800 config; that the DPs are boolean here is
+  # verified, what they *do* is not, so both are optional.
+  - entity: switch
+    name: Auto boost
+    icon: mdi:car-turbocharger
+    category: config
+    dps:
+      - id: 45
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Y-shape mop mode
+    icon: mdi:vector-square
+    category: config
+    dps:
+      - id: 48
+        type: boolean
+        optional: true
+        name: switch
