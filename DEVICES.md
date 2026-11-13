@@ -516,6 +516,7 @@
 - Cleverio AP100 air purifier
 - ComfortZone AP100 air purifier
 - Dayette AP409 air purifier
+- Djive Flowmate ARC Casual purifiying fan
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
