@@ -73,6 +73,21 @@ entities:
         mask: "00000000FFFF"
 
   - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: white
+            value: White
+          - dps_val: colour
+            value: Colour
+          - dps_val: scene
+            value: Scene
+
+  - entity: select
     translation_key: initial_state
     category: config
     dps:
