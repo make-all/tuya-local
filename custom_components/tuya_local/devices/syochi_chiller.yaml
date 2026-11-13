@@ -1,0 +1,124 @@
+name: Syochi Ice Bath Chiller
+entities:
+  # --- INTERRUTTORI PRINCIPALI ---
+  - entity: switch
+    name: Power
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+
+  # --- IMPOSTAZIONI (Clima e Ozonizzatore) ---
+  - entity: number
+    name: Target Temperature C
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: C
+
+  - entity: number
+    name: Ozone Time
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: min
+
+  - entity: switch
+    name: Sound
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Auto Power Enable
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Temperature Unit
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+
+  # --- SENSORI DI LETTURA ---
+  - entity: sensor
+    name: Current Temperature C
+    class: temperature
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Water Flow
+    class: volume_flow_rate
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: L/min
+
+  # --- DIAGNOSTICA (Sensori Nascosti e Sicurezze) ---
+  - entity: sensor
+    name: Target Temp F
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: F
+
+  - entity: sensor
+    name: Current Temp F
+    category: diagnostic
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: F
+        mapping:
+          - scale: 10
+
+  - entity: binary_sensor
+    name: Water Switch State 1
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Water Switch State 2
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 129
+        type: boolean
+        name: sensor
