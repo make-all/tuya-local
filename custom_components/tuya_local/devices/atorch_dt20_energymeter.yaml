@@ -3,6 +3,9 @@ products:
   - id: 1xgihnuztyo12pqv
     manufacturer: Atorch
     model: DT20HBW
+  - id: 6irqu0m73u9s3yfu
+    manufacturer: Juwei
+    model: CW24
 entities:
   - entity: sensor
     class: current
@@ -197,11 +200,41 @@ entities:
           - dps_val: display_off
             value: "Off"
   - entity: number
+    name: Full-charge voltage endpoint
+    category: config
+    class: voltage
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 42000
+        mapping:
+          - scale: 100
+  - entity: number
     name: Undervoltage threshold
     category: config
     class: voltage
     dps:
       - id: 119
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 42000
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Empty-charge voltage endpoint
+    category: config
+    class: voltage
+    dps:
+      - id: 120
         type: integer
         optional: true
         name: value
@@ -224,12 +257,13 @@ entities:
           min: 2
           max: 99
   - entity: sensor
-    class: energy
+    class: energy_storage
+    name: Remaining energy
     dps:
       - id: 123
         name: sensor
         type: integer
-        class: total_increasing
+        class: measurement
         unit: kWh
         mapping:
           - scale: 1000
@@ -247,6 +281,65 @@ entities:
         range:
           min: 1
           max: 90
+  - entity: select
+    name: Capacity mode
+    category: config
+    icon: "mdi:battery-sync"
+    dps:
+      - id: 124
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: total_cap
+            value: Total capacity
+          - dps_val: actual_cap
+            value: Actual capacity
+  - entity: sensor
+    name: Charged capacity
+    dps:
+      - id: 126
+        name: sensor
+        type: integer
+        optional: true
+        class: total_increasing
+        unit: Ah
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Discharged capacity
+    dps:
+      - id: 127
+        name: sensor
+        type: integer
+        optional: true
+        class: total_increasing
+        unit: Ah
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Accumulated capacity
+    dps:
+      - id: 128
+        name: sensor
+        type: integer
+        optional: true
+        class: total_increasing
+        unit: Ah
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Accumulated electricity
+    class: energy
+    dps:
+      - id: 129
+        name: sensor
+        type: integer
+        optional: true
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -260,6 +353,8 @@ entities:
             value: false
           - dps_val: ""
             value: false
+          - dps_val: "off"
+            value: false
           - value: true
       - id: 132
         type: string
@@ -271,7 +366,7 @@ entities:
           - dps_val: ""
             value: ok
           - dps_val: "off"
-            value: "off"
+            value: ok
           - dps_val: ovp
             value: Over voltage
           - dps_val: opp
@@ -281,12 +376,12 @@ entities:
           - dps_val: otp
             value: Over temperature
   - entity: sensor
-    name: Total charge
+    name: Remaining capacity
     dps:
       - id: 133
         name: sensor
         type: integer
-        class: total
+        class: measurement
         unit: Ah
         mapping:
           - scale: 1000
