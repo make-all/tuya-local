@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libturbojpeg
+          sudo apt-get install libturbojpeg0
       - name: Full test with pytest
         run: uv run pytest --cov=custom_components/tuya_local --cov-report term:skip-covered --junit-xml=test-results.xml
       - name: Surface results
