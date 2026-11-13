@@ -33,6 +33,8 @@ entities:
           max: 600
   - entity: sensor
     class: weight
+    deprecated: sensor_cat_weight  # 2026-09-09
+    category: diagnostic
     dps:
       - id: 6
         type: integer
@@ -186,6 +188,42 @@ entities:
       - id: 103
         type: boolean
         name: lock
+  - entity: sensor
+    name: Cat weight
+    class: weight
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: g
+        class: measurement
+        optional: true
+        mask: "00000000000000FFFF"
+      - id: 104
+        type: base64
+        name: event_type
+        optional: true
+        mask: "000000000000FF0000"
+      - id: 104
+        type: base64
+        name: available
+        optional: true
+        mask: "000000000000FF0000"
+        mapping:
+          - dps_val: 3
+            value: true
+          - value: false
+  # Must stay after Cat weight: entities update in config order, so a state
+  # trigger on the raw payload sees the already updated weight.
+  - entity: sensor
+    name: Work record
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        optional: true
   - entity: button
     name: Deodorant reset
     category: config
