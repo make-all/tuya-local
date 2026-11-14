@@ -1,0 +1,237 @@
+name: Thermostat
+products:
+  - id: zy2codiyo9yfjblh
+    manufacturer: Beok
+    model: TCC31
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 950
+        mapping:
+          - scale: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: home
+            value: manual
+          - dps_val: auto
+            value: program
+          - dps_val: temporary
+            value: temp_override
+      - id: 5
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+      - id: 15
+        type: integer
+        name: max_temperature
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    translation_key: maximum_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 15
+          max: 95
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -99
+          max: 99
+        mapping:
+          - scale: 10
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 28
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    class: temperature_delta
+    icon: "mdi:arrow-collapse-vertical"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 100
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: Temperature limit
+    category: config
+    class: temperature
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 25
+          max: 95
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Night settings
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Open window detection
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: sensor
+      - id: 106
+        type: boolean
+        name: available
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: select
+    name: Sensor
+    icon: "mdi:thermometer-probe"
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Internal
+          - dps_val: "2"
+            value: External
+          - dps_val: "3"
+            value: Both
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: text
+    translation_key: sleep_settings
+    category: config
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    name: Wake up
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: button
