@@ -1432,6 +1432,7 @@ port and password.
 - Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - ME201W level sensor
+- MG2-6HW breathing mmWave radar
 - Mirabella Genio motion sensor
 - Moes human presence sensor
 - Moes single outlet water timer

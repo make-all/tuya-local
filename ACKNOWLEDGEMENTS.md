@@ -975,3 +975,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ozgurclcc](https://github.com/ozgurclcc) for contributing support for Vibrix PureFlow30 air purifier.
 - [meeowgler](https://github.com/meeowgler) for contributing support for EA dual zone car fridge.
 - [hudsonbrendon](https://github.com/hudsonbrendon) for contributing support for Ekaza EKAV-T229Z door lock.
+- [tarzan77cz](https://github.com/tarzan77cz) for contributing support for MG2-6HW breathing mmWave radar.
