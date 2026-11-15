@@ -1563,7 +1563,8 @@ entity types as sub devices.
 - Avatto TRV06 radiator valve (also sold branded as Thaleos)
 - Avatto ZWT198 thermostat
 - Beok BAC-009 smart knob thermostat
-- Generic Zigbee Door Sensor
+- Door Sensor
+- Ekaza EKAV-T229Z door lock
 - Haozee RB-SRAIN01 solar rain sensor
 - Haozee ZG-302ZM mmWave presence dual light switch
 - Intelbras IFR7000 door lock
