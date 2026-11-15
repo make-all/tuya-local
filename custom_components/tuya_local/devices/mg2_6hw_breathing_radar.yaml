@@ -5,7 +5,6 @@ products:
 entities:
   - entity: binary_sensor
     class: occupancy
-    icon: "mdi:account"
     dps:
       - id: 1
         type: string
@@ -425,24 +424,17 @@ entities:
         unit: bpm
         class: measurement
   - entity: sensor
-    name: Hardware version
+    name: Version
     category: diagnostic
-    dps:
-      - id: 107
-        type: string
-        name: sensor
-  - entity: sensor
-    name: Firmware version
-    category: diagnostic
+    hidden: true
     dps:
       - id: 108
         type: string
         name: sensor
-  - entity: sensor
-    name: Radar id
-    category: diagnostic
-    dps:
+      - id: 107
+        type: string
+        name: hardware
       - id: 109
         type: string
-        name: sensor
+        name: identity
         optional: true
