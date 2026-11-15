@@ -1,0 +1,176 @@
+name: Door lock
+products:
+  - id: nxma1uam
+    manufacturer: EKAZA
+    model: EKAV-T229Z
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 2
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 3
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 4
+        type: integer
+        name: unlock_dynamic_pwd
+        optional: true
+        persist: false
+      - id: 5
+        type: integer
+        name: unlock_card
+        optional: true
+        persist: false
+      # ponytail: dp 8 (open_close) is never reported over Zigbee and the
+      # hub replays the last unlock_* value on every poll, so lock state
+      # comes from lock_motor_state (true = locked; auto-relocking lock)
+      - id: 57
+        type: boolean
+        name: lock_state
+        optional: true
+      - id: 9
+        type: string
+        name: jammed
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - dps_val: tongue_not_out
+            value: true
+          - value: false
+      - id: 22
+        type: boolean
+        name: remote_result
+        optional: true
+      - id: 41
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      # remote_no_pd_setkey / remote_no_dp_key: one-time 8 digit code
+      # written and used in the same command by tuya_local
+      - id: 48
+        type: base64
+        name: set_unlock_code
+        optional: true
+        sensitive: true
+      - id: 49
+        type: base64
+        name: code_unlock
+        optional: true
+        sensitive: true
+      - id: 54
+        type: string
+        name: unlock_method_create
+        optional: true
+        sensitive: true
+      - id: 55
+        type: string
+        name: unlock_method_delete
+        optional: true
+        sensitive: true
+      - id: 62
+        type: integer
+        name: unlock_voice
+        optional: true
+        persist: false
+      - id: 68
+        type: string
+        name: unlock_offline_pwd
+        optional: true
+        persist: false
+  - entity: binary_sensor
+    class: door
+    dps:
+      - id: 47
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
+          - value: null
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        optional: true
+        unit: "%"
+  - entity: sensor
+    name: Alert
+    class: enum
+    icon: "mdi:alert"
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: defense
+            value: defense
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 14
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null
+  - entity: binary_sensor
+    name: Duress
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 35
+        type: boolean
+        name: sensor
+        optional: true
