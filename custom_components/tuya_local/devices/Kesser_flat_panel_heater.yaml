@@ -1,0 +1,35 @@
+name: Kesser Flat Panel 350W
+products:
+  - id: xi6sppufnzffdy8w
+    manufacturer: Kesser
+    model: "350W"
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 7
+          max: 32
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "heating"
+            value: idle
+          - dps_val: "standby"
+            value: heating
