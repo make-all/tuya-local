@@ -26,12 +26,15 @@ entities:
         name: current_temperature
       - id: 115
         type: integer
+        optional: true
         name: reserve1
       - id: 116
         type: integer
+        optional: true
         name: reserve2
       - id: 117
         type: integer
+        optional: true
         name: reserve3
   - entity: select
     translation_key: mode
@@ -42,26 +45,34 @@ entities:
         name: option
         mapping:
           - dps_val: 0
-            value: Mode 0
+            value: high
           - dps_val: 1
-            value: Mode 1
+            value: medium
           - dps_val: 2
-            value: Mode 2
+            value: low
           - dps_val: 3
             value: Mode 3
+            hidden: true
           - dps_val: 4
             value: Mode 4
+            hidden: true
           - dps_val: 5
             value: Mode 5
+            hidden: true
           - dps_val: 6
             value: Mode 6
+            hidden: true
           - dps_val: 7
+            hidden: true
             value: Mode 7
           - dps_val: 8
+            hidden: true
             value: Mode 8
           - dps_val: 9
+            hidden: true
             value: Mode 9
           - dps_val: 10
+            hidden: true
             value: Mode 10
   - entity: sensor
     name: Energy
@@ -79,6 +90,7 @@ entities:
     dps:
       - id: 102
         type: integer
+        optional: true
         name: value
         unit: C
         range:
