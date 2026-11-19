@@ -54,7 +54,18 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         self._init_end(dps_map)
 
         if self._humidity_dp is not None:
-            self._attr_target_humidity_step = self._humidity_dp.step(device)
+            if self._humidity_dp.values(device):
+                n = self._humidity_dp.values(device).len()
+                minimum = self._humidity_dp.range(device)[0]
+                maximum = self._humidity_dp.range(device)[1]
+                step = (
+                    abs(maximum - minimum) / (n - 1)
+                    if n > 1
+                    else self._humidity_dp.step(device)
+                )
+            else:
+                step = self._humidity_dp.step(device)
+            self._attr_target_humidity_step = step
 
         self._support_flags = HumidifierEntityFeature(0)
         if self._mode_dp:
@@ -129,6 +140,8 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is None:
             return None
         r = self._humidity_dp.range(self._device)
+        if r is None and self._humidity_dp.values(self._device):
+            return min(self._humidity_dp.values(self._device))
         return DEFAULT_MIN_HUMIDITY if r is None else r[0]
 
     @property
@@ -137,6 +150,8 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is None:
             return None
         r = self._humidity_dp.range(self._device)
+        if r is None and self._humidity_dp.values(self._device):
+            return max(self._humidity_dp.values(self._device))
         return DEFAULT_MAX_HUMIDITY if r is None else r[1]
 
     async def async_set_humidity(self, humidity):
