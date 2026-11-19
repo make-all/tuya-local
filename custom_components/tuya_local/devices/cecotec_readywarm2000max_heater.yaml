@@ -18,7 +18,7 @@ entities:
             conditions:
               - dps_val: CF
                 value: heat
-              - dps_val: P2
+              - dps_val: P1
                 value: auto
               - dps_val: ST
                 value: "off"
@@ -34,16 +34,23 @@ entities:
         name: temperature
         unit: C
         range:
-          min: 1
+          min: 5
           max: 35
         mapping:
           - constraint: preset_mode
             conditions:
               - dps_val: AF
                 value: 7
+                hidden: true  # avoid switching modes when temp hits 7
                 range:
                   min: 7
                   max: 7
+              - dps_val: EC
+                range:
+                  min: 1
+                  max: 31
+              - dps_val: ST
+                invalid: true
       - id: 3
         type: integer
         name: current_temperature
