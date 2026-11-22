@@ -14,14 +14,11 @@ entities:
         mapping:
           - dps_val: presence
             value: true
-          - dps_val: none
-            value: false
-            # - id: 111
-            #   name: breathingselftest
+          - value: false
   - entity: number
     name: Motion sensitivity
     category: config
-    icon: mdi:motion-sensor
+    icon: "mdi:motion-sensor"
     dps:
       - id: 2
         type: integer
@@ -33,7 +30,7 @@ entities:
   - entity: number
     name: Motion detection distance
     category: config
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     dps:
       - id: 3
         type: integer
@@ -49,7 +46,7 @@ entities:
   - entity: number
     name: Stationary detection distance
     category: config
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     dps:
       - id: 4
         type: integer
@@ -72,7 +69,7 @@ entities:
         class: measurement
   - entity: sensor
     name: Distance
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     hidden: unavailable
     dps:
       - id: 122
@@ -92,7 +89,7 @@ entities:
   - entity: number
     name: Stationary sensitivity
     category: config
-    icon: mdi:motion-sensor
+    icon: "mdi:motion-sensor"
     dps:
       - id: 102
         type: integer
@@ -109,10 +106,25 @@ entities:
         type: boolean
         name: switch
         optional: true
+  - entity: alarm_control_panel
+    category: config
+    dps:
+      - id: 104
+        type: string
+        optional: true
+        name: alarm_state
+        mapping:
+          - dps_val: armed
+            value: armed_away
+          - dps_val: disarm
+            value: disarmed
+          - dps_val: sos
+            value: triggered
   - entity: select
     translation_key: alarm_mode
     class: enum
     category: config
+    deprecated: alarm_control_panel  # 2026-11-22
     dps:
       - id: 104
         type: string
@@ -128,7 +140,7 @@ entities:
   - entity: number
     name: Small motion detection distance
     category: config
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     dps:
       - id: 105
         type: integer
@@ -144,7 +156,7 @@ entities:
   - entity: number
     name: Small motion sensitivity
     category: config
-    icon: mdi:motion-sensor
+    icon: "mdi:motion-sensor"
     dps:
       - id: 106
         type: integer
@@ -153,10 +165,35 @@ entities:
         range:
           min: 0
           max: 10
+  - entity: siren
+    category: config
+    dps:
+      - id: 107
+        type: string
+        optional: true
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0.0
+          - dps_val: low
+            value: 0.3
+          - dps_val: middle
+            value: 0.6
+          - dps_val: high
+            value: 1.0
+      - id: 109
+        type: integer
+        optional: true
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 30
   - entity: select
     name: Alarm volume
     class: enum
-    icon: mdi:volume-high
+    icon: "mdi:volume-high"
+    deprecated: siren.volume_level  # 2026-11-22
     category: config
     dps:
       - id: 107
@@ -176,7 +213,7 @@ entities:
     name: Exit delay
     category: config
     class: duration
-    icon: mdi:timer-sand
+    icon: "mdi:timer-sand"
     dps:
       - id: 108
         type: integer
@@ -190,7 +227,8 @@ entities:
     name: Alarm duration
     category: config
     class: duration
-    icon: mdi:timer
+    icon: "mdi:timer"
+    deprecated: siren.duration  # 2026-11-22
     dps:
       - id: 109
         type: integer
@@ -203,7 +241,7 @@ entities:
   - entity: number
     name: Motion minimum detection distance
     category: config
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     dps:
       - id: 110
         type: integer
@@ -219,7 +257,7 @@ entities:
   - entity: number
     name: Small motion minimum detection distance
     category: config
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     dps:
       - id: 111
         type: integer
@@ -235,7 +273,7 @@ entities:
   - entity: number
     name: Breathing minimum detection distance
     category: config
-    icon: mdi:signal-distance-variant
+    icon: "mdi:signal-distance-variant"
     dps:
       - id: 112
         type: integer
@@ -252,7 +290,7 @@ entities:
     name: Adaptive testing time
     category: config
     class: duration
-    icon: mdi:timer
+    icon: "mdi:timer"
     dps:
       - id: 113
         type: integer
@@ -265,7 +303,7 @@ entities:
   - entity: switch
     name: Adaptive test
     category: config
-    icon: mdi:test-tube
+    icon: "mdi:test-tube"
     dps:
       - id: 114
         name: switch
@@ -283,7 +321,7 @@ entities:
   - entity: sensor
     name: Movement state
     class: enum
-    icon: mdi:cursor-move
+    icon: "mdi:cursor-move"
     dps:
       - id: 116
         type: string
@@ -322,7 +360,7 @@ entities:
   - entity: number
     name: Motion false detection
     category: config
-    icon: mdi:alpha-x-circle
+    icon: "mdi:alpha-x-circle"
     dps:
       - id: 119
         type: integer
@@ -334,7 +372,7 @@ entities:
   - entity: switch
     name: Breathing false detection
     category: config
-    icon: mdi:lungs
+    icon: "mdi:lungs"
     dps:
       - id: 120
         name: switch
