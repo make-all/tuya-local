@@ -60,7 +60,7 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
         self._repeat_dp = dps_map.pop("repeat", None)
         self._sound_mode_dp = dps_map.pop("sound_mode", None)
         self._metadata = {}
-        for n, dp in dps_map:
+        for n, dp in dps_map.items():
             if n in PROP_TO_ATTR:
                 self._metadata[dp.id] = dps_map.pop(n)
 
@@ -280,7 +280,7 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
     def on_receive(self, dps, full_poll):
         """Handle an update from the device."""
         # Set metadata attributes
-        for d, v in dps:
+        for d, v in dps.items():
             if d in self._metadata:
                 setattr(self, _attr(self._metadata[d]), v)
                 if self._metadata[d].name == "media_position":
