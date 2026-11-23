@@ -489,6 +489,12 @@ def check_entity(entity, cfg, mocker):
                 pytest.fail(
                     f"\n::error file={fname},line={line}::invert is only valid for numeric values in {cfg}; entity {e}, dp {dp.name}"
                 )
+            dpv = m.get("dps_val")
+            if dpv is not None:
+                assert _typematch(dpv, dp_type), (
+                    f"\n::error file={fname},line={line}::dps_val {dpv} is not compatible with "
+                    f"type {dp_type} in {cfg}; entity {e}, dp {dp.name}"
+                )
             for c in conditions:
                 if c.get("value_redirect"):
                     redirects.add(c.get("value_redirect"))
