@@ -124,24 +124,9 @@ entities:
         type: bitfield
         name: sensor
         mapping:
-          - dps_val: e1
-            value: no_water
-          - dps_val: e2
-            value: drain_blocked
-          - dps_val: e3
-            value: overflow
-          - dps_val: e4
-            value: sensor_fault
-          - dps_val: e5
-            value: communication_fault
-          - dps_val: e6
-            value: heating_fault
-          - dps_val: e7
-            value: variable_frequency_fault
-          - dps_val: e8
-            value: valve_fault
-          - dps_val: e9
-            value: washing_motor_fault
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: lock
     translation_key: child_lock
     category: config

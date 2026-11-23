@@ -16,14 +16,16 @@ entities:
         mapping:
           - dps_val: true
             value: 33
-          - dps_val: dummy_speed1
-            value: 66
-            value_redirect: speed2
-          - dps_val: dummy_speed2
-            value: 100
-            value_redirect: speed3
           - dps_val: false
             value_redirect: speed2
+            # dummy conditions to make all options visible to HA
+            conditions:
+              - dps_val: true
+                value: 66
+                value_redirect: speed2
+              - dps_val: true
+                value: 100
+                value_redirect: speed3
       - id: 102
         type: boolean
         name: speed2
@@ -48,23 +50,25 @@ entities:
         mapping:
           - dps_val: true
             value: "Low Humidity"
-          - dps_val: dummy_mode1
-            value: "Medium Humidity"
-            value_redirect: preset_mode1
-          - dps_val: dummy_mode2
-            value: "High Humidity"
-            value_redirect: preset_mode2
-          - dps_val: dummy_mode3
-            value: fresh
-            value_redirect: preset_mode3
-          - dps_val: dummy_mode4
-            value: anti_condensation
-            value_redirect: preset_mode4
-          - dps_val: dummy_mode5
-            value: circulate
-            value_redirect: preset_mode5
           - dps_val: false
             value_redirect: preset_mode1
+            # Dummy conditions to make redirected options visible to HA
+            conditions:
+              - dps_val: true
+                value: "Medium Humidity"
+                value_redirect: preset_mode1
+              - dps_val: true
+                value: "High Humidity"
+                value_redirect: preset_mode2
+              - dps_val: true
+                value: fresh
+                value_redirect: preset_mode3
+              - dps_val: true
+                value: anti_condensation
+                value_redirect: preset_mode4
+              - dps_val: true
+                value: circulate
+                value_redirect: preset_mode5
       - id: 106
         type: boolean
         name: preset_mode1
