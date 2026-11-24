@@ -78,17 +78,3 @@ entities:
       - id: 22
         type: string
         name: sensor
-  - entity: select
-    name: Configuration
-    deprecated: fan.preset_mode  # 2026-05-18
-    dps:
-      - id: 101
-        name: option
-        type: string
-        mapping:
-          - dps_val: calcle
-            value: "Auto"
-          - dps_val: "1"
-            value: "Medium"
-          - dps_val: "2"
-            value: "Severe"

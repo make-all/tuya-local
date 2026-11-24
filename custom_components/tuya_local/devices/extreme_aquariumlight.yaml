@@ -51,21 +51,6 @@ entities:
             value: Lighting
           - dps_val: cloudy
             value: Cloudy
-  - entity: switch
-    name: Time 24h
-    icon: "mdi:hours-24"
-    deprecated: select.time_format  # 2026-04-19
-    category: config
-    dps:
-      - id: 104
-        type: boolean
-        optional: true
-        name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:hours-12"
-            icon_priority: 1
-
   - entity: select
     translation_key: time_format
     category: config

@@ -259,20 +259,6 @@ entities:
         optional: true
         mapping:
           - scale: 100
-  - entity: binary_sensor
-    class: connectivity
-    deprecated: button.refresh  # 2026-04-19
-    category: diagnostic
-    dps:
-      - id: 27
-        optional: true
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: offline
-            value: false
-          - dps_val: online
-            value: true
   - entity: button
     name: Refresh
     icon: "mdi:refresh"

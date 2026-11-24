@@ -122,24 +122,6 @@ entities:
       - id: 134
         type: json
         name: sensor
-  - entity: select
-    name: Ventilation
-    dps:
-      - id: 102
-        name: option
-        type: string
-        mapping:
-          - dps_val: "off"
-            value: "Off"
-          - dps_val: low
-            value: Low
-          - dps_val: mid
-            value: Medium
-          - dps_val: strong
-            value: High
-          - dps_val: auto
-            value: Auto
-    deprecated: fan.fan_with_presets  # 2026-05-05
   - entity: fan
     translation_key: fan_with_presets
     dps:

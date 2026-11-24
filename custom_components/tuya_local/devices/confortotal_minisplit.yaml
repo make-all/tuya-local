@@ -301,27 +301,3 @@ entities:
       - id: 102
         type: boolean
         name: available
-  - entity: number
-    deprecated: time.on_timer  # 2026-05-31
-    name: On timer time
-    class: duration
-    category: config
-    dps:
-      - id: 103
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 2359
-  - entity: number
-    deprecated: time.off_timer  # 2026-05-31
-    name: Off timer time
-    class: duration
-    category: config
-    dps:
-      - id: 104
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 2359

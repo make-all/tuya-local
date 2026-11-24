@@ -141,22 +141,3 @@ entities:
         range:
           min: 20
           max: 50
-  - entity: select
-    translation_key: heat_pump_mode
-    deprecated: climate.hvac_mode and water_heater.operation_mode  # 2026-04-18
-    category: config
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: Heat
-            value: heat
-          - dps_val: Cool
-            value: cool
-          - dps_val: HotWater
-            value: hotwater
-          - dps_val: Heat_HotWater
-            value: hotwater_heat
-          - dps_val: Cool_HotWater
-            value: hotwater_cool
