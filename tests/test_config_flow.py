@@ -236,7 +236,8 @@ async def test_migrate_entry(hass, mocker):
         },
     )
     entry.add_to_hass(hass)
-    assert not await async_migrate_entry(hass, entry)
+    with pytest.raises(KeyError):
+        await async_migrate_entry(hass, entry)
     mock_device.reset_mock()
 
     entry = MockConfigEntry(
@@ -254,7 +255,8 @@ async def test_migrate_entry(hass, mocker):
         },
     )
     entry.add_to_hass(hass)
-    assert not await async_migrate_entry(hass, entry)
+    with pytest.raises(KeyError):
+        await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = mocker.AsyncMock(return_value="smartplugv1")
     mock_device.reset_mock()
