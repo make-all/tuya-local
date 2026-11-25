@@ -30,14 +30,13 @@ easier to set up using that, or another more recent fork, as an alternative.
 
 ## Installation
 
-Installation is easiest via the Marketplace in Home Assistant 2026.11 or later
-(HACS in earlier versions), which is the best place to get third-party
+Installation is easiest via the Marketplace, which is the best place to get third-party
 integrations for Home Assistant. Simply click the button below (requires My Homeassistant configured) or
 follow the [instructions for adding a custom
 repository](https://www.home-assistant.io/integrations/marketplace/#custom-repositories) and then
 the integration will be available to install like any other.
 
-[![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=make-all&repository=tuya-local&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=make-all&repository=tuya-local&category=integration)
 
 ## Configuration
 
