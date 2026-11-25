@@ -83,7 +83,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         return self._support_flags
 
     @property
-    def temperature_unit(self):
+    def native_temperature_unit(self):
         """Return the unit of measurement."""
         # If there is a separate DPS that returns the units, use that
         if self._unit_dps:
@@ -150,13 +150,13 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
             return self._operation_mode_dps.get_value(self._device) == "away"
 
     @property
-    def current_temperature(self):
+    def native_current_temperature(self):
         """Return the current temperature."""
         if self._current_temperature_dps:
             return self._current_temperature_dps.get_value(self._device)
 
     @property
-    def target_temperature(self):
+    def native_target_temperature(self):
         """Return the temperature we try to reach."""
         if self._temperature_dps is None:
             return None
