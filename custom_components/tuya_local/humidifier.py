@@ -56,8 +56,8 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is not None:
             if self._humidity_dp.values(device):
                 n = self._humidity_dp.values(device).len()
-                minimum = self._humidity_dp.range(device)[0]
-                maximum = self._humidity_dp.range(device)[1]
+                minimum = min(self._humidity_dp.values(device))
+                maximum = max(self._humidity_dp.values(device))
                 step = (
                     abs(maximum - minimum) / (n - 1)
                     if n > 1
