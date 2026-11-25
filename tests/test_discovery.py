@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock
 
 import pytest
 from homeassistant.const import CONF_HOST
-from pytest_homeassistant_custom_component.common import MockConfigEntry
+from pytest_homeassistant.common import MockConfigEntry
 
 from custom_components.tuya_local import discovery
 from custom_components.tuya_local.const import (

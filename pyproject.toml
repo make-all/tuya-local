@@ -32,7 +32,7 @@ dev = [
   "infrared-protocols>=5.6",
   "levenshtein",
   "PyTurboJPEG~=1.8.0",
-  "pytest-homeassistant-custom-component==0.13.375",
+  "pytest-homeassistant==2026.11.3",
   "pytest",
   "pytest-asyncio",
   "pytest-cov",
@@ -43,6 +43,11 @@ dev = [
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+# Let HA install its httpx alias before respx is imported
+addopts = "-p no:respx"
+pythonpath = ["."]
+testpaths = ["tests"]
 
 [tool.ruff]
 target-version = "py314"
