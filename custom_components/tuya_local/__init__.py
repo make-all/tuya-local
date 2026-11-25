@@ -477,6 +477,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             get_config,
             entry.data[CONF_TYPE],
         )
+        if conf_file is None:
             raise FileNotFoundError(errno.ENOENT, NOT_FOUND, entry.data[CONF_TYPE])
 
         @callback
