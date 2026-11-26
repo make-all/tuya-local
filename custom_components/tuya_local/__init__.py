@@ -7,8 +7,8 @@ investigation into Goldair's tuyapi statuses
 https://github.com/codetheweb/tuyapi/issues/31.
 """
 
-from errno import ENOENT
 import logging
+from errno import ENOENT
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
