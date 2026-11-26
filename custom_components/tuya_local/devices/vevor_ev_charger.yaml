@@ -222,9 +222,23 @@ entities:
         mapping:
           - scale: 100
 
+  - entity: button
+    name: Refresh
+    category: config
+    icon: "mdi:sync"
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
+
   - entity: switch
     category: config
     name: Live updates
+    deprecated: button_refresh  # 2026-11-26
     icon: "mdi:chart-bar"
     dps:
       - id: 27
