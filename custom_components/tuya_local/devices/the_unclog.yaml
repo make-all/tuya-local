@@ -1,0 +1,54 @@
+name: The Unclog
+products:
+  - id: ir6qiyn5s0pbnbz7
+    name: The Unclog
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Frequency
+    icon: "mdi:calendar-refresh"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "3_days"
+            value: "Every 3 Days"
+          - dps_val: "Weekly"
+            value: "Weekly"
+          - dps_val: "Monthly"
+            value: "Monthly"
+          - dps_val: "3_Months"
+            value: "Every 3 Months"
+          - dps_val: "6_Months"
+            value: "Every 6 Months"
+  - entity: select
+    name: Duration
+    icon: "mdi:timer-cog"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "15"
+            value: "15 s"
+          - dps_val: "30"
+            value: "30 s"
+          - dps_val: "45"
+            value: "45 s"
+          - dps_val: "60"
+            value: "60 s"
+  - entity: binary_sensor
+    name: Status
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
