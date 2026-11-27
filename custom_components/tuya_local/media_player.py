@@ -60,12 +60,9 @@ class TuyaLocalMediaPlayer(TuyaLocalEntity, MediaPlayerEntity):
         self._repeat_dp = dps_map.pop("repeat", None)
         self._sound_mode_dp = dps_map.pop("sound_mode", None)
         self._metadata = {}
-        for n, dp in dps_map.items():
+        for n, dp in dps_map.copy().items():
             if n in PROP_TO_ATTR:
                 self._metadata[dp.id] = dps_map.pop(n)
-
-        for dp in self._metadata.values():
-            dps_map.pop(dp.name, None)
 
         self._init_end(dps_map)
 
