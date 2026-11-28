@@ -1,4 +1,4 @@
-name: Fresh air display
+name: Ventilation
 products:
   - id: onduum6xf3wqeuzy
     manufacturer: Vantes
@@ -53,7 +53,7 @@ entities:
 
   - entity: switch
     name: Bypass
-    icon: mdi:valve
+    icon: "mdi:valve"
     category: config
     dps:
       - id: 41
@@ -78,29 +78,29 @@ entities:
         type: boolean
         name: switch
 
-  - entity: switch
-    name: Heater
-    icon: mdi:radiator
+  - entity: climate
+    translation_key: heater
     category: config
     hidden: true
     dps:
       - id: 42
         type: boolean
-        name: switch
-
-  - entity: number
-    name: Heater temperature
-    class: temperature
-    category: config
-    hidden: true
-    dps:
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
       - id: 45
         type: integer
-        name: value
+        name: temperature
         unit: C
         range:
           min: 15
           max: 30
+      - id: 9
+        type: integer
+        name: current_temperature
 
   - entity: button
     translation_key: filter_reset
