@@ -976,3 +976,4 @@ Further device support has been made with the assistance of users. Please consid
 - [meeowgler](https://github.com/meeowgler) for contributing support for EA dual zone car fridge.
 - [hudsonbrendon](https://github.com/hudsonbrendon) for contributing support for Ekaza EKAV-T229Z door lock.
 - [tarzan77cz](https://github.com/tarzan77cz) for contributing support for MG2-6HW breathing mmWave radar.
+- [oterpoter](https://github.com/oterpoter) for contributing support for Vantes Fresh Air Display ventilation.
