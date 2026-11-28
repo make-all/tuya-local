@@ -50,8 +50,27 @@ entities:
         type: string
         name: manual_fan_mode
         hidden: true
+        mapping:
+          - dps_val: "0"
+            value: auto
+            hidden: true
+          - dps_val: "1"
+            value: quiet
+          - dps_val: "2"
+            value: low
+          - dps_val: "3"
+            value: medlow
+          - dps_val: "4"
+            value: medium
+          - dps_val: "5"
+            value: medhigh
+          - dps_val: "6"
+            value: high
+          - dps_val: "7"
+            value: strong
       - id: 7
         name: fan_mode
+        optional: true
         type: boolean
         mapping:
           - dps_val: true
@@ -76,9 +95,12 @@ entities:
                 value: high
               - dps_val: "7"
                 value: strong
+          - dps_val: null
+            value_redirect: manual_fan_mode
       - id: 31
         name: swing_mode
         type: string
+        optional: true
         mapping:
           - dps_val: "8"
             value: "off"
@@ -103,6 +125,7 @@ entities:
       - id: 34
         name: swing_horizontal_mode
         type: string
+        optional: true
         mapping:
           - dps_val: "8"
             value: "off"
@@ -299,3 +322,47 @@ entities:
             value: "elderly"
           - dps_val: "3"
             value: "child"
+  - entity: switch
+    name: Anti mould
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: switch
+      - id: 9
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Generator mode
+    icon: "mdi:generator-portable"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 132
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: disabled
+          - dps_val: "1"
+            value: level_1
+          - dps_val: "2"
+            value: level_2
+          - dps_val: "3"
+            value: level_3
+      - id: 132
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
