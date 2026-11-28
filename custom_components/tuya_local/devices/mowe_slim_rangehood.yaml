@@ -1,0 +1,154 @@
+name: Range hood
+products:
+  - id: f0mffstmrpa4hfws
+    manufacturer: Mowe
+    model: Slim
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 10
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: low
+            value: 33
+          - dps_val: middle
+            value: 66
+          - dps_val: high
+            value: 100
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 4
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 11
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: working
+            value: "on"
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: delay
+            value: waiting
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: h
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: switch
+    name: Cleaning reminder
+    icon: "mdi:spray-bottle"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Runtime reminder
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Runtime reminder
+    dps:
+      - id: 106
+        type: string
+        name: event
+        mapping:
+          - dps_val: "1"
+            value: One hour
+          - value: null
+  - entity: sensor
+    class: power
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: button
+    name: Reset runtime reminder
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - dps_val: false
+            value: true
+  - entity: button
+    name: Cleaning reminder reset
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: button

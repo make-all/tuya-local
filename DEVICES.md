@@ -697,6 +697,7 @@
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
 - Mowe MW278I induction hob
+- Mowe Slim range hood
 - Recteq RT-700, RT-800 Deck Boss, RT-1250, RT-B380X grills
 - Rohnson R-2858 SmartChef XL soft cooking air fryer
 - Setti+ KT950W smart kettle
