@@ -1,0 +1,214 @@
+name: Ventilation
+products:
+  - id: onduum6xf3wqeuzy
+    manufacturer: Vantes
+    model: Fresh air display
+
+entities:
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+          - dps_val: timming
+            value: timer
+            hidden: true
+      - id: 101
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 66
+          - dps_val: high
+            value: 100
+          - dps_val: "off"
+            value: 0
+
+  - entity: fan
+    name: Exhaust fan
+    dps:
+      - id: 102
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 66
+          - dps_val: high
+            value: 100
+          - dps_val: "off"
+            value: 0
+
+  - entity: switch
+    name: Bypass
+    icon: "mdi:valve"
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    hidden: true
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    hidden: true
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+
+  - entity: climate
+    translation_key: heater
+    category: config
+    hidden: true
+    dps:
+      - id: 42
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 45
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 30
+      - id: 9
+        type: integer
+        name: current_temperature
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: ugm3
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: ppm
+
+  - entity: sensor
+    class: volatile_organic_compounds_parts
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Y"
+            value: excellent
+          - dps_val: "L"
+            value: good
+          - dps_val: "Z"
+            value: moderate
+          - dps_val: "C"
+            value: poor
+          - dps_val: "JC"
+            value: severe
+
+  - entity: sensor
+    name: Formaldehyde
+    class: volatile_organic_compounds
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
+
+  - entity: sensor
+    class: carbon_monoxide
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+# DPS reference (Tuya cloud thing model, category xfj, 2026-11-17):
+# 1 switch, 2 mode (auto/manual/timming - spelled so by the device;
+#   no DP for the timer duration, it is only set from the app/panel),
+# 3 pm25, 4 uv_light, 5 anion, 6 eco2, 7 tvoc (ppm, scale 2),
+# 8 humidity, 9 temperature, 11 filter_life, 13 filter_reset,
+# 19 hcho (mg/m3, scale 2), 41 bypass, 42 heat, 45 temp_set (15-30),
+# 101 supply fan / 102 exhaust fan - off/low/mid/high,
+# 103-106 BY_YC/HT_YC/AN_YC/UV_YC: read-only 0-255 "hide" values for
+#   bypass/heater/ionizer/UV (this unit: 0/252/150/255; meaning
+#   unconfirmed, so UV/ionizer/heater are disabled by default instead),
+# 107 pollution level Y/L/Z/C/JC, 108 co (ppm)
